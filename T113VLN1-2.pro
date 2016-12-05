@@ -14,11 +14,13 @@ SOURCES += main.cpp \
     ui.cpp \
     domain.cpp \
     data.cpp \
-    config.cpp
+    config.cpp \
+    computer.cpp
 
 HEADERS += \
     person.h \
     ui.h \
     domain.h \
     data.h \
-    config.h
+    config.h \
+    computer.h
