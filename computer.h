@@ -16,8 +16,6 @@ public:
 
     int getBuildYear () const;
 
-    string getComputerName() const;
-
     bool wasItBuilt();
 
 private:

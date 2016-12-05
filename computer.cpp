@@ -19,11 +19,6 @@ int Computer::getBuildYear () const
    return buildYear;
 }
 
-string Computer::getComputerName() const
-{
-   return computerDesign;
-}
-
 bool Computer::wasItBuilt()
 {
     //TODO
