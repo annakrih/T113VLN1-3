@@ -28,11 +28,14 @@ private:
     Config config;
 
     QSqlDatabase db;
+    QString path = QDir::current().path();
+    QString dbName = path + "/database/team8.db";
 
-    QString dbName = QDir::current().path() + "/database/team8.db";
 public:
     //default constructor
     Data();
+
+    void importSQL();
 
     //getList returns main person list
     vector<Person> getList();
