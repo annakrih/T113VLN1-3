@@ -11,35 +11,32 @@ using namespace std;
 
 Data::Data()
 {
-    readPeopleFromFile();
-    readConfigFromFile();
-
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(dbName);
     db.open();
 
     importSQL();
+
+    readPeopleFromDatabase();
+    readConfigFromFile();
 }
 
 void Data::importSQL(){
 
     QSqlQuery query(db);
-    QFile scriptFile(path+"/database/script.sql");
-    if (scriptFile.open(QIODevice::ReadOnly))
+    QFile schema(path+"/database/schema.sql");
+    if (schema.open(QIODevice::ReadOnly))
     {
-        // The SQLite driver executes only a single (the first) query in the QSqlQuery
-        //  if the script contains more queries, it needs to be splitted.
-        QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
+        QStringList schemaCommands = QTextStream(&schema).readAll().split(';');
 
-        foreach (QString queryTxt, scriptQueries)
+        foreach (QString command, schemaCommands)
         {
-            if (queryTxt.trimmed().isEmpty()) {
+            if (command.trimmed().isEmpty()) {
                 continue;
             }
-            if (!query.exec(queryTxt))
+            if (!query.exec(command))
             {
-                qFatal(QString("One of the query failed to execute."
-                            " Error detail: " + query.lastError().text()).toLocal8Bit());
+                qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
             }
             query.finish();
         }
@@ -53,52 +50,49 @@ vector<Person> Data::getList()
 }
 
 //writePersonToFile writes new person to file and adds person to the main vector containing all persons.
-void Data::writePersonToFile(Person p)
+void Data::writePersonToDatabase(Person p)
 {
-    //open and append to file
-    ofstream file;
-    file.open(peopleFile, ios::out | ios::app);
+    db.open();
 
-    //writeSinglePersonToOpenFile takes person and file as parameter, adds that person, to that file.
-    writeSinglePersonToOpenFile(p, file);
+    QSqlQuery query;
+    query.prepare("INSERT INTO Person (name, gender, birthYear, deathYear, nationality) "
+                  "VALUES (:name, :gender, :birthYear, :deathYear, :nationality)");
+    query.bindValue(":name", QString::fromStdString(p.getName()));
+    query.bindValue(":gender", QString::fromStdString(string(1,p.getGender())));
+    query.bindValue(":birthYear", p.getBirthYear());
+    query.bindValue(":deathYear", p.getDeathYear());
+    query.bindValue(":nationality", QString::fromStdString(p.getNationality()));
+    query.exec();
 
     //add person to person list
     list.push_back(p);
-
-    file.close();
 }
 
-//readPeopleFromFile reads current peopleFile entries into main list.
+//readPeopleFromDatabase reads current peopleFile entries into main list.
 //done at start up
-void Data::readPeopleFromFile()
+void Data::readPeopleFromDatabase()
 {
     //clear list first, just in case.
     list.clear();
 
-    ifstream file;
-    file.open(peopleFile);
-    bool fileIsEmpty = file.peek() == ifstream::traits_type::eof(); //check if file is Empty
+    QSqlQuery query("SELECT name, gender, birthYear, deathYear, nationality FROM Person");
+       while (query.next()) {
+           QString nameQ = query.value(0).toString();
+           QString genderQ = query.value(1).toString();
+           qint32 birthYearQ = query.value(2).toInt();
+           qint32 deathYearQ = query.value(3).toInt();
+           QString nationalityQ = query.value(4).toString();
 
-    //declare variables to be filled
-    string name = "", nationality = "";
-    char gender = ' ';
-    int bYear = 0, dYear = 0;
+           string name = nameQ.toStdString();
+           string nationality = nationalityQ.toStdString();
+           string strGender = genderQ.toStdString();
+           const char* gender = strGender.c_str();
+           int birthYear = birthYearQ;
+           int deathYear = deathYearQ;
 
-    while(!file.eof() && file.is_open() && !file.fail() && !fileIsEmpty ) //lots of checks, to make sure file contains data/exists
-    {
-
-        file >> name >> gender >> bYear >> dYear >> nationality;
-
-        //multi word strings have underscores instead of whitespace
-        //this replaces them with white spaces
-        replace( name.begin(), name.end(), '_', ' ');
-        replace( nationality.begin(), nationality.end(), '_', ' ');
-
-        //declare newPerson, then add it to the person list. (vector)
-        Person newPerson(name, gender, bYear, dYear, nationality);
-        list.push_back(newPerson);
-    }  
-    file.close();
+           Person newPerson(name, *gender, birthYear, deathYear, nationality);
+           list.push_back(newPerson);
+       }
 }
 
 //getConfig returns a copy of the config object
@@ -160,47 +154,37 @@ void Data::removePersonFromDatabase(Person personToRemove)
         {
             //if found, remove person from list and file
             list.erase(list.begin()+i);
-            rewriteDataFile();
+            rewriteDatabase();
             break;
         }
     }
 }
 
+void Data::clearDatabase(){
+ QSqlQuery query("delete from person");
+}
+
+
 //overwrites peopleFile with current person List.
-void Data::rewriteDataFile()
+void Data::rewriteDatabase()
 {
     //first delete current peopleFile
-    remove(peopleFile.c_str());
-
-    ofstream file;
-    file.open(peopleFile, ios::out | ios::app); //opens/creates new file in peopleFile location, and appends to it.
+    clearDatabase();
 
     int vectorSize = list.size();
     for(int i=0; i < vectorSize; i++)
     {
         //writes person i from person list to file.
-        writeSinglePersonToOpenFile(list[i], file);
+        writePersonToDatabase(list[i]);
     }
-    file.close();
 }
 
-//writeSinglePersonToOpenFile takes person and output file as parameter
-void Data::writeSinglePersonToOpenFile(Person& p, ofstream& out)
-{
-    string name = p.getName(), nationality = p.getNationality();
-
-    //swap out all whitespace characters for underscore so reading from the file can see multi word strings
-    replace( name.begin(), name.end(), ' ', '_');
-    replace( nationality.begin(), nationality.end(), ' ', '_');
-
-    out << "\n" << name << " " << p.getGender() << " " << p.getBirthYear() << " " << p.getDeathYear() << " " << nationality;
-}
 //clears both person list and peopleFile
 //essentially our version of "drop table"
 void Data::clearPersonInDataBase()
 {
    list.clear();
-   rewriteDataFile();
+   clearDatabase();
 }
 
 //swapPersonsInDatabase overwrites originalPerson with newPerson
@@ -213,7 +197,7 @@ void Data::swapPersonsInDatabase(Person& originalP, Person& newP)
         if(list[i] == originalP)
         {
             list[i] = newP;
-            rewriteDataFile();
+            rewriteDatabase();
             break;
         }
     }

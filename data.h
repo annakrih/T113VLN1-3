@@ -41,19 +41,18 @@ public:
     vector<Person> getList();
 
     //writePersonTofile takes a person class as parameter, and adds it to both the main person vector, and people.txt file
-    void writePersonToFile(Person P);
+    void writePersonToDatabase(Person P);
 
     //reads information stored inside a file and puts it into the main person vector
-    void readPeopleFromFile();
+    void readPeopleFromDatabase();
 
     //removePersonFromDatabase takes a person as variable, if identical person exists in the database, it is removed from both main vector and people.txt
     void removePersonFromDatabase(Person personToRemove);
 
-    //overwrites data in people.txt
-    void rewriteDataFile();
+    void clearDatabase();
 
-    //writes person to people.txt file. Opens the file before and use ostream
-    void writeSinglePersonToOpenFile(Person& p, ofstream& out);
+    //overwrites data in people.txt
+    void rewriteDatabase();
 
     //editPersonInDatabase takes a person as variable, if identical person exists in the database, it is overwritten in both main vector and people.txt
     void editPersonInDatabase(Person personToEdit);

@@ -18,7 +18,7 @@ Domain::Domain()
 //passes a person to the data layer for processing
 void Domain::addPerson(Person p)
 {
-    data.writePersonToFile(p);
+    data.writePersonToDatabase(p);
 }
 
 //Gets the vector that holds the Persons from the data layer
