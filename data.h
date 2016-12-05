@@ -29,6 +29,7 @@ private:
 
     QSqlDatabase db;
 
+    QString dbName = QDir::current().path() + "/database/team8.db";
 public:
     //default constructor
     Data();
