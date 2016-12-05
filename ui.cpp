@@ -44,7 +44,7 @@ void UI::mainMenu()
 
         if (command == "list")
         {
-            listPerson(domain.sortPersonByDefault(domain.getPersonList()));
+            askForListType();
         }
         else if (command == "add")
         {
@@ -1028,4 +1028,44 @@ void UI::projectCredit()
     cout << "  (*.*)    -Margret Finnbogadottir" << endl;
     cout << " c(\")(\")   -Solveig Sara Samuelsdottir" << endl;
     cout << endl;
+}
+
+void UI::askForListType()
+{
+    int choice = 0;
+    bool valid = 0;
+
+    do
+    {
+        cout << "1 : People" << endl;
+        cout << "2 : Computers" << endl;
+        cout << "3 : Cancel" << endl;
+        cout << endl;
+        choice = validateInt("What list would you like to open");
+
+        switch(choice)
+        {
+            case 0: //cancel and go back to main menu
+            {
+                valid = 1;
+            }
+            case 1: //display people list
+            {
+                valid = 1;
+                listPerson(domain.sortPersonByDefault(domain.getPersonList()));
+                break;
+            }
+            case 2: //displaying computer list
+            {
+                valid = 1;
+                //TODO:
+                //listPerson(domain.sortPeopleByDefault(domain.getPersonList()));
+                break;
+            }
+            default: //invalid input
+            {
+                cout << "invalid input" << endl;
+            }
+        }
+    }while(!valid);
 }

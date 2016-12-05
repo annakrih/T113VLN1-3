@@ -82,6 +82,9 @@ private:
     //trailing white spaces not allowed, example: "15 15 " is invalid, "15 " is invalid, "15 15 15" is invalid, "15 15" is valid, "15" is valid
     vector<int> validateMultipleInt(string prompt, size_t maxSize = maxIntToValidate);
 
+    //asking what list should be displayed
+    void askForListType();
+
     //vector that holds yes/no characters (n,y), saves us from declaring them multiple times.
     vector<char> yesOrNo;
     //vector that holds gender characters, saves us from declaring them multiple times. (m/f)
