@@ -26,7 +26,14 @@ string Computer::getComputerType() const
 
 bool Computer::wasItBuilt()
 {
-    //TODO
+    if(buildYear == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 
