@@ -1,6 +1,5 @@
-database\*.txt
-database/*.txt
-database/people.txt
+debug/
+release/
 
 # C++ objects and libs
 

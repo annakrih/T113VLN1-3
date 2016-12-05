@@ -13,6 +13,11 @@ Data::Data()
 {
     readPeopleFromFile();
     readConfigFromFile();
+
+
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(dbName);
+    db.open();
 }
 
 //getList returns copy of the list (vector) containing all persons in the "database"
@@ -177,7 +182,7 @@ void Data::swapPersonsInDatabase(Person& originalP, Person& newP)
 {
     //used when editing the list, so that the person you edited stays in the same
     //spot in the list instead of being added to the bottom of the list
-    for(int i=0; i < list.size(); i++)
+    for(size_t i=0; i < list.size(); i++)
     {
         if(list[i] == originalP)
         {

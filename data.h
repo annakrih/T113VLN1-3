@@ -4,6 +4,8 @@
 #include <vector>
 #include "person.h"
 #include "config.h"
+#include <QtSql>
+#include <QCoreApplication>
 
 using namespace std;
 
@@ -24,6 +26,9 @@ private:
 
     //confic class contains config settings.
     Config config;
+
+    QSqlDatabase db;
+
 public:
     //default constructor
     Data();

@@ -1,9 +1,9 @@
-QT += core
+QT += core sql
 QT -= gui
 
 CONFIG += c++11
 
-TARGET = T113VLN1
+TARGET = T113VLN1-2
 CONFIG += console
 CONFIG -= app_bundle
 
