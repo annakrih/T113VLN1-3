@@ -28,7 +28,7 @@ private:
     Config config;
 
     QSqlDatabase db;
-    QString path = QDir::current().path();
+    QString path = QDir::currentPath() + "/..";
     QString dbName = path + "/database/team8.db";
 
 public:
