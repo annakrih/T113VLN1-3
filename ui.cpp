@@ -48,7 +48,7 @@ void UI::mainMenu()
         }
         else if (command == "add")
         {
-            addPerson();
+            askForAddType();
         }
         else if (command == "search")
         {
@@ -250,7 +250,7 @@ void UI::listPerson(vector<Person> people, bool search)
 //then appends the person to the main person list and peopleFile
 void UI::addPerson()
 {
-    string name = "", tempName = "", tempNation = "";
+    string name = "";
     int birthYear = 0, dYear = 0;
     string deathYear = "";
     char gender = ' ';
@@ -323,6 +323,14 @@ void UI::addPerson()
 
     //displaying the list with the person you just added
     listPerson(domain.getPersonList());
+}
+
+void UI::addComputer()
+{
+    string name = "";
+    bool wasBuilt;
+
+
 }
 
 //prompts user to search a person list, returns a temporary person list with search results.
@@ -1030,6 +1038,14 @@ void UI::projectCredit()
     cout << endl;
 }
 
+void UI::tableNumberOptions()
+{
+    cout << "1 : People" << endl;
+    cout << "2 : Computers" << endl;
+    cout << "3 : Cancel" << endl;
+    cout << endl;
+}
+
 void UI::askForListType()
 {
     int choice = 0;
@@ -1037,10 +1053,8 @@ void UI::askForListType()
 
     do
     {
-        cout << "1 : People" << endl;
-        cout << "2 : Computers" << endl;
-        cout << "3 : Cancel" << endl;
-        cout << endl;
+        tableNumberOptions();
+
         choice = validateInt("What list would you like to open");
 
         switch(choice)
@@ -1063,6 +1077,45 @@ void UI::askForListType()
                 break;
             }
             default: //invalid input
+            {
+                cout << "invalid input" << endl;
+            }
+        }
+    }while(!valid);
+}
+
+void UI::askForAddType()
+{
+    int choice = 0;
+    bool valid = 0;
+
+
+    do
+    {
+        tableNumberOptions();
+
+        choice = validateInt("What table would you like to add to");
+
+        switch(choice)
+        {
+            case 0: //cancel
+            {
+                valid = 1;
+                break;
+            }
+            case 1: //add a person
+            {
+                valid = 1;
+                addPerson();
+                break;
+            }
+            case 2: //add a computer
+            {
+                valid = 1;
+                //addComputer();
+                break;
+            }
+            default:
             {
                 cout << "invalid input" << endl;
             }

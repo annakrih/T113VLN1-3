@@ -29,8 +29,12 @@ private:
     void listPerson(vector<Person> people, bool search = 0);
 
     //function prompts user to input neccasery information about person (name, gender, birthyear, deathyear, nationality)
-    //then appends the person to the main person list and peopleFile
+    //then appends the person to the main person list and peopleTable
     void addPerson();
+
+    //function prompts user to input neccasery information about computer(name, type, if it was built, builtyear)
+    //then appends the computer to the main computer list and computerTable
+    void addComputer();
 
     //prompts user to search a person list, returns a temporary person list with search results.
     //said search results can be searched again, to further narrow down the search
@@ -85,6 +89,9 @@ private:
     //asking what list should be displayed
     void askForListType();
 
+    //asking what list should be displayed
+    void askForAddType();
+
     //vector that holds yes/no characters (n,y), saves us from declaring them multiple times.
     vector<char> yesOrNo;
     //vector that holds gender characters, saves us from declaring them multiple times. (m/f)
@@ -107,6 +114,9 @@ private:
     //function that prints the columns from 1-6, used to choose columns easily.
     //saved in a function cause it is reused multiple times, optional parameter if age option should be shown.
     void numberedOptions(bool includeAge = 0);
+
+    //function prints options for what tables are avalible
+    void tableNumberOptions();
 public:
     UI();
 
