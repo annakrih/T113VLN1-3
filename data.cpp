@@ -50,7 +50,7 @@ vector<Person> Data::getList()
 }
 
 //writePersonToFile writes new person to file and adds person to the main vector containing all persons.
-void Data::writePersonToDatabase(Person p)
+void Data::writePersonToDatabase(Person p, bool push)
 {
     db.open();
 
@@ -65,7 +65,9 @@ void Data::writePersonToDatabase(Person p)
     query.exec();
 
     //add person to person list
-    list.push_back(p);
+    if(push){
+     list.push_back(p);
+    };
 }
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
@@ -175,7 +177,7 @@ void Data::rewriteDatabase()
     for(int i=0; i < vectorSize; i++)
     {
         //writes person i from person list to file.
-        writePersonToDatabase(list[i]);
+        writePersonToDatabase(list[i],0);
     }
 }
 

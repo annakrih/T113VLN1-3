@@ -446,13 +446,6 @@ void Domain::removePerson(Person personToRemove)
     data.removePersonFromDatabase(personToRemove);
 }
 
-//Function that calls data.editPersonInDatabase to edit a Person.
-//passes a person class to the data layer for processing
-void Domain::editPerson(Person personToEdit)
-{
-    data.removePersonFromDatabase(personToEdit);
-}
-
 //Function that calls data.clearPersonInDatabase to clear everything in the list.
 void Domain::clearPerson()
 {
