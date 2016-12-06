@@ -2,14 +2,16 @@
 #include <cstddef>
 
 
-Computer::Computer(string cp, int by, string cd)
+Computer::Computer(string cp, int by, string ct, char wib, int dy)
 {
     computerName = cp;
     buildYear = by;
-    computerDesign = cd;
+    computerType = ct;
+    wasItBuilt = wib;
+    designYear = dy;
 }
 
-string Computer::getcomputerName () const
+string Computer::getComputerName () const
 {
    return computerName;
 }
@@ -21,19 +23,17 @@ int Computer::getBuildYear () const
 
 string Computer::getComputerType() const
 {
-   return computerDesign;
+    return computerType;
 }
 
-bool Computer::wasItBuilt()
+char Computer::getWasItBuilt()
 {
-    if(buildYear == 0)
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
+    return wasItBuilt;
+}
+
+int Computer::desigYear()
+{
+    return designYear;
 }
 
 

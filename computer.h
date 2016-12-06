@@ -10,20 +10,24 @@ class Computer
 public:
     Computer();
 
-    Computer(string cp, int by, string cd);
+    Computer(string cp, int by, string ct, char wib, int dy);
 
-    string getcomputerName () const;
+    string getComputerName () const;
 
     int getBuildYear () const;
 
     string getComputerType() const;
 
-    bool wasItBuilt();
+    char getWasItBuilt();
+
+    int desigYear();
 
 private:
     string computerName;
     int buildYear;
-    string computerDesign;
+    string computerType;
+    char wasItBuilt;
+    int designYear;
 
 };
 

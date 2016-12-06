@@ -97,6 +97,7 @@ private:
     //vector that holds gender characters, saves us from declaring them multiple times. (m/f)
     vector<char> acceptedGender;
     //stanardized error message.
+    vector<char> acceptedTypes;
 
     static const int cancel = 0;
     static const int nameColumn = 1;

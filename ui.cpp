@@ -6,6 +6,7 @@
 #include "ui.h"
 #include <vector>
 #include "person.h"
+#include "computer.h"
 
 using namespace std;
 
@@ -16,6 +17,9 @@ UI::UI() //ui default constructor, puts accepted yes/no and m/f vales into their
     yesOrNo.push_back('N');
     acceptedGender.push_back('M');
     acceptedGender.push_back('F');
+    acceptedTypes.push_back('E');
+    acceptedTypes.push_back('M');
+    acceptedTypes.push_back('T');
 }
 
 void UI::mainMenu()
@@ -265,7 +269,7 @@ void UI::addPerson()
 
     //User asked for person information
     cout << endl;
-    name = validateString("Enter name: ");
+    name = validateString("Enter person name: ");
     gender = validateChar("Enter Gender (M/F): ", acceptedGender);
     nationality = validateString("Enter nationality: ");
 
@@ -328,9 +332,55 @@ void UI::addPerson()
 void UI::addComputer()
 {
     string name = "";
-    bool wasBuilt;
+    int designYear = 0;
+    char wasBuilt = 0;
+    int buildYear = 0;
+    string stringType = "";
 
+    //get the current year
+    const int timeBias = 1900;
+    time_t t = time(NULL);
+    tm* timePtr = localtime(&t);
+    int currentYear = timePtr->tm_year + timeBias;
 
+    //User asked for computer info
+    cout << endl;
+    name = validateString("Enter computer name: ");
+
+    do
+    {
+        designYear = validateInt("Enter design year: ");
+        if(designYear > currentYear)
+        {
+            cout << "Design year must be earlier then current year" << endl;
+        }
+    } while(designYear > currentYear);
+
+    wasBuilt = validateChar("Was it built? (y/n) ", yesOrNo);
+
+    do
+    {
+        buildYear = validateInt("Enter build year: ");
+        if(buildYear > currentYear)
+        {
+            cout << "Build year must be earlier then current year" << endl;
+        }
+        else if(buildYear < designYear)
+        {
+            cout << "Computer can't be built before it was designed" << endl;
+        }
+    } while(buildYear > currentYear || buildYear < designYear);
+
+    stringType = validateString("Enter computer type: ");
+
+    //adding computer to the vector/file
+    Computer newComputer(capitalizeString(name), buildYear, stringType, wasBuilt, designYear);
+
+    //TODO:
+    //domain.addComputer(newComputer);
+
+    //displaying the list with the person you just added
+    //listComputer(domain.getComputerList());
 }
 
 //prompts user to search a person list, returns a temporary person list with search results.
@@ -1042,7 +1092,7 @@ void UI::tableNumberOptions()
 {
     cout << "1 : People" << endl;
     cout << "2 : Computers" << endl;
-    cout << "3 : Cancel" << endl;
+    cout << "0 : Cancel" << endl;
     cout << endl;
 }
 
