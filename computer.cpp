@@ -29,4 +29,9 @@ char Computer::getWasItBuilt()
     return wasItBuilt;
 }
 
+int Computer::getDesignYear()
+{
+    return designYear;
+}
+
 

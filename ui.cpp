@@ -251,21 +251,21 @@ void UI::listComputer(vector<Computer> computer, bool search)
     {
         cout << "====";
     }
-    cout << "==================================================================================";
+    cout << "====================================================================================";
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "ID  ";
     }
-    cout << "Name                       Design year   Type    Was it built    Year built  " << endl;
+    cout << "Name                       Design year    Type          Was it built    Build year  " << endl;
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "----";
     }
-    cout << "----------------------------------------------------------------------------------";
+    cout << "------------------------------------------------------------------------------------";
 
     for (size_t i = 0; i < computer[i].getComputerName().size(); ++i)
     {
@@ -289,88 +289,19 @@ void UI::listComputer(vector<Computer> computer, bool search)
         {
             cout << setw(27) << computer[i].getComputerName();
         }
-       //cout << setw(9) << computer[i].getComputerType();
-       // cout << setw(13) << computer[i].getComputerType();
-       // computer[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << computer[i].getDeathYear();
-       // cout << setw(7) << computer[i].getAge();
+       cout << setw(15) << computer[i].getDesignYear();
+       cout << setw(14) << computer[i].getComputerType();
+       cout << setw(16) << computer[i].getWasItBuilt();
+       cout << setw(12) << computer[i].getBuildYear();
+
+
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "====";
     }
-    cout << "==================================================================================";
-
-    for (size_t i = 0; i < computer[i].getBuildYear(); ++i)
-    {
-        //if this function was opened through the search function it will display a ID number for each person
-        if(search == true)
-        {
-            cout << setw(4) << i;
-        }
-        //if name of person is to long to fit into the name space it will instead print the first
-        //24 characters and two dots.
-        if(computer[i].getBuildYear() > 27)
-        {
-            for(int j = 0; j < 24; j++)
-            {
-                cout << computer[i].getBuildYear();
-            }
-            cout << ".. ";
-        }
-        //else it will print the full name.
-        else
-        {
-            cout << setw(27) << computer[i].getBuildYear();
-        }
-    }
-
-    for (size_t i = 0; i < computer[i].getComputerType().size(); ++i)
-    {
-        //if this function was opened through the search function it will display a ID number for each person
-        if(search == true)
-        {
-            cout << setw(4) << i;
-        }
-        //if name of person is to long to fit into the name space it will instead print the first
-        //24 characters and two dots.
-        if(computer[i].getComputerType().size() > 27)
-        {
-            for(int j = 0; j < 24; j++)
-            {
-                cout << computer[i].getComputerType()[j];
-            }
-            cout << ".. ";
-        }
-        //else it will print the full name.
-        else
-        {
-            cout << setw(27) << computer[i].getComputerType();
-        }
-    }
-    for (size_t i = 0; i < computer[i].getWasItBuilt(); ++i)
-    {
-        //if this function was opened through the search function it will display a ID number for each person
-        if(search == true)
-        {
-            cout << setw(4) << i;
-        }
-        //if name of person is to long to fit into the name space it will instead print the first
-        //24 characters and two dots.
-        if(computer[i].getWasItBuilt() > 27)
-        {
-            for(int j = 0; j < 24; j++)
-            {
-                cout << computer[i].getWasItBuilt();
-            }
-            cout << ".. ";
-        }
-        //else it will print the full name.
-        else
-        {
-            cout << setw(27) << computer[i].getWasItBuilt();
-        }
-    }
+    cout << "====================================================================================";
 }
 }
 
@@ -1398,8 +1329,7 @@ void UI::askForListType()
             case 2: //displaying computer list
             {
                 valid = 1;
-                //TODO:
-                //listPerson(domain.sortPeopleByDefault(domain.getPersonList()));
+                listPerson(domain.sortPeopleByDefault(domain.getPersonList()));
                 break;
             }
             default: //invalid input

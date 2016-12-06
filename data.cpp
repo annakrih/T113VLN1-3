@@ -77,6 +77,25 @@ void Data::writePersonToDatabase(Person p, bool push)
 void Data::writeComputerToDatabase(Computer c, bool push)
 {
     //TODO
+    db.open();
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO Computer (name, designYear, wasItBuilt, buildYear, computerType)"
+                  "VALUES (:name, :designYear, :wasItBuilt, :buildYear, :computerType)");
+    query.bindValue(":name", QString::fromStdString(c.getComputerName()));
+    query.bindValue(":designYear", c.getDesignYear());
+    query.bindValue(":wasItBuilt", c.getWasItBuilt());
+    query.bindValue(":buildYear", c.getBuildYear());
+    query.bindValue(":computerType", QString::fromStdString(c.getComputerType()));
+    query.exec();
+
+    QVariant ID = query.lastInsertId();
+
+    //add computer to computer list if push=1
+    if(push)
+    {
+        compList.push_back(c);
+    }
 }
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.

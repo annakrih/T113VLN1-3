@@ -22,6 +22,8 @@ public:
 
     char getWasItBuilt();
 
+    int getDesignYear();
+
 private:
     QVariant cID;
     string computerName;
