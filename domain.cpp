@@ -309,6 +309,7 @@ vector<Person> Domain::sortPersonByDefault(vector<Person> pList)
 
 }
 
+vector<Computer> Domain::sortComputerByDefault(vector<Computer> cList)
 {
     Config config = data.getConfig();
     vector<Computer> sortedList;
