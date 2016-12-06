@@ -72,6 +72,9 @@ public:
 
     //Function used for adding a person to the list vector
     void addPerson(Person p);
+
+    //
+    void addComputer(Computer c);
 };
 
 #endif // Domain_H

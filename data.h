@@ -50,6 +50,9 @@ public:
     //writePersonTofile takes a person class as parameter, and adds it to both the main person vector, and people.txt file
     void writePersonToDatabase(Person P, bool push = 1);
 
+    //
+    void writeComputerToDatabase(Computer c, bool push = 1);
+
     //reads information stored inside a file and puts it into the main person vector
     void readPeopleFromDatabase();
 

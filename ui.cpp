@@ -56,11 +56,11 @@ void UI::mainMenu()
         }
         else if (command == "search")
         {
-            searchPerson(domain.getPersonList());
+            askForSearch();
         }
         else if (command == "delete")
         {
-            removePerson();
+            askForDelete();
         }
         else if (command == "edit")
         {
@@ -377,10 +377,10 @@ void UI::addComputer()
     Computer newComputer(capitalizeString(name), buildYear, stringType, wasBuilt, designYear);
 
     //TODO:
-    //domain.addComputer(newComputer);
+    domain.addComputer(newComputer);
 
     //displaying the list with the person you just added
-    //listComputer(domain.getComputerList());
+    //listComputer(domain.getCList());
 
 }
 
@@ -1180,13 +1180,14 @@ void UI::askForAddType()
             default:
             {
                 cout << "invalid input" << endl;
+                break;
             }
         }
     }while(!valid);
 }
 
 
-/*
+
 void UI::askForDelete()
 {
     int choice = 0;
@@ -1203,6 +1204,7 @@ void UI::askForDelete()
             case 0: //cancel and go back to main menu
             {
                 valid = 1;
+                break;
             }
             case 1: //calls to a function that allows you to delete a person
             {
@@ -1219,13 +1221,14 @@ void UI::askForDelete()
             default: //invalid input
             {
                 cout << "invalid input" << endl;
+                break;
             }
         }
     }while(!valid);
 }
-*/
 
-/*
+
+
 void UI::askForSearch()
 {
     int choice = 0;
@@ -1242,6 +1245,7 @@ void UI::askForSearch()
             case 0: //cancel and go back to main menu
             {
                 valid = 1;
+                break;
             }
             case 1: //searches for person
             {
@@ -1252,14 +1256,15 @@ void UI::askForSearch()
             case 2: //searches for a computer
             {
                 valid = 1;
-                //SearchComputer
+                //searchComputer(domain.getComputerList());
                 break;
             }
             default: //invalid input
             {
                 cout << "invalid input" << endl;
+                break;
             }
         }
     }while(!valid);
 }
-*/
+

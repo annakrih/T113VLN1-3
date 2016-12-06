@@ -20,6 +20,11 @@ void Domain::addPerson(Person p)
 {
     data.writePersonToDatabase(p);
 }
+void Domain::addComputer(Computer c)
+{
+    //TODO
+    data.writeComputerToDatabase(c);
+}
 
 //Gets the vector that holds the Persons from the data layer
 vector<Person> Domain::getPersonList()

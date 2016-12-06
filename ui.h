@@ -92,6 +92,12 @@ private:
     //asking what list should be displayed
     void askForAddType();
 
+    //asking what list user would like to delete from
+    void askForDelete();
+
+    //asking which list user would like to search in
+    void askForSearch();
+
     //vector that holds yes/no characters (n,y), saves us from declaring them multiple times.
     vector<char> yesOrNo;
     //vector that holds gender characters, saves us from declaring them multiple times. (m/f)

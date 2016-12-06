@@ -72,9 +72,15 @@ void Data::writePersonToDatabase(Person p, bool push)
     query.exec();
 
     //add person to person list
-    if(push){
+    if(push)
+    {
      personList.push_back(p);
     };
+}
+
+void Data::writeComputerToDatabase(Computer c, bool push)
+{
+    //TODO
 }
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
