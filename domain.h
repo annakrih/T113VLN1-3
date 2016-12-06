@@ -47,6 +47,13 @@ public:
     vector<Person> searchPersonDeath(vector<Person> people, int from, int to = dummyNull);//death year
     vector<Person> searchPersonAge (vector<Person> people, int from, int to = dummyNull); //age
 
+    //Search functions based on what you want to search by:
+    //they take in a vector of computer to search in, and a search parameter.
+    vector<Computer> searchComputerName(vector<Computer> comp, string search); //name
+    vector<Computer> searchCDName(vector<Computer> comp, string search); //computerdesign
+    vector<Computer> searchCBuildYear(vector<Computer> comp, int from, int to); //buildyear
+
+
     //Sort functions based on what you want to sort by:
     //they take in a vector of person to sort, and a sort order ("desc or "asc).
     vector<Person> sortPersonByName(string sortOrder,   vector<Person> pList);      // name

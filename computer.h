@@ -12,7 +12,7 @@ public:
 
     Computer(string cp, int by, string cd);
 
-    string getcomputerName () const;
+    string getComputerName () const;
 
     int getBuildYear () const;
 

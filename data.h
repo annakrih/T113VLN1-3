@@ -19,7 +19,7 @@ private:
     vector<Person> list;
 
     //vector contains the list of computer
-    vector<Computer> clist;
+    vector<Computer> cList;
 
     const string directoryPath = "../T113VLN1/database/";
 
@@ -42,10 +42,10 @@ public:
     void importSQL();
 
     //getList returns main person list
-    vector<Person> getList();
+    vector<Person> getPersonList();
 
     //getcomputerlist returns the list of computers
-    vector<Computer> getComputerList;
+    vector<Computer> getComputerList();
 
     //writePersonTofile takes a person class as parameter, and adds it to both the main person vector, and people.txt file
     void writePersonToDatabase(Person P, bool push = 1);

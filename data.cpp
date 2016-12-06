@@ -45,7 +45,7 @@ void Data::importSQL(){
 }
 
 //getList returns copy of the list (vector) containing all persons in the "database"
-vector<Person> Data::getList()
+vector<Person> Data::getPersonList()
 {
     return list;
 }
@@ -53,7 +53,7 @@ vector<Person> Data::getList()
 //getList returns copy of the list (vector) containing all computers in the "database"
 vector<Computer> Data::getComputerList()
 {
-    return clist;
+    return cList;
 }
 
 //writePersonToFile writes new person to file and adds person to the main vector containing all persons.

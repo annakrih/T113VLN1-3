@@ -9,7 +9,7 @@ Computer::Computer(string cp, int by, string cd)
     computerDesign = cd;
 }
 
-string Computer::getcomputerName () const
+string Computer::getComputerName () const
 {
    return computerName;
 }

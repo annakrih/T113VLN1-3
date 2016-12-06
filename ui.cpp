@@ -329,8 +329,6 @@ void UI::addComputer()
 {
     string name = "";
     bool wasBuilt;
-
-
 }
 
 //prompts user to search a person list, returns a temporary person list with search results.
@@ -633,6 +631,7 @@ void UI::removePerson()
     }
 }
 
+/*
 void UI::removeComputer()
 {
     int idOfPerson = 0;
@@ -641,6 +640,7 @@ void UI::removeComputer()
     cout << endl << "Search for the person you wish to delete: "<< endl;
 
 }
+*/
 
 //prompts user to search, after search temporary id's are visible, user can further narrow down search or delete person based on the id.
 void UI::editPerson()
@@ -1133,7 +1133,7 @@ void UI::askForAddType()
 }
 
 
-
+/*
 void UI::askForDelete()
 {
     int choice = 0;
@@ -1170,7 +1170,9 @@ void UI::askForDelete()
         }
     }while(!valid);
 }
+*/
 
+/*
 void UI::askForSearch()
 {
     int choice = 0;
@@ -1207,3 +1209,4 @@ void UI::askForSearch()
         }
     }while(!valid);
 }
+*/

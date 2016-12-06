@@ -24,14 +24,13 @@ void Domain::addPerson(Person p)
 //Gets the vector that holds the Persons from the data layer
 vector<Person> Domain::getPersonList()
 {
-    return data.getList();
+    return data.getPersonList();
 }
 
 vector<Computer> Domain::getCList()
 {
-    return data.getComputerList;
+    return data.getComputerList();
 }
-
 
 //Gets the config object that holds the config settings from the data layer
 Config Domain::getConfig()
@@ -185,6 +184,85 @@ vector<Person> Domain::searchPersonAge(vector<Person> people, int from, int to)
     return searchList;
 
 }
+
+//searchComputerName takes in a vector of computer to search in, and a search parameter.
+//returns a vector of computer
+vector<Computer> Domain::searchComputerName(vector<Computer> comp, string search)
+{
+    vector<Computer> searchList;
+
+    for(size_t i= 0; i < comp.size(); i++ )
+    {
+        string name = comp[i].getComputerName();
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+        transform(search.begin(), search.end(), search.begin(), ::tolower);
+
+        if(search.find(' ') != string::npos)
+        {
+            search.erase(search.begin());
+        }
+
+        if(name.find(search) != string::npos)
+        {
+            searchList.push_back(comp[i]);
+        }
+    }
+
+    return searchList;
+}
+
+//searchCDName takes in a vector of computer to search in, and a search parameter.
+//returns a vector of computerdesign
+vector<Computer> Domain::searchCDName(vector<Computer> comp, string search)
+{
+    vector<Computer> searchList;
+
+    for(size_t i= 0; i < comp.size(); i++ )
+    {
+        string name = comp[i].getComputerType();
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+        transform(search.begin(), search.end(), search.begin(), ::tolower);
+
+        if(search.find(' ') != string::npos)
+        {
+            search.erase(search.begin());
+        }
+
+        if(name.find(search) != string::npos)
+        {
+            searchList.push_back(comp[i]);
+        }
+    }
+
+    return searchList;
+}
+
+
+//searchCBuildYear takes in a vector of computer to search in, and a search parameter.
+//returns a vector of computer build year
+vector<Computer> Domain::searchCBuildYear(vector<Computer> comp, int from, int to)
+{
+    vector<Computer> searchList;
+
+    if(to == dummyNull)
+    {
+        to = from;
+    }
+
+    for(size_t i= 0; i < comp.size(); i++ )
+    {
+        int buildYear = comp[i].getBuildYear();
+
+        if(buildYear >= from && buildYear <= to && buildYear != 0)
+        {
+            searchList.push_back(comp[i]);
+        }
+    }
+
+    return searchList;
+}
+
+
 //sortPersonByDefault takes in a vector of person and returns it sorted in the saved default sort order
 vector<Person> Domain::sortPersonByDefault(vector<Person> pList)
 {
