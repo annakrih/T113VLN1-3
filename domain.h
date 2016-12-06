@@ -57,7 +57,7 @@ public:
     //they take in a vector of computer to search in, and a search parameter.
     vector<Computer> searchComputerName(vector<Computer> comp, string search); //name
     vector<Computer> searchCDName(vector<Computer> comp, string search); //computerdesign
-    vector<Computer> searchCBuildYear(vector<Computer> comp, int from, int to); //buildyear
+    vector<Computer> searchCBuildYear(vector<Computer> comp, int from, int to = dummyNull); //buildyear
 
 
     //Sort functions based on what you want to sort by:

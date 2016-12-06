@@ -1,10 +1,12 @@
 #include "computer.h"
 
-Computer::Computer(string cp, int by, string cd)
+Computer::Computer(string cp, int by, string cd, char wib, int dy)
 {
     computerName = cp;
     buildYear = by;
-    computerDesign = cd;
+    computerType = cd;
+    wasItBuilt = wib;
+    designYear = dy;
 }
 
 string Computer::getComputerName () const
@@ -19,19 +21,12 @@ int Computer::getBuildYear () const
 
 string Computer::getComputerType() const
 {
-   return computerDesign;
+   return computerType;
 }
 
-bool Computer::wasItBuilt()
+char Computer::getWasItBuilt()
 {
-    if(buildYear == 0)
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
+    return wasItBuilt;
 }
 
 

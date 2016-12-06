@@ -627,13 +627,14 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
         }
 
     } while(!valid);
-}
 
-    /*
+
+
     if ( column != 0)
     {
-        listOfFound = domain.sortPersonByDefault(listOfFound);
-        listPerson(listOfFound, true);
+        //TODO: sortPersonByDefault ekki tilbúið
+        //listOfFound = domain.sortPersonByDefault(listOfFound);
+        //listComputer(listOfFound, true);
         do
         {
             valid=1;
@@ -650,18 +651,21 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
             {
                 case searchA:
                 {
-                    listOfFound = searchPerson(domain.getPersonList());
+                    //TODO
+                    //listOfFound = searchPerson(domain.getPersonList());
                     break;
                 }
                 case searchS:
                 {
-                    listOfFound = searchPerson(listOfFound);
+                    //TODO
+                    //listOfFound = searchPerson(listOfFound);
                     break;
                 }
                 case sortS:
                 {
-                    listOfFound = sortPerson(listOfFound);
-                    listPerson(listOfFound);
+                    //TODO
+                    //listOfFound = sortPerson(listOfFound);
+                    //listPerson(listOfFound);
                     valid = 0;
                     break;
                 }
@@ -681,7 +685,7 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
     }
     return listOfFound;
 }
-*/
+
 
 
 
@@ -1313,12 +1317,6 @@ void UI::askForAddType()
     }while(!valid);
 }
 
-
-
-<<<<<<< HEAD
-=======
-/*
->>>>>>> origin/master
 void UI::askForDelete()
 {
     int choice = 0;

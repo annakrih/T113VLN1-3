@@ -64,12 +64,6 @@ void Data::writePersonToDatabase(Person p, bool push)
     query.bindValue(":nationality", QString::fromStdString(p.getNationality()));
     query.exec();
 
-<<<<<<< HEAD
-    //add person to person list
-    if(push)
-    {
-     personList.push_back(p);
-=======
     QVariant ID = query.lastInsertId();
     p.setPersonID(ID);
 
@@ -77,7 +71,6 @@ void Data::writePersonToDatabase(Person p, bool push)
     if(push)
     {
         personList.push_back(p);
->>>>>>> origin/master
     };
 }
 
