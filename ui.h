@@ -28,6 +28,10 @@ private:
     //function is called from other functions. F.x. from search and the list is printed
     void listPerson(vector<Person> people, bool search = 0);
 
+    //listComputer displays the computer list passed to it, if search is true, "dummy id's" are shown (used for edit/delete)
+    //function is called from other functions. F.x. from search and the list is printed
+    void listComputer(vector<Computer> computer, bool search = 0);
+
     //function prompts user to input neccasery information about person (name, gender, birthyear, deathyear, nationality)
     //then appends the person to the main person list and peopleTable
     void addPerson();

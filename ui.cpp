@@ -242,7 +242,7 @@ void UI::listPerson(vector<Person> people, bool search)
     }
 }
 
-/*void UI::listComputer(vector<Computer> computer, bool search)
+void UI::listComputer(vector<Computer> computer, bool search)
 {
     cout << "Displaying computers:" << endl;
 
@@ -348,7 +348,7 @@ void UI::listPerson(vector<Person> people, bool search)
             cout << setw(27) << computer[i].getComputerType();
         }
     }
-    for (size_t i = 0; i < computer[i].wasItBuilt(); ++i)
+    for (size_t i = 0; i < computer[i].getWasItBuilt(); ++i)
     {
         //if this function was opened through the search function it will display a ID number for each person
         if(search == true)
@@ -357,22 +357,22 @@ void UI::listPerson(vector<Person> people, bool search)
         }
         //if name of person is to long to fit into the name space it will instead print the first
         //24 characters and two dots.
-        if(computer[i].wasItBuilt() > 27)
+        if(computer[i].getWasItBuilt() > 27)
         {
             for(int j = 0; j < 24; j++)
             {
-                cout << computer[i].wasItBuilt();
+                cout << computer[i].getWasItBuilt();
             }
             cout << ".. ";
         }
         //else it will print the full name.
         else
         {
-            cout << setw(27) << computer[i].wasItBuilt();
+            cout << setw(27) << computer[i].getWasItBuilt();
         }
     }
 }
-}*/
+}
 
 
 //function prompts user to input neccasery information about person (name, gender, birthyear, deathyear, nationality)
