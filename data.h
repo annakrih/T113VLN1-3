@@ -18,7 +18,7 @@ private:
     //vector contains the list of people
     vector<Person> personList;
     vector<Computer> compList;
-    vector< vector<> > relations;
+    vector< vector<int> > relations;
 
 
     const string directoryPath = "../T113VLN1/database/";
