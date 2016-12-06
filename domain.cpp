@@ -1,10 +1,5 @@
-#include "config.h"
 #include "domain.h"
-#include "data.h"
-#include <algorithm>
-#include <string>
-#include <fstream>
-#include <iostream>
+
 
 using namespace std;
 

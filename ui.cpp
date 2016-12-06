@@ -1,12 +1,4 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <limits>
-#include <algorithm>
 #include "ui.h"
-#include <vector>
-#include "person.h"
-#include "computer.h"
 
 using namespace std;
 
@@ -332,6 +324,7 @@ void UI::addPerson()
 void UI::addComputer()
 {
     string name = "";
+
     int designYear = 0;
     char wasBuilt = 0;
     int buildYear = 0;
@@ -556,6 +549,142 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     return listOfFound;
 }
 
+
+//prompts user to search a computer list, returns a temporary computer list with search results.
+//said search results can be searched again, to further narrow down the search
+vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
+{
+    int column = 0;
+    char cSearch = ' ';
+    string sSearch = "";
+    vector<int> iSearch;
+    bool valid = 1;
+    vector<Computer> listOfFound;
+
+    int const searchA = 1;
+    int const searchS = 2;
+    int const sortS = 3;
+    int const mM = 0;
+
+    //asks what you want to search by
+    do
+    {
+        valid = 1;
+        numberedOptions(1);
+        column = validateInt("Select a column to search by: ");
+
+        switch(column)
+        {
+            case 0:        //cancel
+            {
+                cout << endl;
+                valid = 1;
+                break;
+            }
+
+            case 1:        //computername
+            {
+                sSearch = validateString("Name: ");
+                listOfFound = domain.searchComputerName(listToSearchComputer,sSearch);
+                break;
+            }
+            case 2:        //computerdesign
+            {
+                sSearch = validateString("Computer Design: ");
+                listOfFound = domain.searchCDName(listToSearchComputer,sSearch);
+                break;
+            }
+            case 3:        //buildyear
+            {
+
+                do{
+                    cout << endl << "Search year, or from year to later year: " << endl;
+                    iSearch = validateMultipleInt("Buildyear: ");
+                    if(iSearch.size() == 2)
+                    {
+                        listOfFound = domain.searchCBuildYear(listToSearchComputer, iSearch[0], iSearch[1]);
+                    }
+                    else if(iSearch.size() == 1)
+                    {
+                        listOfFound = domain.searchCBuildYear(listToSearchComputer, iSearch[0]);
+                    }
+                }while(!iSearch.size());
+                break;
+            }
+            default :
+            {
+                cout << endl << invalid << endl << endl;
+                valid = 0;
+                break;
+            }
+        }
+
+        //nothing was returned from user search
+        if ((listOfFound.size()) == 0 && column != 0)
+        {
+            valid = 0;
+            cout << "No entry found. Try again: " << endl;
+        }
+
+    } while(!valid);
+}
+
+    /*
+    if ( column != 0)
+    {
+        listOfFound = domain.sortPersonByDefault(listOfFound);
+        listPerson(listOfFound, true);
+        do
+        {
+            valid=1;
+            int searchAgain;
+
+            cout << "1 : Search Again " << endl;
+            cout << "2 : Search within search result" << endl;
+            cout << "3 : Sort search result" << endl;
+            cout << "0 : Continue" << endl;
+
+            searchAgain = validateInt("What would you like to do now: ");
+
+            switch(searchAgain)
+            {
+                case searchA:
+                {
+                    listOfFound = searchPerson(domain.getPersonList());
+                    break;
+                }
+                case searchS:
+                {
+                    listOfFound = searchPerson(listOfFound);
+                    break;
+                }
+                case sortS:
+                {
+                    listOfFound = sortPerson(listOfFound);
+                    listPerson(listOfFound);
+                    valid = 0;
+                    break;
+                }
+                case mM:
+                {
+                    cout << endl;
+                    break;
+                }
+                default:
+                {
+                    cout << endl << invalid << endl;
+                    valid = 0;
+                }
+            }
+
+        }while(!valid);
+    }
+    return listOfFound;
+}
+*/
+
+
+
 //prompts user with sort options (by name, age etc) can also search "asc" or "desc"
 //returns sorted person list, based on choices.
 vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
@@ -599,8 +728,6 @@ vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
                 }
             }
         }
-
-
         switch(sortColumn)
         {
             //calls a different function depending on number selected
@@ -1188,6 +1315,10 @@ void UI::askForAddType()
 
 
 
+<<<<<<< HEAD
+=======
+/*
+>>>>>>> origin/master
 void UI::askForDelete()
 {
     int choice = 0;

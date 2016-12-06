@@ -1,6 +1,5 @@
 #include "person.h"
-#include <time.h>
-#include <cstddef>
+
 
 //default constructor
 //requires name, gender, birthyear, deathyear, nationality
@@ -63,6 +62,11 @@ string Person::getNationality() const
 void Person::setName(string inputName)
 {
     name = inputName;
+}
+
+void Person::setPersonID(QVariant ID)
+{
+    pID = ID;
 }
 
 void Person::setGender(char inputGender)

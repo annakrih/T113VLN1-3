@@ -1,16 +1,16 @@
 #ifndef UI_H
 #define UI_H
 
-#include "domain.h"
-#include "person.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <sstream>
 #include <limits>
 #include <algorithm>
-#include "ui.h"
 #include <vector>
+#include "domain.h"
+#include "person.h"
+#include "computer.h"
 
 using namespace std;
 
@@ -39,6 +39,10 @@ private:
     //prompts user to search a person list, returns a temporary person list with search results.
     //said search results can be searched again, to further narrow down the search
     vector<Person> searchPerson(vector<Person> listToSearch);
+
+    //prompts user to search a computer list, returns a temporary computer list with search results.
+    //said search results can be searched again, to further narrow down the search
+    vector<Computer> searchComputer(vector<Computer> listToSearchComputer);
 
     //prompts user with sort options (by name, age etc) can also search "asc" or "desc"
     //returns sorted person list, based on choices.

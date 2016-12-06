@@ -2,6 +2,8 @@
 #define COMPUTER_H
 
 #include <string>
+#include <cstddef>
+#include <QVariant>
 
 using namespace std;
 
@@ -10,7 +12,7 @@ class Computer
 public:
     Computer();
 
-    Computer(string cp, int by, string ct, char wib, int dy);
+    Computer(string cp, int by, string cd);
 
     string getComputerName () const;
 
@@ -18,16 +20,13 @@ public:
 
     string getComputerType() const;
 
-    char getWasItBuilt();
-
-    int desigYear();
+    bool wasItBuilt();
 
 private:
+    QVariant cID;
     string computerName;
-    int buildYear; //0 if the computer was never built
-    string computerType;
-    char wasItBuilt;
-    int designYear;
+    int buildYear; //0 if the computer was never built.
+    string computerDesign;
 };
 
 #endif // COMPUTER_H

@@ -2,11 +2,18 @@
 #define DATA_H
 
 #include <vector>
-#include "person.h"
-#include "computer.h"
-#include "config.h"
 #include <QtSql>
 #include <QCoreApplication>
+#include <QVariant>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include "config.h"
+#include "person.h"
+#include "computer.h"
+
+
 
 using namespace std;
 
@@ -18,8 +25,6 @@ private:
     //vector contains the list of people
     vector<Person> personList;
     vector<Computer> compList;
-    vector< vector<int> > relations;
-
 
     const string directoryPath = "../T113VLN1/database/";
 

@@ -2,6 +2,9 @@
 #define PERSON_H
 
 #include <string>
+#include <time.h>
+#include <cstddef>
+#include <QVariant>
 
 using namespace std;
 
@@ -14,6 +17,7 @@ public:
 
     //set functions for editing
     void setName(string inputName);
+    void setPersonID(QVariant ID);
     void setGender(char inputGender);
     void setBY(int inputBY);
     void setDY(int inputDY);
@@ -48,6 +52,7 @@ public:
     friend bool operator== (const Person lhs, const Person rhs);
 
 private:
+    QVariant pID;
     string name;
     int    birthYear;
     int    deathYear;
