@@ -244,7 +244,6 @@ void UI::listPerson(vector<Person> people, bool search)
 
 /*void UI::listComputer(vector<Computer> computer, bool search)
 {
-
     cout << "Displaying computers:" << endl;
 
     //if function was opened through the search function print this for the ID column
@@ -254,17 +253,12 @@ void UI::listPerson(vector<Person> people, bool search)
     }
     cout << "==================================================================================";
 
-    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
-    //long the strings displayed in the nationality column are
-
-        cout << endl;
-
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "ID  ";
     }
-    cout << "Name                       Design Year   Type    Was it built    Year built  " << endl;
+    cout << "Name                       Design year   Type    Was it built    Year built  " << endl;
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
@@ -272,11 +266,6 @@ void UI::listPerson(vector<Person> people, bool search)
         cout << "----";
     }
     cout << "----------------------------------------------------------------------------------";
-
-    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
-    //long the strings displayed in the nationality column are
-
-        cout << endl;
 
     for (size_t i = 0; i < computer[i].getComputerName().size(); ++i)
     {
@@ -300,26 +289,10 @@ void UI::listPerson(vector<Person> people, bool search)
         {
             cout << setw(27) << computer[i].getComputerName();
         }
-        cout << setw(9) << computer[i].getGender();
-        cout << setw(13) << people[i].getBirthYear();
-        people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
-        cout << setw(7) << people[i].getAge();
-
-        //if string i for natinality is longer then 26 characters display 23 of them and add a ".. " at the end
-        //otherwise print out the whole string
-        if(computer[i].getBuildYear().size() > 26)
-        {
-            for(int j = 0; j < 23; j++)
-            {
-                cout << computer[i].getBuildYear()[j];
-            }
-            cout << ".. " << endl;
-        }
-        else
-        {
-            cout << setw(biggestNatSize) << computer[i].getNationality() << endl;
-        }
-    }
+       //cout << setw(9) << computer[i].getComputerType();
+       // cout << setw(13) << computer[i].getComputerType();
+       // computer[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << computer[i].getDeathYear();
+       // cout << setw(7) << computer[i].getAge();
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
@@ -327,29 +300,6 @@ void UI::listPerson(vector<Person> people, bool search)
         cout << "====";
     }
     cout << "==================================================================================";
-
-    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
-    //long the strings displayed in the nationality column are
-    if((biggestNatSize > 12) && (biggestNatSize < 26))
-    {
-        for(size_t i = 0; i < (biggestNatSize-12); i++)
-        {
-            cout << "=";
-        }
-        cout << endl;
-    }
-    else if(biggestNatSize >= 26)
-    {
-        for(int i = 0; i < 26-12; i++)
-        {
-            cout << "=";
-        }
-        cout << endl;
-    }
-    else
-    {
-        cout << endl;
-    }
 
     for (size_t i = 0; i < computer[i].getBuildYear(); ++i)
     {
@@ -421,7 +371,9 @@ void UI::listPerson(vector<Person> people, bool search)
             cout << setw(27) << computer[i].wasItBuilt();
         }
     }
+}
 }*/
+
 
 //function prompts user to input neccasery information about person (name, gender, birthyear, deathyear, nationality)
 //then appends the person to the main person list and peopleFile
