@@ -309,6 +309,45 @@ vector<Person> Domain::sortPersonByDefault(vector<Person> pList)
 
 }
 
+{
+    Config config = data.getConfig();
+    vector<Computer> sortedList;
+    switch(config.sortColumn)
+    {
+        case 1 :
+        {
+            //sortedList = sortComputerByName(config.SortOrder, cList);
+            break;
+        }
+        case 2 :
+        {
+            //sortedList = sortComputerByDesignYear(config.SortOrder, cList);
+            break;
+        }
+        case 3 :
+        {
+            //sortedList = sortComputerByWasItBuilt(config.SortOrder, cList);
+            break;
+        }
+        case 4 :
+        {
+            //sortedList = sortComputerByBuildYear(config.SortOrder, cList);
+            break;
+        }
+        case 5 :
+        {
+            //sortedList = sortComputerByComputerType(config.SortOrder, cList);
+            break;
+        }
+        default : {
+            break;
+        }
+    }
+
+    return sortedList;
+
+}
+
 //sortPersonByName takes in a vector of person to sort, and a sort order ("desc or "asc).
 vector<Person> Domain::sortPersonByName(string sortOrder, vector<Person> pList)
 {

@@ -69,6 +69,7 @@ public:
     vector<Person> sortPersonByNat(string sortOrder,    vector<Person> pList);      // nationality
     vector<Person> sortPersonByAge(string sortOrder,    vector<Person> pList);      // age
     vector<Person> sortPersonByDefault(vector<Person> pList);                       // based on config settings
+    vector<Computer> sortComputerByDefault(vector<Computer> cList);                 // based on config settings
 
     //gets config from data layer
     Config getConfig();

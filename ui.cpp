@@ -437,7 +437,7 @@ void UI::addComputer()
     domain.addComputer(newComputer);
 
     //displaying the list with the person you just added
-    //listComputer(domain.getCList());
+    listComputer(domain.getCList());
 
 }
 
@@ -1329,7 +1329,7 @@ void UI::askForListType()
             case 2: //displaying computer list
             {
                 valid = 1;
-                listPerson(domain.sortPeopleByDefault(domain.getPersonList()));
+                listComputer(domain.sortComputerByDefault(domain.getCList()));
                 break;
             }
             default: //invalid input
