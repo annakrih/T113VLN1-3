@@ -1,11 +1,4 @@
 #include "data.h"
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <algorithm>
-#include "person.h"
-#include "computer.h"
-#include "config.h"
 
 using namespace std;
 //data layer
@@ -56,7 +49,7 @@ vector<Computer> Data::getComputerList()
     return compList;
 }
 
-//writePersonToFile writes new person to file and adds person to the main vector containing all persons.
+//writePersonToFile writes new person to file and adds person to the main vector containing all persons(if push=1).
 void Data::writePersonToDatabase(Person p, bool push)
 {
     db.open();
@@ -71,9 +64,13 @@ void Data::writePersonToDatabase(Person p, bool push)
     query.bindValue(":nationality", QString::fromStdString(p.getNationality()));
     query.exec();
 
-    //add person to person list
-    if(push){
-     personList.push_back(p);
+    QVariant ID = query.lastInsertId();
+    p.setPersonID(ID);
+
+    //add person to person list if push=1
+    if(push)
+    {
+        personList.push_back(p);
     };
 }
 

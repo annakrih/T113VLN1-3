@@ -2,9 +2,15 @@
 #define DOMAIN_H
 
 #include <vector>
-#include "person.h"
+#include <algorithm>
+#include <string>
+#include <fstream>
+#include <iostream>
 #include "data.h"
 #include "config.h"
+#include "person.h"
+#include "computer.h"
+
 
 using namespace std;
 

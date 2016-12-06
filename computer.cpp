@@ -1,6 +1,4 @@
 #include "computer.h"
-#include <cstddef>
-
 
 Computer::Computer(string cp, int by, string cd)
 {

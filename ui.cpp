@@ -1,11 +1,4 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <limits>
-#include <algorithm>
 #include "ui.h"
-#include <vector>
-#include "person.h"
 
 using namespace std;
 
@@ -328,7 +321,7 @@ void UI::addPerson()
 void UI::addComputer()
 {
     string name = "";
-    bool wasBuilt;
+// TODO:     bool wasBuilt;
 }
 
 //prompts user to search a person list, returns a temporary person list with search results.

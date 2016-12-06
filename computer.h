@@ -2,6 +2,8 @@
 #define COMPUTER_H
 
 #include <string>
+#include <cstddef>
+#include <QVariant>
 
 using namespace std;
 
@@ -21,6 +23,7 @@ public:
     bool wasItBuilt();
 
 private:
+    QVariant cID;
     string computerName;
     int buildYear; //0 if the computer was never built.
     string computerDesign;

@@ -1,16 +1,16 @@
 #ifndef UI_H
 #define UI_H
 
-#include "domain.h"
-#include "person.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <sstream>
 #include <limits>
 #include <algorithm>
-#include "ui.h"
 #include <vector>
+#include "domain.h"
+#include "person.h"
+#include "computer.h"
 
 using namespace std;
 
