@@ -24,16 +24,10 @@ public:
 
 private:
     string computerName;
-<<<<<<< HEAD
-    int buildYear;
+    int buildYear; //0 if the computer was never built
     string computerType;
     char wasItBuilt;
     int designYear;
-
-=======
-    int buildYear; //0 if the computer was never built.
-    string computerDesign;
->>>>>>> origin/master
 };
 
 #endif // COMPUTER_H

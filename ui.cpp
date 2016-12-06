@@ -332,7 +332,6 @@ void UI::addPerson()
 void UI::addComputer()
 {
     string name = "";
-<<<<<<< HEAD
     int designYear = 0;
     char wasBuilt = 0;
     int buildYear = 0;
@@ -382,9 +381,7 @@ void UI::addComputer()
 
     //displaying the list with the person you just added
     //listComputer(domain.getComputerList());
-=======
-    bool wasBuilt;
->>>>>>> origin/master
+
 }
 
 //prompts user to search a person list, returns a temporary person list with search results.
@@ -1177,7 +1174,7 @@ void UI::askForAddType()
             case 2: //add a computer
             {
                 valid = 1;
-                //addComputer();
+                addComputer();
                 break;
             }
             default:
