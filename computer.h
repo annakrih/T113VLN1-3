@@ -22,9 +22,8 @@ public:
 
 private:
     string computerName;
-    int buildYear;
+    int buildYear; //0 if the computer was never built.
     string computerDesign;
-
 };
 
 #endif // COMPUTER_H

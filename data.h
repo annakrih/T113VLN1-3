@@ -16,10 +16,10 @@ class Data
 {
 private:
     //vector contains the list of people
-    vector<Person> list;
+    vector<Person> personList;
+    vector<Computer> compList;
+    vector< vector<> > relations;
 
-    //vector contains the list of computer
-    vector<Computer> cList;
 
     const string directoryPath = "../T113VLN1/database/";
 

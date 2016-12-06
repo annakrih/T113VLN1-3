@@ -47,13 +47,13 @@ void Data::importSQL(){
 //getList returns copy of the list (vector) containing all persons in the "database"
 vector<Person> Data::getPersonList()
 {
-    return list;
+    return personList;
 }
 
 //getList returns copy of the list (vector) containing all computers in the "database"
 vector<Computer> Data::getComputerList()
 {
-    return cList;
+    return compList;
 }
 
 //writePersonToFile writes new person to file and adds person to the main vector containing all persons.
@@ -73,7 +73,7 @@ void Data::writePersonToDatabase(Person p, bool push)
 
     //add person to person list
     if(push){
-     list.push_back(p);
+     personList.push_back(p);
     };
 }
 
@@ -82,7 +82,7 @@ void Data::writePersonToDatabase(Person p, bool push)
 void Data::readPeopleFromDatabase()
 {
     //clear list first, just in case.
-    list.clear();
+    personList.clear();
 
     QSqlQuery query("SELECT name, gender, birthYear, deathYear, nationality FROM Person");
        while (query.next()) {
@@ -100,7 +100,7 @@ void Data::readPeopleFromDatabase()
            int deathYear = deathYearQ;
 
            Person newPerson(name, *gender, birthYear, deathYear, nationality);
-           list.push_back(newPerson);
+           personList.push_back(newPerson);
        }
 }
 
@@ -156,13 +156,13 @@ void Data::readConfigFromFile()
 void Data::removePersonFromDatabase(Person personToRemove)
 {
     //make changes to the vector holding people
-    int vectorSize = list.size();
+    int vectorSize = personList.size();
     for(int i=0; i < vectorSize; i++)
     {
-        if(list[i] == personToRemove)
+        if(personList[i] == personToRemove)
         {
             //if found, remove person from list and file
-            list.erase(list.begin()+i);
+            personList.erase(personList.begin()+i);
             rewriteDatabase();
             break;
         }
@@ -180,11 +180,11 @@ void Data::rewriteDatabase()
     //first delete current peopleFile
     clearDatabase();
 
-    int vectorSize = list.size();
+    int vectorSize = personList.size();
     for(int i=0; i < vectorSize; i++)
     {
         //writes person i from person list to file.
-        writePersonToDatabase(list[i],0);
+        writePersonToDatabase(personList[i],0);
     }
 }
 
@@ -192,7 +192,7 @@ void Data::rewriteDatabase()
 //essentially our version of "drop table"
 void Data::clearPersonInDataBase()
 {
-   list.clear();
+   personList.clear();
    clearDatabase();
 }
 
@@ -201,11 +201,11 @@ void Data::swapPersonsInDatabase(Person& originalP, Person& newP)
 {
     //used when editing the list, so that the person you edited stays in the same
     //spot in the list instead of being added to the bottom of the list
-    for(size_t i=0; i < list.size(); i++)
+    for(size_t i=0; i < personList.size(); i++)
     {
-        if(list[i] == originalP)
+        if(personList[i] == originalP)
         {
-            list[i] = newP;
+            personList[i] = newP;
             rewriteDatabase();
             break;
         }
