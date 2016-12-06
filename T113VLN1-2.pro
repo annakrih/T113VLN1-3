@@ -7,17 +7,17 @@ TARGET = T113VLN1-2
 CONFIG += console
 CONFIG -= app_bundle
 
-Release:DESTDIR = $${PWD}/release
-Release:OBJECTS_DIR = $${PWD}/release/.obj
-Release:MOC_DIR = $${PWD}/release/.moc
-Release:RCC_DIR = $${PWD}/release/.rcc
-Release:UI_DIR = $${PWD}/release/.ui
+release:DESTDIR = $${PWD}/release
+release:OBJECTS_DIR = $${PWD}/release/.obj
+release:MOC_DIR = $${PWD}/release/.moc
+release:RCC_DIR = $${PWD}/release/.rcc
+release:UI_DIR = $${PWD}/release/.ui
 
-Debug:DESTDIR = $${PWD}/debug
-Debug:OBJECTS_DIR = $${PWD}/debug/.obj
-Debug:MOC_DIR = $${PWD}/debug/.moc
-Debug:RCC_DIR = $${PWD}/debug/.rcc
-Debug:UI_DIR = $${PWD}/debug/.ui
+debug:DESTDIR = $${PWD}/debug
+debug:OBJECTS_DIR = $${PWD}/debug/.obj
+debug:MOC_DIR = $${PWD}/debug/.moc
+debug:RCC_DIR = $${PWD}/debug/.rcc
+debug:UI_DIR = $${PWD}/debug/.ui
 
 TEMPLATE = app
 
