@@ -27,6 +27,12 @@ vector<Person> Domain::getPersonList()
     return data.getList();
 }
 
+vector<Computer> Domain::getCList()
+{
+    return data.getComputerList;
+}
+
+
 //Gets the config object that holds the config settings from the data layer
 Config Domain::getConfig()
 {

@@ -633,6 +633,15 @@ void UI::removePerson()
     }
 }
 
+void UI::removeComputer()
+{
+    int idOfPerson = 0;
+    size_t vectorCheck = 0;
+    bool valid = 1;
+    cout << endl << "Search for the person you wish to delete: "<< endl;
+
+}
+
 //prompts user to search, after search temporary id's are visible, user can further narrow down search or delete person based on the id.
 void UI::editPerson()
 {
@@ -1116,6 +1125,82 @@ void UI::askForAddType()
                 break;
             }
             default:
+            {
+                cout << "invalid input" << endl;
+            }
+        }
+    }while(!valid);
+}
+
+
+
+void UI::askForDelete()
+{
+    int choice = 0;
+    bool valid = 0;
+
+    do
+    {
+        tableNumberOptions();
+
+        choice = validateInt("What table would you like to delete from ?");
+
+        switch(choice)
+        {
+            case 0: //cancel and go back to main menu
+            {
+                valid = 1;
+            }
+            case 1: //calls to a function that allows you to delete a person
+            {
+                valid = 1;
+                removePerson();
+                break;
+            }
+            case 2: //calls to a function that allows you to delete a person
+            {
+                valid = 1;
+                //removeComputer();
+                break;
+            }
+            default: //invalid input
+            {
+                cout << "invalid input" << endl;
+            }
+        }
+    }while(!valid);
+}
+
+void UI::askForSearch()
+{
+    int choice = 0;
+    bool valid = 0;
+
+    do
+    {
+        tableNumberOptions();
+
+        choice = validateInt("What table would you like to search");
+
+        switch(choice)
+        {
+            case 0: //cancel and go back to main menu
+            {
+                valid = 1;
+            }
+            case 1: //searches for person
+            {
+                valid = 1;
+                searchPerson(domain.getPersonList());
+                break;
+            }
+            case 2: //searches for a computer
+            {
+                valid = 1;
+                //SearchComputer
+                break;
+            }
+            default: //invalid input
             {
                 cout << "invalid input" << endl;
             }

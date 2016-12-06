@@ -21,6 +21,9 @@ public:
     //Gets the vector that holds the Persons
     vector<Person> getPersonList();
 
+    //Gets the vector that holds the Computers
+    vector<Computer> getCList();
+
     //Function that uses data.removePersonFromDatabase and deletes personToRemove from vector and database
     //passes a person class to the data layer for processing
     void removePerson(Person personToRemove);

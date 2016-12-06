@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "person.h"
+#include "computer.h"
 #include "config.h"
 #include <QtSql>
 #include <QCoreApplication>
@@ -14,8 +15,11 @@ using namespace std;
 class Data
 {
 private:
-    //vector contains the list
+    //vector contains the list of people
     vector<Person> list;
+
+    //vector contains the list of computer
+    vector<Computer> clist;
 
     const string directoryPath = "../T113VLN1/database/";
 
@@ -39,6 +43,9 @@ public:
 
     //getList returns main person list
     vector<Person> getList();
+
+    //getcomputerlist returns the list of computers
+    vector<Computer> getComputerList;
 
     //writePersonTofile takes a person class as parameter, and adds it to both the main person vector, and people.txt file
     void writePersonToDatabase(Person P, bool push = 1);

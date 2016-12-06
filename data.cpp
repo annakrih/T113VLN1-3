@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include "person.h"
+#include "computer.h"
 #include "config.h"
 
 using namespace std;
@@ -47,6 +48,12 @@ void Data::importSQL(){
 vector<Person> Data::getList()
 {
     return list;
+}
+
+//getList returns copy of the list (vector) containing all computers in the "database"
+vector<Computer> Data::getComputerList()
+{
+    return clist;
 }
 
 //writePersonToFile writes new person to file and adds person to the main vector containing all persons.
