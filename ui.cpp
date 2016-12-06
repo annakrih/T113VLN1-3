@@ -242,6 +242,187 @@ void UI::listPerson(vector<Person> people, bool search)
     }
 }
 
+/*void UI::listComputer(vector<Computer> computer, bool search)
+{
+
+    cout << "Displaying computers:" << endl;
+
+    //if function was opened through the search function print this for the ID column
+    if(search == true)
+    {
+        cout << "====";
+    }
+    cout << "==================================================================================";
+
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
+
+        cout << endl;
+
+    //if function was opened through the search function print this for the ID column
+    if(search == true)
+    {
+        cout << "ID  ";
+    }
+    cout << "Name                       Design Year   Type    Was it built    Year built  " << endl;
+
+    //if function was opened through the search function print this for the ID column
+    if(search == true)
+    {
+        cout << "----";
+    }
+    cout << "----------------------------------------------------------------------------------";
+
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
+
+        cout << endl;
+
+    for (size_t i = 0; i < computer[i].getComputerName().size(); ++i)
+    {
+        //if this function was opened through the search function it will display a ID number for each person
+        if(search == true)
+        {
+            cout << setw(4) << i;
+        }
+        //if name of person is to long to fit into the name space it will instead print the first
+        //24 characters and two dots.
+        if(computer[i].getComputerName().size() > 27)
+        {
+            for(int j = 0; j < 24; j++)
+            {
+                cout << computer[i].getComputerName()[j];
+            }
+            cout << ".. ";
+        }
+        //else it will print the full name.
+        else
+        {
+            cout << setw(27) << computer[i].getComputerName();
+        }
+        cout << setw(9) << computer[i].getGender();
+        cout << setw(13) << people[i].getBirthYear();
+        people[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << people[i].getDeathYear();
+        cout << setw(7) << people[i].getAge();
+
+        //if string i for natinality is longer then 26 characters display 23 of them and add a ".. " at the end
+        //otherwise print out the whole string
+        if(computer[i].getBuildYear().size() > 26)
+        {
+            for(int j = 0; j < 23; j++)
+            {
+                cout << computer[i].getBuildYear()[j];
+            }
+            cout << ".. " << endl;
+        }
+        else
+        {
+            cout << setw(biggestNatSize) << computer[i].getNationality() << endl;
+        }
+    }
+
+    //if function was opened through the search function print this for the ID column
+    if(search == true)
+    {
+        cout << "====";
+    }
+    cout << "==================================================================================";
+
+    //The following if sentences are adding additional "=" marks to the right side of the list depending on how
+    //long the strings displayed in the nationality column are
+    if((biggestNatSize > 12) && (biggestNatSize < 26))
+    {
+        for(size_t i = 0; i < (biggestNatSize-12); i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else if(biggestNatSize >= 26)
+    {
+        for(int i = 0; i < 26-12; i++)
+        {
+            cout << "=";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl;
+    }
+
+    for (size_t i = 0; i < computer[i].getBuildYear(); ++i)
+    {
+        //if this function was opened through the search function it will display a ID number for each person
+        if(search == true)
+        {
+            cout << setw(4) << i;
+        }
+        //if name of person is to long to fit into the name space it will instead print the first
+        //24 characters and two dots.
+        if(computer[i].getBuildYear() > 27)
+        {
+            for(int j = 0; j < 24; j++)
+            {
+                cout << computer[i].getBuildYear();
+            }
+            cout << ".. ";
+        }
+        //else it will print the full name.
+        else
+        {
+            cout << setw(27) << computer[i].getBuildYear();
+        }
+    }
+
+    for (size_t i = 0; i < computer[i].getComputerType().size(); ++i)
+    {
+        //if this function was opened through the search function it will display a ID number for each person
+        if(search == true)
+        {
+            cout << setw(4) << i;
+        }
+        //if name of person is to long to fit into the name space it will instead print the first
+        //24 characters and two dots.
+        if(computer[i].getComputerType().size() > 27)
+        {
+            for(int j = 0; j < 24; j++)
+            {
+                cout << computer[i].getComputerType()[j];
+            }
+            cout << ".. ";
+        }
+        //else it will print the full name.
+        else
+        {
+            cout << setw(27) << computer[i].getComputerType();
+        }
+    }
+    for (size_t i = 0; i < computer[i].wasItBuilt(); ++i)
+    {
+        //if this function was opened through the search function it will display a ID number for each person
+        if(search == true)
+        {
+            cout << setw(4) << i;
+        }
+        //if name of person is to long to fit into the name space it will instead print the first
+        //24 characters and two dots.
+        if(computer[i].wasItBuilt() > 27)
+        {
+            for(int j = 0; j < 24; j++)
+            {
+                cout << computer[i].wasItBuilt();
+            }
+            cout << ".. ";
+        }
+        //else it will print the full name.
+        else
+        {
+            cout << setw(27) << computer[i].wasItBuilt();
+        }
+    }
+}*/
+
 //function prompts user to input neccasery information about person (name, gender, birthyear, deathyear, nationality)
 //then appends the person to the main person list and peopleFile
 void UI::addPerson()
