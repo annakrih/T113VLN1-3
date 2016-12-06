@@ -40,6 +40,10 @@ private:
     //said search results can be searched again, to further narrow down the search
     vector<Person> searchPerson(vector<Person> listToSearch);
 
+    //prompts user to search a computer list, returns a temporary computer list with search results.
+    //said search results can be searched again, to further narrow down the search
+    vector<Computer> searchComputer(vector<Computer> listToSearchComputer);
+
     //prompts user with sort options (by name, age etc) can also search "asc" or "desc"
     //returns sorted person list, based on choices.
     vector<Person> sortPerson(vector<Person> personList, int sortColumn = dummyNull );
@@ -97,6 +101,7 @@ private:
     //vector that holds gender characters, saves us from declaring them multiple times. (m/f)
     vector<char> acceptedGender;
     //stanardized error message.
+    vector<char> acceptedTypes;
 
     static const int cancel = 0;
     static const int nameColumn = 1;
