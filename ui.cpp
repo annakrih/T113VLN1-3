@@ -398,8 +398,10 @@ void UI::addComputer()
 
     int designYear = 0;
     char wasBuilt = 0;
-    int buildYear = 0;
+    string buildYear = "";
+    int bYear = 0;
     string stringType = "";
+    bool yearFail;
 
     //get the current year
     const int timeBias = 1900;
@@ -411,6 +413,8 @@ void UI::addComputer()
     cout << endl;
     name = validateString("Enter computer name: ");
 
+    stringType = validateString("Enter computer type: ");
+
     do
     {
         designYear = validateInt("Enter design year: ");
@@ -420,38 +424,54 @@ void UI::addComputer()
         }
     } while(designYear > currentYear);
 
-    wasBuilt = validateChar("Was it built? (y/n) ", yesOrNo);
-
-    if(wasBuilt == 'Y')
-    {
     do
     {
-        buildYear = validateInt("Enter build year: ");
-        if(buildYear > currentYear)
+        yearFail = 0;
+        buildYear = validateString("Enter build year ( . if computer wasn't built) : ", ".");
+        if((buildYear.find_first_not_of("0123456789") == std::string::npos) || buildYear == "" )
         {
-            cout << "Build year must be earlier then current year" << endl;
+            if(buildYear == "")
+            {
+                //in our system, a deathyear of 0 is the same as "not dead" (my kingdom for a null!)
+                bYear = 0;
+                wasBuilt = 'N';
+            }
+            else
+            {
+                wasBuilt = 'Y';
+                bYear = stoi( buildYear );
+                if(designYear > bYear)
+                {
+                    yearFail = 1;
+                    cout << endl << "Build year must be later than the design year" << endl;
+                }
+                else if(bYear > currentYear)
+                {
+                    yearFail = 1;
+                    cout << endl << "Build year can't be higher then current year (" << currentYear << ")" << endl;
+                }
+            }
         }
-        else if(buildYear < designYear)
+        else
         {
-            cout << "Computer can't be built before it was designed" << endl;
+            yearFail = 1;
+            cout << endl << invalid << endl;
+            cin.putback('\n');
         }
-    } while(buildYear > currentYear || buildYear < designYear);
-    }
-    else
-    {
-        buildYear = 0;
-    }
+    }while(yearFail);
 
-    stringType = validateString("Enter computer type: ");
 
     //adding computer to the vector/file
-    Computer newComputer(capitalizeString(name), buildYear, stringType, wasBuilt, designYear);
+    Computer newComputer(capitalizeString(name), bYear, stringType, wasBuilt, designYear);
 
     //TODO:
+
     domain.addComputer(newComputer);
 
     //displaying the list with the computer you just added
     listComputer(domain.getCList());
+    cout << "debug xd" <<endl;
+
 }
 
 //prompts user to search a person list, returns a temporary person list with search results.

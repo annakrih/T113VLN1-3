@@ -76,17 +76,16 @@ void Data::writePersonToDatabase(Person p, bool push)
 
 void Data::writeComputerToDatabase(Computer c, bool push)
 {
-    //TODO
+    /*TODO
     db.open();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO Computer (name, designYear, wasItBuilt, buildYear, computerType)"
-                  "VALUES (:name, :designYear, :wasItBuilt, :buildYear, :computerType)");
+    query.prepare("INSERT INTO Computer (name, designYear, buildYear, type)"
+                  "VALUES (:name, :designYear, :buildYear, :computerType)");
     query.bindValue(":name", QString::fromStdString(c.getComputerName()));
     query.bindValue(":designYear", c.getDesignYear());
-    query.bindValue(":wasItBuilt", c.getWasItBuilt());
     query.bindValue(":buildYear", c.getBuildYear());
-    query.bindValue(":computerType", QString::fromStdString(c.getComputerType()));
+    query.bindValue(":type", QString::fromStdString(c.getComputerType()));
     query.exec();
 
     QVariant ID = query.lastInsertId();
@@ -95,7 +94,7 @@ void Data::writeComputerToDatabase(Computer c, bool push)
     if(push)
     {
         compList.push_back(c);
-    }
+    }*/
 }
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
@@ -130,28 +129,36 @@ void Data::readPeopleFromDatabase()
 //done at start up
 void Data::readComputerFromDatabase()
 {
+    /*
     //clear list first, just in case.
     compList.clear();
 
-    QSqlQuery query("SELECT name, designYear, wasItBuilt, buildYear, computerType FROM Computer");
+    QSqlQuery query("SELECT name, designYear,buildYear, computerType FROM Computer");
        while (query.next())
        {
            QString nameQ = query.value(0).toString();
            qint32 designYearQ = query.value(1).toInt();
-           QString wasItBuiltQ = query.value(2).toString();
-           qint32 buildYearQ = query.value(3).toInt();
-           QString computerTypeQ = query.value(4).toString();
+           qint32 buildYearQ = query.value(2).toInt();
+           QString computerTypeQ = query.value(3).toString();
 
            string name = nameQ.toStdString();
            string computerType = computerTypeQ.toStdString();
-           string strWasItBuilt = wasItBuiltQ.toStdString();
-           const char* wasItBuilt = strWasItBuilt.c_str();
            int designYear = designYearQ;
            int buildYear = buildYearQ;
+           char wasItBuilt = ' ';
+           if(buildYear == 0)
+           {
+               wasItBuilt = 'N';
+           }
+           else
+           {
+               wasItBuilt = 'Y';
+           }
 
-           Computer newComputer(name, designYear, computerType, *wasItBuilt, buildYear);
+           Computer newComputer(name, designYear, computerType, wasItBuilt, buildYear);
            compList.push_back(newComputer);
        }
+       */
 }
 
 //getConfig returns a copy of the config object
