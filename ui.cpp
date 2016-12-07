@@ -263,7 +263,7 @@ void UI::listComputer(vector<Computer> computer, bool search)
     {
         cout << "ID  ";
     }
-    cout << "Name                       Design year    Type          Was it built    Build year  " << endl;
+    cout << endl << "Name                       Design year    Type          Was it built    Build year  " << endl;
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
@@ -383,7 +383,6 @@ void UI::addPerson()
         }
     }while(yearFail); //loop until year is valid
 
-
     //adding person to the vector/file
     Person newPerson(capitalizeString(name), gender, birthYear, dYear, capitalizeString(nationality));
     domain.addPerson(newPerson);
@@ -422,6 +421,10 @@ void UI::addComputer()
 
     wasBuilt = validateChar("Was it built? (y/n) ", yesOrNo);
 
+
+    //bæta við Y/N
+    if(wasBuilt == 'Y')
+    {
     do
     {
         buildYear = validateInt("Enter build year: ");
@@ -434,6 +437,11 @@ void UI::addComputer()
             cout << "Computer can't be built before it was designed" << endl;
         }
     } while(buildYear > currentYear || buildYear < designYear);
+    }
+    else
+    {
+        wasBuilt = 0;
+    }
 
     stringType = validateString("Enter computer type: ");
 
@@ -443,9 +451,8 @@ void UI::addComputer()
     //TODO:
     domain.addComputer(newComputer);
 
-    //displaying the list with the person you just added
+    //displaying the list with the computer you just added
     listComputer(domain.getCList());
-
 }
 
 //prompts user to search a person list, returns a temporary person list with search results.
@@ -463,8 +470,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     int const searchS = 2;
     int const sortS = 3;
     int const mM = 0;
-
-
 
     //asks what you want to search by
     do
