@@ -1,6 +1,5 @@
 #include "domain.h"
 
-
 using namespace std;
 
 //domain layer

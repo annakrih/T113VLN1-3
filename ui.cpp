@@ -133,14 +133,12 @@ void UI::listPerson(vector<Person> people, bool search)
         cout << endl;
     }
 
-
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "ID  ";
     }
     cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
-
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
@@ -221,7 +219,6 @@ void UI::listPerson(vector<Person> people, bool search)
         cout << "====";
     }
     cout << "==================================================================================";
-
 
     //The following if sentences are adding additional "=" marks to the right side of the list depending on how
     //long the strings displayed in the nationality column are
@@ -316,7 +313,6 @@ void UI::listComputer(vector<Computer> computer, bool search)
        cout << "====================================================================================" << endl;
 
 }
-
 
 //function prompts user to input neccasery information about person (name, gender, birthyear, deathyear, nationality)
 //then appends the person to the main person list and peopleFile
@@ -510,7 +506,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
                     iSearch = validateMultipleInt("Year of birth: ");
                     if(iSearch.size() == 2)
                     {
-                        listOfFound = domain.searchPersonBirth(listToSearch, iSearch[0], iSearch[1]);
                     }
                     else if(iSearch.size() == 1)
                     {
@@ -628,7 +623,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     return listOfFound;
 }
 
-
 //prompts user to search a computer list, returns a temporary computer list with search results.
 //said search results can be searched again, to further narrow down the search
 vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
@@ -707,8 +701,6 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
 
     } while(!valid);
 
-
-
     if ( column != 0)
     {
         //TODO: sortPersonByDefault ekki tilbúið
@@ -765,9 +757,6 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
     return listOfFound;
 }
 
-
-
-
 //prompts user with sort options (by name, age etc) can also search "asc" or "desc"
 //returns sorted person list, based on choices.
 vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
@@ -781,7 +770,6 @@ vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
     //asks what you want to sort by
     cout << endl;
     numberedPersonOptions(1);
-
 
     //option to sort descendingly
     do{
@@ -1007,7 +995,6 @@ void UI::clearList()
 //trailing whitespace removed, "y   " = 'y'
 char UI::validateChar(string prompt, vector<char> accepts)
 {
-
     string tempString = "";
     char validChar = ' ';
     const size_t maxStringLength = 1;
@@ -1394,7 +1381,6 @@ void UI::askForAddType()
     int choice = 0;
     bool valid = 0;
 
-
     do
     {
         tableNumberOptions();
@@ -1468,8 +1454,6 @@ void UI::askForDelete()
     }while(!valid);
 }
 
-
-
 void UI::askForSearch()
 {
     int choice = 0;
@@ -1508,4 +1492,3 @@ void UI::askForSearch()
         }
     }while(!valid);
 }
-
