@@ -130,6 +130,8 @@ private:
     //saved in a function cause it is reused multiple times, optional parameter if age option should be shown.
     void numberedPersonOptions(bool includeAge = 0);
 
+    void numberedComputerOptions();
+
     //function prints options for what tables are avalible
     void tableNumberOptions();
 public:

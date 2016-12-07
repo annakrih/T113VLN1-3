@@ -1275,6 +1275,16 @@ void UI::numberedPersonOptions(bool includeAge)
     cout << "0 : Cancel" << endl;
 }
 
+void UI::numberedComputerOptions()
+{
+    cout << "1 : Name" << endl;
+    cout << "2 : Design year" << endl;
+    cout << "3 : Was it built?" << endl;
+    cout << "4 : Build year" << endl;
+    cout << "5 : Computer type" << endl;
+    cout << "0 : Cancel" << endl;
+}
+
 //function that displays project credits. (on exit/quit)
 void UI::projectCredit()
 {
