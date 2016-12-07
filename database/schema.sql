@@ -7,19 +7,12 @@ deathYear INTEGER,
 nationality TEXT NOT NULL
 );
 
-Create table IF NOT EXISTS Computer_Type(
-id INTEGER PRIMARY KEY AUTOINCREMENT,
-type_name TEXT NOT NULL
-);
-
 Create table IF NOT EXISTS Computer(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name TEXT NOT NULL,
 designYear INTEGER,
-wasItBuilt CHAR,
 buildYear INTEGER,
-type INTEGER NOT NULL,
-FOREIGN KEY(type) REFERENCES Computer_Type(id)
+type TEXT NOT NULL
 );
 
 Create table IF NOT EXISTS PersonComputer(

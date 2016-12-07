@@ -65,7 +65,7 @@ void UI::mainMenu()
         }
         else if (command == "quit")
         {
-           projectCredit();
+            projectCredit();
         }
         else if (command == "clear")
         {
@@ -1238,18 +1238,42 @@ void UI::configPerson()
                 {
                     do
                     {
-                        sortCheck = 1;
-                        numberedPersonOptions(1);
-                        setting = validateInt("Choose a number between 0-6 to change default sort column: ");
-                        cout << endl;
-                        if(setting == cancel)
+                        int chooseTable = 0;
+                        tableNumberOptions();
+                        chooseTable = validateInt("Select what table you want to change configs for");
+                        if(chooseTable == 1)
                         {
-                            setting = newConfig.sortColumn;
-                            break;
-                        }else if(!(setting > cancel && setting <= ageColumn))
+                            sortCheck = 1;
+                            numberedPersonOptions(1);
+                            setting = validateInt("Choose a number between 0-6 to change default sort column: ");
+                            cout << endl;
+                            if(setting == cancel)
+                            {
+                                setting = newConfig.sortColumn;
+                                break;
+                            }
+                            else if(!(setting > cancel && setting <= ageColumn))
+                            {
+                                cout << invalid << endl <<endl;
+                                sortCheck = 0;
+                            }
+                        }
+                        else if(chooseTable == 2)
                         {
-                            cout << invalid << endl <<endl;
-                            sortCheck = 0;
+                            sortCheck = 1;
+                            numberedComputerOptions();
+                            setting = validateInt("Choose a number between 0-5 to change default sort column: ");
+                            cout << endl;
+                            if(setting == cancel)
+                            {
+                                setting = newConfig.sortColumn;
+                                break;
+                            }
+                            else if(!(setting > cancel && setting <= ageColumn))
+                            {
+                                cout << invalid << endl <<endl;
+                                sortCheck = 0;
+                            }
                         }
                     }while(!sortCheck);
                     //override old config
