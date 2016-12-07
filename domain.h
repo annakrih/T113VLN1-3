@@ -11,7 +11,6 @@
 #include "person.h"
 #include "computer.h"
 
-
 using namespace std;
 
 //domain layer
@@ -59,7 +58,6 @@ public:
     vector<Computer> searchCDName(vector<Computer> comp, string search); //computerdesign
     vector<Computer> searchCBuildYear(vector<Computer> comp, int from, int to = dummyNull); //buildyear
 
-
     //Sort functions based on what you want to sort by:
     //they take in a vector of person to sort, and a sort order ("desc or "asc).
     vector<Person> sortPersonByName(string sortOrder,   vector<Person> pList);      // name
@@ -69,6 +67,7 @@ public:
     vector<Person> sortPersonByNat(string sortOrder,    vector<Person> pList);      // nationality
     vector<Person> sortPersonByAge(string sortOrder,    vector<Person> pList);      // age
     vector<Person> sortPersonByDefault(vector<Person> pList);                       // based on config settings
+    vector<Computer> sortComputerByDefault(vector<Computer> cList);                 // based on config settings
 
     //gets config from data layer
     Config getConfig();
@@ -79,7 +78,7 @@ public:
     //Function used for adding a person to the list vector
     void addPerson(Person p);
 
-    //
+    //Function used for adding computer to the database
     void addComputer(Computer c);
 
     QMap<int,QMap<QString,QString>> getAcceptedGender();

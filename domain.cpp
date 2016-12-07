@@ -1,6 +1,5 @@
 #include "domain.h"
 
-
 using namespace std;
 
 //domain layer
@@ -303,6 +302,46 @@ vector<Person> Domain::sortPersonByDefault(vector<Person> pList)
         case 6 :
         {
             sortedList = sortPersonByAge(config.SortOrder, pList);
+            break;
+        }
+        default : {
+            break;
+        }
+    }
+
+    return sortedList;
+
+}
+
+vector<Computer> Domain::sortComputerByDefault(vector<Computer> cList)
+{
+    Config config = data.getConfig();
+    vector<Computer> sortedList;
+    switch(config.sortColumn)
+    {
+        case 1 :
+        {
+            //sortedList = sortComputerByName(config.SortOrder, cList);
+            break;
+        }
+        case 2 :
+        {
+            //sortedList = sortComputerByDesignYear(config.SortOrder, cList);
+            break;
+        }
+        case 3 :
+        {
+            //sortedList = sortComputerByWasItBuilt(config.SortOrder, cList);
+            break;
+        }
+        case 4 :
+        {
+            //sortedList = sortComputerByBuildYear(config.SortOrder, cList);
+            break;
+        }
+        case 5 :
+        {
+            //sortedList = sortComputerByComputerType(config.SortOrder, cList);
             break;
         }
         default : {

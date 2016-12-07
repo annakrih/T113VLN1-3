@@ -1,9 +1,9 @@
 #ifndef CONFIG_H
 #define CONFIG_H
+
 #include <string>
 
 using namespace std;
-
 
 //poco class that holds config settings;
 class Config

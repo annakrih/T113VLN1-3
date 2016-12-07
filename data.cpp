@@ -12,6 +12,7 @@ Data::Data()
     importSQL();
 
     readPeopleFromDatabase();
+    readComputerFromDatabase();
     readConfigFromFile();
 }
 
@@ -37,8 +38,8 @@ void Data::importSQL(){
                 {
                     qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
                 }
-                query.finish();
             }
+            query.finish();
         }
     }
 }
@@ -98,6 +99,26 @@ void Data::writePersonToDatabase(Person p, bool push)
 void Data::writeComputerToDatabase(Computer c, bool push)
 {
     //TODO
+    db.open();
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO Computer (name, designYear, buildYear, type)"
+                  "VALUES (:name, :designYear, :buildYear, :type)");
+    query.bindValue(":name", QString::fromStdString(c.getComputerName()));
+    query.bindValue(":designYear", c.getDesignYear());
+    query.bindValue(":buildYear", c.getBuildYear());
+    query.bindValue(":type", QString::fromStdString(c.getComputerType()));
+    query.exec();
+
+    QVariant ID = query.lastInsertId();
+    c.setComputerID(ID);
+
+    //add computer to computer list if push=1
+    if(push)
+    {
+        compList.push_back(c);
+    }
+    cout << "debug" << endl;
 }
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
@@ -108,7 +129,8 @@ void Data::readPeopleFromDatabase()
     personList.clear();
 
     QSqlQuery query("SELECT id,name, genderId, birthYear, deathYear, nationality FROM Person");
-       while (query.next()) {
+       while (query.next()) 
+       {
            int id = query.value(0).toInt();
            string name = QString(query.value(1).toString()).toStdString();
            int gender = query.value(2).toInt();
@@ -118,6 +140,32 @@ void Data::readPeopleFromDatabase()
 
            Person newPerson(name, gender, birthYear, deathYear, nationality,id);
            personList.push_back(newPerson);
+       }
+}
+
+//readComputerFromDatabase reads current computerFile entries into main list.
+//done at start up
+void Data::readComputerFromDatabase()
+{
+
+    //clear list first, just in case.
+    compList.clear();
+
+    QSqlQuery query("SELECT name, designYear, buildYear, type FROM Computer");
+       while (query.next())
+       {
+           QString nameQ = query.value(0).toString();
+           qint32 designYearQ = query.value(1).toInt();
+           qint32 buildYearQ = query.value(2).toInt();
+           QString computerTypeQ = query.value(3).toString();
+
+           string name = nameQ.toStdString();
+           string computerType = computerTypeQ.toStdString();
+           int designYear = designYearQ;
+           int buildYear = buildYearQ;
+
+           Computer newComputer(name, designYear, computerType, buildYear);
+           compList.push_back(newComputer);
        }
 }
 
@@ -186,8 +234,9 @@ void Data::removePersonFromDatabase(Person personToRemove)
     }
 }
 
-void Data::clearDatabase(){
- QSqlQuery query("delete from person");
+void Data::clearDatabase()
+{
+    QSqlQuery query("delete from person");
 }
 
 

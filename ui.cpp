@@ -33,6 +33,7 @@ void UI::mainMenu()
             cout << setw(7) << "sort" << ": Sort the entries" << endl;
             cout << setw(7) << "config" << ": To change sort settings" << endl;
             cout << setw(7) << "quit" << ": To quit" << endl;
+            cout << setw(7) << "relation" << ": To show list with computer/person relations" << endl;
         }
         command = validateString("Please enter one of the commands: ");
         cout << endl;
@@ -64,15 +65,19 @@ void UI::mainMenu()
         }
         else if (command == "quit")
         {
-           projectCredit();
+            projectCredit();
         }
         else if (command == "clear")
         {
             clearList();
         }
-        else if(command =="config")
+        else if(command == "config")
         {
              configPerson();
+        }
+        else if (command == "relation")
+        {
+            //TODO
         }
         else
         {
@@ -128,14 +133,12 @@ void UI::listPerson(vector<Person> people, bool search)
         cout << endl;
     }
 
-
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "ID  ";
     }
     cout << "Name                       Gender   Birth year   Death year   Age    Nationality  " << endl;
-
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
@@ -217,7 +220,6 @@ void UI::listPerson(vector<Person> people, bool search)
     }
     cout << "==================================================================================";
 
-
     //The following if sentences are adding additional "=" marks to the right side of the list depending on how
     //long the strings displayed in the nationality column are
     if((biggestNatSize > 12) && (biggestNatSize < 26))
@@ -251,23 +253,23 @@ void UI::listComputer(vector<Computer> computer, bool search)
     {
         cout << "====";
     }
-    cout << "==================================================================================";
+    cout << "====================================================================================" << endl;
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "ID  ";
     }
-    cout << "Name                       Design year   Type    Was it built    Year built  " << endl;
+    cout << endl << "Name                       Design year    Type          Was it built    Build year  " << endl;
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "----";
     }
-    cout << "----------------------------------------------------------------------------------";
+    cout << "------------------------------------------------------------------------------------" << endl;
 
-    for (size_t i = 0; i < computer[i].getComputerName().size(); ++i)
+    for (size_t i = 0; i < computer.size(); ++i)
     {
         //if this function was opened through the search function it will display a ID number for each person
         if(search == true)
@@ -289,91 +291,27 @@ void UI::listComputer(vector<Computer> computer, bool search)
         {
             cout << setw(27) << computer[i].getComputerName();
         }
-       //cout << setw(9) << computer[i].getComputerType();
-       // cout << setw(13) << computer[i].getComputerType();
-       // computer[i].getDeathYear() == 0 ? cout << setw(13) << "-" : cout << setw(13) << computer[i].getDeathYear();
-       // cout << setw(7) << computer[i].getAge();
+       cout << setw(15) << computer[i].getDesignYear();
+       cout << setw(14) << computer[i].getComputerType();
+       cout << setw(16) << computer[i].getWasItBuilt();
+       if(computer[i].getBuildYear() == 0)
+       {
+           cout << setw(12) << "-" << endl;
+       }
+       else
+       {
+            cout << setw(12) << computer[i].getBuildYear() << endl;
+       }
+    }
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
     {
         cout << "====";
     }
-    cout << "==================================================================================";
+    cout << "====================================================================================" << endl;
 
-    for (size_t i = 0; i < computer[i].getBuildYear(); ++i)
-    {
-        //if this function was opened through the search function it will display a ID number for each person
-        if(search == true)
-        {
-            cout << setw(4) << i;
-        }
-        //if name of person is to long to fit into the name space it will instead print the first
-        //24 characters and two dots.
-        if(computer[i].getBuildYear() > 27)
-        {
-            for(int j = 0; j < 24; j++)
-            {
-                cout << computer[i].getBuildYear();
-            }
-            cout << ".. ";
-        }
-        //else it will print the full name.
-        else
-        {
-            cout << setw(27) << computer[i].getBuildYear();
-        }
-    }
-
-    for (size_t i = 0; i < computer[i].getComputerType().size(); ++i)
-    {
-        //if this function was opened through the search function it will display a ID number for each person
-        if(search == true)
-        {
-            cout << setw(4) << i;
-        }
-        //if name of person is to long to fit into the name space it will instead print the first
-        //24 characters and two dots.
-        if(computer[i].getComputerType().size() > 27)
-        {
-            for(int j = 0; j < 24; j++)
-            {
-                cout << computer[i].getComputerType()[j];
-            }
-            cout << ".. ";
-        }
-        //else it will print the full name.
-        else
-        {
-            cout << setw(27) << computer[i].getComputerType();
-        }
-    }
-    for (size_t i = 0; i < computer[i].getWasItBuilt(); ++i)
-    {
-        //if this function was opened through the search function it will display a ID number for each person
-        if(search == true)
-        {
-            cout << setw(4) << i;
-        }
-        //if name of person is to long to fit into the name space it will instead print the first
-        //24 characters and two dots.
-        if(computer[i].getWasItBuilt() > 27)
-        {
-            for(int j = 0; j < 24; j++)
-            {
-                cout << computer[i].getWasItBuilt();
-            }
-            cout << ".. ";
-        }
-        //else it will print the full name.
-        else
-        {
-            cout << setw(27) << computer[i].getWasItBuilt();
-        }
-    }
 }
-}
-
 
 //function prompts user to input neccasery information about person (name, gender, birthyear, deathyear, nationality)
 //then appends the person to the main person list and peopleFile
@@ -445,7 +383,6 @@ void UI::addPerson()
         }
     }while(yearFail); //loop until year is valid
 
-
     //adding person to the vector/file
     Person newPerson(capitalizeString(name), gender, birthYear, dYear, capitalizeString(nationality));
     domain.addPerson(newPerson);
@@ -460,8 +397,10 @@ void UI::addComputer()
 
     int designYear = 0;
     char wasBuilt = 0;
-    int buildYear = 0;
+    string buildYear = "";
+    int bYear = 0;
     string stringType = "";
+    bool yearFail;
 
     //get the current year
     const int timeBias = 1900;
@@ -473,6 +412,8 @@ void UI::addComputer()
     cout << endl;
     name = validateString("Enter computer name: ");
 
+    stringType = validateString("Enter computer type: ");
+
     do
     {
         designYear = validateInt("Enter design year: ");
@@ -482,31 +423,51 @@ void UI::addComputer()
         }
     } while(designYear > currentYear);
 
-    wasBuilt = validateChar("Was it built? (y/n) ", yesOrNo);
-
     do
     {
-        buildYear = validateInt("Enter build year: ");
-        if(buildYear > currentYear)
+        yearFail = 0;
+        buildYear = validateString("Enter build year ( . if computer wasn't built) : ", ".");
+        if((buildYear.find_first_not_of("0123456789") == std::string::npos) || buildYear == "" )
         {
-            cout << "Build year must be earlier then current year" << endl;
+            if(buildYear == "")
+            {
+                //in our system, a deathyear of 0 is the same as "not dead" (my kingdom for a null!)
+                bYear = 0;
+                wasBuilt = 'N';
+            }
+            else
+            {
+                wasBuilt = 'Y';
+                bYear = stoi( buildYear );
+                if(designYear > bYear)
+                {
+                    yearFail = 1;
+                    cout << endl << "Build year must be later than the design year" << endl;
+                }
+                else if(bYear > currentYear)
+                {
+                    yearFail = 1;
+                    cout << endl << "Build year can't be higher then current year (" << currentYear << ")" << endl;
+                }
+            }
         }
-        else if(buildYear < designYear)
+        else
         {
-            cout << "Computer can't be built before it was designed" << endl;
+            yearFail = 1;
+            cout << endl << invalid << endl;
+            cin.putback('\n');
         }
-    } while(buildYear > currentYear || buildYear < designYear);
+    }while(yearFail);
 
-    stringType = validateString("Enter computer type: ");
 
     //adding computer to the vector/file
-    Computer newComputer(capitalizeString(name), buildYear, stringType, wasBuilt, designYear);
+    Computer newComputer(capitalizeString(name), bYear, capitalizeString(stringType), designYear);
 
-    //TODO:
     domain.addComputer(newComputer);
 
-    //displaying the list with the person you just added
-    //listComputer(domain.getCList());
+    //displaying the list with the computer you just added
+    listComputer(domain.getCList());
+    cout << "debug xd" <<endl;
 
 }
 
@@ -526,13 +487,11 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     int const sortS = 3;
     int const mM = 0;
 
-
-
     //asks what you want to search by
     do
     {
         valid = 1;
-        numberedOptions(1);
+        numberedPersonOptions(1);
         column = validateInt("Select a column to search by: ");
 
         switch(column)
@@ -564,7 +523,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
                     iSearch = validateMultipleInt("Year of birth: ");
                     if(iSearch.size() == 2)
                     {
-                        listOfFound = domain.searchPersonBirth(listToSearch, iSearch[0], iSearch[1]);
                     }
                     else if(iSearch.size() == 1)
                     {
@@ -682,7 +640,6 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     return listOfFound;
 }
 
-
 //prompts user to search a computer list, returns a temporary computer list with search results.
 //said search results can be searched again, to further narrow down the search
 vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
@@ -703,7 +660,7 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
     do
     {
         valid = 1;
-        numberedOptions(1);
+        numberedPersonOptions(1);
         column = validateInt("Select a column to search by: ");
 
         switch(column)
@@ -761,8 +718,6 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
 
     } while(!valid);
 
-
-
     if ( column != 0)
     {
         //TODO: sortPersonByDefault ekki tilbúið
@@ -819,9 +774,6 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
     return listOfFound;
 }
 
-
-
-
 //prompts user with sort options (by name, age etc) can also search "asc" or "desc"
 //returns sorted person list, based on choices.
 vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
@@ -834,8 +786,7 @@ vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
 
     //asks what you want to sort by
     cout << endl;
-    numberedOptions(1);
-
+    numberedPersonOptions(1);
 
     //option to sort descendingly
     do{
@@ -986,7 +937,7 @@ void UI::editPerson()
 
         //selecting what you want to edit about the person
         int choiseToEdit;
-        numberedOptions();
+        numberedPersonOptions();
         choiseToEdit = validateInt("Please select what you would like to edit: ");
 
         bool valid = true;
@@ -1061,7 +1012,6 @@ void UI::clearList()
 //trailing whitespace removed, "y   " = 'y'
 char UI::validateChar(string prompt, vector<char> accepts)
 {
-
     string tempString = "";
     char validChar = ' ';
     const size_t maxStringLength = 1;
@@ -1292,18 +1242,42 @@ void UI::configPerson()
                 {
                     do
                     {
-                        sortCheck = 1;
-                        numberedOptions(1);
-                        setting = validateInt("Choose a number between 0-6 to change default sort column: ");
-                        cout << endl;
-                        if(setting == cancel)
+                        int chooseTable = 0;
+                        tableNumberOptions();
+                        chooseTable = validateInt("Select what table you want to change configs for");
+                        if(chooseTable == 1)
                         {
-                            setting = newConfig.sortColumn;
-                            break;
-                        }else if(!(setting > cancel && setting <= ageColumn))
+                            sortCheck = 1;
+                            numberedPersonOptions(1);
+                            setting = validateInt("Choose a number between 0-6 to change default sort column: ");
+                            cout << endl;
+                            if(setting == cancel)
+                            {
+                                setting = newConfig.sortColumn;
+                                break;
+                            }
+                            else if(!(setting > cancel && setting <= ageColumn))
+                            {
+                                cout << invalid << endl <<endl;
+                                sortCheck = 0;
+                            }
+                        }
+                        else if(chooseTable == 2)
                         {
-                            cout << invalid << endl <<endl;
-                            sortCheck = 0;
+                            sortCheck = 1;
+                            numberedComputerOptions();
+                            setting = validateInt("Choose a number between 0-5 to change default sort column: ");
+                            cout << endl;
+                            if(setting == cancel)
+                            {
+                                setting = newConfig.sortColumn;
+                                break;
+                            }
+                            else if(!(setting > cancel && setting <= ageColumn))
+                            {
+                                cout << invalid << endl <<endl;
+                                sortCheck = 0;
+                            }
                         }
                     }while(!sortCheck);
                     //override old config
@@ -1323,7 +1297,7 @@ void UI::configPerson()
 
 //function that prints the columns from 1-6, used to choose columns easily.
 //saved in a function cause it is reused multiple times, optional parameter if age option should be shown.
-void UI::numberedOptions(bool includeAge)
+void UI::numberedPersonOptions(bool includeAge)
 {
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
@@ -1334,6 +1308,16 @@ void UI::numberedOptions(bool includeAge)
     {
         cout << "6 : Age" << endl;
     }
+    cout << "0 : Cancel" << endl;
+}
+
+void UI::numberedComputerOptions()
+{
+    cout << "1 : Name" << endl;
+    cout << "2 : Design year" << endl;
+    cout << "3 : Was it built?" << endl;
+    cout << "4 : Build year" << endl;
+    cout << "5 : Computer type" << endl;
     cout << "0 : Cancel" << endl;
 }
 
@@ -1398,8 +1382,8 @@ void UI::askForListType()
             case 2: //displaying computer list
             {
                 valid = 1;
-                //TODO:
-                //listPerson(domain.sortPeopleByDefault(domain.getPersonList()));
+                //TODO ÞARF AÐ SETJA UPP CONFIG FYRIR COMPUTER LIKA!!!!!!
+                listComputer(domain.getCList());
                 break;
             }
             default: //invalid input
@@ -1414,7 +1398,6 @@ void UI::askForAddType()
 {
     int choice = 0;
     bool valid = 0;
-
 
     do
     {
@@ -1489,8 +1472,6 @@ void UI::askForDelete()
     }while(!valid);
 }
 
-
-
 void UI::askForSearch()
 {
     int choice = 0;
@@ -1529,4 +1510,3 @@ void UI::askForSearch()
         }
     }while(!valid);
 }
-

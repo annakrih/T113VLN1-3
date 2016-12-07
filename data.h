@@ -61,6 +61,9 @@ public:
     //reads information stored inside a file and puts it into the main person vector
     void readPeopleFromDatabase();
 
+    //reads info stored inside a file and puts it into the main computer vector
+    void readComputerFromDatabase();
+
     //removePersonFromDatabase takes a person as variable, if identical person exists in the database, it is removed from both main vector and people.txt
     void removePersonFromDatabase(Person personToRemove);
 

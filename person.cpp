@@ -1,7 +1,6 @@
 #include "person.h"
 #include "utils.h"
 
-
 //default constructor
 //requires name, gender, birthyear, deathyear, nationality
 Person::Person(string n, int g, int bY, int dY, string nat)
