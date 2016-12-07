@@ -297,19 +297,24 @@ void UI::listComputer(vector<Computer> computer, bool search)
        cout << setw(15) << computer[i].getDesignYear();
        cout << setw(14) << computer[i].getComputerType();
        cout << setw(16) << computer[i].getWasItBuilt();
-       cout << setw(12) << computer[i].getBuildYear();
-
+       if(computer[i].getBuildYear() == 0)
+       {
+           cout << setw(12) << "-";
+       }
+       else
+       {
+            cout << setw(12) << computer[i].getBuildYear();
+       }
+    }
        cout << endl;
 
-
-
     //if function was opened through the search function print this for the ID column
-    if(search == true)
-    {
-        cout << "====";
-    }
-    cout << "====================================================================================" << endl;
-}
+       if(search == true)
+       {
+            cout << "====";
+       }
+       cout << "====================================================================================" << endl;
+
 }
 
 
@@ -421,8 +426,6 @@ void UI::addComputer()
 
     wasBuilt = validateChar("Was it built? (y/n) ", yesOrNo);
 
-
-    //bæta við Y/N
     if(wasBuilt == 'Y')
     {
     do
@@ -440,7 +443,7 @@ void UI::addComputer()
     }
     else
     {
-        wasBuilt = 0;
+        buildYear = 0;
     }
 
     stringType = validateString("Enter computer type: ");
