@@ -12,6 +12,7 @@ Data::Data()
     importSQL();
 
     readPeopleFromDatabase();
+    readComputerFromDatabase();
     readConfigFromFile();
 }
 
@@ -96,6 +97,7 @@ void Data::writeComputerToDatabase(Computer c, bool push)
     {
         compList.push_back(c);
     }
+    cout << "debug" << endl;
 }
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
