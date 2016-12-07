@@ -13,11 +13,12 @@ class Person
 public:
     //default constructor
     //requires name, gender, birthyear, deathyear, nationality
-    Person(string n, char g, int bY, int dY, string nat);
+    Person(string n, int g, int bY, int dY, string nat);
+    Person(string n, int g, int bY, int dY, string nat, int id);
 
     //set functions for editing
     void setName(string inputName);
-    void setPersonID(QVariant ID);
+    void setPersonID(int ID);
     void setGender(char inputGender);
     void setBY(int inputBY);
     void setDY(int inputDY);
@@ -43,20 +44,22 @@ public:
     int getDeathYear() const;
 
     //returns gender: F for female and M for male.
-    char getGender() const;
+    int getGender() const;
 
     //returns the nationality
     string getNationality() const;
+
+    int getPersonId();
 
     //Friend functions:
     friend bool operator== (const Person lhs, const Person rhs);
 
 private:
-    QVariant pID;
+    int pId;
     string name;
     int    birthYear;
     int    deathYear;
-    char   gender;
+    int   gender;
     string nationality;
 };
 

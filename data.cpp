@@ -17,25 +17,46 @@ Data::Data()
 
 void Data::importSQL(){
 
-    QSqlQuery query(db);
-    QFile schema(path+"/database/schema.sql");
-    if (schema.open(QIODevice::ReadOnly))
-    {
-        QStringList schemaCommands = QTextStream(&schema).readAll().split(';');
+    QSqlQuery query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
+    query.next();
+    int tables = query.value(0).toInt();
 
-        foreach (QString command, schemaCommands)
+    if(!tables)
+    {
+        QFile schema(path+"/database/schema.sql");
+        if (schema.open(QIODevice::ReadOnly))
         {
-            if (command.trimmed().isEmpty()) {
-                continue;
-            }
-            if (!query.exec(command))
+            QStringList schemaCommands = QTextStream(&schema).readAll().split(';');
+
+            foreach (QString command, schemaCommands)
             {
-                qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
+                if (command.trimmed().isEmpty()) {
+                    continue;
+                }
+                if (!query.exec(command))
+                {
+                    qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
+                }
+                query.finish();
             }
-            query.finish();
         }
     }
 }
+
+QMap<int,QMap<QString,QString>> Data::getAcceptedGender(){
+
+    QMap<int,QMap<QString,QString>> genders;
+    QSqlQuery query("SELECT id, genderName, genderChar FROM Person_Gender");
+    while (query.next()) {
+       int id = query.value(0).toInt();
+       QString gName = query.value(1).toString();
+       QString gChar = query.value(2).toString();
+
+       QMap<QString, QString> strings{{gChar,gName}};
+       genders.insert(id,strings);
+    }
+    return genders;
+};
 
 //getList returns copy of the list (vector) containing all persons in the "database"
 vector<Person> Data::getPersonList()
@@ -55,16 +76,16 @@ void Data::writePersonToDatabase(Person p, bool push)
     db.open();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO Person (name, gender, birthYear, deathYear, nationality) "
+    query.prepare("INSERT INTO Person (name, genderId, birthYear, deathYear, nationality) "
                   "VALUES (:name, :gender, :birthYear, :deathYear, :nationality)");
     query.bindValue(":name", QString::fromStdString(p.getName()));
-    query.bindValue(":gender", QString::fromStdString(string(1,p.getGender())));
+    query.bindValue(":gender", p.getGender());
     query.bindValue(":birthYear", p.getBirthYear());
     query.bindValue(":deathYear", p.getDeathYear());
     query.bindValue(":nationality", QString::fromStdString(p.getNationality()));
     query.exec();
 
-    QVariant ID = query.lastInsertId();
+    int ID = query.lastInsertId().toInt();
     p.setPersonID(ID);
 
     //add person to person list if push=1
@@ -86,22 +107,16 @@ void Data::readPeopleFromDatabase()
     //clear list first, just in case.
     personList.clear();
 
-    QSqlQuery query("SELECT name, gender, birthYear, deathYear, nationality FROM Person");
+    QSqlQuery query("SELECT id,name, genderId, birthYear, deathYear, nationality FROM Person");
        while (query.next()) {
-           QString nameQ = query.value(0).toString();
-           QString genderQ = query.value(1).toString();
-           qint32 birthYearQ = query.value(2).toInt();
-           qint32 deathYearQ = query.value(3).toInt();
-           QString nationalityQ = query.value(4).toString();
+           int id = query.value(0).toInt();
+           string name = QString(query.value(1).toString()).toStdString();
+           int gender = query.value(2).toInt();
+           int birthYear = query.value(3).toInt();
+           int deathYear = query.value(4).toInt();
+           string nationality = QString(query.value(5).toString()).toStdString();
 
-           string name = nameQ.toStdString();
-           string nationality = nationalityQ.toStdString();
-           string strGender = genderQ.toStdString();
-           const char* gender = strGender.c_str();
-           int birthYear = birthYearQ;
-           int deathYear = deathYearQ;
-
-           Person newPerson(name, *gender, birthYear, deathYear, nationality);
+           Person newPerson(name, gender, birthYear, deathYear, nationality,id);
            personList.push_back(newPerson);
        }
 }

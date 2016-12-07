@@ -32,6 +32,11 @@ vector<Computer> Domain::getCList()
     return data.getComputerList();
 }
 
+QMap<int,QMap<QString,QString>> Domain::getAcceptedGender(){
+    return data.getAcceptedGender();
+}
+
+
 //Gets the config object that holds the config settings from the data layer
 Config Domain::getConfig()
 {

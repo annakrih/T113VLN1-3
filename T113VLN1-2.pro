@@ -1,5 +1,4 @@
-QT += core sql
-QT -= gui
+QT += core sql gui widgets
 
 CONFIG += c++11
 
@@ -27,7 +26,10 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/domain.cpp \
     $$PWD/data.cpp \
     $$PWD/config.cpp \
-    $$PWD/computer.cpp
+    $$PWD/computer.cpp \
+    mainwindow.cpp \
+    addEntry.cpp \
+    utils.cpp
 
 HEADERS += \
     $$PWD/person.h \
@@ -35,4 +37,11 @@ HEADERS += \
     $$PWD/domain.h \
     $$PWD/data.h \
     $$PWD/config.h \
-    $$PWD/computer.h
+    $$PWD/computer.h \
+    mainwindow.h \
+    addEntry.h \
+    utils.h
+
+FORMS += \
+    mainwindow.ui \
+    addEntry.ui

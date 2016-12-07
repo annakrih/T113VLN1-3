@@ -87,6 +87,8 @@ public:
 
     //getConfig makes config settings accessable in other layers, returns copy of config.
     Config getConfig();
+
+    QMap<int,QMap<QString,QString>> getAcceptedGender();
 };
 
 #endif // DATA_H

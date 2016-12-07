@@ -81,6 +81,8 @@ public:
 
     //
     void addComputer(Computer c);
+
+    QMap<int,QMap<QString,QString>> getAcceptedGender();
 };
 
 #endif // Domain_H

@@ -1,10 +1,21 @@
 #include "person.h"
+#include "utils.h"
 
 
 //default constructor
 //requires name, gender, birthyear, deathyear, nationality
-Person::Person(string n, char g, int bY, int dY, string nat)
+Person::Person(string n, int g, int bY, int dY, string nat)
 {
+    name = n;
+    gender = g;
+    birthYear = bY;
+    deathYear = dY;
+    nationality = nat;
+}
+
+Person::Person(string n, int g, int bY, int dY, string nat, int id)
+{
+    pId = id;
     name = n;
     gender = g;
     birthYear = bY;
@@ -49,7 +60,7 @@ int Person::getDeathYear() const
     return deathYear;
 }
 
-char Person::getGender() const
+int Person::getGender() const
 {
     return gender;
 }
@@ -59,14 +70,19 @@ string Person::getNationality() const
     return nationality;
 }
 
+int Person::getPersonId()
+{
+    return pId;
+}
+
 void Person::setName(string inputName)
 {
     name = inputName;
 }
 
-void Person::setPersonID(QVariant ID)
+void Person::setPersonID(int ID)
 {
-    pID = ID;
+    pId = ID;
 }
 
 void Person::setGender(char inputGender)
