@@ -33,6 +33,7 @@ void UI::mainMenu()
             cout << setw(7) << "sort" << ": Sort the entries" << endl;
             cout << setw(7) << "config" << ": To change sort settings" << endl;
             cout << setw(7) << "quit" << ": To quit" << endl;
+            cout << setw(7) << "relation" << ": To show list with computer/person relations" << endl;
         }
         command = validateString("Please enter one of the commands: ");
         cout << endl;
@@ -70,9 +71,13 @@ void UI::mainMenu()
         {
             clearList();
         }
-        else if(command =="config")
+        else if(command == "config")
         {
              configPerson();
+        }
+        else if (command == "relation")
+        {
+            //TODO
         }
         else
         {
@@ -251,7 +256,7 @@ void UI::listComputer(vector<Computer> computer, bool search)
     {
         cout << "====";
     }
-    cout << "====================================================================================";
+    cout << "====================================================================================" << endl;
 
     //if function was opened through the search function print this for the ID column
     if(search == true)
@@ -265,7 +270,7 @@ void UI::listComputer(vector<Computer> computer, bool search)
     {
         cout << "----";
     }
-    cout << "------------------------------------------------------------------------------------";
+    cout << "------------------------------------------------------------------------------------" << endl;
 
     for (size_t i = 0; i < computer[i].getComputerName().size(); ++i)
     {
@@ -294,6 +299,8 @@ void UI::listComputer(vector<Computer> computer, bool search)
        cout << setw(16) << computer[i].getWasItBuilt();
        cout << setw(12) << computer[i].getBuildYear();
 
+       cout << endl;
+
 
 
     //if function was opened through the search function print this for the ID column
@@ -301,7 +308,7 @@ void UI::listComputer(vector<Computer> computer, bool search)
     {
         cout << "====";
     }
-    cout << "====================================================================================";
+    cout << "====================================================================================" << endl;
 }
 }
 

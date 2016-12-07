@@ -16,6 +16,7 @@ Create table IF NOT EXISTS Computer(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name TEXT NOT NULL,
 designYear INTEGER,
+wasItBuilt CHAR,
 buildYear INTEGER,
 type INTEGER NOT NULL,
 FOREIGN KEY(type) REFERENCES Computer_Type(id)

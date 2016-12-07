@@ -106,7 +106,8 @@ void Data::readPeopleFromDatabase()
     personList.clear();
 
     QSqlQuery query("SELECT name, gender, birthYear, deathYear, nationality FROM Person");
-       while (query.next()) {
+       while (query.next())
+       {
            QString nameQ = query.value(0).toString();
            QString genderQ = query.value(1).toString();
            qint32 birthYearQ = query.value(2).toInt();
@@ -122,6 +123,34 @@ void Data::readPeopleFromDatabase()
 
            Person newPerson(name, *gender, birthYear, deathYear, nationality);
            personList.push_back(newPerson);
+       }
+}
+
+//readComputerFromDatabase reads current computerFile entries into main list.
+//done at start up
+void Data::readComputerFromDatabase()
+{
+    //clear list first, just in case.
+    compList.clear();
+
+    QSqlQuery query("SELECT name, designYear, wasItBuilt, buildYear, computerType FROM Computer");
+       while (query.next())
+       {
+           QString nameQ = query.value(0).toString();
+           qint32 designYearQ = query.value(1).toInt();
+           QString wasItBuiltQ = query.value(2).toString();
+           qint32 buildYearQ = query.value(3).toInt();
+           QString computerTypeQ = query.value(4).toString();
+
+           string name = nameQ.toStdString();
+           string computerType = computerTypeQ.toStdString();
+           string strWasItBuilt = wasItBuiltQ.toStdString();
+           const char* wasItBuilt = strWasItBuilt.c_str();
+           int designYear = designYearQ;
+           int buildYear = buildYearQ;
+
+           Computer newComputer(name, designYear, computerType, *wasItBuilt, buildYear);
+           compList.push_back(newComputer);
        }
 }
 
@@ -190,8 +219,9 @@ void Data::removePersonFromDatabase(Person personToRemove)
     }
 }
 
-void Data::clearDatabase(){
- QSqlQuery query("delete from person");
+void Data::clearDatabase()
+{
+    QSqlQuery query("delete from person");
 }
 
 
