@@ -128,7 +128,7 @@ private:
 
     //function that prints the columns from 1-6, used to choose columns easily.
     //saved in a function cause it is reused multiple times, optional parameter if age option should be shown.
-    void numberedOptions(bool includeAge = 0);
+    void numberedPersonOptions(bool includeAge = 0);
 
     //function prints options for what tables are avalible
     void tableNumberOptions();

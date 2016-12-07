@@ -470,7 +470,7 @@ vector<Person> UI::searchPerson(vector<Person> listToSearch)
     do
     {
         valid = 1;
-        numberedOptions(1);
+        numberedPersonOptions(1);
         column = validateInt("Select a column to search by: ");
 
         switch(column)
@@ -641,7 +641,7 @@ vector<Computer> UI::searchComputer(vector<Computer> listToSearchComputer)
     do
     {
         valid = 1;
-        numberedOptions(1);
+        numberedPersonOptions(1);
         column = validateInt("Select a column to search by: ");
 
         switch(column)
@@ -772,7 +772,7 @@ vector<Person> UI::sortPerson(vector<Person> personList, int sortColumn)
 
     //asks what you want to sort by
     cout << endl;
-    numberedOptions(1);
+    numberedPersonOptions(1);
 
 
     //option to sort descendingly
@@ -924,7 +924,7 @@ void UI::editPerson()
 
         //selecting what you want to edit about the person
         int choiseToEdit;
-        numberedOptions();
+        numberedPersonOptions();
         choiseToEdit = validateInt("Please select what you would like to edit: ");
 
         bool valid = true;
@@ -1231,7 +1231,7 @@ void UI::configPerson()
                     do
                     {
                         sortCheck = 1;
-                        numberedOptions(1);
+                        numberedPersonOptions(1);
                         setting = validateInt("Choose a number between 0-6 to change default sort column: ");
                         cout << endl;
                         if(setting == cancel)
@@ -1261,7 +1261,7 @@ void UI::configPerson()
 
 //function that prints the columns from 1-6, used to choose columns easily.
 //saved in a function cause it is reused multiple times, optional parameter if age option should be shown.
-void UI::numberedOptions(bool includeAge)
+void UI::numberedPersonOptions(bool includeAge)
 {
     cout << "1 : Name" << endl;
     cout << "2 : Gender" << endl;
