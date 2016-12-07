@@ -76,12 +76,12 @@ void Data::writePersonToDatabase(Person p, bool push)
 
 void Data::writeComputerToDatabase(Computer c, bool push)
 {
-    /*TODO
+    //TODO
     db.open();
 
     QSqlQuery query;
     query.prepare("INSERT INTO Computer (name, designYear, buildYear, type)"
-                  "VALUES (:name, :designYear, :buildYear, :computerType)");
+                  "VALUES (:name, :designYear, :buildYear, :type)");
     query.bindValue(":name", QString::fromStdString(c.getComputerName()));
     query.bindValue(":designYear", c.getDesignYear());
     query.bindValue(":buildYear", c.getBuildYear());
@@ -89,12 +89,13 @@ void Data::writeComputerToDatabase(Computer c, bool push)
     query.exec();
 
     QVariant ID = query.lastInsertId();
+    c.setComputerID(ID);
 
     //add computer to computer list if push=1
     if(push)
     {
         compList.push_back(c);
-    }*/
+    }
 }
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
@@ -129,11 +130,11 @@ void Data::readPeopleFromDatabase()
 //done at start up
 void Data::readComputerFromDatabase()
 {
-    /*
+
     //clear list first, just in case.
     compList.clear();
 
-    QSqlQuery query("SELECT name, designYear,buildYear, computerType FROM Computer");
+    QSqlQuery query("SELECT name, designYear, buildYear, type FROM Computer");
        while (query.next())
        {
            QString nameQ = query.value(0).toString();
@@ -145,20 +146,10 @@ void Data::readComputerFromDatabase()
            string computerType = computerTypeQ.toStdString();
            int designYear = designYearQ;
            int buildYear = buildYearQ;
-           char wasItBuilt = ' ';
-           if(buildYear == 0)
-           {
-               wasItBuilt = 'N';
-           }
-           else
-           {
-               wasItBuilt = 'Y';
-           }
 
-           Computer newComputer(name, designYear, computerType, wasItBuilt, buildYear);
+           Computer newComputer(name, designYear, computerType, buildYear);
            compList.push_back(newComputer);
        }
-       */
 }
 
 //getConfig returns a copy of the config object

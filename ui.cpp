@@ -269,7 +269,7 @@ void UI::listComputer(vector<Computer> computer, bool search)
     }
     cout << "------------------------------------------------------------------------------------" << endl;
 
-    for (size_t i = 0; i < computer[i].getComputerName().size(); ++i)
+    for (size_t i = 0; i < computer.size(); ++i)
     {
         //if this function was opened through the search function it will display a ID number for each person
         if(search == true)
@@ -296,21 +296,20 @@ void UI::listComputer(vector<Computer> computer, bool search)
        cout << setw(16) << computer[i].getWasItBuilt();
        if(computer[i].getBuildYear() == 0)
        {
-           cout << setw(12) << "-";
+           cout << setw(12) << "-" << endl;
        }
        else
        {
-            cout << setw(12) << computer[i].getBuildYear();
+            cout << setw(12) << computer[i].getBuildYear() << endl;
        }
     }
-       cout << endl;
 
     //if function was opened through the search function print this for the ID column
-       if(search == true)
-       {
-            cout << "====";
-       }
-       cout << "====================================================================================" << endl;
+    if(search == true)
+    {
+        cout << "====";
+    }
+    cout << "====================================================================================" << endl;
 
 }
 
@@ -462,9 +461,7 @@ void UI::addComputer()
 
 
     //adding computer to the vector/file
-    Computer newComputer(capitalizeString(name), bYear, stringType, wasBuilt, designYear);
-
-    //TODO:
+    Computer newComputer(capitalizeString(name), bYear, capitalizeString(stringType), designYear);
 
     domain.addComputer(newComputer);
 
@@ -1385,7 +1382,8 @@ void UI::askForListType()
             case 2: //displaying computer list
             {
                 valid = 1;
-                listComputer(domain.sortComputerByDefault(domain.getCList()));
+                //TODO ÞARF AÐ SETJA UPP CONFIG FYRIR COMPUTER LIKA!!!!!!
+                listComputer(domain.getCList());
                 break;
             }
             default: //invalid input

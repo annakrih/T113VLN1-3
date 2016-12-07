@@ -12,7 +12,7 @@ class Computer
 public:
     Computer();
 
-    Computer(string cp, int by, string cd, char wib, int dy);
+    Computer(string cp, int by, string cd, int dy);
 
     string getComputerName () const;
 
@@ -24,12 +24,13 @@ public:
 
     int getDesignYear();
 
+    void setComputerID(QVariant ID);
+
 private:
     QVariant cID;
     string computerName;
     int buildYear; //0 if the computer was never built.
     string computerType;
-    char wasItBuilt;
     int designYear;
 };
 
