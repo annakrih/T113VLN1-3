@@ -1,0 +1,14 @@
+INPUT(
+./release\.obj\main.o
+./release\.obj\person.o
+./release\.obj\ui.o
+./release\.obj\domain.o
+./release\.obj\data.o
+./release\.obj\config.o
+./release\.obj\computer.o
+./release\.obj\utils.o
+./release\.obj\personDialog.o
+./release\.obj\gui.o
+./release\.obj\moc_personDialog.o
+./release\.obj\moc_gui.o
+);

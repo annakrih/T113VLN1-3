@@ -901,7 +901,7 @@ void UI::removePerson()
     }
 }
 
-/*
+
 void UI::removeComputer()
 {
     int idOfPerson = 0;
@@ -910,8 +910,8 @@ void UI::removeComputer()
     cout << endl << "Search for the person you wish to delete: "<< endl;
 
 }
-*/
-/*
+
+
 //prompts user to search, after search temporary id's are visible, user can further narrow down search or delete person based on the id.
 void UI::editPerson()
 {
