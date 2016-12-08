@@ -3,8 +3,7 @@
 #include <vector>
 #include "utils.h"
 #include "domain.h"
-#include "person.h"
-#include "computer.h"
+
 #include "personDialog.h"
 #include "computerdialog.h"
 #include "searchPersonDialog.h"

@@ -1,6 +1,6 @@
 #include "gui.h"
 #include "ui_gui.h"
-#include "person.h"
+
 #include <string>
 #include <iostream>
 #include <QMessageBox>
