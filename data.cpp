@@ -60,6 +60,7 @@ QMap<int,QMap<QString,QString>> Data::getAcceptedGender(){
 };
 
 QSqlRelationalTableModel* Data::submitDatabaseChanges(QSqlRelationalTableModel* model){
+    //model->setFilter("");
     model->submitAll();
     return model;
 }
@@ -140,6 +141,9 @@ QSqlRelationalTableModel * Data::readPeopleFromDatabase()
        QString test = "An";
        QString filter = "person.name like '%"+test+"%' ";
        model->setFilter(filter);
+
+       //sort example
+       model->setSort(1, Qt::SortOrder::DescendingOrder);
        */
 
        model->select();

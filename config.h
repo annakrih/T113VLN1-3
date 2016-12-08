@@ -1,7 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <string>
+#include <QString>
+
 
 using namespace std;
 
