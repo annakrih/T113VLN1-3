@@ -226,6 +226,9 @@
      <height>17</height>
     </rect>
    </property>
+   <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Person is dead</string>
    </property>

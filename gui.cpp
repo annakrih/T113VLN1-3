@@ -196,3 +196,12 @@ void Gui::on_comboBox_currentIndexChanged(int index)
         //todo load computermodel
     }
 }
+
+
+
+void Gui::on_pushButton_released()
+{
+    QMap<int, QString> tList = domain.getAcceptedTypeStrings();
+    computerDialogWindow = new computerDialog(this, tList);
+    computerDialogWindow->show();   
+}

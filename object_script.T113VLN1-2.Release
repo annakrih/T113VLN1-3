@@ -9,6 +9,8 @@ INPUT(
 ./release\.obj\utils.o
 ./release\.obj\personDialog.o
 ./release\.obj\gui.o
+./release\.obj\computerdialog.o
 ./release\.obj\moc_personDialog.o
 ./release\.obj\moc_gui.o
+./release\.obj\moc_computerdialog.o
 );

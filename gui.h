@@ -6,6 +6,7 @@
 #include "person.h"
 #include "computer.h"
 #include "personDialog.h"
+#include "computerdialog.h"
 
 
 #include <QMainWindow>
@@ -38,9 +39,12 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
 
+    void on_pushButton_released();
+
 private:
     Ui::Gui *ui;
     PersonDialog *personDialogWindow;
+    computerDialog *computerDialogWindow;
     Domain domain;
     Utils utils;
     QSqlRelationalTableModel* personModel;

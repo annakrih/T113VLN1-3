@@ -83,6 +83,7 @@ public:
 
     QMap<QString, int> getAcceptedGenderName();
     QMap<QString, int> getAcceptedGenderChar();
+    QMap<int, QString> getAcceptedTypeStrings();
 
     QSqlRelationalTableModel * getPersonModel();
 

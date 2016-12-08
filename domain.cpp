@@ -63,6 +63,11 @@ QMap<QString, int> Domain::getAcceptedGenderChar(){
     return gList;
 }
 
+QMap<int, QString> Domain::getAcceptedTypeStrings()
+{
+    return data.getAcceptedTypes();
+}
+
 
 //Gets the config object that holds the config settings from the data layer
 Config Domain::getConfig()
