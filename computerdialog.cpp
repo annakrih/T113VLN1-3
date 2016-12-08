@@ -4,14 +4,14 @@
 #include <QMap>
 #include <QVariant>
 
-computerDialog::computerDialog(QWidget *parent) :
+computerDialog::computerDialog(QWidget *parent, QMap<int,QString> tList) :
     QDialog(parent),
     ui(new Ui::computerDialog)
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
-    //fillTypeMenu(tList);
+    fillTypeMenu(tList);
 }
 
 
