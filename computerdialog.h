@@ -1,6 +1,8 @@
 #ifndef COMPUTERDIALOG_H
 #define COMPUTERDIALOG_H
 
+#include "utils.h"
+
 #include <QDialog>
 #include <QMap>
 
@@ -20,6 +22,7 @@ private slots:
 
 private:
     Ui::computerDialog *ui;
+    Utils utils;
     void checkForm();
     void fillTypeMenu(QMap<int, QString> tList);
 };

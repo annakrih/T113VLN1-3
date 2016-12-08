@@ -10,6 +10,10 @@ computerDialog::computerDialog(QWidget *parent, QMap<int,QString> tList) :
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    ui->buildYInput->setDisabled(true);
+    //ui->designYInput->maximum(utils.getYear);
+    //ui->buildYInput->maximum(utils.getYear);
+
 
     fillTypeMenu(tList);
 }
