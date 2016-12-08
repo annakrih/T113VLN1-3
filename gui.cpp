@@ -182,9 +182,9 @@ void Gui::on_comboBox_currentIndexChanged(int index)
     }
 }
 
-/*void Gui::on_addCButton_released()
+void Gui::on_addCButton_released()
 {
-    QMap<QString, int> tList = domain.getAcceptedGenderName();
+    /*QMap<QString, int> tList = domain.getAcceptedGenderName();
 
     if(lastSelectedRow == utils.dummyNull)
     {
@@ -212,5 +212,5 @@ void Gui::on_comboBox_currentIndexChanged(int index)
     personDialogWindow->setEnabled(true);
     personDialogWindow->show();
 
-    QObject::connect(personDialogWindow, SIGNAL(personEntryRejected()), this, SLOT(onPersonEntryRejected()));
-}*/
+    QObject::connect(personDialogWindow, SIGNAL(personEntryRejected()), this, SLOT(onPersonEntryRejected()));*/
+}
