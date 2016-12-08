@@ -30,7 +30,9 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/gui.cpp \
     $$PWD/searchPersonDialog.cpp \
     $$PWD/searchComputerDialog.cpp \
-    $$PWD/computerDialog.cpp
+    $$PWD/computerDialog.cpp \
+    $$PWD/person.cpp \
+    $$PWD/computer.cpp
 
 HEADERS += \
     $$PWD/ui.h \
@@ -42,7 +44,9 @@ HEADERS += \
     $$PWD/gui.h \
     $$PWD/searchComputerDialog.h \
     $$PWD/searchPersonDialog.h \
-    $$PWD/computerDialog.h
+    $$PWD/computerDialog.h \
+    $$PWD/person.h \
+    $$PWD/computer.h
 
 FORMS += \
     $$PWD/personDialog.ui \

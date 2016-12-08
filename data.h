@@ -10,7 +10,8 @@
 #include <vector>
 #include <algorithm>
 #include "config.h"
-
+#include "person.h"
+#include "computer.h"
 #include "utils.h"
 
 
