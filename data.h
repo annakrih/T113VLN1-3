@@ -48,43 +48,14 @@ public:
 
     void importSQL();
 
-    //getList returns main person list
-    vector<Person> getPersonList();
-
-    //getcomputerlist returns the list of computers
-    vector<Computer> getComputerList();
-
-    //writePersonTofile takes a person class as parameter, and adds it to both the main person vector, and people.txt file
-    void writePersonToDatabase(Person P, bool push = 1);
-
-    //
-    void writeComputerToDatabase(Computer c, bool push = 1);
-
     //reads information stored inside a file and puts it into the main person vector
     QSqlRelationalTableModel* readPeopleFromDatabase(QString filter = "");
 
+    QSqlRelationalTableModel* readComputerFromDatabase(QString filter = "");
+
     QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);
 
-    //reads info stored inside a file and puts it into the main computer vector
-    void readComputerFromDatabase();
-
-    //removePersonFromDatabase takes a person as variable, if identical person exists in the database, it is removed from both main vector and people.txt
-    void removePersonFromDatabase(Person personToRemove);
-
     void clearDatabase();
-
-    //overwrites data in people.txt
-    void rewriteDatabase();
-
-    //editPersonInDatabase takes a person as variable, if identical person exists in the database, it is overwritten in both main vector and people.txt
-    void editPersonInDatabase(Person personToEdit);
-
-    //Clears everything from the list
-    //drops table, essentially
-    void clearPersonInDataBase();
-
-    //swapPersonsInDatabase overwrites originalPerson with newPerson
-    void swapPersonsInDatabase(Person& originalP, Person& newP);
 
     //readConfigFromFile reads saved settings from config.txt, and puts them in Data.config for easy access
     void readConfigFromFile();

@@ -87,6 +87,8 @@ public:
 
     QSqlRelationalTableModel * getPersonModel();
 
+    QSqlRelationalTableModel * getComputerModel();
+
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 
 };

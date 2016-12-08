@@ -179,6 +179,7 @@ void Gui::on_comboBox_currentIndexChanged(int index)
     if(index == 0){
         std::cout << "1";
 
+        /*
         QMessageBox mb("Save?","Would you like to save before changing?",
                                QMessageBox::Question,
                                QMessageBox::Yes | QMessageBox::Default,
@@ -189,10 +190,12 @@ void Gui::on_comboBox_currentIndexChanged(int index)
             //domain.submitDatabaseChanges(computerModel);
         }
 
+        */
+
         loadTopTable(domain.getPersonModel());
     }else if(index == 1){
         std::cout << "2";
-
+        loadTopTable(domain.getComputerModel());
         //todo load computermodel
     }
 }

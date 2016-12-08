@@ -11,8 +11,6 @@ Data::Data()
 
     importSQL();
 
-    readPeopleFromDatabase();
-    readComputerFromDatabase();
     readConfigFromFile();
 }
 
@@ -75,71 +73,8 @@ QMap<int, QString> Data::getAcceptedTypes()
 }
 
 QSqlRelationalTableModel* Data::submitDatabaseChanges(QSqlRelationalTableModel* model){
-    //model->setFilter("");
     model->submitAll();
     return model;
-}
-
-//getList returns copy of the list (vector) containing all persons in the "database"
-vector<Person> Data::getPersonList()
-{
-    return personList;
-}
-
-//getList returns copy of the list (vector) containing all computers in the "database"
-vector<Computer> Data::getComputerList()
-{
-    return compList;
-}
-
-//writePersonToFile writes new person to file and adds person to the main vector containing all persons(if push=1).
-void Data::writePersonToDatabase(Person p, bool push)
-{
-    db.open();
-
-    QSqlQuery query;
-    query.prepare("INSERT INTO Person (name, genderId, birthYear, deathYear, nationality) "
-                  "VALUES (:name, :gender, :birthYear, :deathYear, :nationality)");
-    query.bindValue(":name", p.getName());
-    query.bindValue(":gender", p.getGender());
-    query.bindValue(":birthYear", p.getBirthYear());
-    query.bindValue(":deathYear", p.getDeathYear());
-    query.bindValue(":nationality", p.getNationality());
-    query.exec();
-
-    int ID = query.lastInsertId().toInt();
-    p.setPersonID(ID);
-
-    //add person to person list if push=1
-    if(push)
-    {
-        personList.push_back(p);
-    };
-}
-
-void Data::writeComputerToDatabase(Computer c, bool push)
-{
-    //TODO
-    db.open();
-
-    QSqlQuery query;
-    query.prepare("INSERT INTO Computer (name, designYear, buildYear, type)"
-                  "VALUES (:name, :designYear, :buildYear, :type)");
-    query.bindValue(":name", c.getComputerName());
-    query.bindValue(":designYear", c.getDesignYear());
-    query.bindValue(":buildYear", c.getBuildYear());
-    query.bindValue(":type", c.getComputerType());
-    query.exec();
-
-    int ID = query.lastInsertId().toInt();
-    c.setComputerID(ID);
-
-    //add computer to computer list if push=1
-    if(push)
-    {
-        compList.push_back(c);
-    }
-    cout << "debug" << endl;
 }
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
@@ -169,25 +104,20 @@ QSqlRelationalTableModel * Data::readPeopleFromDatabase(QString filter)
        return model;
 }
 
-//readComputerFromDatabase reads current computerFile entries into main list.
-//done at start up
-void Data::readComputerFromDatabase()
+QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
 {
-    //clear list first, just in case.
-    compList.clear();
 
-    QSqlQuery query("SELECT name, designYear, buildYear, type FROM Computer");
-       while (query.next())
-       {
-           QString name = query.value(0).toString();
-           int designYear = query.value(1).toInt();
-           int buildYear = query.value(2).toInt();
-           QString computerType = query.value(3).toString();
+       QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
+       model->setTable("computer");
+       model->setRelation(2, QSqlRelation("Computer_Type", "id", "typeName"));
+       model->setFilter(filter);
 
-           Computer newComputer(name, designYear, computerType, buildYear);
-           compList.push_back(newComputer);
-       }
+       model->select();
+       model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+
+       return model;
 }
+
 
 //getConfig returns a copy of the config object
 Config Data::getConfig()
@@ -249,63 +179,7 @@ void Data::readConfigFromFile()
 }
 
 
-//removePersonFromDatabase takes person class as parameter, checks if it exists in the main person List, and removes person from both file and list.
-void Data::removePersonFromDatabase(Person personToRemove)
-{
-    //make changes to the vector holding people
-    int vectorSize = personList.size();
-    for(int i=0; i < vectorSize; i++)
-    {
-        if(personList[i] == personToRemove)
-        {
-            //if found, remove person from list and file
-            personList.erase(personList.begin()+i);
-            rewriteDatabase();
-            break;
-        }
-    }
-}
-
 void Data::clearDatabase()
 {
     QSqlQuery query("delete from person");
-}
-
-
-//overwrites peopleFile with current person List.
-void Data::rewriteDatabase()
-{
-    //first delete current peopleFile
-    clearDatabase();
-
-    int vectorSize = personList.size();
-    for(int i=0; i < vectorSize; i++)
-    {
-        //writes person i from person list to file.
-        writePersonToDatabase(personList[i],0);
-    }
-}
-
-//clears both person list and peopleFile
-//essentially our version of "drop table"
-void Data::clearPersonInDataBase()
-{
-   personList.clear();
-   clearDatabase();
-}
-
-//swapPersonsInDatabase overwrites originalPerson with newPerson
-void Data::swapPersonsInDatabase(Person& originalP, Person& newP)
-{
-    //used when editing the list, so that the person you edited stays in the same
-    //spot in the list instead of being added to the bottom of the list
-    for(size_t i=0; i < personList.size(); i++)
-    {
-        if(personList[i] == originalP)
-        {
-            personList[i] = newP;
-            rewriteDatabase();
-            break;
-        }
-    }
 }

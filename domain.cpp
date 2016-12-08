@@ -12,31 +12,12 @@ QSqlRelationalTableModel* Domain::submitDatabaseChanges(QSqlRelationalTableModel
 };
 
 
-//Function used for adding a person to the list vector
-//passes a person to the data layer for processing
-void Domain::addPerson(Person p)
-{
-    data.writePersonToDatabase(p);
-}
-void Domain::addComputer(Computer c)
-{
-    //TODO
-    data.writeComputerToDatabase(c);
-}
-
-//Gets the vector that holds the Persons from the data layer
-vector<Person> Domain::getPersonList()
-{
-    return data.getPersonList();
-}
-
 QSqlRelationalTableModel * Domain::getPersonModel(){
     return data.readPeopleFromDatabase();
 }
 
-vector<Computer> Domain::getCList()
-{
-    return data.getComputerList();
+QSqlRelationalTableModel * Domain::getComputerModel(){
+    return data.readComputerFromDatabase();
 }
 
 QMap<QString,int> Domain::getAcceptedGenderName(){
@@ -581,21 +562,3 @@ vector<Person> Domain::sortPersonByAge(QString sortOrder, vector<Person> pList)
         return pList;
 }
 
-//Function that calls data.removePersonFromDatabase and deletes personToRemove from vector and database
-//passes a person class to the data layer for processing
-void Domain::removePerson(Person personToRemove)
-{
-    data.removePersonFromDatabase(personToRemove);
-}
-
-//Function that calls data.clearPersonInDatabase to clear everything in the list.
-void Domain::clearPerson()
-{
-    data.clearPersonInDataBase();
-}
-
-//Calls the function data.swapPersonsInDatabase to swap originalP with newP
-void Domain::swapPerson(Person& originalP, Person& newP)
-{
-    data.swapPersonsInDatabase(originalP, newP);
-}
