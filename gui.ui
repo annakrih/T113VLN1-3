@@ -124,16 +124,6 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
-      <x>30</x>
-      <y>230</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>add cmp</string>
-=======
       <x>670</x>
       <y>10</y>
       <width>113</width>
@@ -152,7 +142,6 @@
       <width>131</width>
       <height>21</height>
      </rect>
->>>>>>> origin/master
     </property>
    </widget>
   </widget>
