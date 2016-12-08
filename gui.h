@@ -6,11 +6,8 @@
 #include "person.h"
 #include "computer.h"
 #include "personDialog.h"
-<<<<<<< HEAD
 #include "computerdialog.h"
-=======
 #include "searchPersonDialog.h"
->>>>>>> origin/master
 
 
 #include <QMainWindow>
@@ -43,11 +40,11 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
 
-<<<<<<< HEAD
+
     void on_pushButton_released();
-=======
+
     void on_search_released();
->>>>>>> origin/master
+
 
 private:
     Ui::Gui *ui;
