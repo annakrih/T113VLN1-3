@@ -32,6 +32,10 @@ private slots:
 
     void on_savePerson_clicked();
 
+    void on_deletePerson_released();
+
+    void on_peopleRevert_released();
+
 private:
     Ui::Gui *ui;
     PersonDialog *personDialogWindow;

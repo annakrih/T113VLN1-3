@@ -150,3 +150,21 @@ void Gui::on_savePerson_clicked()
 {
     domain.submitDatabaseChanges(personModel);
 }
+
+void Gui::on_deletePerson_released()
+{
+    ui->tableView->hideRow(lastSelectedRow);
+    personModel->removeRow(lastSelectedRow);
+    ui->tableView->setModel(personModel);
+}
+
+void Gui::on_peopleRevert_released()
+{
+    personModel->revertAll();
+
+    for(int i = 0; i < personModel->rowCount(); i++){
+        ui->tableView->showRow(i);
+    }
+
+    ui->tableView->setModel(personModel);
+}
