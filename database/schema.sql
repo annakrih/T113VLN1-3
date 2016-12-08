@@ -21,7 +21,13 @@ FOREIGN KEY(genderId) REFERENCES Person_Gender(id)
 );
 
 Insert into Person(name,genderId,nationality,birthYear,deathYear)
-Values("TestMan",1,"Testland",1950,0);
+Values("TestMan",1,"Testland",100,0);
+
+Insert into Person(name,genderId,nationality,birthYear,deathYear)
+Values("TestWomen",2,"Testland",50,197);
+
+Insert into Person(name,genderId,nationality,birthYear,deathYear)
+Values("Chuck Norris",1,"Texas",1,0);
 
 Create table IF NOT EXISTS Computer_Type(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
