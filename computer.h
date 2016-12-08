@@ -12,25 +12,25 @@ class Computer
 public:
     Computer();
 
-    Computer(string cp, int by, string cd, int dy);
+    Computer(QString cp, int by, QString cd, int dy);
 
-    string getComputerName () const;
+    QString getComputerName() const;
 
     int getBuildYear () const;
 
-    string getComputerType() const;
+    QString getComputerType() const;
 
     char getWasItBuilt();
 
     int getDesignYear();
 
-    void setComputerID(QVariant ID);
+    void setComputerID(int ID);
 
 private:
-    QVariant cID;
-    string computerName;
+    int cID;
+    QString computerName;
     int buildYear; //0 if the computer was never built.
-    string computerType;
+    QString computerType;
     int designYear;
 };
 

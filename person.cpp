@@ -3,7 +3,7 @@
 
 //default constructor
 //requires name, gender, birthyear, deathyear, nationality
-Person::Person(string n, int g, int bY, int dY, string nat)
+Person::Person(QString n, int g, int bY, int dY, QString nat)
 {
     name = n;
     gender = g;
@@ -12,7 +12,7 @@ Person::Person(string n, int g, int bY, int dY, string nat)
     nationality = nat;
 }
 
-Person::Person(string n, int g, int bY, int dY, string nat, int id)
+Person::Person(QString n, int g, int bY, int dY, QString nat, int id)
 {
     pId = id;
     name = n;
@@ -22,19 +22,19 @@ Person::Person(string n, int g, int bY, int dY, string nat, int id)
     nationality = nat;
 }
 
-string Person::getName() const
+QString Person::getName() const
 {
     return name;
 }
 
-string Person::getFirstName() const
+QString Person::getFirstName() const
 {
-    return name.substr(0, name.find(" "));
+    return name.leftRef(name.indexOf(" ")).toString();
 }
 
-string Person::getLastName() const
+QString Person::getLastName() const
 {
-    return name.substr(name.rfind(" ") + 1);
+    return name.leftRef(name.lastIndexOf(" ")).toString();
 }
 
 int Person::getAge() const
@@ -64,7 +64,7 @@ int Person::getGender() const
     return gender;
 }
 
-string Person::getNationality() const
+QString Person::getNationality() const
 {
     return nationality;
 }
@@ -74,7 +74,7 @@ int Person::getPersonId()
     return pId;
 }
 
-void Person::setName(string inputName)
+void Person::setName(QString inputName)
 {
     name = inputName;
 }
@@ -84,7 +84,7 @@ void Person::setPersonID(int ID)
     pId = ID;
 }
 
-void Person::setGender(char inputGender)
+void Person::setGender(int inputGender)
 {
     gender = inputGender;
 }
@@ -99,7 +99,7 @@ void Person::setDY(int inputDY)
     deathYear = inputDY;
 }
 
-void Person::setNationality(string inputNat)
+void Person::setNationality(QString inputNat)
 {
     nationality = inputNat;
 }

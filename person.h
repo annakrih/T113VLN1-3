@@ -1,7 +1,6 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-#include <string>
 #include <time.h>
 #include <cstddef>
 #include <QVariant>
@@ -13,25 +12,25 @@ class Person
 public:
     //default constructor
     //requires name, gender, birthyear, deathyear, nationality
-    Person(string n, int g, int bY, int dY, string nat);
-    Person(string n, int g, int bY, int dY, string nat, int id);
+    Person(QString n, int g, int bY, int dY, QString nat);
+    Person(QString n, int g, int bY, int dY, QString nat, int id);
 
     //set functions for editing
-    void setName(string inputName);
+    void setName(QString inputName);
     void setPersonID(int ID);
-    void setGender(char inputGender);
+    void setGender(int inputGender);
     void setBY(int inputBY);
     void setDY(int inputDY);
-    void setNationality(string inputNat);
+    void setNationality(QString inputNat);
 
     //returns name of Person
-    string getName() const;
+    QString getName() const;
 
     //returns only first name instants of Person
-    string getFirstName() const;
+    QString getFirstName() const;
 
     //returns only last name instants of Person
-    string getLastName() const;
+    QString getLastName() const;
 
     //calculates and returns age. Calculates from death year if the person
     //is dead, but from current year if the person is still alive.
@@ -47,7 +46,7 @@ public:
     int getGender() const;
 
     //returns the nationality
-    string getNationality() const;
+    QString getNationality() const;
 
     int getPersonId();
 
@@ -56,11 +55,11 @@ public:
 
 private:
     int pId;
-    string name;
+    QString name;
     int    birthYear;
     int    deathYear;
     int   gender;
-    string nationality;
+    QString nationality;
 };
 
 #endif // PERSON_H

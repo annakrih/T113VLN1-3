@@ -24,7 +24,7 @@ void Data::importSQL(){
 
     if(!tables)
     {
-        QFile schema(path+"/database/schema.sql");
+        QFile schema(schemaFile);
         if (schema.open(QIODevice::ReadOnly))
         {
             QStringList schemaCommands = QTextStream(&schema).readAll().split(';');
@@ -59,6 +59,11 @@ QMap<int,QMap<QString,QString>> Data::getAcceptedGender(){
     return genders;
 };
 
+QSqlRelationalTableModel* Data::submitDatabaseChanges(QSqlRelationalTableModel* model){
+    model->submitAll();
+    return model;
+}
+
 //getList returns copy of the list (vector) containing all persons in the "database"
 vector<Person> Data::getPersonList()
 {
@@ -79,11 +84,11 @@ void Data::writePersonToDatabase(Person p, bool push)
     QSqlQuery query;
     query.prepare("INSERT INTO Person (name, genderId, birthYear, deathYear, nationality) "
                   "VALUES (:name, :gender, :birthYear, :deathYear, :nationality)");
-    query.bindValue(":name", QString::fromStdString(p.getName()));
+    query.bindValue(":name", p.getName());
     query.bindValue(":gender", p.getGender());
     query.bindValue(":birthYear", p.getBirthYear());
     query.bindValue(":deathYear", p.getDeathYear());
-    query.bindValue(":nationality", QString::fromStdString(p.getNationality()));
+    query.bindValue(":nationality", p.getNationality());
     query.exec();
 
     int ID = query.lastInsertId().toInt();
@@ -104,13 +109,13 @@ void Data::writeComputerToDatabase(Computer c, bool push)
     QSqlQuery query;
     query.prepare("INSERT INTO Computer (name, designYear, buildYear, type)"
                   "VALUES (:name, :designYear, :buildYear, :type)");
-    query.bindValue(":name", QString::fromStdString(c.getComputerName()));
+    query.bindValue(":name", c.getComputerName());
     query.bindValue(":designYear", c.getDesignYear());
     query.bindValue(":buildYear", c.getBuildYear());
-    query.bindValue(":type", QString::fromStdString(c.getComputerType()));
+    query.bindValue(":type", c.getComputerType());
     query.exec();
 
-    QVariant ID = query.lastInsertId();
+    int ID = query.lastInsertId().toInt();
     c.setComputerID(ID);
 
     //add computer to computer list if push=1
@@ -123,24 +128,24 @@ void Data::writeComputerToDatabase(Computer c, bool push)
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
 //done at start up
-void Data::readPeopleFromDatabase()
+QSqlRelationalTableModel * Data::readPeopleFromDatabase()
 {
-    //clear list first, just in case.
-    personList.clear();
 
-    QSqlQuery query("SELECT id,name, genderId, birthYear, deathYear, nationality FROM Person");
-       while (query.next()) 
-       {
-           int id = query.value(0).toInt();
-           string name = QString(query.value(1).toString()).toStdString();
-           int gender = query.value(2).toInt();
-           int birthYear = query.value(3).toInt();
-           int deathYear = query.value(4).toInt();
-           string nationality = QString(query.value(5).toString()).toStdString();
+       QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
+       model->setTable("person");
+       model->setRelation(2, QSqlRelation("Person_Gender", "id", "GenderName"));
 
-           Person newPerson(name, gender, birthYear, deathYear, nationality,id);
-           personList.push_back(newPerson);
-       }
+       //todo use filter as search
+       /*
+       QString test = "An";
+       QString filter = "person.name like '%"+test+"%' ";
+       model->setFilter(filter);
+       */
+
+       model->select();
+       model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+
+       return model;
 }
 
 //readComputerFromDatabase reads current computerFile entries into main list.
@@ -154,15 +159,10 @@ void Data::readComputerFromDatabase()
     QSqlQuery query("SELECT name, designYear, buildYear, type FROM Computer");
        while (query.next())
        {
-           QString nameQ = query.value(0).toString();
-           qint32 designYearQ = query.value(1).toInt();
-           qint32 buildYearQ = query.value(2).toInt();
-           QString computerTypeQ = query.value(3).toString();
-
-           string name = nameQ.toStdString();
-           string computerType = computerTypeQ.toStdString();
-           int designYear = designYearQ;
-           int buildYear = buildYearQ;
+           QString name = query.value(0).toString();
+           int designYear = query.value(1).toInt();
+           int buildYear = query.value(2).toInt();
+           QString computerType = query.value(3).toString();
 
            Computer newComputer(name, designYear, computerType, buildYear);
            compList.push_back(newComputer);
@@ -178,6 +178,10 @@ Config Data::getConfig()
 //writeConfigToFile takes in Config class as parameter, and writes the config settings to the config.txt file
 void Data::writeConfigToFile(Config c)
 {
+    //todo rewrite using database/user
+
+    /*
+
     //open and write in file
     ofstream file;
     file.open(configFile);
@@ -189,12 +193,16 @@ void Data::writeConfigToFile(Config c)
     config.SortOrder = c.SortOrder;
 
     file.close();
+    */
 }
 
 //readConfigFromFile reads current config entries into main config object.
 //done at start up
 void Data::readConfigFromFile()
 {
+    //todo rewrite using database/user
+
+    /*
 
     ifstream file;
     file.open(configFile);
@@ -214,6 +222,7 @@ void Data::readConfigFromFile()
     }
 
     file.close();
+    */
 }
 
 

@@ -7,6 +7,10 @@ Domain::Domain()
 {
 
 }
+QSqlRelationalTableModel* Domain::submitDatabaseChanges(QSqlRelationalTableModel* model){
+    return data.submitDatabaseChanges(model);
+};
+
 
 //Function used for adding a person to the list vector
 //passes a person to the data layer for processing
@@ -26,13 +30,37 @@ vector<Person> Domain::getPersonList()
     return data.getPersonList();
 }
 
+QSqlRelationalTableModel * Domain::getPersonModel(){
+    return data.readPeopleFromDatabase();
+}
+
 vector<Computer> Domain::getCList()
 {
     return data.getComputerList();
 }
 
-QMap<int,QMap<QString,QString>> Domain::getAcceptedGender(){
-    return data.getAcceptedGender();
+QMap<QString,int> Domain::getAcceptedGenderName(){
+
+    QMap<int,QMap<QString,QString>> genderList = data.getAcceptedGender();
+    QMap<QString,int> gList;
+    QMapIterator<int,QMap<QString,QString>> i(genderList);
+    while (i.hasNext()) {
+        i.next();
+        gList.insert(i.value().values().at(0),i.key());
+    }
+    return gList;
+}
+
+QMap<QString, int> Domain::getAcceptedGenderChar(){
+
+    QMap<int,QMap<QString,QString>> genderList = data.getAcceptedGender();
+    QMap<QString,int> gList;
+    QMapIterator<int,QMap<QString,QString>> i(genderList);
+    while (i.hasNext()) {
+        i.next();
+        gList.insert(i.value().values().at(1),i.key());
+    }
+    return gList;
 }
 
 
@@ -51,22 +79,16 @@ void Domain::setConfig(Config c)
 
 //searchPersonName takes in a vector of person to search in, and a search parameter.
 //returns a vector of persons
-vector<Person> Domain::searchPersonName(vector<Person> people, string search)
+vector<Person> Domain::searchPersonName(vector<Person> people, QString search)
 {
     vector<Person> searchList;
+    search.trimmed();
 
     for(size_t i= 0; i < people.size(); i++ )
     {
-        string name = people[i].getName();
-        transform(name.begin(), name.end(), name.begin(), ::tolower);
-        transform(search.begin(), search.end(), search.begin(), ::tolower);
+        QString name = people[i].getName();
 
-        if(search.find(' ') != string::npos)
-        {
-            search.erase(search.begin());
-        }
-
-        if(name.find(search) != string::npos)
+        if(name.contains(search,  Qt::CaseInsensitive))
         {
             searchList.push_back(people[i]);
         }
@@ -77,17 +99,16 @@ vector<Person> Domain::searchPersonName(vector<Person> people, string search)
 
 //searchPersonNationality takes in a vector of person to search in, and a search parameter.
 //returns a vector of persons
-vector<Person> Domain::searchPersonNationality(vector<Person> people, string search)
+vector<Person> Domain::searchPersonNationality(vector<Person> people, QString search)
 {
     vector<Person> searchList;
+    search.trimmed();
 
     for(size_t i= 0; i < people.size(); i++ )
     {
-        string nationality = people[i].getNationality();
-        transform(nationality.begin(), nationality.end(), nationality.begin(), ::tolower);
-        transform(search.begin(), search.end(), search.begin(), ::tolower);
+        QString nationality = people[i].getNationality();
 
-        if(nationality.find(search) != string::npos)
+        if(nationality.contains(search,  Qt::CaseInsensitive))
         {
             searchList.push_back(people[i]);
         }
@@ -98,7 +119,7 @@ vector<Person> Domain::searchPersonNationality(vector<Person> people, string sea
 
 //searchPersonGender takes in a vector of person to search in, and a search parameter.
 //returns a vector of persons
-vector<Person> Domain::searchPersonGender(vector<Person> people, char search)
+vector<Person> Domain::searchPersonGender(vector<Person> people, int search)
 {
     vector<Person> searchList;
 
@@ -191,22 +212,16 @@ vector<Person> Domain::searchPersonAge(vector<Person> people, int from, int to)
 
 //searchComputerName takes in a vector of computer to search in, and a search parameter.
 //returns a vector of computer
-vector<Computer> Domain::searchComputerName(vector<Computer> comp, string search)
+vector<Computer> Domain::searchComputerName(vector<Computer> comp, QString search)
 {
     vector<Computer> searchList;
+    search.trimmed();
 
     for(size_t i= 0; i < comp.size(); i++ )
     {
-        string name = comp[i].getComputerName();
-        transform(name.begin(), name.end(), name.begin(), ::tolower);
-        transform(search.begin(), search.end(), search.begin(), ::tolower);
+        QString name = comp[i].getComputerName();
 
-        if(search.find(' ') != string::npos)
-        {
-            search.erase(search.begin());
-        }
-
-        if(name.find(search) != string::npos)
+        if(name.contains(search,  Qt::CaseInsensitive))
         {
             searchList.push_back(comp[i]);
         }
@@ -217,22 +232,16 @@ vector<Computer> Domain::searchComputerName(vector<Computer> comp, string search
 
 //searchCDName takes in a vector of computer to search in, and a search parameter.
 //returns a vector of computerdesign
-vector<Computer> Domain::searchCDName(vector<Computer> comp, string search)
+vector<Computer> Domain::searchCDName(vector<Computer> comp, QString search)
 {
     vector<Computer> searchList;
+    search.trimmed();
 
     for(size_t i= 0; i < comp.size(); i++ )
     {
-        string name = comp[i].getComputerType();
-        transform(name.begin(), name.end(), name.begin(), ::tolower);
-        transform(search.begin(), search.end(), search.begin(), ::tolower);
+        QString name = comp[i].getComputerType();
 
-        if(search.find(' ') != string::npos)
-        {
-            search.erase(search.begin());
-        }
-
-        if(name.find(search) != string::npos)
+        if(name.contains(search,  Qt::CaseInsensitive))
         {
             searchList.push_back(comp[i]);
         }
@@ -354,7 +363,7 @@ vector<Computer> Domain::sortComputerByDefault(vector<Computer> cList)
 }
 
 //sortPersonByName takes in a vector of person to sort, and a sort order ("desc or "asc).
-vector<Person> Domain::sortPersonByName(string sortOrder, vector<Person> pList)
+vector<Person> Domain::sortPersonByName(QString sortOrder, vector<Person> pList)
 {
     struct PersonAsc
     {
@@ -389,7 +398,7 @@ vector<Person> Domain::sortPersonByName(string sortOrder, vector<Person> pList)
 }
 
 //sortPersonByGender takes in a vector of person to sort, and a sort order ("desc or "asc).
-vector<Person> Domain::sortPersonByGender(string sortOrder, vector<Person> pList)
+vector<Person> Domain::sortPersonByGender(QString sortOrder, vector<Person> pList)
 {
 
     struct PersonAsc
@@ -425,7 +434,7 @@ vector<Person> Domain::sortPersonByGender(string sortOrder, vector<Person> pList
 }
 
 //sortPersonByBY takes in a vector of person to sort, and a sort order ("desc or "asc).
-vector<Person> Domain::sortPersonByBY(string sortOrder, vector<Person> pList)
+vector<Person> Domain::sortPersonByBY(QString sortOrder, vector<Person> pList)
 {
     struct PersonAsc
     {
@@ -460,7 +469,7 @@ vector<Person> Domain::sortPersonByBY(string sortOrder, vector<Person> pList)
 }
 
 //sortPersonByDY takes in a vector of person to sort, and a sort order ("desc or "asc).
-vector<Person> Domain::sortPersonByDY(string sortOrder, vector<Person> pList)
+vector<Person> Domain::sortPersonByDY(QString sortOrder, vector<Person> pList)
 {
 
     struct PersonAsc
@@ -496,7 +505,7 @@ vector<Person> Domain::sortPersonByDY(string sortOrder, vector<Person> pList)
 }
 
 //sortPersonByNat takes in a vector of person to sort, and a sort order ("desc or "asc).
-vector<Person> Domain::sortPersonByNat(string sortOrder, vector<Person> pList)
+vector<Person> Domain::sortPersonByNat(QString sortOrder, vector<Person> pList)
 {
 
     struct PersonAsc
@@ -532,7 +541,7 @@ vector<Person> Domain::sortPersonByNat(string sortOrder, vector<Person> pList)
 }
 
 //sortPersonByAge takes in a vector of person to sort, and a sort order ("desc or "asc).
-vector<Person> Domain::sortPersonByAge(string sortOrder, vector<Person> pList)
+vector<Person> Domain::sortPersonByAge(QString sortOrder, vector<Person> pList)
 {
 
         struct PersonAsc

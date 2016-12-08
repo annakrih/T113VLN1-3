@@ -11,7 +11,7 @@ Config::Config()
 
 
 //constructor that takes 2 parameters example ("asc",1);
-Config::Config(string sO, int sC)
+Config::Config(QString sO, int sC)
 {
     SortOrder = sO;
     sortColumn = sC;

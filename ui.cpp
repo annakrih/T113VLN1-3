@@ -1,3 +1,5 @@
+/*
+
 #include "ui.h"
 
 using namespace std;
@@ -909,7 +911,7 @@ void UI::removeComputer()
 
 }
 */
-
+/*
 //prompts user to search, after search temporary id's are visible, user can further narrow down search or delete person based on the id.
 void UI::editPerson()
 {
@@ -1510,3 +1512,6 @@ void UI::askForSearch()
         }
     }while(!valid);
 }
+
+
+*/

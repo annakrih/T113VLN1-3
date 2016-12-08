@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddEntry</class>
- <widget class="QDialog" name="AddEntry">
+ <class>PersonDialog</class>
+ <widget class="QDialog" name="PersonDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -161,7 +161,7 @@
     <string>Birth Year</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="labelDeath">
    <property name="geometry">
     <rect>
      <x>25</x>
@@ -233,13 +233,40 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QSpinBox" name="hiddenId">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>10</y>
+     <width>0</width>
+     <height>0</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="frame">
+    <bool>false</bool>
+   </property>
+   <property name="buttonSymbols">
+    <enum>QAbstractSpinBox::NoButtons</enum>
+   </property>
+   <property name="keyboardTracking">
+    <bool>false</bool>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>AddEntry</receiver>
+   <receiver>PersonDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -255,7 +282,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>AddEntry</receiver>
+   <receiver>PersonDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">

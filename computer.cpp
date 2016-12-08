@@ -1,6 +1,6 @@
 #include "computer.h"
 
-Computer::Computer(string cp, int by, string cd, int dy)
+Computer::Computer(QString cp, int by, QString cd, int dy)
 {
     computerName = cp;
     buildYear = by;
@@ -8,7 +8,7 @@ Computer::Computer(string cp, int by, string cd, int dy)
     designYear = dy;
 }
 
-string Computer::getComputerName () const
+QString Computer::getComputerName () const
 {
    return computerName;
 }
@@ -18,7 +18,7 @@ int Computer::getBuildYear () const
    return buildYear;
 }
 
-string Computer::getComputerType() const
+QString Computer::getComputerType() const
 {
    return computerType;
 }
@@ -43,7 +43,7 @@ int Computer::getDesignYear()
     return designYear;
 }
 
-void Computer::setComputerID(QVariant ID)
+void Computer::setComputerID(int ID)
 {
     cID = ID;
 }

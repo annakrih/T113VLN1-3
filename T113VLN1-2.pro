@@ -27,9 +27,9 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/data.cpp \
     $$PWD/config.cpp \
     $$PWD/computer.cpp \
-    mainwindow.cpp \
-    addEntry.cpp \
-    utils.cpp
+    utils.cpp \
+    personDialog.cpp \
+    gui.cpp
 
 HEADERS += \
     $$PWD/person.h \
@@ -38,10 +38,10 @@ HEADERS += \
     $$PWD/data.h \
     $$PWD/config.h \
     $$PWD/computer.h \
-    mainwindow.h \
-    addEntry.h \
-    utils.h
+    utils.h \
+    personDialog.h \
+    gui.h
 
 FORMS += \
-    mainwindow.ui \
-    addEntry.ui
+    personDialog.ui \
+    gui.ui

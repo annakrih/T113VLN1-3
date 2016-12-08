@@ -1,42 +1,44 @@
-#include "addEntry.h"
-#include "ui_addEntry.h"
+#include "personDialog.h"
+#include "ui_personDialog.h"
 
 #include <string>
+#include <iostream>
 #include <QPushButton>
 
-AddEntry::AddEntry(QWidget *parent, QMap<QString,int> gMap, QString n, int g, QString nat, int b, int d) :
+PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QString n, QString g, QString nat, int b, int d, int id) :
     QDialog(parent),
-    ui(new Ui::AddEntry)
+    ui(new Ui::PersonDialog)
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
     fillGenderMenu(gMap);
 
+    ui->hiddenId->setValue(id);
     ui->entryName->setFocus();
     ui->entryName->setText(n);
-    ui->entryGender->setCurrentIndex(g);
+    ui->entryGender->setCurrentText(g);
     ui->entryNationality->setText(nat);
     ui->entryBY->setValue(b);
     if(!d){
         ui->entryCheckDY->setChecked(false);
     }else{
-        ui->entryDY->setValue(b);
+        ui->entryDY->setValue(d);
     }
 
     checkForm();
 }
 
-AddEntry::~AddEntry()
+PersonDialog::~PersonDialog()
 {
     delete ui;
 }
 
-void AddEntry::on_buttonBox_accepted()
+void PersonDialog::on_buttonBox_accepted()
 {
-    QString name = ui->entryName->text();
+    QString name = ui->entryName->text().trimmed();
     int gender =  ui->entryGender->itemData(ui->entryGender->currentIndex()).toInt();
-    QString nationality = ui->entryNationality->text();
+    QString nationality = ui->entryNationality->text().trimmed();
     int bY = ui->entryBY->value();
     int dY;
     if(ui->entryCheckDY->checkState() && ui->entryBY->value() != 0){
@@ -44,11 +46,16 @@ void AddEntry::on_buttonBox_accepted()
     }else if(!ui->entryCheckDY->checkState()){
         dY = 0;
     }
+    int id = ui->hiddenId->value();
 
-    emit this->newEntryAccepted(name,gender,nationality,bY,dY);
+    if(id == 0){//add
+        emit this->newPersonAccepted(name,gender,nationality,bY,dY);
+    }else{//edit
+        emit this->editPersonAccepted(id,name,gender,nationality,bY,dY);
+    }
 }
 
-void AddEntry::fillGenderMenu(QMap<QString,int> gMap){
+void PersonDialog::fillGenderMenu(QMap<QString,int> gMap){
 
     ui->entryGender->addItem("",0);
     QMapIterator<QString, int> i(gMap);
@@ -60,7 +67,7 @@ void AddEntry::fillGenderMenu(QMap<QString,int> gMap){
 
 };
 
-void AddEntry::fillNationalityMenu(){
+void PersonDialog::fillNationalityMenu(){
     for ( int i = 1; i < 256; i++ )
     {
        QLocale::Country foo = static_cast<QLocale::Country>(i);
@@ -70,7 +77,7 @@ void AddEntry::fillNationalityMenu(){
     }
 }
 
-void AddEntry::checkForm(){
+void PersonDialog::checkForm(){
     const int needed = 5;
     int count = 0;
 
@@ -92,7 +99,7 @@ void AddEntry::checkForm(){
 
 }
 
-void AddEntry::on_entryName_textChanged(const QString &arg1)
+void PersonDialog::on_entryName_textChanged(const QString &arg1)
 {
     if(arg1.length() && arg1[arg1.length() - 1] != ' '){
         QString text = utils.capitalizeString(arg1);
@@ -101,7 +108,7 @@ void AddEntry::on_entryName_textChanged(const QString &arg1)
     checkForm();
 }
 
-void AddEntry::on_entryNationality_textChanged(const QString &arg1)
+void PersonDialog::on_entryNationality_textChanged(const QString &arg1)
 {
     if(arg1.length() && arg1[arg1.length() - 1] != ' '){
         QString text = utils.capitalizeString(arg1);
@@ -110,7 +117,7 @@ void AddEntry::on_entryNationality_textChanged(const QString &arg1)
     checkForm();
 }
 
-void AddEntry::on_entryBY_editingFinished()
+void PersonDialog::on_entryBY_editingFinished()
 {
     int bY = ui->entryBY->value();
     int dY = ui->entryDY->value();
@@ -120,7 +127,7 @@ void AddEntry::on_entryBY_editingFinished()
     checkForm();
 }
 
-void AddEntry::on_entryDY_editingFinished()
+void PersonDialog::on_entryDY_editingFinished()
 {
     int bY = ui->entryBY->value();
     int dY = ui->entryDY->value();
@@ -130,7 +137,7 @@ void AddEntry::on_entryDY_editingFinished()
     checkForm();
 }
 
-void AddEntry::on_entryCheckDY_toggled(bool checked)
+void PersonDialog::on_entryCheckDY_toggled(bool checked)
 {
     if(checked){
         ui->entryDY->setDisabled(false);
@@ -140,17 +147,17 @@ void AddEntry::on_entryCheckDY_toggled(bool checked)
     checkForm();
 }
 
-void AddEntry::on_entryGender_currentIndexChanged(int index)
+void PersonDialog::on_entryGender_currentIndexChanged(int index)
 {
     checkForm();
 }
 
-void AddEntry::on_buttonBox_rejected()
+void PersonDialog::on_buttonBox_rejected()
 {
-    emit this->newEntryRejected();
+    emit this->personEntryRejected();
 }
 
-void AddEntry::on_AddEntry_finished(int result)
+void PersonDialog::on_PersonDialog_finished(int result)
 {
-    emit this->newEntryRejected();
+    emit this->personEntryRejected();
 }

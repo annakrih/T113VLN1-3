@@ -1,10 +1,17 @@
+#include <QApplication>
 #include "ui.h"
+#include "gui.h"
 
-int main()
+
+int main(int argc, char *argv[])
 {
-    UI ui;
+    //UI ui;
+    //ui.mainMenu();
+    QApplication program(argc, argv);
+    Gui gui;
 
-    ui.mainMenu();
+    gui.show();
 
-    return 0;
+
+    return program.exec();
 }

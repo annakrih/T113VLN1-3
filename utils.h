@@ -2,13 +2,15 @@
 #define UTILS_H
 
 #include <QString>
+#include <QDir>
 
 class Utils
 {
 public:
     Utils();
     QString capitalizeString(QString string);
-    int dummyNull = 999999;
+    const int dummyNull = 999999;
+    const QString workingDir = QDir::currentPath() + "/../";
 };
 
 #endif // UTILS_H

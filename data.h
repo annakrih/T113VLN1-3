@@ -12,6 +12,7 @@
 #include "config.h"
 #include "person.h"
 #include "computer.h"
+#include "utils.h"
 
 
 
@@ -22,23 +23,24 @@ using namespace std;
 class Data
 {
 private:
+    Utils utils;
+    const QString databaseDir = utils.workingDir+"database/";
+    const QString schemaFile = databaseDir + "schema.sql";
     //vector contains the list of people
     vector<Person> personList;
     vector<Computer> compList;
 
-    const string directoryPath = "../T113VLN1/database/";
+    QSqlDatabase db;
+    QString dbName = databaseDir + "team8.db";
 
     //people file path
-    const string peopleFile = directoryPath+"people.txt";
+    const QString peopleFile = databaseDir+"people.txt";
     //config file path
-    const string configFile = directoryPath+"config.txt";
+    const QString configFile = databaseDir+"config.txt";
 
     //confic class contains config settings.
     Config config;
 
-    QSqlDatabase db;
-    QString path = QDir::currentPath() + "/..";
-    QString dbName = path + "/database/team8.db";
 
 public:
     //default constructor
@@ -59,7 +61,9 @@ public:
     void writeComputerToDatabase(Computer c, bool push = 1);
 
     //reads information stored inside a file and puts it into the main person vector
-    void readPeopleFromDatabase();
+    QSqlRelationalTableModel* readPeopleFromDatabase();
+
+    QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);
 
     //reads info stored inside a file and puts it into the main computer vector
     void readComputerFromDatabase();
