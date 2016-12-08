@@ -6,6 +6,7 @@
 #include "person.h"
 #include "computer.h"
 #include "personDialog.h"
+#include "searchPersonDialog.h"
 
 
 #include <QMainWindow>
@@ -38,6 +39,8 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
 
+    void on_search_released();
+
 private:
     Ui::Gui *ui;
     PersonDialog *personDialogWindow;
@@ -48,6 +51,7 @@ private:
     int lastSelectedRow = utils.dummyNull;
 
     void loadTopTable(QSqlRelationalTableModel * model);
+    SearchPersonDialog *searchPersonDialogWindow;
 };
 
 #endif // GUI_H

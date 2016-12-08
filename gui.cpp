@@ -196,3 +196,9 @@ void Gui::on_comboBox_currentIndexChanged(int index)
         //todo load computermodel
     }
 }
+
+void Gui::on_search_released()
+{
+    searchPersonDialogWindow = new SearchPersonDialog(this);
+    searchPersonDialogWindow->show();
+}
