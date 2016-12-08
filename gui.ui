@@ -108,6 +108,19 @@
      </property>
     </item>
    </widget>
+<<<<<<< HEAD
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>240</y>
+      <width>80</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Computer</string>
+=======
    <widget class="QPushButton" name="search">
     <property name="geometry">
      <rect>
@@ -119,6 +132,7 @@
     </property>
     <property name="text">
      <string>Search</string>
+>>>>>>> origin/master
     </property>
    </widget>
   </widget>

@@ -9,6 +9,8 @@ INPUT(
 ./debug\.obj\utils.o
 ./debug\.obj\personDialog.o
 ./debug\.obj\gui.o
+./debug\.obj\computerdialog.o
 ./debug\.obj\moc_personDialog.o
 ./debug\.obj\moc_gui.o
+./debug\.obj\moc_computerdialog.o
 );

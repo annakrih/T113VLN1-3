@@ -59,6 +59,21 @@ QMap<int,QMap<QString,QString>> Data::getAcceptedGender(){
     return genders;
 };
 
+QMap<int, QString> Data::getAcceptedTypes()
+{
+    QMap<int, QString> computerTypes;
+    QSqlQuery query("SELECT id, typeName FROM Computer_Type");
+    while(query.next())
+    {
+        int id = query.value(0).toInt();
+        QString typeName = query.value(1).toString();
+
+        computerTypes.insert(id, typeName);
+    }
+
+    return computerTypes;
+}
+
 QSqlRelationalTableModel* Data::submitDatabaseChanges(QSqlRelationalTableModel* model){
     //model->setFilter("");
     model->submitAll();

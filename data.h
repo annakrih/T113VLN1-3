@@ -96,6 +96,8 @@ public:
     Config getConfig();
 
     QMap<int,QMap<QString,QString>> getAcceptedGender();
+
+    QMap<int, QString> getAcceptedTypes();
 };
 
 #endif // DATA_H
