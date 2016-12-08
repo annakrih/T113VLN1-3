@@ -11,7 +11,7 @@ Gui::Gui(QWidget *parent) :
     ui->setupUi(this);
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    loadTable(domain.getPersonModel());
+    loadTopTable(domain.getPersonModel());
 }
 
 Gui::~Gui()
@@ -19,14 +19,13 @@ Gui::~Gui()
     delete ui;
 }
 
-void Gui::loadTable(QSqlRelationalTableModel * model){
+void Gui::loadTopTable(QSqlRelationalTableModel * model){
     personModel = model;
     //QMap<int,QMap<QString,QString>> genderList = domain.getAcceptedGender();
     ui->tableView-> setModel(personModel);
     ui->tableView->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->tableView->setColumnHidden(0,true);
-    ui->tableView->setItemDelegate(new QSqlRelationalDelegate(ui->tableView));
     /*
     for(size_t i = 0; i < pList.size();i++){
         QTableWidgetItem *name = new QTableWidgetItem;

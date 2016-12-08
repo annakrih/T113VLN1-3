@@ -41,7 +41,7 @@ private:
 
     int lastSelectedRow = utils.dummyNull;
 
-    void loadTable(QSqlRelationalTableModel * model);
+    void loadTopTable(QSqlRelationalTableModel * model);
 };
 
 #endif // GUI_H
