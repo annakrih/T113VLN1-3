@@ -129,7 +129,7 @@ void Data::writeComputerToDatabase(Computer c, bool push)
 
 //readPeopleFromDatabase reads current peopleFile entries into main list.
 //done at start up
-QSqlRelationalTableModel * Data::readPeopleFromDatabase()
+QSqlRelationalTableModel * Data::readPeopleFromDatabase(QString filter)
 {
 
        QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
@@ -146,6 +146,8 @@ QSqlRelationalTableModel * Data::readPeopleFromDatabase()
        model->setSort(1, Qt::SortOrder::DescendingOrder);
        */
 
+       model->setFilter(filter);
+
        model->select();
        model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
@@ -156,7 +158,6 @@ QSqlRelationalTableModel * Data::readPeopleFromDatabase()
 //done at start up
 void Data::readComputerFromDatabase()
 {
-
     //clear list first, just in case.
     compList.clear();
 

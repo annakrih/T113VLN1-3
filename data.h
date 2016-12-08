@@ -61,7 +61,7 @@ public:
     void writeComputerToDatabase(Computer c, bool push = 1);
 
     //reads information stored inside a file and puts it into the main person vector
-    QSqlRelationalTableModel* readPeopleFromDatabase();
+    QSqlRelationalTableModel* readPeopleFromDatabase(QString filter = "");
 
     QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);
 
