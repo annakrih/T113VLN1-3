@@ -12,7 +12,7 @@ class computerDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit computerDialog(QWidget *parent = 0, QMap<int, QString> tList);
+    explicit computerDialog(QWidget *parent = 0);
 
 private slots:
     void on_wasItBuilt_toggled(bool checked);
