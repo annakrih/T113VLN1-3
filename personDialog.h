@@ -21,17 +21,17 @@ public:
 
 private slots:
     void on_buttonBox_accepted();
-    void on_entryName_textChanged(const QString &arg1);
+    void on_personName_textChanged(const QString &arg1);
 
-    void on_entryNationality_textChanged(const QString &arg1);
+    void on_personNationality_textChanged(const QString &arg1);
 
-    void on_entryBY_editingFinished();
+    void on_personBY_editingFinished();
 
-    void on_entryDY_editingFinished();
+    void on_personDY_editingFinished();
 
-    void on_entryCheckDY_toggled(bool checked);
+    void on_personCheckDY_toggled(bool checked);
 
-    void on_entryGender_currentIndexChanged(int index);
+    void on_personGender_currentIndexChanged(int index);
 
     void on_buttonBox_rejected();
 

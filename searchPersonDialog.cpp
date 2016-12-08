@@ -15,65 +15,67 @@ SearchPersonDialog::~SearchPersonDialog()
     delete ui;
 }
 
-void SearchPersonDialog::on_lineEdit_textChanged(const QString &arg1)
+void SearchPersonDialog::on_inputName_textChanged(const QString &arg1)
 {
     if(arg1.length() && arg1[arg1.length() - 1] != ' '){
         QString text = utils.capitalizeString(arg1);
-        ui->lineEdit->setText(text);
+        ui->inputName->setText(text);
     }
 }
 
-void SearchPersonDialog::on_lineEdit_6_textChanged(const QString &arg1)
+void SearchPersonDialog::on_inputNat_textChanged(const QString &arg1)
 {
     if(arg1.length() && arg1[arg1.length() - 1] != ' '){
         QString text = utils.capitalizeString(arg1);
-        ui->lineEdit_6->setText(text);
+        ui->inputNat->setText(text);
     }
 }
 
 //birth year search from
-void SearchPersonDialog::on_spinBox_5_editingFinished()
+void SearchPersonDialog::on_inputBYFrom_editingFinished()
 {
-    int fromVal = ui->spinBox_5->value();
-    int toVal =  ui->spinBox_5->value();
+    int fromVal = ui->inputBYFrom->value();
+    int toVal =  ui->inputBYTo->value();
 
-    if(fromVal>toVal)
+    if(fromVal>=toVal)
     {
-       // ui->spinBox_6->value(fromVal);
+       ui->inputBYTo->setValue(fromVal);
     }
 }
 
 //birth year search to
-void SearchPersonDialog::on_spinBox_6_editingFinished()
+void SearchPersonDialog::on_inputBYTo_editingFinished()
 {
 
-    int fromVal = ui->spinBox_5->value();
-    int toVal =  ui->spinBox_5->value();
+    int fromVal = ui->inputBYFrom->value();
+    int toVal =  ui->inputBYTo->value();
 
-    if(fromVal<=toVal)
+    if(fromVal>=toVal)
     {
-       // ui->spinBox_6->value(fromVal);
+       ui->inputBYTo->setValue(fromVal);
     }
 }
 
 //death year search from
-void SearchPersonDialog::on_spinBox_2_editingFinished()
+void SearchPersonDialog::on_inputDYFrom_editingFinished()
 {
-    int fromVal = ui->spinBox_2->value();
-    int toVal =  ui->spinBox_2->value();
-    if(fromVal<=toVal)
+    int fromVal = ui->inputDYFrom->value();
+    int toVal =  ui->inputDYTo->value();
+
+    if(fromVal>=toVal)
     {
-       // ui->spinBox_2->value(fromVal);
+       ui->inputDYTo->setValue(fromVal);
     }
 }
 
 //death year search to
-void SearchPersonDialog::on_spinBox_8_editingFinished()
+void SearchPersonDialog::on_inputDYTo_editingFinished()
 {
-    int fromVal = ui->spinBox_8->value();
-    int toVal =  ui->spinBox_8->value();
-    if(fromVal<=toVal)
+    int fromVal = ui->inputDYFrom->value();
+    int toVal =  ui->inputDYTo->value();
+
+    if(fromVal>=toVal)
     {
-       // ui->spinBox_8->value(fromVal);
+       ui->inputDYTo->setValue(fromVal);
     }
 }

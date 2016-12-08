@@ -41,20 +41,20 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QLabel" name="Name">
+  <widget class="QLabel" name="labelName">
    <property name="geometry">
     <rect>
      <x>60</x>
      <y>40</y>
      <width>61</width>
-     <height>16</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="inputName">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -64,7 +64,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
+  <widget class="QLineEdit" name="inputNat">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -74,7 +74,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_2">
+  <widget class="QSpinBox" name="inputDYFrom">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -87,7 +87,7 @@
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
   </widget>
-  <widget class="QCheckBox" name="entryCheckDY">
+  <widget class="QCheckBox" name="inputCheckDY">
    <property name="geometry">
     <rect>
      <x>320</x>
@@ -103,7 +103,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QComboBox" name="entryGender">
+  <widget class="QComboBox" name="inputGender">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -112,83 +112,73 @@
      <height>22</height>
     </rect>
    </property>
-   <item>
-    <property name="text">
-     <string>Male</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Female</string>
-    </property>
-   </item>
   </widget>
-  <widget class="QLabel" name="Name_2">
+  <widget class="QLabel" name="labelGender">
    <property name="geometry">
     <rect>
      <x>60</x>
      <y>80</y>
-     <width>61</width>
-     <height>16</height>
+     <width>71</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Gender&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Name_4">
+  <widget class="QLabel" name="labelDY">
    <property name="geometry">
     <rect>
      <x>60</x>
      <y>180</y>
      <width>91</width>
-     <height>16</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Death year&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Name_5">
+  <widget class="QLabel" name="labelAge">
    <property name="geometry">
     <rect>
      <x>60</x>
      <y>220</y>
      <width>61</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Age&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Name_6">
+  <widget class="QLabel" name="labelNat">
    <property name="geometry">
     <rect>
      <x>60</x>
      <y>260</y>
      <width>81</width>
-     <height>16</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Nationality&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Name_7">
+  <widget class="QLabel" name="labelBY">
    <property name="geometry">
     <rect>
      <x>60</x>
      <y>130</y>
      <width>81</width>
-     <height>16</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Birth year&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_5">
+  <widget class="QSpinBox" name="inputBYFrom">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -201,7 +191,7 @@
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_6">
+  <widget class="QSpinBox" name="inputBYTo">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -214,7 +204,7 @@
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="Name_8">
+  <widget class="QLabel" name="labelToBY">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -227,7 +217,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;to&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_7">
+  <widget class="QSpinBox" name="inputAge">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -240,7 +230,7 @@
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_8">
+  <widget class="QSpinBox" name="inputDYTo">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -253,7 +243,7 @@
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="Name_9">
+  <widget class="QLabel" name="labelToDY">
    <property name="geometry">
     <rect>
      <x>220</x>

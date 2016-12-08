@@ -35,7 +35,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QLineEdit" name="entryName">
+  <widget class="QLineEdit" name="personName">
    <property name="geometry">
     <rect>
      <x>119</x>
@@ -87,7 +87,7 @@
     <string>Gender</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="entryNationality">
+  <widget class="QLineEdit" name="personNat">
    <property name="geometry">
     <rect>
      <x>119</x>
@@ -118,7 +118,7 @@
     <string>Nationality</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="entryBY">
+  <widget class="QSpinBox" name="personBY">
    <property name="geometry">
     <rect>
      <x>121</x>
@@ -182,7 +182,7 @@
     <string>Death Year</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="entryDY">
+  <widget class="QSpinBox" name="personDY">
    <property name="geometry">
     <rect>
      <x>121</x>
@@ -207,7 +207,7 @@
     <number>0</number>
    </property>
   </widget>
-  <widget class="QComboBox" name="entryGender">
+  <widget class="QComboBox" name="personGender">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -217,7 +217,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QCheckBox" name="entryCheckDY">
+  <widget class="QCheckBox" name="personCheckDY">
    <property name="geometry">
     <rect>
      <x>180</x>

@@ -40,15 +40,10 @@ private slots:
     void on_comboBox_currentIndexChanged(int index);
 
 
-    void on_pushButton_released();
-
-    void on_search_released();
-
-
 private:
     Ui::Gui *ui;
     PersonDialog *personDialogWindow;
-    computerDialog *computerDialogWindow;
+    ComputerDialog *computerDialogWindow;
     Domain domain;
     Utils utils;
     QSqlRelationalTableModel* personModel;

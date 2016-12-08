@@ -17,17 +17,17 @@ public:
     ~SearchPersonDialog();
 
 private slots:
-    void on_lineEdit_textChanged(const QString &arg1);
+    void on_inputName_textChanged(const QString &arg1);
 
-    void on_lineEdit_6_textChanged(const QString &arg1);
+    void on_inputNat_textChanged(const QString &arg1);
 
-    void on_spinBox_5_editingFinished();
+    void on_inputBYFrom_editingFinished();
 
-    void on_spinBox_6_editingFinished();
+    void on_inputBYTo_editingFinished();
 
-    void on_spinBox_2_editingFinished();
+    void on_inputDYFrom_editingFinished();
 
-    void on_spinBox_8_editingFinished();
+    void on_inputDYTo_editingFinished();
 
 private:
     Ui::SearchPersonDialog *ui;

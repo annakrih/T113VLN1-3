@@ -4,9 +4,9 @@
 #include <QMap>
 #include <QVariant>
 
-computerDialog::computerDialog(QWidget *parent, QMap<int,QString> tList) :
+ComputerDialog::ComputerDialog(QWidget *parent, QMap<int,QString> tList) :
     QDialog(parent),
-    ui(new Ui::computerDialog)
+    ui(new Ui::ComputerDialog)
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
@@ -20,7 +20,7 @@ computerDialog::computerDialog(QWidget *parent, QMap<int,QString> tList) :
 
 
 
-void computerDialog::on_wasItBuilt_toggled(bool checked)
+void ComputerDialog::on_wasItBuilt_toggled(bool checked)
 {
     if(checked){
         ui->buildYInput->setDisabled(false);
@@ -30,7 +30,7 @@ void computerDialog::on_wasItBuilt_toggled(bool checked)
     checkForm();
 }
 
-void computerDialog::checkForm()
+void ComputerDialog::checkForm()
 {
     const int needed = 4;
     int count = 0;
@@ -66,7 +66,7 @@ void computerDialog::checkForm()
 
 }
 
-void computerDialog::fillTypeMenu(QMap<int, QString> tList)
+void ComputerDialog::fillTypeMenu(QMap<int, QString> tList)
 {
     ui->cType->addItem(0,"");
     QMapIterator<int, QString> i(tList);

@@ -7,21 +7,21 @@
 #include <QMap>
 
 namespace Ui {
-class computerDialog;
+class ComputerDialog;
 }
 
-class computerDialog : public QDialog
+class ComputerDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit computerDialog(QWidget *parent = 0, QMap<int, QString> tList = QMap<int,QString>{});
+    explicit ComputerDialog(QWidget *parent = 0, QMap<int, QString> tList = QMap<int,QString>{});
 
 private slots:
     void on_wasItBuilt_toggled(bool checked);
 
 private:
-    Ui::computerDialog *ui;
+    Ui::ComputerDialog *ui;
     Utils utils;
     void checkForm();
     void fillTypeMenu(QMap<int, QString> tList);
