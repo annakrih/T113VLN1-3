@@ -29,6 +29,12 @@
     <property name="sortingEnabled">
      <bool>true</bool>
     </property>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
    </widget>
    <widget class="QPushButton" name="personAddEdit">
     <property name="geometry">

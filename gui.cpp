@@ -116,6 +116,7 @@ void Gui::onNewPersonAccepted(const QString &n, const int &g, const QString &nat
     //ui->tableView->setModel(domain.submitDatabaseChanges(personModel));
 
     //loadTable(domain.getPersonModel());
+    //todo hasChange++
 }
 
 void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d){
@@ -130,6 +131,7 @@ void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, co
     record.setValue(5,d);
     personModel->setRecord(lastSelectedRow,record);
     ui->tableView->setModel(personModel);
+    //todo hasChange++
 };
 
 void Gui::on_tableView_clicked(const QModelIndex &index)
@@ -153,6 +155,8 @@ void Gui::on_savePerson_clicked()
 
 void Gui::on_deletePerson_released()
 {
+    //todo hasChange++
+
     ui->tableView->hideRow(lastSelectedRow);
     personModel->removeRow(lastSelectedRow);
     ui->tableView->setModel(personModel);
