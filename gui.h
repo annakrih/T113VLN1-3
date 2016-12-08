@@ -47,10 +47,12 @@ private:
     Domain domain;
     Utils utils;
     QSqlRelationalTableModel* personModel;
+    QSqlRelationalTableModel* computerModel;
 
     int lastSelectedRow = utils.dummyNull;
 
     void loadTopTable(QSqlRelationalTableModel * model);
+    void loadBottomTable(QSqlRelationalTableModel * model);
     SearchPersonDialog *searchPersonDialogWindow;
 };
 

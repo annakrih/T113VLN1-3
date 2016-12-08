@@ -28,6 +28,14 @@ void Gui::loadTopTable(QSqlRelationalTableModel * model){
     ui->tableView->setColumnHidden(0,true);
 }
 
+void Gui::loadBottomTable(QSqlRelationalTableModel * model){
+    computerModel = model;
+    ui->tableView_2-> setModel(computerModel);
+    ui->tableView_2->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
+    ui->tableView_2->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
+    ui->tableView_2->setColumnHidden(0,true);
+}
+
 
 void Gui::on_personAddEdit_clicked()
 {
@@ -99,6 +107,13 @@ void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, co
 
 void Gui::on_tableView_clicked(const QModelIndex &index)
 {
+    /* //todo multi select
+    QModelIndexList iList = ui->tableView->selectionModel()->selectedRows();
+
+    for(int i = 0; i< iList.size(); i++){
+        std::cout << iList[i].data().toInt();
+    }*/
+
     int row = ui->tableView->selectionModel()->currentIndex().row();
     if(lastSelectedRow == row){
         ui->tableView->selectionModel()->clearSelection();
@@ -107,6 +122,10 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
     }else{
         lastSelectedRow = row;
         ui->personAddEdit->setText("Edit");
+
+        int id = ui->tableView->model()->index(lastSelectedRow,0).data().toInt();
+
+        loadBottomTable(domain.getComputerModel());
     }
     //int id = ui->tableWidget->item(row,0)->text().toInt();
 }

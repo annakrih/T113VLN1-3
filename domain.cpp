@@ -12,12 +12,12 @@ QSqlRelationalTableModel* Domain::submitDatabaseChanges(QSqlRelationalTableModel
 };
 
 
-QSqlRelationalTableModel * Domain::getPersonModel(){
-    return data.readPeopleFromDatabase();
+QSqlRelationalTableModel * Domain::getPersonModel(QString filter){
+    return data.readPeopleFromDatabase(filter);
 }
 
-QSqlRelationalTableModel * Domain::getComputerModel(){
-    return data.readComputerFromDatabase();
+QSqlRelationalTableModel * Domain::getComputerModel(QString filter){
+    return data.readComputerFromDatabase(filter);
 }
 
 QMap<QString,int> Domain::getAcceptedGenderName(){

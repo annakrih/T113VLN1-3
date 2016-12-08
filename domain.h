@@ -75,19 +75,13 @@ public:
     //passes on a Confic object to overrwrite the current config
     void setConfig(Config c);
 
-    //Function used for adding a person to the list vector
-    void addPerson(Person p);
-
-    //Function used for adding computer to the database
-    void addComputer(Computer c);
-
     QMap<QString, int> getAcceptedGenderName();
     QMap<QString, int> getAcceptedGenderChar();
     QMap<int, QString> getAcceptedTypeStrings();
 
-    QSqlRelationalTableModel * getPersonModel();
+    QSqlRelationalTableModel * getPersonModel(QString filter = "");
 
-    QSqlRelationalTableModel * getComputerModel();
+    QSqlRelationalTableModel * getComputerModel(QString filter = "");
 
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 
