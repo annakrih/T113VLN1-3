@@ -20,9 +20,12 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QString n, Q
     ui->personGender->setCurrentText(g);
     ui->personNat->setText(nat);
     ui->personBY->setValue(b);
-    if(!d){
+    if(!d)
+    {
         ui->personCheckDY->setChecked(false);
-    }else{
+    }
+    else
+    {
         ui->personDY->setValue(d);
     }
 
@@ -41,16 +44,22 @@ void PersonDialog::on_buttonBox_accepted()
     QString nationality = ui->personNat->text().trimmed();
     int bY = ui->personBY->value();
     int dY;
-    if(ui->personCheckDY->checkState() && ui->personBY->value() != 0){
+    if(ui->personCheckDY->checkState() && ui->personBY->value() != 0)
+    {
         dY = ui->personDY->value();
-    }else if(!ui->personCheckDY->checkState()){
+    }
+    else if(!ui->personCheckDY->checkState())
+    {
         dY = 0;
     }
     int id = ui->hiddenId->value();
 
-    if(id == 0){//add
+    if(id == 0)//add
+    {
         emit this->newPersonAccepted(name,gender,nationality,bY,dY);
-    }else{//edit
+    }
+    else//edit
+    {
         emit this->editPersonAccepted(id,name,gender,nationality,bY,dY);
     }
 }
