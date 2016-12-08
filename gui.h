@@ -36,6 +36,8 @@ private slots:
 
     void on_peopleRevert_released();
 
+    void on_comboBox_currentIndexChanged(int index);
+
 private:
     Ui::Gui *ui;
     PersonDialog *personDialogWindow;

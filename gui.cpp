@@ -3,6 +3,7 @@
 #include "person.h"
 #include <string>
 #include <iostream>
+#include <QMessageBox>
 
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
@@ -171,4 +172,27 @@ void Gui::on_peopleRevert_released()
     }
 
     ui->tableView->setModel(personModel);
+}
+
+void Gui::on_comboBox_currentIndexChanged(int index)
+{
+    if(index == 0){
+        std::cout << "1";
+
+        QMessageBox mb("Save?","Would you like to save before changing?",
+                               QMessageBox::Question,
+                               QMessageBox::Yes | QMessageBox::Default,
+                               QMessageBox::No  | QMessageBox::Escape,
+                               QMessageBox::NoButton);
+        if (mb.exec() == QMessageBox::Yes){
+            //leaving computer table, save changes
+            //domain.submitDatabaseChanges(computerModel);
+        }
+
+        loadTopTable(domain.getPersonModel());
+    }else if(index == 1){
+        std::cout << "2";
+
+        //todo load computermodel
+    }
 }

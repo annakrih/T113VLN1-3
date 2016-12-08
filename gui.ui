@@ -17,8 +17,8 @@
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>30</y>
+      <x>30</x>
+      <y>50</y>
       <width>751</width>
       <height>141</height>
      </rect>
@@ -87,6 +87,26 @@
     <property name="text">
      <string>Cancel</string>
     </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Person</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Computer</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
