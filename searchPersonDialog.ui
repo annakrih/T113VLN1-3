@@ -12,7 +12,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>442</width>
+    <width>434</width>
     <height>334</height>
    </size>
   </property>
@@ -45,7 +45,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>30</y>
+     <y>40</y>
      <width>61</width>
      <height>16</height>
     </rect>
@@ -58,7 +58,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>30</y>
+     <y>40</y>
      <width>113</width>
      <height>21</height>
     </rect>
@@ -78,20 +78,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>140</y>
-     <width>48</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="buttonSymbols">
-    <enum>QAbstractSpinBox::NoButtons</enum>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_4">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>100</y>
+     <y>180</y>
      <width>48</width>
      <height>24</height>
     </rect>
@@ -103,8 +90,8 @@
   <widget class="QCheckBox" name="entryCheckDY">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>140</y>
+     <x>320</x>
+     <y>180</y>
      <width>121</width>
      <height>17</height>
     </rect>
@@ -116,31 +103,31 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_7">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>220</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QComboBox" name="entryGender">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>60</y>
+     <y>80</y>
      <width>69</width>
      <height>22</height>
     </rect>
    </property>
+   <item>
+    <property name="text">
+     <string>Male</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Female</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLabel" name="Name_2">
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>60</y>
+     <y>80</y>
      <width>61</width>
      <height>16</height>
     </rect>
@@ -149,24 +136,11 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Gender&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Name_3">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>100</y>
-     <width>91</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Birth year&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="Name_4">
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>140</y>
+     <y>180</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -205,20 +179,20 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>180</y>
-     <width>161</width>
+     <y>130</y>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Search between years&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Birth year&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_5">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>180</y>
+     <x>150</x>
+     <y>130</y>
      <width>48</width>
      <height>24</height>
     </rect>
@@ -230,8 +204,8 @@
   <widget class="QSpinBox" name="spinBox_6">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>180</y>
+     <x>260</x>
+     <y>130</y>
      <width>48</width>
      <height>24</height>
     </rect>
@@ -243,7 +217,46 @@
   <widget class="QLabel" name="Name_8">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>220</x>
+     <y>130</y>
+     <width>21</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;to&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBox_7">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>220</y>
+     <width>48</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="buttonSymbols">
+    <enum>QAbstractSpinBox::NoButtons</enum>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBox_8">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>180</y>
+     <width>48</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="buttonSymbols">
+    <enum>QAbstractSpinBox::NoButtons</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Name_9">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
      <y>180</y>
      <width>21</width>
      <height>20</height>

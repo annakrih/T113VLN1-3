@@ -31,6 +31,7 @@ void SearchPersonDialog::on_lineEdit_6_textChanged(const QString &arg1)
     }
 }
 
+//birth year search from
 void SearchPersonDialog::on_spinBox_5_editingFinished()
 {
     int fromVal = ui->spinBox_5->value();
@@ -42,6 +43,7 @@ void SearchPersonDialog::on_spinBox_5_editingFinished()
     }
 }
 
+//birth year search to
 void SearchPersonDialog::on_spinBox_6_editingFinished()
 {
 
@@ -51,5 +53,27 @@ void SearchPersonDialog::on_spinBox_6_editingFinished()
     if(fromVal<=toVal)
     {
        // ui->spinBox_6->value(fromVal);
+    }
+}
+
+//death year search from
+void SearchPersonDialog::on_spinBox_2_editingFinished()
+{
+    int fromVal = ui->spinBox_2->value();
+    int toVal =  ui->spinBox_2->value();
+    if(fromVal<=toVal)
+    {
+       // ui->spinBox_2->value(fromVal);
+    }
+}
+
+//death year search to
+void SearchPersonDialog::on_spinBox_8_editingFinished()
+{
+    int fromVal = ui->spinBox_8->value();
+    int toVal =  ui->spinBox_8->value();
+    if(fromVal<=toVal)
+    {
+       // ui->spinBox_8->value(fromVal);
     }
 }
