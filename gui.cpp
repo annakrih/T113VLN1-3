@@ -181,3 +181,36 @@ void Gui::on_comboBox_currentIndexChanged(int index)
         //todo load computermodel
     }
 }
+
+/*void Gui::on_addCButton_released()
+{
+    QMap<QString, int> tList = domain.getAcceptedGenderName();
+
+    if(lastSelectedRow == utils.dummyNull)
+    {
+        computerDialogWindow = new ComputerDialog(this,tList);
+    //kominn hingað
+        QObject::connect(computerDialogWindow, SIGNAL(newComputerAccepted(const QString &, const int &, const QString &, const int &, const int &)), this,
+                         SLOT(onNewPersonAccepted(const QString &, const int &, const QString &, const int &, const int &)));
+
+    }
+    else
+    {
+        personDialogWindow = new PersonDialog(this,gList
+                              ,ui->tableView->model()->index(lastSelectedRow,1).data().toString()
+                              ,ui->tableView->model()->index(lastSelectedRow,2).data().toString()
+                              ,ui->tableView->model()->index(lastSelectedRow,3).data().toString()
+                              ,ui->tableView->model()->index(lastSelectedRow,4).data().toInt()
+                              ,ui->tableView->model()->index(lastSelectedRow,5).data().toInt()
+                              ,ui->tableView->model()->index(lastSelectedRow,0).data().toInt());
+
+        QObject::connect(personDialogWindow, SIGNAL(editPersonAccepted(const int &,const QString &, const int &, const QString &, const int &, const int &)), this,
+                         SLOT(onEditPersonAccepted(const int &,const QString &, const int &, const QString &, const int &, const int &)));
+    }
+
+    this->setEnabled(false);
+    personDialogWindow->setEnabled(true);
+    personDialogWindow->show();
+
+    QObject::connect(personDialogWindow, SIGNAL(personEntryRejected()), this, SLOT(onPersonEntryRejected()));
+}*/

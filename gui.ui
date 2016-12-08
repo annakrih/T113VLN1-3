@@ -153,10 +153,19 @@
     <property name="title">
      <string/>
     </property>
-    <zorder>personAddEdit</zorder>
-    <zorder>savePerson</zorder>
-    <zorder>deletePerson</zorder>
-    <zorder>peopleRevert</zorder>
+   </widget>
+   <widget class="QPushButton" name="addCButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>440</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add C</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
