@@ -26,7 +26,6 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/domain.cpp \
     $$PWD/data.cpp \
     $$PWD/config.cpp \
-    $$PWD/computer.cpp \
     $$PWD/utils.cpp \
     $$PWD/personDialog.cpp \
     $$PWD/gui.cpp \
@@ -40,7 +39,6 @@ HEADERS += \
     $$PWD/domain.h \
     $$PWD/data.h \
     $$PWD/config.h \
-    $$PWD/computer.h \
     $$PWD/utils.h \
     $$PWD/personDialog.h \
     $$PWD/gui.h \
