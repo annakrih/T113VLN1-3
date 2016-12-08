@@ -22,48 +22,10 @@ Gui::~Gui()
 
 void Gui::loadTopTable(QSqlRelationalTableModel * model){
     personModel = model;
-    //QMap<int,QMap<QString,QString>> genderList = domain.getAcceptedGender();
     ui->tableView-> setModel(personModel);
     ui->tableView->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->tableView->setColumnHidden(0,true);
-    /*
-    for(size_t i = 0; i < pList.size();i++){
-        QTableWidgetItem *name = new QTableWidgetItem;
-        name->setText(pList[i].getName());
-
-        int gId = pList[i].getGender();
-        QMap<QString,QString> g = genderList.value(gId);
-
-        QTableWidgetItem *gender = new QTableWidgetItem;
-        gender->setText(g.keys().at(0));
-        gender->setData(Qt::DisplayRole, gId);
-
-        QTableWidgetItem *nationality = new QTableWidgetItem;
-        nationality->setText(pList[i].getNationality());
-
-        QTableWidgetItem *age = new QTableWidgetItem;
-        age->setData(Qt::DisplayRole, pList[i].getAge() );
-
-        QTableWidgetItem *bYear = new QTableWidgetItem;
-        bYear->setData(Qt::DisplayRole, pList[i].getBirthYear());
-
-        QTableWidgetItem *dYear = new QTableWidgetItem;
-        dYear->setData(Qt::DisplayRole, pList[i].getDeathYear());
-
-        QTableWidgetItem *id = new QTableWidgetItem;
-        id->setData(Qt::DisplayRole, pList[i].getPersonId());
-
-        ui->tableWidget->setItem(i,0,id);
-        ui->tableWidget->setItem(i,1,name);
-        ui->tableWidget->setItem(i,2,gender);
-        ui->tableWidget->setItem(i,3,nationality);
-        ui->tableWidget->setItem(i,4,age);
-        ui->tableWidget->setItem(i,5,bYear);
-        ui->tableWidget->setItem(i,6,dYear);
-    }
-
-    */
 }
 
 
@@ -193,6 +155,7 @@ void Gui::on_comboBox_currentIndexChanged(int index)
         */
 
         loadTopTable(domain.getPersonModel());
+
     }else if(index == 1){
         std::cout << "2";
         loadTopTable(domain.getComputerModel());
@@ -204,7 +167,7 @@ void Gui::on_comboBox_currentIndexChanged(int index)
 void Gui::on_pushButton_released()
 {
     QMap<int, QString> tList = domain.getAcceptedTypeStrings();
-    computerDialogWindow = new computerDialog(this, tList);
+    computerDialogWindow = new ComputerDialog(this, tList);
     computerDialogWindow->show();   
 }
 

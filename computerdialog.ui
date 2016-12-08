@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>computerDialog</class>
+ <class>ComputerDialog</class>
  <widget class="QDialog" name="computerDialog">
   <property name="geometry">
    <rect>
@@ -187,7 +187,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>computerDialog</receiver>
+   <receiver>ComputerDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -203,7 +203,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>computerDialog</receiver>
+   <receiver>ComputerDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
