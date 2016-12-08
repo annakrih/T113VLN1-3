@@ -182,11 +182,12 @@ void Data::writeConfigToFile(Config c)
     ofstream file;
     file.open(configFile);
 
-    file << "\n" << c.sortColumn << " " << c.SortOrder;
+    file << "\n" << c.sortColumn << " " << c.SortOrder << " " << c.sortComputerColumn;
 
     //overwrites config object with new settings.
     config.sortColumn = c.sortColumn;
     config.SortOrder = c.SortOrder;
+    config.sortComputerColumn = c.sortComputerColumn;
 
     file.close();
 }
@@ -202,14 +203,16 @@ void Data::readConfigFromFile()
 
     string sortOrder = "";
     int sortColumn = 0;
+    int sortComputerColumn = 0;
 
     if(!file.eof() && file.is_open() && !file.fail() && !fileIsEmpty ) //check if file, exists, is open and is generally usable
     {
-        file >> sortColumn >> sortOrder;
+        file >> sortColumn >> sortOrder >> sortComputerColumn;
 
         //overrwite main config object.
         config.sortColumn = sortColumn;
         config.SortOrder = sortOrder;
+        config.sortComputerColumn = sortComputerColumn;
 
     }
 

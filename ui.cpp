@@ -1178,6 +1178,7 @@ void UI::configPerson()
     bool valid = 1;
     int changeSettings = 0;
     int setting = 0;
+    int computerSettings = 0;
     string sortOrder;
     Config newConfig = domain.getConfig();
     const int ascending = 1;
@@ -1261,27 +1262,30 @@ void UI::configPerson()
                                 cout << invalid << endl <<endl;
                                 sortCheck = 0;
                             }
+                            newConfig.sortColumn = setting;
                         }
                         else if(chooseTable == 2)
                         {
+                            //TODO:
                             sortCheck = 1;
                             numberedComputerOptions();
-                            setting = validateInt("Choose a number between 0-5 to change default sort column: ");
+                            computerSettings = validateInt("Choose a number between 0-5 to change default sort column: ");
                             cout << endl;
-                            if(setting == cancel)
+                            if(computerSettings == cancel)
                             {
-                                setting = newConfig.sortColumn;
+                                computerSettings = newConfig.sortComputerColumn;
                                 break;
                             }
-                            else if(!(setting > cancel && setting <= ageColumn))
+                            else if(!(computerSettings > cancel && computerSettings <= ageColumn))
                             {
                                 cout << invalid << endl <<endl;
                                 sortCheck = 0;
                             }
+                            newConfig.sortComputerColumn = computerSettings;
                         }
                     }while(!sortCheck);
                     //override old config
-                    newConfig.sortColumn = setting;
+                    //moved into else if statement : newConfig.sortColumn = setting;
                     domain.setConfig(newConfig);
                     break;
                 }

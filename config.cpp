@@ -7,12 +7,14 @@ Config::Config()
 {
     SortOrder = "asc";
     sortColumn = 1;
+    sortComputerColumn = 1;
 }
 
 
 //constructor that takes 2 parameters example ("asc",1);
-Config::Config(string sO, int sC)
+Config::Config(string sO, int sC, int sCC)
 {
     SortOrder = sO;
     sortColumn = sC;
+    sortComputerColumn = sCC;
 }

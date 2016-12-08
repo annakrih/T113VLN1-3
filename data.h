@@ -26,7 +26,7 @@ private:
     vector<Person> personList;
     vector<Computer> compList;
 
-    const string directoryPath = "../T113VLN1/database/";
+    const string directoryPath = "../T113VLN1-2/database/";
 
     //people file path
     const string peopleFile = directoryPath+"people.txt";
