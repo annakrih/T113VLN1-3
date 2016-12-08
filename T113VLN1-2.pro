@@ -21,7 +21,6 @@ debug:UI_DIR = $${PWD}/debug/.ui
 TEMPLATE = app
 
 SOURCES += $$PWD/main.cpp \
-    $$PWD/person.cpp \
     $$PWD/ui.cpp \
     $$PWD/domain.cpp \
     $$PWD/data.cpp \
@@ -34,7 +33,6 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/computerDialog.cpp
 
 HEADERS += \
-    $$PWD/person.h \
     $$PWD/ui.h \
     $$PWD/domain.h \
     $$PWD/data.h \
