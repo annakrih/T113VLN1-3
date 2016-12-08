@@ -21,6 +21,10 @@ private slots:
 
     void on_lineEdit_6_textChanged(const QString &arg1);
 
+    void on_spinBox_5_editingFinished();
+
+    void on_spinBox_6_editingFinished();
+
 private:
     Ui::SearchPersonDialog *ui;
     Utils utils;

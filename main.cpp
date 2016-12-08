@@ -1,5 +1,4 @@
 #include <QApplication>
-#include "ui.h"
 #include "gui.h"
 
 

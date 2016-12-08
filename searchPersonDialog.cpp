@@ -30,3 +30,25 @@ void SearchPersonDialog::on_lineEdit_6_textChanged(const QString &arg1)
         ui->lineEdit_6->setText(text);
     }
 }
+
+void SearchPersonDialog::on_spinBox_5_editingFinished()
+{
+    int fromVal = ui->spinBox_5->value();
+    int toVal =  ui->spinBox_5->value();
+
+    if(fromVal>toval)
+    {
+        ui->spinBox_6->value(fromVal);
+    }
+}
+
+void SearchPersonDialog::on_spinBox_6_editingFinished()
+{
+
+   int val = ui->spinBox_6->value();
+
+   if(fromVal<toval)
+   {
+       ui->spinBox_6->value(fromVal);
+   }
+}
