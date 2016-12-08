@@ -1,4 +1,4 @@
-#include "searchDomputerDialog.h"
+#include "searchComputerDialog.h"
 #include "ui_searchComputerDialog.h"
 
 SearchComputerDialog::SearchComputerDialog(QWidget *parent) :
