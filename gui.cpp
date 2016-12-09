@@ -35,11 +35,14 @@ void Gui::checkStatus(){
     int selected = ui->tableView->selectionModel()->selectedRows().size();
 
     if(selected){
-        ui->deleteButton->setEnabled(false);
+        ui->deleteButton->setEnabled(true);
         ui->addEditButton->setText("Edit");
-        selected > 1 ? ui->deleteButton->setEnabled(false) : ui->deleteButton->setEnabled(true);
+        selected > 1 ? ui->addEditButton->setEnabled(false) : ui->addEditButton->setEnabled(true);
     }else{
+        ui->deleteButton->setEnabled(false);
         ui->addEditButton->setText("Add");
+
+        //todo display relation
     }
 
     bool hasChanged = 0;
@@ -425,4 +428,19 @@ void Gui::switchToComputer(){ //happens on switch to computer
      loadTopTable(domain.getComputerModel());
      //todo load bottom
 
+}
+
+void Gui::on_searchButton_released()
+{
+    QString search = ui->quickSearchInput->text();
+    std::cout << search.toStdString();
+
+    if(currentMode == Person)
+    {
+        loadTopTable(domain.getPersonModel("person.name like '%a%'"));
+    }
+    else if(currentMode == Computer)
+    {
+        loadTopTable(domain.getComputerModel());
+    }
 }

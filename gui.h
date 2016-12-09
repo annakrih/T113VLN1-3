@@ -46,6 +46,8 @@ private slots:
 
     void on_tableView_clicked(const QModelIndex &index);
 
+    void on_searchButton_released();
+
 private:
     Ui::Gui *ui;
     PersonDialog *personDialogWindow;

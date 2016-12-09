@@ -130,7 +130,7 @@
      <string>Search</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="searchInput">
+   <widget class="QLineEdit" name="quickSearchInput">
     <property name="geometry">
      <rect>
       <x>525</x>
