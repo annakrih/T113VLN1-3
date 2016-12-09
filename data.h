@@ -64,6 +64,9 @@ public:
     QMap<int,QMap<QString,QString>> getAcceptedGender();
 
     QMap<int, QString> getAcceptedComputerTypes();
+
+    //functiion if file is empty
+    void initializeData();
 };
 
 #endif // DATA_H

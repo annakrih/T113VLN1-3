@@ -123,7 +123,6 @@ QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
        return model;
 }
 
-
 //getConfig returns a copy of the config object
 Config Data::getConfig()
 {
@@ -183,8 +182,40 @@ void Data::readConfigFromFile()
     */
 }
 
-
 void Data::clearDatabase()
 {
     QSqlQuery query("delete from person");
+}
+
+//Read from file with computers and persons
+void Data::initializeData
+{
+    // QStream B QStringlist
+    // QStringlist.B.readAlc().split(",");
+
+    /*QSqlQuery query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
+    query.next();
+    int tables = query.value(0).toInt();
+
+    if(!tables)
+    {
+        QFile schema(schemaFile);
+        if (schema.open(QIODevice::ReadOnly))
+        {
+            QStringList schemaCommands = QTextStream(&schema).readAll().split(';');
+
+            foreach (QString command, schemaCommands)
+            {
+                if (command.trimmed().isEmpty())
+                {
+                    continue;
+                }
+                if (!query.exec(command))
+                {
+                    qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
+                }
+            }
+            query.finish();
+        }
+    }*/
 }
