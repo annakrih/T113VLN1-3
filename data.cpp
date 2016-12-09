@@ -188,7 +188,7 @@ void Data::clearDatabase()
 }
 
 //Read from file with computers and persons
-void Data::initializeData
+void Data::initializeData()
 {
     // QStream B QStringlist
     // QStringlist.B.readAlc().split(",");
