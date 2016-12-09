@@ -65,19 +65,6 @@ QMap<QString, int> Domain::getAcceptedComputerTypeName()
     return data.getAcceptedComputerTypes();
 }
 
-//Gets the config object that holds the config settings from the data layer
-Config Domain::getConfig()
-{
-    return data.getConfig();
-}
-
-//passes a config object to the data layer for processing
-//overwrite old config
-void Domain::setConfig(Config c)
-{
-    data.writeConfigToFile(c);
-};
-
 QSqlRelationalTableModel * Domain::searchPersonName(QString name)
 {
     QString filter = "person.name like '%"+name+"%'";

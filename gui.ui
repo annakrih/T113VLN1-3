@@ -197,6 +197,12 @@ color: rgb(0, 0, 0);
      <string notr="true">color: rgb(0, 0, 0);
 background-color: qconicalgradient(cx:1, cy:0, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
     </property>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
    </widget>
    <widget class="QComboBox" name="searchComboBox">
     <property name="geometry">
@@ -213,6 +219,23 @@ color: rgb(0, 0, 0);
 </string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="editRelation">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>210</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;
+color:white;</string>
+    </property>
+    <property name="text">
+     <string>Edit Mode</string>
+    </property>
+   </widget>
    <zorder>searchComboBox</zorder>
    <zorder>addEditButton</zorder>
    <zorder>saveButton</zorder>
@@ -223,6 +246,7 @@ color: rgb(0, 0, 0);
    <zorder>quickSearchInput</zorder>
    <zorder>tableView_2</zorder>
    <zorder>tableView</zorder>
+   <zorder>editRelation</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

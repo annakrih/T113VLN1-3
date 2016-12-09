@@ -10,8 +10,6 @@ Data::Data()
     db.open();
 
     importSQL();
-
-    readConfigFromFile();
 }
 
 void Data::importSQL()
@@ -134,65 +132,6 @@ QSqlQueryModel* Data::readPersonRelation(QString filter){
 
     return model;
 };
-
-//getConfig returns a copy of the config object
-Config Data::getConfig()
-{
-    return config;
-}
-
-//writeConfigToFile takes in Config class as parameter, and writes the config settings to the config.txt file
-void Data::writeConfigToFile(Config c)
-{
-    //todo rewrite using database/user
-
-    /*
-
-    //open and write in file
-    ofstream file;
-    file.open(configFile);
-
-    file << "\n" << c.sortColumn << " " << c.SortOrder << " " << c.sortComputerColumn;
-
-    //overwrites config object with new settings.
-    config.sortColumn = c.sortColumn;
-    config.SortOrder = c.SortOrder;
-    config.sortComputerColumn = c.sortComputerColumn;
-
-    file.close();
-    */
-}
-
-//readConfigFromFile reads current config entries into main config object.
-//done at start up
-void Data::readConfigFromFile()
-{
-    //todo rewrite using database/user
-
-    /*
-
-    ifstream file;
-    file.open(configFile);
-    bool fileIsEmpty = file.peek() == ifstream::traits_type::eof(); //checks if file is empty
-
-    string sortOrder = "";
-    int sortColumn = 0;
-    int sortComputerColumn = 0;
-
-    if(!file.eof() && file.is_open() && !file.fail() && !fileIsEmpty ) //check if file, exists, is open and is generally usable
-    {
-        file >> sortColumn >> sortOrder >> sortComputerColumn;
-
-        //overrwite main config object.
-        config.sortColumn = sortColumn;
-        config.SortOrder = sortOrder;
-        config.sortComputerColumn = sortComputerColumn;
-
-    }
-
-    file.close();
-    */
-}
 
 
 void Data::clearDatabase()

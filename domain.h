@@ -22,15 +22,6 @@ private:
 public:
     Domain();
 
-    //Function that uses data.clearPersonInDatabase to clear everything in the list.
-    void clearPerson();
-
-    //gets config from data layer
-    Config getConfig();
-
-    //passes on a Confic object to overrwrite the current config
-    void setConfig(Config c);
-
     QMap<QString, int> getAcceptedGenderName();
     QMap<QString, int> getAcceptedGenderChar();
     QMap<QString, int> getAcceptedComputerTypeName();

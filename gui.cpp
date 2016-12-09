@@ -12,6 +12,7 @@ Gui::Gui(QWidget *parent) :
     ui->setupUi(this);
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView_2->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
@@ -49,7 +50,6 @@ void Gui::checkStatus()
         ui->deleteButton->setEnabled(false);
         ui->addEditButton->setText("Add");
 
-        //todo display relation
     }
 
     bool hasChanged = 0;
@@ -90,6 +90,15 @@ void Gui::loadBottomTable(QSqlQueryModel * model){
     ui->tableView_2->verticalHeader()->hide();
     ui->tableView_2->setColumnHidden(0,true);
 }
+
+void Gui::loadBottomTableEditMode(QSqlRelationalTableModel * model){
+    ui->tableView_2-> setModel(model);
+    ui->tableView_2->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
+    ui->tableView_2->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
+    ui->tableView_2->verticalHeader()->hide();
+    ui->tableView_2->setColumnHidden(0,true);
+}
+
 
 
 void Gui::on_addEditButton_clicked()
@@ -303,24 +312,32 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
     {
         lastSelection = index.row();
 
-        if(currentMode == Person)
-        {
-            QString id = ui->tableView->model()->index(lastSelection,0).data().toString();
-            std::cout << id.toStdString() << "\n";
-            loadBottomTable(domain.getPersonRelationModel(id));
-        }
-        else if(currentMode == Computer)
-        {
-            QString id = ui->tableView->model()->index(lastSelection,0).data().toString();
-            std::cout << id.toStdString() << "\n";
-            loadBottomTable(domain.getComputerRelationModel(id));
-        }
+        loadRelation();
 
     }
 
     checkStatus();
 
 }
+
+void Gui::loadRelation(){
+
+    if(!editMode){
+        QString id = ui->tableView->model()->index(lastSelection,0).data().toString();
+
+        if(currentMode == Person)
+        {
+            std::cout << id.toStdString() << "\n";
+            loadBottomTable(domain.getPersonRelationModel(id));
+        }
+        else if(currentMode == Computer)
+        {
+            QString id = ui->tableView->model()->index(lastSelection,0).data().toString();
+            loadBottomTable(domain.getComputerRelationModel(id));
+        }
+    }
+}
+
 
 
 void Gui::onSelectionChange(const QItemSelection &a, const QItemSelection &b)
@@ -558,4 +575,19 @@ void Gui::fillSearchComboBoxC()
 void Gui::on_searchComboBox_currentIndexChanged(int index)
 {
     currentSearchIndex = index;
+}
+
+void Gui::on_editRelation_toggled(bool checked)
+{
+    editMode = checked;
+    if(editMode){
+
+        if(currentMode == Computer){
+            loadBottomTableEditMode(personModel);
+        }else if(currentMode == Person){
+            loadBottomTableEditMode(computerModel);
+        }
+    }else{
+        loadRelation();
+    }
 }

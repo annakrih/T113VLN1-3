@@ -35,6 +35,8 @@ private slots:
 
     void onSelectionChange(const QItemSelection &a, const QItemSelection &b);
 
+    void loadRelation();
+
     void on_saveButton_released();
 
     void on_deleteButton_released();
@@ -50,6 +52,8 @@ private slots:
 
 
     void on_searchComboBox_currentIndexChanged(int index);
+
+    void on_editRelation_toggled(bool checked);
 
 private:
     Ui::Gui *ui;
@@ -67,10 +71,13 @@ private:
     enum Mode {Person, Computer};
     Mode currentMode = Person;
 
+    bool editMode = 0;
+
     void checkStatus();
 
     void loadTopTable(QSqlRelationalTableModel * model);
     void loadBottomTable(QSqlQueryModel * model);
+    void loadBottomTableEditMode(QSqlRelationalTableModel * model);
     SearchPersonDialog *searchPersonDialogWindow;
 
     void switchToPerson();

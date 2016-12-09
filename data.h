@@ -56,15 +56,6 @@ public:
 
     void clearDatabase();
 
-    //readConfigFromFile reads saved settings from config.txt, and puts them in Data.config for easy access
-    void readConfigFromFile();
-
-    //writeConfigToFile overwrites config.txt with new settings.
-    void writeConfigToFile(Config c);
-
-    //getConfig makes config settings accessable in other layers, returns copy of config.
-    Config getConfig();
-
     QMap<int,QMap<QString,QString>> getAcceptedGender();
 
     QMap<QString, int> getAcceptedComputerTypes();
