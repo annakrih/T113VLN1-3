@@ -138,6 +138,25 @@ void Data::initializeData()
     initializeRelations();
 }
 
+void Data::createPCRelation(int p, int c){
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO Person_Computer (personId, computerId)"
+                      "VALUES (:personId, :computerId)");
+
+    query.bindValue(":personId", p);
+    query.bindValue(":computerId", c);
+
+
+    if (!query.exec())
+    {
+        qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
+    }
+
+    query.finish();
+
+}
+
 void Data::initializePersons()
 {
     QSqlQuery query;

@@ -176,3 +176,7 @@ QSqlRelationalTableModel * Domain::searchComputerBY(QString search)
     return data.readComputerFromDatabase(filter);
 }
 
+void Domain::createPCRelation(int p, int c){
+    data.createPCRelation(p,c);
+}
+

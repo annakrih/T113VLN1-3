@@ -57,6 +57,8 @@ public:
     QSqlRelationalTableModel * searchComputerDY(QString search);
 
     QSqlRelationalTableModel * searchComputerBY(QString search);
+
+    void createPCRelation(int p, int c);
 };
 
 #endif // Domain_H

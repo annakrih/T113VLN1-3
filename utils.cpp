@@ -18,5 +18,6 @@ QString Utils::capitalizeString(QString string)
         textPiece[0] = textPiece[0].toUpper();
         capitalizedText.append(textPiece + " ");
     }
+
     return capitalizedText.trimmed();
 }

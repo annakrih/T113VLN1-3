@@ -63,6 +63,8 @@ public:
 
     QMap<QString, int> getAcceptedComputerTypes();
 
+    void createPCRelation(int p, int c);
+
     //functiion if file is empty
     void initializeData();
     void initializePersons();
