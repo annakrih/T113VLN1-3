@@ -11,7 +11,6 @@ QSqlRelationalTableModel* Domain::submitDatabaseChanges(QSqlRelationalTableModel
     return data.submitDatabaseChanges(model);
 };
 
-
 QSqlRelationalTableModel * Domain::getPersonModel(QString filter){
     return data.readPeopleFromDatabase(filter);
 }
@@ -49,7 +48,6 @@ QMap<int, QString> Domain::getAcceptedComputerTypeName()
     return data.getAcceptedComputerTypes();
 }
 
-
 //Gets the config object that holds the config settings from the data layer
 Config Domain::getConfig()
 {
@@ -62,5 +60,16 @@ void Domain::setConfig(Config c)
 {
     data.writeConfigToFile(c);
 };
+
+QSqlRelationalTableModel * Domain::searchPersonName(QString name){
+    QString filter = "person.name like '%"+name+"%'";
+    return data.readPeopleFromDatabase(filter);
+}
+
+QSqlRelationalTableModel * Domain::searchComputerName(QString name){
+    QString filter = "computer.name like '%"+name+"%'";
+    return data.readComputerFromDatabase(filter);
+}
+
 
 
