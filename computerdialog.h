@@ -15,7 +15,7 @@ class ComputerDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ComputerDialog(QWidget *parent = 0, QMap<int, QString> tList = QMap<int,QString>{} ,
+    explicit ComputerDialog(QWidget *parent = 0, QMap<QString, int> tList = QMap<QString, int>{} ,
                             QString n = "", QString t = 0, int d = 0, int b = 0, int id = 0);
 
 private slots:
@@ -46,7 +46,7 @@ private:
     Ui::ComputerDialog *ui;
     Utils utils;
     void checkForm();
-    void fillTypeMenu(QMap<int, QString> tList);
+    void fillTypeMenu(QMap<QString, int> tList);
 };
 
 #endif // COMPUTERDIALOG_H

@@ -32,7 +32,7 @@ public:
 
     QMap<QString, int> getAcceptedGenderName();
     QMap<QString, int> getAcceptedGenderChar();
-    QMap<int, QString> getAcceptedComputerTypeName();
+    QMap<QString, int> getAcceptedComputerTypeName();
 
     QSqlRelationalTableModel * getPersonModel(QString filter = "");
 

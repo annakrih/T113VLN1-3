@@ -5,7 +5,7 @@
 #include <QVariant>
 #include <iostream>
 
-ComputerDialog::ComputerDialog(QWidget *parent, QMap<int,QString> tList,
+ComputerDialog::ComputerDialog(QWidget *parent, QMap<QString, int> tList,
                                QString n, QString t, int d, int b, int id) :
     QDialog(parent),
     ui(new Ui::ComputerDialog)
@@ -118,15 +118,15 @@ void ComputerDialog::checkForm()
 
 }
 
-void ComputerDialog::fillTypeMenu(QMap<int, QString> tList)
+void ComputerDialog::fillTypeMenu(QMap<QString, int> tList)
 {
     ui->cType->addItem(0,"");
-    QMapIterator<int, QString> i(tList);
+    QMapIterator<QString, int> i(tList);
     i.toBack();
     while (i.hasPrevious())
     {
         i.previous();
-        ui->cType->addItem(i.value(), i.key());
+        ui->cType->addItem(i.key(), i.value());
     }
 }
 

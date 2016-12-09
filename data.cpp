@@ -59,16 +59,16 @@ QMap<int,QMap<QString,QString>> Data::getAcceptedGender()
     return genders;
 }
 
-QMap<int, QString> Data::getAcceptedComputerTypes()
+QMap<QString, int> Data::getAcceptedComputerTypes()
 {
-    QMap<int, QString> computerTypes;
+    QMap<QString, int> computerTypes;
     QSqlQuery query("SELECT id, typeName FROM Computer_Type");
     while(query.next())
     {
         int id = query.value(0).toInt();
         QString typeName = query.value(1).toString();
 
-        computerTypes.insert(id, typeName);
+        computerTypes.insert(typeName, id);
     }
 
     return computerTypes;

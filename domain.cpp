@@ -60,7 +60,7 @@ QMap<QString, int> Domain::getAcceptedGenderChar()
     return gList;
 }
 
-QMap<int, QString> Domain::getAcceptedComputerTypeName()
+QMap<QString, int> Domain::getAcceptedComputerTypeName()
 {
     return data.getAcceptedComputerTypes();
 }
@@ -148,12 +148,11 @@ QSqlRelationalTableModel * Domain::searchComputerName(QString name)
 
 QSqlRelationalTableModel * Domain::searchComputerType(QString search)
 {
-    QMap<int, QString> types = data.getAcceptedComputerTypes();
+    QMap<QString, int> types = data.getAcceptedComputerTypes();
 
-    QString filter;
+    QVariant typeId = types.value(search);
 
-
-    //QString filter = "computer.typeId like '%"++"%'";
+    QString filter = "computer.typeId = '"+typeId.toString()+"'";
     return data.readComputerFromDatabase(filter);
 }
 

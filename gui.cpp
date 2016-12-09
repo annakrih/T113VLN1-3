@@ -163,7 +163,7 @@ void Gui::onEditPersonButton()
 
 void Gui::onAddComputerButton()
 {
-    QMap<int, QString> tList = domain.getAcceptedComputerTypeName();
+    QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
     computerDialogWindow = new ComputerDialog(this,tList);
 
     QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onComputerRejected()));
@@ -180,7 +180,7 @@ void Gui::onAddComputerButton()
 
 void Gui::onEditComputerButton()
 {
-    QMap<int, QString> tList = domain.getAcceptedComputerTypeName();
+    QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
 
