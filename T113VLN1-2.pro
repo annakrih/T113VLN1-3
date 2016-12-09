@@ -21,7 +21,6 @@ debug:UI_DIR = $${PWD}/debug/.ui
 TEMPLATE = app
 
 SOURCES += $$PWD/main.cpp \
-    $$PWD/ui.cpp \
     $$PWD/domain.cpp \
     $$PWD/data.cpp \
     $$PWD/config.cpp \
@@ -30,12 +29,9 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/gui.cpp \
     $$PWD/searchPersonDialog.cpp \
     $$PWD/searchComputerDialog.cpp \
-    $$PWD/computerDialog.cpp \
-    $$PWD/person.cpp \
-    $$PWD/computer.cpp
+    $$PWD/computerDialog.cpp
 
 HEADERS += \
-    $$PWD/ui.h \
     $$PWD/domain.h \
     $$PWD/data.h \
     $$PWD/config.h \
@@ -44,9 +40,7 @@ HEADERS += \
     $$PWD/gui.h \
     $$PWD/searchComputerDialog.h \
     $$PWD/searchPersonDialog.h \
-    $$PWD/computerDialog.h \
-    $$PWD/person.h \
-    $$PWD/computer.h
+    $$PWD/computerDialog.h
 
 FORMS += \
     $$PWD/personDialog.ui \
