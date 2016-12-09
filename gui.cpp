@@ -499,7 +499,6 @@ void Gui::on_searchButton_released()
     }
     else if(currentMode == Computer)
     {
-<<<<<<< HEAD
         if(currentSearchIndex == 0)
         {
             //loadTopTable(domain.searchComputerName(search));
@@ -516,9 +515,6 @@ void Gui::on_searchButton_released()
         {
             //loadTopTable();
         }
-=======
-        loadTopTable(domain. searchComputerName(search));
->>>>>>> origin/master
     }
 }
 
