@@ -112,7 +112,7 @@ QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
 QSqlQueryModel* Data::readComputerRelation(QString filter){
 
     QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT P.* from Person as P left join person_computer as PC on p.id = PC.personId left join computer as C on PC.computerId = C.id where C.id ="+filter);
+    model->setQuery("SELECT P.* from Person as P INNER JOIN person_computer as PC on p.id = PC.personId INNER JOIN computer as C on PC.computerId = C.id where C.id ="+filter);
 
     return model;
 };
@@ -120,7 +120,7 @@ QSqlQueryModel* Data::readComputerRelation(QString filter){
 QSqlQueryModel* Data::readPersonRelation(QString filter){
 
     QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT C.* from Computer as C left join person_computer as PC on C.id = PC.computerId left join person as p on PC.personId = P.id where P.id = "+filter);
+    model->setQuery("SELECT C.* from Computer as C INNER JOIN person_computer as PC on C.id = PC.computerId INNER JOIN person as p on PC.personId = P.id where P.id = "+filter);
 
     return model;
 };

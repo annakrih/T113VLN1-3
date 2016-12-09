@@ -320,6 +320,16 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
 
 }
 
+void Gui::onSelectionChange(const QItemSelection &a, const QItemSelection &b)
+{
+    if(!overrideOnSelectionChange)
+    {
+        lastSelection = -1;
+    }
+
+    checkStatus();
+}
+
 void Gui::loadRelation(){
 
     if(!editMode){
@@ -336,18 +346,6 @@ void Gui::loadRelation(){
             loadBottomTable(domain.getComputerRelationModel(id));
         }
     }
-}
-
-
-
-void Gui::onSelectionChange(const QItemSelection &a, const QItemSelection &b)
-{
-    if(!overrideOnSelectionChange)
-    {
-        lastSelection = -1;
-    }
-
-    checkStatus();
 }
 
 void Gui::on_saveButton_released()
@@ -582,6 +580,7 @@ void Gui::on_editRelation_toggled(bool checked)
     editMode = checked;
     if(editMode)
     {
+        ui->addRelButton->setEnabled(true);
 
         if(currentMode == Computer){
             loadBottomTableEditMode(personModel);
@@ -590,6 +589,35 @@ void Gui::on_editRelation_toggled(bool checked)
         }
 
     }else{
+        ui->addRelButton->setEnabled(false);
         loadRelation();
     }
 }
+
+void Gui::on_addRelButton_released()
+{
+    //add relation
+
+    int computerId, personId;
+    QString computerName,  personName;
+
+    if(currentMode == Computer){
+        computerId = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data().toInt();
+        personId = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),0).data().toInt();
+        computerName = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data().toString();
+        personName = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),1).data().toString();
+    }else if(currentMode == Person){
+        personId = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data().toInt();
+        computerId = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),0).data().toInt();
+        computerName = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),1).data().toString();
+        personName = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data().toString();
+    }
+
+    QString promptTitle = "Create Relation";
+    QString promptQuestion = "Create a relation between," + personName + " and "+computerName+".";
+    promptQuestion.append("\nThis will save changes, are you sure?");
+    QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
+                                                               QMessageBox::Yes|QMessageBox::No);
+
+}
+

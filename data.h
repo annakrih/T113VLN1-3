@@ -59,7 +59,7 @@ public:
 
     void clearDatabase();
 
-    QMap<int,QMap<QString,QString>> getAcceptedGender();
+    QMap<int,QMap<QString,QString>>getAcceptedGender();
 
     QMap<QString, int> getAcceptedComputerTypes();
 

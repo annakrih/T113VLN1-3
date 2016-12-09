@@ -49,11 +49,11 @@ private slots:
 
     void on_searchButton_released();
 
-
-
     void on_searchComboBox_currentIndexChanged(int index);
 
     void on_editRelation_toggled(bool checked);
+
+    void on_addRelButton_released();
 
 private:
     Ui::Gui *ui;
@@ -64,9 +64,9 @@ private:
     QSqlRelationalTableModel* personModel;
     QSqlRelationalTableModel* computerModel;
 
-    int lastSelection;
-    int currentSearchIndex;
-    bool overrideOnSelectionChange;
+    int lastSelection = 0;
+    int currentSearchIndex = 0;
+    bool overrideOnSelectionChange = 0;
 
     enum Mode {Person, Computer};
     Mode currentMode = Person;
