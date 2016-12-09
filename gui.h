@@ -48,6 +48,10 @@ private slots:
 
     void on_searchButton_released();
 
+
+
+    void on_searchComboBox_currentIndexChanged(int index);
+
 private:
     Ui::Gui *ui;
     PersonDialog *personDialogWindow;
@@ -58,6 +62,7 @@ private:
     QSqlRelationalTableModel* computerModel;
 
     int lastSelection;
+    int currentSearchIndex;
     bool overrideOnSelectionChange;
 
     enum Mode {Person, Computer};
@@ -82,6 +87,10 @@ private:
     void onAddComputerButton();
 
     void onEditComputerButton();
+
+    void fillSearchComboBoxP();
+
+    void fillSearchComboBoxC();
 };
 
 #endif // GUI_H

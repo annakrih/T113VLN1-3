@@ -16,6 +16,8 @@ Gui::Gui(QWidget *parent) :
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
 
+    fillSearchComboBoxP();
+
     loadTopTable(personModel);
 
     connect(
@@ -402,6 +404,8 @@ void Gui::switchToPerson(){ //happens on switch to person
     currentMode = Person;
     ui->tableView->selectionModel()->clearSelection();
     loadTopTable(domain.getPersonModel());
+
+    fillSearchComboBoxP();
     //todo load bottom
 }
 
@@ -426,6 +430,8 @@ void Gui::switchToComputer(){ //happens on switch to computer
      currentMode = Computer;
      ui->tableView->selectionModel()->clearSelection();
      loadTopTable(domain.getComputerModel());
+
+     fillSearchComboBoxC();
      //todo load bottom
 
 }
@@ -437,10 +443,69 @@ void Gui::on_searchButton_released()
 
     if(currentMode == Person)
     {
-        loadTopTable(domain.searchPersonName(search));
+        if(currentSearchIndex == 0)
+        {
+            //loadTopTable(domain.searchPersonName(search));
+        }
+        else if(currentSearchIndex == 1)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 2)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 3)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 4)
+        {
+            //loadTopTable();
+        }
     }
     else if(currentMode == Computer)
     {
-        loadTopTable(domain.searchComputerName(search));
+        if(currentSearchIndex == 0)
+        {
+            //loadTopTable(domain.searchComputerName(search));
+        }
+        else if(currentSearchIndex == 1)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 2)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 3)
+        {
+            //loadTopTable();
+        }
     }
+}
+
+void Gui::fillSearchComboBoxP()
+{
+    ui->searchComboBox->clear();
+    ui->searchComboBox->addItem("Name",0);
+    ui->searchComboBox->addItem("Gender",1);
+    ui->searchComboBox->addItem("Nationality",2);
+    ui->searchComboBox->addItem("Birth year",3);
+    ui->searchComboBox->addItem("Death year",4);
+
+};
+
+void Gui::fillSearchComboBoxC()
+{
+    ui->searchComboBox->clear();
+    ui->searchComboBox->addItem("Name",0);
+    ui->searchComboBox->addItem("Type",1);
+    ui->searchComboBox->addItem("Design year",2);
+    ui->searchComboBox->addItem("Build year",3);
+};
+
+void Gui::on_searchComboBox_currentIndexChanged(int index)
+{
+    currentSearchIndex = index;
 }

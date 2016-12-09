@@ -61,12 +61,14 @@ void Domain::setConfig(Config c)
     data.writeConfigToFile(c);
 };
 
-QSqlRelationalTableModel * Domain::searchPersonName(QString name){
+QSqlRelationalTableModel * Domain::searchPersonName(QString name)
+{
     QString filter = "person.name like '%"+name+"%'";
     return data.readPeopleFromDatabase(filter);
 }
 
-QSqlRelationalTableModel * Domain::searchComputerName(QString name){
+QSqlRelationalTableModel * Domain::searchComputerName(QString name)
+{
     QString filter = "computer.name like '%"+name+"%'";
     return data.readComputerFromDatabase(filter);
 }
