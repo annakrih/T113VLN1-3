@@ -46,6 +46,8 @@ public:
     QSqlRelationalTableModel * searchComputerName(QString search);
 
     QSqlRelationalTableModel * searchComputerDY(QString search);
+
+    QSqlRelationalTableModel * searchComputerBY(QString search);
 };
 
 #endif // Domain_H

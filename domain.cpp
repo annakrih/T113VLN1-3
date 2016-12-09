@@ -97,5 +97,21 @@ QSqlRelationalTableModel * Domain::searchComputerDY(QString search)
 
 }
 
+QSqlRelationalTableModel * Domain::searchComputerBY(QString search) {
+
+    QStringList buildY = search.split(" ");
+
+    QString filter;
+    if(buildY.size() == 2)
+    {
+        filter = "computer.buildYear > "+buildY[0]+ " AND computer.buildYear < "+buildY[1];
+    }
+    else
+    {
+        filter = "computer.buildYear = '"+buildY[0]+"'";
+    }
+    return data.readComputerFromDatabase(filter);
+}
+
 
 

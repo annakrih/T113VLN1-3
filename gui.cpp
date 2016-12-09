@@ -474,6 +474,6 @@ void Gui::on_searchButton_released()
     }
     else if(currentMode == Computer)
     {
-        loadTopTable(domain. searchComputerDY(search));
+        loadTopTable(domain. searchComputerName(search));
     }
 }
