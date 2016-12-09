@@ -24,6 +24,9 @@ private:
     Utils utils;
     const QString databaseDir = utils.workingDir+"database/";
     const QString schemaFile = databaseDir + "schema.sql";
+    const QString initialPersons = databaseDir + "personsInitialData.csv";
+    const QString initialComputers = databaseDir + "computersInitialData.csv";
+    const QString initialRelations = databaseDir + "relationsInitialData.csv";
 
     QSqlDatabase db;
     QString dbName = databaseDir + "team8.db";

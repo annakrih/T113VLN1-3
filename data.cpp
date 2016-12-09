@@ -39,6 +39,8 @@ void Data::importSQL()
             query.finish();
         }
     }
+
+    initializeData();
 }
 
 QMap<int,QMap<QString,QString>> Data::getAcceptedGender()
@@ -142,29 +144,43 @@ void Data::clearDatabase()
 void Data::initializeData()
 {
     QSqlQuery query;
+    query.prepare("INSERT INTO person (name, genderId, nationality, birthYear, deathYear)"
+                      "VALUES (:name, :genderId, :nationality, :birthYear, :deathYear)");
     query.next();
-  //  int tables = query.value(0).toInt();
 
-   // if(!tables)
+    QFile file(initialPersons);
+    if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        QFile file("database/personsInitialData.csv");
-        if (file.open(QIODevice::ReadOnly|QIODevice::Text))
-        {
-            QStringList fileCommands = QTextStream(&file).readAll().split(',');
-
-            foreach (QString command, fileCommands)
-            {
-                //query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
-                if (command.trimmed().isEmpty())
-                {
-                    continue;
-                }
-                if (!query.exec(command))
-                {
-                    qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
-                }
-            }
-            query.finish();
-        }
+        cout << "Could not open personInitialData.csv" << endl;
+        return;
     }
+
+    QStringList fileCommands = QTextStream(&file).readAll().split(',');
+
+    cout << endl << "fileCommands.size():";
+    cout << fileCommands.size() << endl << endl;
+
+    for (int i=0; i < (fileCommands.size() -4); i += 5)
+    {
+        query.bindValue(":name", fileCommands[i]);
+        query.bindValue(":genderId", fileCommands[i+1]);
+        query.bindValue(":nationality", fileCommands[i+2]);
+        query.bindValue(":birthYear", fileCommands[i+3]);
+        query.bindValue(":deathYear", fileCommands[i+4]);
+
+        /*
+        if (command.trimmed().isEmpty())
+        {
+            continue;
+        }
+        if (!query.exec(command))
+        {
+            qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
+        }
+        */
+    }
+
+    query.finish();
 }
+
+
