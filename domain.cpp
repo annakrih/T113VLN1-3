@@ -17,9 +17,19 @@ QSqlRelationalTableModel * Domain::getPersonModel(QString filter)
     return data.readPeopleFromDatabase(filter);
 }
 
+QSqlQueryModel * Domain::getPersonRelationModel(QString filter)
+{
+    return data.readPersonRelation(filter);
+}
+
 QSqlRelationalTableModel * Domain::getComputerModel(QString filter)
 {
     return data.readComputerFromDatabase(filter);
+}
+
+QSqlQueryModel * Domain::getComputerRelationModel(QString filter)
+{
+    return data.readComputerRelation(filter);
 }
 
 QMap<QString,int> Domain::getAcceptedGenderName()
@@ -74,7 +84,7 @@ QSqlRelationalTableModel * Domain::searchPersonName(QString name)
     return data.readPeopleFromDatabase(filter);
 }
 
-QSqlRelationalTableModel * Domain::searchPersonName(QString search)
+QSqlRelationalTableModel * Domain::searchPersonGender(QString search)
 {
     QString intSearch = 0;
     if(search == "Male" || search == "male" || search == "m" || search == "M")
@@ -140,7 +150,7 @@ QSqlRelationalTableModel * Domain::searchComputerType(QString search)
 {
     QMap<int, QString> types = data.getAcceptedComputerTypes();
 
-QString filter;
+    QString filter;
 
 
     //QString filter = "computer.typeId like '%"++"%'";
