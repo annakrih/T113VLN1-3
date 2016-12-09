@@ -48,6 +48,10 @@ public:
 
     QSqlRelationalTableModel* readComputerFromDatabase(QString filter = "");
 
+    QSqlQueryModel* readPersonRelation(QString filter = "");
+
+    QSqlQueryModel* readComputerRelation(QString filter = "");
+
     QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);
 
     void clearDatabase();

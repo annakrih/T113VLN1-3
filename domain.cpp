@@ -17,6 +17,19 @@ QSqlRelationalTableModel * Domain::getPersonModel(QString filter)
     return data.readPeopleFromDatabase(filter);
 }
 
+QSqlQueryModel * Domain::getComputerRelationModel(QString filter)
+{
+    return data.readComputerRelation(filter);
+}
+
+QSqlQueryModel * Domain::getPersonRelationModel(QString filter)
+{
+    return data.readPersonRelation(filter);
+}
+
+
+
+
 QSqlRelationalTableModel * Domain::getComputerModel(QString filter)
 {
     return data.readComputerFromDatabase(filter);

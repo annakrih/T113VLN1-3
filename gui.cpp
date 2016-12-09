@@ -23,6 +23,7 @@ Gui::Gui(QWidget *parent) :
       SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
       SLOT(onSelectionChange(const QItemSelection &, const QItemSelection &))
      );
+
 }
 
 Gui::~Gui()
@@ -72,7 +73,7 @@ void Gui::loadTopTable(QSqlRelationalTableModel * model){
     ui->tableView->setColumnHidden(0,true);
 }
 
-void Gui::loadBottomTable(QSqlRelationalTableModel * model){
+void Gui::loadBottomTable(QSqlQueryModel * model){
     ui->tableView_2-> setModel(model);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
@@ -286,6 +287,20 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
     }else
     {
         lastSelection = index.row();
+
+        if(currentMode == Person)
+        {
+            QString id = ui->tableView->model()->index(lastSelection,0).data().toString();
+            std::cout << id.toStdString() << "\n";
+            loadBottomTable(domain.getPersonRelationModel(id));
+        }
+        else if(currentMode == Computer)
+        {
+            QString id = ui->tableView->model()->index(lastSelection,0).data().toString();
+            std::cout << id.toStdString() << "\n";
+            loadBottomTable(domain.getComputerRelationModel(id));
+        }
+
     }
 
     checkStatus();

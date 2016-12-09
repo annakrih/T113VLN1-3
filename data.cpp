@@ -118,6 +118,25 @@ QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
        return model;
 }
 
+QSqlQueryModel* Data::readComputerRelation(QString filter){
+
+    QSqlQueryModel *model = new QSqlQueryModel;
+    model->setQuery("SELECT P.* from Person as P left join person_computer as PC on p.id = PC.personId left join computer as C on PC.computerId = C.id where C.id ="+filter);
+
+
+
+    return model;
+};
+
+QSqlQueryModel* Data::readPersonRelation(QString filter){
+
+    QSqlQueryModel *model = new QSqlQueryModel;
+    model->setQuery("SELECT C.* from Computer as C left join person_computer as PC on C.id = PC.computerId left join person as p on PC.personId = P.id where P.id = "+filter);
+
+    return model;
+};
+
+
 
 //getConfig returns a copy of the config object
 Config Data::getConfig()

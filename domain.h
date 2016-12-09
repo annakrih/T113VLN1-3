@@ -39,6 +39,10 @@ public:
 
     QSqlRelationalTableModel * getComputerModel(QString filter = "");
 
+    QSqlQueryModel * getPersonRelationModel(QString filter = "");
+
+    QSqlQueryModel * getComputerRelationModel(QString filter = "");
+
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 
     QSqlRelationalTableModel * searchPersonName(QString search);

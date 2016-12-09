@@ -43,7 +43,6 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
 
-
     void on_tableView_clicked(const QModelIndex &index);
 
     void on_searchButton_released();
@@ -66,7 +65,7 @@ private:
     void checkStatus();
 
     void loadTopTable(QSqlRelationalTableModel * model);
-    void loadBottomTable(QSqlRelationalTableModel * model);
+    void loadBottomTable(QSqlQueryModel * model);
     SearchPersonDialog *searchPersonDialogWindow;
 
     void switchToPerson();
