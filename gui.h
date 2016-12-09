@@ -58,8 +58,6 @@ private:
     int lastSelection;
     bool overrideOnSelectionChange;
 
-    int lastSelectedRow = utils.dummyNull;
-
     enum Mode {Person, Computer};
     Mode currentMode = Person;
 
