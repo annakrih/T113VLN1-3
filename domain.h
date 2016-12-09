@@ -8,10 +8,6 @@
 #include <iostream>
 #include "data.h"
 #include "config.h"
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 
 using namespace std;
 
