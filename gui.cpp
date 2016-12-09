@@ -244,6 +244,7 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
     if(lastSelection == index.row() ){
 
         overrideOnSelectionChange = true;
+        std::cout << "0";
 
         ui->tableView->selectionModel()->clearSelection();
         ui->deleteButton->setEnabled(false);
@@ -266,33 +267,15 @@ void Gui::onSelectionChange(const QItemSelection &a, const QItemSelection &b)
     if(!overrideOnSelectionChange)
     {
         lastSelection = -1;
-        ui->addEditButton->setText("Edit");
         ui->deleteButton->setEnabled(true);
-    }
-}
-
-void Gui::tableClick(){
-
-
-    /*
-    if(lastSelectedRow == row){
-        ui->deleteButton->setEnabled(false);
-
-        ui->tableView->selectionModel()->clearSelection();
-        lastSelectedRow = utils.dummyNull;
-        ui->addEditButton->setText("Add");
-    }else{
-        ui->deleteButton->setEnabled(true);
-
-        lastSelectedRow = row;
         ui->addEditButton->setText("Edit");
 
-        int id = ui->tableView->model()->index(lastSelectedRow,0).data().toInt();
-
-        loadBottomTable(domain.getComputerModel());
+        if(ui->tableView->selectionModel()->selectedRows().size() > 1){
+            ui->addEditButton->setEnabled(false);
+        }else{
+            ui->addEditButton->setEnabled(true);
+        }
     }
-    */
-    //int id = ui->tableWidget->item(row,0)->text().toInt();
 }
 
 void Gui::on_saveButton_released()
@@ -305,6 +288,11 @@ void Gui::on_saveButton_released()
     {
         saveModel(computerModel);
     }
+
+    for(int i = 0; i < ui->tableView->model()->rowCount(); i++){
+        ui->tableView->showRow(i);
+    }
+
     checkStatus();
 }
 
@@ -319,20 +307,19 @@ void Gui::on_deleteButton_released()
     if(currentMode == Person)
     {
         for(int i = 0; i < selList.size(); i++){
-            ui->tableView->hideRow(i);
-            personModel->removeRow(i);
+            ui->tableView->hideRow(selList[i].row());
+            personModel->removeRow(selList[i].row());
         }
-        ui->tableView->setModel(personModel);
     }
     else if(currentMode == Computer)
     {
         for(int i = 0; i < selList.size(); i++){
-            ui->tableView->hideRow(i);
-            computerModel->removeRow(i);
+            ui->tableView->hideRow(selList[i].row());
+            computerModel->removeRow(selList[i].row());
         }
-        ui->tableView->setModel(computerModel);
     }
 
+    checkStatus();
 }
 
 void Gui::on_revertButton_released()
@@ -371,6 +358,12 @@ void Gui::on_comboBox_currentIndexChanged(int index)
 
         switchToComputer();
     }
+
+    connect(
+      ui->tableView->selectionModel(),
+      SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+      SLOT(onSelectionChange(const QItemSelection &, const QItemSelection &))
+     );
 }
 
 void Gui::switchToPerson(){ //happens on switch to person

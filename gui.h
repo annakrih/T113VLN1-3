@@ -82,8 +82,6 @@ private:
     void onAddComputerButton();
 
     void onEditComputerButton();
-
-    void tableClick();
 };
 
 #endif // GUI_H
