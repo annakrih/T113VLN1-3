@@ -437,10 +437,10 @@ void Gui::on_searchButton_released()
 
     if(currentMode == Person)
     {
-        loadTopTable(domain.getPersonModel("person.name like '%a%'"));
+        loadTopTable(domain.searchPersonName(search));
     }
     else if(currentMode == Computer)
     {
-        loadTopTable(domain.getComputerModel());
+        loadTopTable(domain.searchComputerName(search));
     }
 }
