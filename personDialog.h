@@ -23,7 +23,7 @@ private slots:
     void on_buttonBox_accepted();
     void on_personName_textChanged(const QString &arg1);
 
-    void on_personNat_textChanged(const QString &arg1);
+    void on_personNat_currentIndexChanged(const int &arg1);
 
     void on_personBY_editingFinished();
 
