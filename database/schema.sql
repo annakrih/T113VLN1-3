@@ -20,26 +20,23 @@ deathYear INTEGER,
 FOREIGN KEY(genderId) REFERENCES Person_Gender(id)
 );
 
-Insert into Person(name,genderId,nationality,birthYear,deathYear)
-Values("TestMan",1,"Testland",100,0);
-
-Insert into Person(name,genderId,nationality,birthYear,deathYear)
-Values("TestWomen",2,"Testland",50,197);
-
-Insert into Person(name,genderId,nationality,birthYear,deathYear)
-Values("Chuck Norris",1,"Texas",1,0);
 
 Create table IF NOT EXISTS Computer_Type(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 typeName TEXT NOT NULL
 );
 
+
 Insert into Computer_Type(typeName)
-Values("Sex Bot");
+Values("Mechanical");                -- Type nr. 1  
 Insert into Computer_Type(typeName)
-Values("Toaster");
+Values("Electronic");                -- Type nr. 2 
 Insert into Computer_Type(typeName)
-Values("Mechanical");
+Values("Transistor");                -- Type nr. 3  
+Insert into Computer_Type(typeName)
+Values("Quantum");                   -- Type nr. 4  
+Insert into Computer_Type(typeName)
+Values("Other");                     -- Type nr. 5  
 
 Create table IF NOT EXISTS Computer(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -49,11 +46,6 @@ designYear INTEGER,
 buildYear INTEGER,
 FOREIGN KEY(typeId) REFERENCES Computer_Type(id)
 );
-
-Insert into Computer(name,typeId,designYear,buildYear)
-Values("TestComp",2,2000,2010);
-Insert into Computer(name,typeId,designYear,buildYear)
-Values("Android",1,2016,2016);
 
 Create table IF NOT EXISTS Person_Computer(
 id INTEGER PRIMARY KEY AUTOINCREMENT,

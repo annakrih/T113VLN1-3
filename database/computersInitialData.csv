@@ -1,17 +1,16 @@
-Analytical Engine ,Mechanical,1834,1940
-Difference Engine,Mechanical,1822,0
-Pascal's calculator,Mechanical,1642,1645
-Arithmometer,Mechanical,1820,1851
-Apple I,Electronic,1976,1977
-mechanical calculator,Mechanical,1623,1623
-Atanasoff–Berry computer (ABC),Electronic,1937,1942
-Apple II,Electronic,,
-Apple Lisa,Electronic,1978,1983
-The Macintosh computer,Electronic,1984,1984
-The NeXT computer,Electronic,1988,1988
-IMac,Electronic,1998,1998
-EDVAC,Electronic,1944,1046
-Automatic Computing Engine (ACE),Electronic,1936,1950
-IBM 608,Transistor computer,1954,1957
-Orion Prototype,Quantum,2007,2007
-D-Wave One,Quantum,2011,2011
+Analytical Engine,1,1834,1940,
+Difference Engine,1,1822,0,
+Pascal's calculator,1,1642,1645,
+Arithmometer,1,1820,1851,
+Apple I,2,1976,1977,
+mechanical calculator,1,1623,1623,
+Atanasoff–Berry computer (ABC),2,1937,1942,
+D-Wave One,4,2011,2011,
+Apple Lisa,2,1978,1983,
+The Macintosh computer,2,1984,1984,
+The NeXT computer,2,1988,1988,
+IMac,2,1998,1998,
+EDVAC,2,1944,1046,
+Automatic Computing Engine (ACE),2,1936,1950,
+IBM 608,3,1954,1957,
+Orion Prototype,4,2007,2007

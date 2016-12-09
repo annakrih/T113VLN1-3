@@ -133,6 +133,13 @@ void Data::clearDatabase()
 
 void Data::initializeData()
 {
+    initializePersons();
+    initializeComputers();
+    initializeRelations();
+}
+
+void Data::initializePersons()
+{
     QSqlQuery query;
     query.prepare("INSERT INTO person (name, genderId, nationality, birthYear, deathYear)"
                       "VALUES (:name, :genderId, :nationality, :birthYear, :deathYear)");
@@ -145,9 +152,6 @@ void Data::initializeData()
     }
 
     QStringList inputList = QTextStream(&file).readAll().split(',');
-
-    cout << endl << "fileCommands.size():";
-    cout << inputList.size() << endl << endl;
 
     for (int i=0; i < inputList.size(); i += 5)
     {
@@ -164,9 +168,72 @@ void Data::initializeData()
             qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
         }
     }
-
     file.close();
     query.finish();
 }
 
+void Data::initializeComputers()
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO computer (name, designYear, buildYear, typeId)"
+                      "VALUES (:name, :designYear, :buildYear, :typeId)");
 
+    QFile file(initialComputers);
+    if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        cout << "Could not open computersInitialData.csv" << endl;
+        return;
+    }
+
+    QStringList inputList = QTextStream(&file).readAll().split(',');
+
+    for (int i=0; i < inputList.size(); i += 4)
+    {
+        QString name = inputList[i];
+        query.bindValue(":name", name.trimmed());
+        query.bindValue(":typeId", inputList[i+1]);
+        query.bindValue(":designYear", inputList[i+2]);
+        query.bindValue(":buildYear", inputList[i+3]);
+
+        if (!query.exec())
+        {
+            qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
+        }
+    }
+    file.close();
+    query.finish();
+}
+
+void Data::initializeRelations()
+{
+  /*  QSqlQuery query;
+    query.prepare("INSERT INTO computer (name, designYear, buildYear, typeId)"
+                      "VALUES (:name, :designYear, :buildYear, :typeId)");
+
+    QFile file(initialComputers);
+    if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        cout << "Could not open computersInitialData.csv" << endl;
+        return;
+    }
+
+    QStringList inputList = QTextStream(&file).readAll().split(',');
+
+    for (int i=0; i < inputList.size(); i += 4)
+    {
+        QString name = inputList[i];
+        query.bindValue(":name", name.trimmed());
+        query.bindValue(":typeId", inputList[i+1]);
+        query.bindValue(":designYear", inputList[i+2]);
+        query.bindValue(":buildYear", inputList[i+3]);
+
+        if (!query.exec())
+        {
+            qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
+        }
+    }
+    file.close();
+    query.finish();
+
+    */
+}
