@@ -1,6 +1,5 @@
 INPUT(
 ./release\.obj\main.o
-./release\.obj\ui.o
 ./release\.obj\domain.o
 ./release\.obj\data.o
 ./release\.obj\config.o
@@ -10,8 +9,6 @@ INPUT(
 ./release\.obj\searchPersonDialog.o
 ./release\.obj\searchComputerDialog.o
 ./release\.obj\computerDialog.o
-./release\.obj\person.o
-./release\.obj\computer.o
 ./release\.obj\moc_personDialog.o
 ./release\.obj\moc_gui.o
 ./release\.obj\moc_searchComputerDialog.o

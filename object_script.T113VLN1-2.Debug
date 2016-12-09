@@ -1,6 +1,5 @@
 INPUT(
 ./debug\.obj\main.o
-./debug\.obj\ui.o
 ./debug\.obj\domain.o
 ./debug\.obj\data.o
 ./debug\.obj\config.o
@@ -10,8 +9,6 @@ INPUT(
 ./debug\.obj\searchPersonDialog.o
 ./debug\.obj\searchComputerDialog.o
 ./debug\.obj\computerDialog.o
-./debug\.obj\person.o
-./debug\.obj\computer.o
 ./debug\.obj\moc_personDialog.o
 ./debug\.obj\moc_gui.o
 ./debug\.obj\moc_searchComputerDialog.o

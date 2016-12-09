@@ -8,8 +8,7 @@
 #include <iostream>
 #include "data.h"
 #include "config.h"
-#include "person.h"
-#include "computer.h"
+
 
 using namespace std;
 
