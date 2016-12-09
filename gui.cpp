@@ -16,6 +16,8 @@ Gui::Gui(QWidget *parent) :
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
 
+    fillSearchComboBoxP();
+
     loadTopTable(personModel);
 
     connect(
@@ -30,15 +32,18 @@ Gui::~Gui()
     delete ui;
 }
 
-void Gui::checkStatus(){
+void Gui::checkStatus()
+{
 
     int selected = ui->tableView->selectionModel()->selectedRows().size();
 
-    if(selected){
+    if(selected)
+    {
         ui->deleteButton->setEnabled(true);
         ui->addEditButton->setText("Edit");
         selected > 1 ? ui->addEditButton->setEnabled(false) : ui->addEditButton->setEnabled(true);
-    }else{
+    }else
+    {
         ui->deleteButton->setEnabled(false);
         ui->addEditButton->setText("Add");
 
@@ -46,7 +51,8 @@ void Gui::checkStatus(){
     }
 
     bool hasChanged = 0;
-    if(currentMode == Person){
+    if(currentMode == Person)
+    {
         hasChanged = personModel->isDirty();
     }
     else if(currentMode == Computer)
@@ -54,7 +60,8 @@ void Gui::checkStatus(){
         hasChanged = computerModel->isDirty();
     }
 
-    if(hasChanged){
+    if(hasChanged)
+    {
         ui->saveButton->setEnabled(true);
         ui->revertButton->setEnabled(true);
     }
@@ -65,14 +72,16 @@ void Gui::checkStatus(){
     }
 }
 
-void Gui::loadTopTable(QSqlRelationalTableModel * model){
+void Gui::loadTopTable(QSqlRelationalTableModel * model)
+{
     ui->tableView-> setModel(model);
     ui->tableView->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->tableView->setColumnHidden(0,true);
 }
 
-void Gui::loadBottomTable(QSqlRelationalTableModel * model){
+void Gui::loadBottomTable(QSqlRelationalTableModel * model)
+{
     ui->tableView_2-> setModel(model);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
@@ -84,26 +93,32 @@ void Gui::on_addEditButton_clicked()
 {
     QModelIndexList selectedList = ui->tableView->selectionModel()->selectedRows();
 
-    if(currentMode == Person){
+    if(currentMode == Person)
+    {
 
-        if(selectedList.size()){ //if user has selection
+        if(selectedList.size()) //if user has selection
+        {
             onEditPersonButton();
-        }else{
+        }else
+        {
             onAddPersonButton();
         }
 
-    }else if(currentMode == Computer){
+    }else if(currentMode == Computer)
+    {
 
         if(selectedList.size()){ //if user has selection
             onEditComputerButton();
-        }else{
+        }else
+        {
             onAddComputerButton();
         }
 
     }
 }
 
-void Gui::onAddPersonButton(){
+void Gui::onAddPersonButton()
+{
 
     QMap<QString, int> gList = domain.getAcceptedGenderName();
     personDialogWindow = new PersonDialog(this,gList);
@@ -120,7 +135,8 @@ void Gui::onAddPersonButton(){
 
 }
 
-void Gui::onEditPersonButton(){
+void Gui::onEditPersonButton()
+{
     QMap<QString, int> gList = domain.getAcceptedGenderName();
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
@@ -144,7 +160,8 @@ void Gui::onEditPersonButton(){
     personDialogWindow->show();
 }
 
-void Gui::onAddComputerButton(){
+void Gui::onAddComputerButton()
+{
     QMap<int, QString> tList = domain.getAcceptedComputerTypeName();
     computerDialogWindow = new ComputerDialog(this,tList);
 
@@ -160,7 +177,8 @@ void Gui::onAddComputerButton(){
 
 }
 
-void Gui::onEditComputerButton(){
+void Gui::onEditComputerButton()
+{
     QMap<int, QString> tList = domain.getAcceptedComputerTypeName();
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
@@ -183,7 +201,8 @@ void Gui::onEditComputerButton(){
     computerDialogWindow->show();
 }
 
-void Gui::onPersonRejected(){
+void Gui::onPersonRejected()
+{
     this->setEnabled(true);
 }
 
@@ -204,7 +223,8 @@ void Gui::onNewPersonAccepted(const QString &n, const int &g, const QString &nat
     checkStatus();
 }
 
-void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d){
+void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d)
+{
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
 
@@ -220,9 +240,10 @@ void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, co
     ui->tableView->setModel(personModel);
 
     checkStatus();
-};
+}
 
-void Gui::onComputerAccepted(const QString &n, const int &t, const int &d, const int &b){
+void Gui::onComputerAccepted(const QString &n, const int &t, const int &d, const int &b)
+{
 
     this->setEnabled(true);
 
@@ -238,7 +259,8 @@ void Gui::onComputerAccepted(const QString &n, const int &t, const int &d, const
 
 }
 
-void Gui::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b){
+void Gui::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
+{
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
 
@@ -253,17 +275,19 @@ void Gui::onEditComputerAccepted(const int &id, const QString &n, const int &t, 
     ui->tableView->setModel(computerModel);
 
     checkStatus();
-};
+}
 
 
-void Gui::onComputerRejected(){
+void Gui::onComputerRejected()
+{
     this->setEnabled(true);
 }
 
 void Gui::on_tableView_clicked(const QModelIndex &index)
 {
 
-    if(lastSelection == index.row() ){
+    if(lastSelection == index.row() )
+    {
 
         overrideOnSelectionChange = true;
 
@@ -272,7 +296,8 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
 
         overrideOnSelectionChange = false;
 
-    }else{
+    }else
+    {
         lastSelection = index.row();
     }
 
@@ -302,14 +327,16 @@ void Gui::on_saveButton_released()
         saveModel(computerModel);
     }
 
-    for(int i = 0; i < ui->tableView->model()->rowCount(); i++){
+    for(int i = 0; i < ui->tableView->model()->rowCount(); i++)
+    {
         ui->tableView->showRow(i);
     }
 
     checkStatus();
 }
 
-void Gui::saveModel(QSqlRelationalTableModel * model){
+void Gui::saveModel(QSqlRelationalTableModel * model)
+{
     domain.submitDatabaseChanges(model);
 }
 
@@ -349,11 +376,13 @@ void Gui::on_revertButton_released()
     checkStatus();
 }
 
-void Gui::revertModel(QSqlRelationalTableModel * model){
+void Gui::revertModel(QSqlRelationalTableModel * model)
+{
 
     model->revertAll();
 
-    for(int i = 0; i < model->rowCount(); i++){
+    for(int i = 0; i < model->rowCount(); i++)
+    {
         ui->tableView->showRow(i);
     }
 
@@ -363,11 +392,13 @@ void Gui::revertModel(QSqlRelationalTableModel * model){
 void Gui::on_comboBox_currentIndexChanged(int index)
 {
 
-    if(index == 0){ //person
+    if(index == 0) //person
+    {
 
         switchToPerson();
 
-    }else if(index == 1){ //computer
+    }else if(index == 1)  //computer
+    {
 
         switchToComputer();
     }
@@ -381,9 +412,11 @@ void Gui::on_comboBox_currentIndexChanged(int index)
     checkStatus();
 }
 
-void Gui::switchToPerson(){ //happens on switch to person
+void Gui::switchToPerson() //happens on switch to person
+{
 
-    if(computerModel->isDirty()){
+    if(computerModel->isDirty())
+    {
         QString promptTitle = "Save";
         QString promptQuestion = "Would you like to save Computer before changing?";
         QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
@@ -402,12 +435,16 @@ void Gui::switchToPerson(){ //happens on switch to person
     currentMode = Person;
     ui->tableView->selectionModel()->clearSelection();
     loadTopTable(domain.getPersonModel());
+
+    fillSearchComboBoxP();
     //todo load bottom
 }
 
-void Gui::switchToComputer(){ //happens on switch to computer
+void Gui::switchToComputer() //happens on switch to computer
+{
 
-    if(personModel->isDirty()){
+    if(personModel->isDirty())
+    {
         QString promptTitle = "Save";
         QString promptQuestion = "Would you like to save Computer before changing?";
         QMessageBox::StandardButton prompt = QMessageBox::question(this, promptTitle, promptQuestion ,
@@ -426,6 +463,8 @@ void Gui::switchToComputer(){ //happens on switch to computer
      currentMode = Computer;
      ui->tableView->selectionModel()->clearSelection();
      loadTopTable(domain.getComputerModel());
+
+     fillSearchComboBoxC();
      //todo load bottom
 
 }
@@ -437,10 +476,69 @@ void Gui::on_searchButton_released()
 
     if(currentMode == Person)
     {
-        loadTopTable(domain.searchPersonName(search));
+        if(currentSearchIndex == 0)
+        {
+            //loadTopTable(domain.searchPersonName(search));
+        }
+        else if(currentSearchIndex == 1)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 2)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 3)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 4)
+        {
+            //loadTopTable();
+        }
     }
     else if(currentMode == Computer)
     {
-        loadTopTable(domain.searchComputerName(search));
+        if(currentSearchIndex == 0)
+        {
+            //loadTopTable(domain.searchComputerName(search));
+        }
+        else if(currentSearchIndex == 1)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 2)
+        {
+            //loadTopTable();
+        }
+        else if(currentSearchIndex == 3)
+        {
+            //loadTopTable();
+        }
     }
+}
+
+void Gui::fillSearchComboBoxP()
+{
+    ui->searchComboBox->clear();
+    ui->searchComboBox->addItem("Name",0);
+    ui->searchComboBox->addItem("Gender",1);
+    ui->searchComboBox->addItem("Nationality",2);
+    ui->searchComboBox->addItem("Birth year",3);
+    ui->searchComboBox->addItem("Death year",4);
+
+};
+
+void Gui::fillSearchComboBoxC()
+{
+    ui->searchComboBox->clear();
+    ui->searchComboBox->addItem("Name",0);
+    ui->searchComboBox->addItem("Type",1);
+    ui->searchComboBox->addItem("Design year",2);
+    ui->searchComboBox->addItem("Build year",3);
+};
+
+void Gui::on_searchComboBox_currentIndexChanged(int index)
+{
+    currentSearchIndex = index;
 }
