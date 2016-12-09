@@ -41,9 +41,13 @@ public:
 
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 
-    QSqlRelationalTableModel * searchPersonName(QString name);
+    QSqlRelationalTableModel * searchPersonName(QString search);
 
-    QSqlRelationalTableModel * searchComputerName(QString name);
+    QSqlRelationalTableModel * searchComputerName(QString search);
+
+    QSqlRelationalTableModel * searchComputerDY(QString search);
+
+    QSqlRelationalTableModel * searchComputerBY(QString search);
 };
 
 #endif // Domain_H
