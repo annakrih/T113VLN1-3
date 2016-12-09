@@ -25,6 +25,8 @@ Gui::Gui(QWidget *parent) :
       SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
       SLOT(onSelectionChange(const QItemSelection &, const QItemSelection &))
      );
+
+    connect(ui->quickSearchInput, SIGNAL(returnPressed()),ui->searchButton,SLOT(click()));
 }
 
 Gui::~Gui()
