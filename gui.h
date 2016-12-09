@@ -41,6 +41,9 @@ private slots:
 
 
     void on_addCButton_released();
+    void onNewComputerAccepted(const QString &n, const QString &t, const int &dy, const int &by);
+    void onEditComputerAccepted(const QString &n, const QString &t, const int &dy, const int &by, const int &id);
+    void onComputerEntryRejected();
 
 private:
     Ui::Gui *ui;

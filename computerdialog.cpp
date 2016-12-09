@@ -4,7 +4,7 @@
 #include <QMap>
 #include <QVariant>
 
-ComputerDialog::ComputerDialog(QWidget *parent, QMap<int,QString> tList) :
+ComputerDialog::ComputerDialog(QWidget *parent, QMap<int,QString> tList, QString n, QString t, int dy, int by, int id) :
     QDialog(parent),
     ui(new Ui::ComputerDialog)
 {

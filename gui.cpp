@@ -41,13 +41,16 @@ void Gui::on_personAddEdit_clicked()
 {
     QMap<QString, int> gList = domain.getAcceptedGenderName();
 
-    if(lastSelectedRow == utils.dummyNull){
+    if(lastSelectedRow == utils.dummyNull)
+    {
         personDialogWindow = new PersonDialog(this,gList);
 
         QObject::connect(personDialogWindow, SIGNAL(newPersonAccepted(const QString &, const int &, const QString &, const int &, const int &)), this,
                          SLOT(onNewPersonAccepted(const QString &, const int &, const QString &, const int &, const int &)));
 
-    }else{
+    }
+    else
+    {
         personDialogWindow = new PersonDialog(this,gList
                               ,ui->tableView->model()->index(lastSelectedRow,1).data().toString()
                               ,ui->tableView->model()->index(lastSelectedRow,2).data().toString()
@@ -184,33 +187,63 @@ void Gui::on_comboBox_currentIndexChanged(int index)
 
 void Gui::on_addCButton_released()
 {
-    /*QMap<QString, int> tList = domain.getAcceptedGenderName();
+    QMap<int, QString> tList = domain.getAcceptedTypeStrings();
 
     if(lastSelectedRow == utils.dummyNull)
     {
         computerDialogWindow = new ComputerDialog(this,tList);
-    //kominn hingað
-        QObject::connect(computerDialogWindow, SIGNAL(newComputerAccepted(const QString &, const int &, const QString &, const int &, const int &)), this,
-                         SLOT(onNewPersonAccepted(const QString &, const int &, const QString &, const int &, const int &)));
+
+        QObject::connect(computerDialogWindow, SIGNAL(newComputerAccepted(const QString &, const QString &, const int &, const int &, const int &)), this,
+                         SLOT(onNewComputerAccepted(const QString &, const QString &, const int &, const int &, const int &)));
 
     }
     else
     {
-        personDialogWindow = new PersonDialog(this,gList
+        computerDialogWindow = new ComputerDialog(this,tList
                               ,ui->tableView->model()->index(lastSelectedRow,1).data().toString()
                               ,ui->tableView->model()->index(lastSelectedRow,2).data().toString()
-                              ,ui->tableView->model()->index(lastSelectedRow,3).data().toString()
+                              ,ui->tableView->model()->index(lastSelectedRow,3).data().toInt()
                               ,ui->tableView->model()->index(lastSelectedRow,4).data().toInt()
-                              ,ui->tableView->model()->index(lastSelectedRow,5).data().toInt()
                               ,ui->tableView->model()->index(lastSelectedRow,0).data().toInt());
 
-        QObject::connect(personDialogWindow, SIGNAL(editPersonAccepted(const int &,const QString &, const int &, const QString &, const int &, const int &)), this,
-                         SLOT(onEditPersonAccepted(const int &,const QString &, const int &, const QString &, const int &, const int &)));
+        QObject::connect(computerDialogWindow, SIGNAL(editComputerAccepted(const QString &, const QString &, const int &, const int &, const int &)), this,
+                         SLOT(onComputerEditAccepted(const QString &, const QString &, const int &, const int &, const int &)));
     }
 
     this->setEnabled(false);
-    personDialogWindow->setEnabled(true);
-    personDialogWindow->show();
+    computerDialogWindow->setEnabled(true);
+    computerDialogWindow->show();
 
-    QObject::connect(personDialogWindow, SIGNAL(personEntryRejected()), this, SLOT(onPersonEntryRejected()));*/
+    QObject::connect(computerDialogWindow, SIGNAL(computerEntryRejected()), this, SLOT(onComputerEntryRejected()));
+}
+
+void Gui::onNewComputerAccepted(const QString &n, const QString &t, const int &dy, const int &by)
+{
+    this->setEnabled(true);
+
+    QSqlRecord record = computerModel->record();
+    record.setValue(1,n);
+    record.setValue(2,t);
+    record.setValue(3,dy);
+    record.setValue(4,by);
+    computerModel->insertRecord(-1,record);
+    ui->tableView->setModel(computerModel);
+}
+
+void Gui::onEditComputerAccepted(const QString &n, const QString &t, const int &dy, const int &by, const int &id)
+{
+    this->setEnabled(true);
+    QSqlRecord record = computerModel->record();
+    record.setValue(0,id);
+    record.setValue(1,n);
+    record.setValue(2,t);
+    record.setValue(3,dy);
+    record.setValue(4,by);
+    computerModel->setRecord(lastSelectedRow,record);
+    ui->tableView->setModel(computerModel);
+}
+
+void Gui::onComputerEntryRejected()
+{
+    this->setEnabled(true);
 }
