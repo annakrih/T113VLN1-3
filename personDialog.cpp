@@ -14,19 +14,21 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QString n, Q
 
     fillGenderMenu(gMap);
 
-    ui->hiddenId->setValue(id);
-    ui->personName->setFocus();
-    ui->personName->setText(n);
-    ui->personGender->setCurrentText(g);
-    ui->personNat->setText(nat);
-    ui->personBY->setValue(b);
-    if(!d)
-    {
-        ui->personCheckDY->setChecked(false);
-    }
-    else
-    {
-        ui->personDY->setValue(d);
+    if(id){
+        ui->hiddenId->setValue(id);
+        ui->personName->setFocus();
+        ui->personName->setText(n);
+        ui->personGender->setCurrentText(g);
+        ui->personNat->setText(nat);
+        ui->personBY->setValue(b);
+        if(!d)
+        {
+            ui->personCheckDY->setChecked(false);
+        }
+        else
+        {
+            ui->personDY->setValue(d);
+        }
     }
 
     checkForm();
@@ -117,7 +119,7 @@ void PersonDialog::on_personName_textChanged(const QString &arg1)
     checkForm();
 }
 
-void PersonDialog::on_personNationality_textChanged(const QString &arg1)
+void PersonDialog::on_personNat_textChanged(const QString &arg1)
 {
     if(arg1.length() && arg1[arg1.length() - 1] != ' '){
         QString text = utils.capitalizeString(arg1);
@@ -163,10 +165,11 @@ void PersonDialog::on_personGender_currentIndexChanged(int index)
 
 void PersonDialog::on_buttonBox_rejected()
 {
-    emit this->personEntryRejected();
+    this->close();
+    emit this->personRejected();
 }
 
 void PersonDialog::on_PersonDialog_finished(int result)
 {
-    emit this->personEntryRejected();
+    emit this->personRejected();
 }

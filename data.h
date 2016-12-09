@@ -10,8 +10,6 @@
 #include <vector>
 #include <algorithm>
 #include "config.h"
-#include "person.h"
-#include "computer.h"
 #include "utils.h"
 
 
@@ -26,9 +24,6 @@ private:
     Utils utils;
     const QString databaseDir = utils.workingDir+"database/";
     const QString schemaFile = databaseDir + "schema.sql";
-    //vector contains the list of people
-    vector<Person> personList;
-    vector<Computer> compList;
 
     QSqlDatabase db;
     QString dbName = databaseDir + "team8.db";
@@ -68,7 +63,7 @@ public:
 
     QMap<int,QMap<QString,QString>> getAcceptedGender();
 
-    QMap<int, QString> getAcceptedTypes();
+    QMap<int, QString> getAcceptedComputerTypes();
 };
 
 #endif // DATA_H

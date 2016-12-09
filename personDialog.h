@@ -23,7 +23,7 @@ private slots:
     void on_buttonBox_accepted();
     void on_personName_textChanged(const QString &arg1);
 
-    void on_personNationality_textChanged(const QString &arg1);
+    void on_personNat_textChanged(const QString &arg1);
 
     void on_personBY_editingFinished();
 
@@ -40,7 +40,7 @@ private slots:
 signals:
     void newPersonAccepted(const QString &n, const int &g, const QString &nat, const int &b, const int &d);
     void editPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d);
-    void personEntryRejected();
+    void personRejected();
 
 private:
     Ui::PersonDialog *ui;

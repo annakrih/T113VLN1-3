@@ -57,7 +57,7 @@ QMap<int,QMap<QString,QString>> Data::getAcceptedGender(){
     return genders;
 };
 
-QMap<int, QString> Data::getAcceptedTypes()
+QMap<int, QString> Data::getAcceptedComputerTypes()
 {
     QMap<int, QString> computerTypes;
     QSqlQuery query("SELECT id, typeName FROM Computer_Type");

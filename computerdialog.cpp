@@ -3,19 +3,66 @@
 #include <QPushButton>
 #include <QMap>
 #include <QVariant>
+#include <iostream>
 
-ComputerDialog::ComputerDialog(QWidget *parent, QMap<int,QString> tList) :
+ComputerDialog::ComputerDialog(QWidget *parent, QMap<int,QString> tList,
+                               QString n, QString t, int d, int b, int id) :
     QDialog(parent),
     ui(new Ui::ComputerDialog)
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    ui->buildYInput->setDisabled(true);
-    ui->designYInput-> setMaximum(utils.getYear);
-    ui->buildYInput->setMaximum(utils.getYear);
-
+    ui->cBY->setDisabled(true);
+    ui->cBY->setMaximum(utils.getYear);
+    ui->cDY-> setMaximum(utils.getYear);
 
     fillTypeMenu(tList);
+
+
+    if(id){
+        ui->hiddenId->setValue(id);
+        ui->cName->setFocus();
+        ui->cName->setText(n);
+        ui->cType->setCurrentText(t);
+        ui->cDY->setValue(d);
+        if(!b)
+        {
+            ui->wasItBuilt->setChecked(true);
+        }
+        else
+        {
+            ui->cDY->setValue(b);
+        }
+    }
+
+    checkForm();
+}
+
+void ComputerDialog::on_buttonBox_accepted()
+{
+    QString name = ui->cName->text().trimmed();
+    int type =  ui->cType->itemData(ui->cType->currentIndex()).toInt();
+    int dY = ui->cDY->value();
+    int bY;
+    if(ui->wasItBuilt->checkState() && ui->cBY->value() != 0)
+    {
+        bY = ui->cBY->value();
+    }
+    else if(!ui->wasItBuilt->checkState())
+    {
+        bY = 0;
+    }
+
+    int id = ui->hiddenId->value();
+
+    if(id == 0)//add
+    {
+        emit this->newComputerAccepted(name,type,dY,bY);
+    }
+    else//edit
+    {
+        emit this->editComputerAccepted(id,name,type,dY,bY);
+    }
 }
 
 
@@ -23,9 +70,9 @@ ComputerDialog::ComputerDialog(QWidget *parent, QMap<int,QString> tList) :
 void ComputerDialog::on_wasItBuilt_toggled(bool checked)
 {
     if(checked){
-        ui->buildYInput->setDisabled(false);
+        ui->cBY->setDisabled(false);
     }else{
-        ui->buildYInput->setDisabled(true);
+        ui->cBY->setDisabled(true);
     }
     checkForm();
 }
@@ -35,7 +82,7 @@ void ComputerDialog::checkForm()
     const int needed = 4;
     int count = 0;
 
-    if(ui->lineEdit->text() != "")
+    if(ui->cName->text() != "")
     {
         count++;
     }
@@ -43,11 +90,11 @@ void ComputerDialog::checkForm()
     {
         count++;
     }
-    if(ui->designYInput->value() != 0)
+    if(ui->cDY->value() != 0)
     {
         count++;
     }
-    if(ui->wasItBuilt->checkState() && ui->buildYInput->value() != 0)
+    if(ui->wasItBuilt->checkState() && ui->cBY->value() != 0)
     {
         count++;
     }
@@ -77,3 +124,15 @@ void ComputerDialog::fillTypeMenu(QMap<int, QString> tList)
         ui->cType->addItem(i.value(), i.key());
     }
 }
+
+void ComputerDialog::on_buttonBox_rejected()
+{
+    this->close();
+    emit this->computerRejected();
+}
+
+void ComputerDialog::on_ComputerDialog_finished(int result)
+{
+    emit this->computerRejected();
+}
+

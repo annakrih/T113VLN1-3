@@ -24,23 +24,27 @@ public:
     ~Gui();
 
 private slots:
-    void on_personAddEdit_clicked();
+    void on_addEditButton_clicked();
     void onNewPersonAccepted(const QString &n, const int &g, const QString &nat, const int &b, const int &d);
     void onEditPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d);
-    void onPersonEntryRejected();
+    void onComputerAccepted(const QString &n, const int &t, const int &d, const int &b);
+    void onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b);
 
-    void on_tableView_clicked(const QModelIndex &index);
+    void onPersonRejected();
+    void onComputerRejected();
 
-    void on_savePerson_clicked();
+    void onSelectionChange(const QItemSelection &a, const QItemSelection &b);
 
-    void on_deletePerson_released();
+    void on_saveButton_released();
 
-    void on_peopleRevert_released();
+    void on_deleteButton_released();
+
+    void on_revertButton_released();
 
     void on_comboBox_currentIndexChanged(int index);
 
 
-    void on_addCButton_released();
+    void on_tableView_clicked(const QModelIndex &index);
 
 private:
     Ui::Gui *ui;
@@ -51,11 +55,35 @@ private:
     QSqlRelationalTableModel* personModel;
     QSqlRelationalTableModel* computerModel;
 
+    int lastSelection;
+    bool overrideOnSelectionChange;
+
     int lastSelectedRow = utils.dummyNull;
+
+    enum Mode {Person, Computer};
+    Mode currentMode = Person;
+
+    void checkStatus();
 
     void loadTopTable(QSqlRelationalTableModel * model);
     void loadBottomTable(QSqlRelationalTableModel * model);
     SearchPersonDialog *searchPersonDialogWindow;
+
+    void switchToPerson();
+    void switchToComputer();
+
+    void saveModel(QSqlRelationalTableModel * model);
+    void revertModel(QSqlRelationalTableModel * model);
+
+    void onAddPersonButton();
+
+    void onEditPersonButton();
+
+    void onAddComputerButton();
+
+    void onEditComputerButton();
+
+    void tableClick();
 };
 
 #endif // GUI_H
