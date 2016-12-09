@@ -40,9 +40,23 @@ public:
 
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 
+
+
     QSqlRelationalTableModel * searchPersonName(QString search);
 
+    QSqlRelationalTableModel * searchPersonGender(QString search);
+
+    QSqlRelationalTableModel * searchPersonNationality(QString search);
+
+    QSqlRelationalTableModel * searchPersonBY(QString search);
+
+    QSqlRelationalTableModel * searchPersonDY(QString search);
+
+
+
     QSqlRelationalTableModel * searchComputerName(QString search);
+
+    QSqlRelationalTableModel * searchComputerType(QString search);
 
     QSqlRelationalTableModel * searchComputerDY(QString search);
 

@@ -478,42 +478,42 @@ void Gui::on_searchButton_released()
     {
         if(currentSearchIndex == 0)
         {
-            //loadTopTable(domain.searchPersonName(search));
+            loadTopTable(domain.searchPersonName(search));
         }
         else if(currentSearchIndex == 1)
         {
-            //loadTopTable();
+            loadTopTable(domain.searchPersonGender(search));
         }
         else if(currentSearchIndex == 2)
         {
-            //loadTopTable();
+            loadTopTable(domain.searchPersonNationality(search));
         }
         else if(currentSearchIndex == 3)
         {
-            //loadTopTable();
+            loadTopTable(domain.searchPersonBY(search));
         }
         else if(currentSearchIndex == 4)
         {
-            //loadTopTable();
+            loadTopTable(domain.searchPersonDY(search));
         }
     }
     else if(currentMode == Computer)
     {
         if(currentSearchIndex == 0)
         {
-            //loadTopTable(domain.searchComputerName(search));
+            loadTopTable(domain.searchComputerName(search));
         }
         else if(currentSearchIndex == 1)
         {
-            //loadTopTable();
+            loadTopTable(domain.searchComputerType(search));
         }
         else if(currentSearchIndex == 2)
         {
-            //loadTopTable();
+            loadTopTable(domain.searchComputerDY(search));
         }
         else if(currentSearchIndex == 3)
         {
-            //loadTopTable();
+            loadTopTable(domain.searchComputerBY(search));
         }
     }
 }

@@ -67,11 +67,109 @@ QSqlRelationalTableModel * Domain::searchPersonName(QString name)
     return data.readPeopleFromDatabase(filter);
 }
 
+QSqlRelationalTableModel * Domain::searchPersonGender(QString search)
+{
+    QString intSearch = 0;
+    if(search == "Male" || search == "male" || search == "m" || search == "M")
+    {
+        intSearch = "1";
+    }
+    if(search == "Female" || search == "female" || search == "f" || search == "M")
+    {
+        intSearch = "2";
+    }
+
+    QString filter = "person.genderId like '%"+intSearch+"%'";
+    return data.readPeopleFromDatabase(filter);
+}
+
+QSqlRelationalTableModel * Domain::searchPersonNationality(QString search)
+{
+    QString filter = "person.nationality like '%"+search+"%'";
+    return data.readPeopleFromDatabase(filter);
+}
+
+QSqlRelationalTableModel * Domain::searchPersonBY(QString search)
+{
+    QStringList birthY = search.split(" ");
+
+    QString filter;
+    if(birthY.size() == 2)
+    {
+        filter = "computer.designYear > "+birthY[0]+ " AND computer.designYear < "+birthY[1];
+    }
+    else
+    {
+        filter = "computer.designYear = '"+birthY[0]+"'";
+    }
+    return data.readPeopleFromDatabase(filter);
+
+}
+
+QSqlRelationalTableModel * Domain::searchPersonDY(QString search)
+{
+    QStringList deathY = search.split(" ");
+
+    QString filter;
+    if(deathY.size() == 2)
+    {
+        filter = "computer.designYear > "+deathY[0]+ " AND computer.designYear < "+deathY[1];
+    }
+    else
+    {
+        filter = "computer.designYear = '"+deathY[0]+"'";
+    }
+    return data.readPeopleFromDatabase(filter);
+
+}
+
 QSqlRelationalTableModel * Domain::searchComputerName(QString name)
 {
     QString filter = "computer.name like '%"+name+"%'";
     return data.readComputerFromDatabase(filter);
 }
 
+QSqlRelationalTableModel * Domain::searchComputerType(QString search)
+{
+    QMap<int, QString> types = data.getAcceptedComputerTypes();
 
+
+
+
+    //QString filter = "computer.typeId like '%"++"%'";
+    return data.readComputerFromDatabase(filter);
+}
+
+QSqlRelationalTableModel * Domain::searchComputerDY(QString search)
+{
+    QStringList designY = search.split(" ");
+
+    QString filter;
+    if(designY.size() == 2)
+    {
+        filter = "computer.designYear > "+designY[0]+ " AND computer.designYear < "+designY[1];
+    }
+    else
+    {
+        filter = "computer.designYear = '"+designY[0]+"'";
+    }
+    return data.readComputerFromDatabase(filter);
+
+}
+
+QSqlRelationalTableModel * Domain::searchComputerBY(QString search)
+{
+    QStringList buildY = search.split(" ");
+
+    QString filter;
+    if(buildY.size() == 2)
+    {
+        filter = "computer.buildYear > "+buildY[0]+ " AND computer.buildYear < "+buildY[1];
+    }
+    else
+    {
+        filter = "computer.buildYear = '"+buildY[0]+"'";
+    }
+    return data.readComputerFromDatabase(filter);
+}
 
