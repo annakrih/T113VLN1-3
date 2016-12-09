@@ -38,9 +38,9 @@ void Data::importSQL()
             }
             query.finish();
         }
+        initializeData();
     }
 
-    initializeData();
 }
 
 QMap<int,QMap<QString,QString>> Data::getAcceptedGender()
@@ -87,16 +87,6 @@ QSqlRelationalTableModel * Data::readPeopleFromDatabase(QString filter)
    QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
    model->setTable("person");
    model->setRelation(2, QSqlRelation("Person_Gender", "id", "GenderName"));
-
-   //todo use filter as search
-   /*
-   QString test = "An";
-   QString filter = "person.name like '%"+test+"%' ";
-   model->setFilter(filter);
-
-   //sort example
-   model->setSort(1, Qt::SortOrder::DescendingOrder);
-   */
 
    model->setFilter(filter);
 
@@ -146,7 +136,6 @@ void Data::initializeData()
     QSqlQuery query;
     query.prepare("INSERT INTO person (name, genderId, nationality, birthYear, deathYear)"
                       "VALUES (:name, :genderId, :nationality, :birthYear, :deathYear)");
-    query.next();
 
     QFile file(initialPersons);
     if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -155,31 +144,28 @@ void Data::initializeData()
         return;
     }
 
-    QStringList fileCommands = QTextStream(&file).readAll().split(',');
+    QStringList inputList = QTextStream(&file).readAll().split(',');
 
     cout << endl << "fileCommands.size():";
-    cout << fileCommands.size() << endl << endl;
+    cout << inputList.size() << endl << endl;
 
-    for (int i=0; i < (fileCommands.size() -4); i += 5)
+    for (int i=0; i < inputList.size(); i += 5)
     {
-        query.bindValue(":name", fileCommands[i]);
-        query.bindValue(":genderId", fileCommands[i+1]);
-        query.bindValue(":nationality", fileCommands[i+2]);
-        query.bindValue(":birthYear", fileCommands[i+3]);
-        query.bindValue(":deathYear", fileCommands[i+4]);
+        QString name = inputList[i];
+        query.bindValue(":name", name.trimmed());
+        int gender = inputList[i+1] == "M" ? 1 : 0;
+        query.bindValue(":genderId", gender);
+        query.bindValue(":nationality", inputList[i+4]);
+        query.bindValue(":birthYear", inputList[i+2]);
+        query.bindValue(":deathYear", inputList[i+3]);
 
-        /*
-        if (command.trimmed().isEmpty())
-        {
-            continue;
-        }
-        if (!query.exec(command))
+        if (!query.exec())
         {
             qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
         }
-        */
     }
 
+    file.close();
     query.finish();
 }
 
