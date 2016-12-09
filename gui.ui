@@ -224,7 +224,7 @@ color: rgb(0, 0, 0);
      <rect>
       <x>618</x>
       <y>201</y>
-      <width>70</width>
+      <width>81</width>
       <height>17</height>
      </rect>
     </property>
@@ -233,7 +233,7 @@ color: rgb(0, 0, 0);
 color:white;</string>
     </property>
     <property name="text">
-     <string>Edit Mode</string>
+     <string>Add Relation</string>
     </property>
    </widget>
    <widget class="QPushButton" name="addRelButton">
