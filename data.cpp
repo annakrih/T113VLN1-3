@@ -147,7 +147,7 @@ void Data::initializePersons()
     QFile file(initialPersons);
     if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        cout << "Could not open personInitialData.csv" << endl;
+        qFatal(QString("Failed to open file to initialize persons."+query.lastError().text() ).toLocal8Bit() );
         return;
     }
 
@@ -181,7 +181,7 @@ void Data::initializeComputers()
     QFile file(initialComputers);
     if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        cout << "Could not open computersInitialData.csv" << endl;
+        qFatal(QString("Failed to open file to computers."+query.lastError().text() ).toLocal8Bit());
         return;
     }
 
@@ -206,26 +206,24 @@ void Data::initializeComputers()
 
 void Data::initializeRelations()
 {
-  /*  QSqlQuery query;
-    query.prepare("INSERT INTO computer (name, designYear, buildYear, typeId)"
-                      "VALUES (:name, :designYear, :buildYear, :typeId)");
+    QSqlQuery query;
+    query.prepare("INSERT INTO Person_Computer (personId, computerId)"
+                      "VALUES (:personId, :computerId)");
 
-    QFile file(initialComputers);
+    QFile file(initialRelations);
     if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        cout << "Could not open computersInitialData.csv" << endl;
+        qFatal(QString("Failed to open file to initialize relations."+query.lastError().text() ).toLocal8Bit());
         return;
     }
 
     QStringList inputList = QTextStream(&file).readAll().split(',');
 
-    for (int i=0; i < inputList.size(); i += 4)
+
+    for (int i=0; i < (inputList.size()-1); i += 2)
     {
-        QString name = inputList[i];
-        query.bindValue(":name", name.trimmed());
-        query.bindValue(":typeId", inputList[i+1]);
-        query.bindValue(":designYear", inputList[i+2]);
-        query.bindValue(":buildYear", inputList[i+3]);
+        query.bindValue(":personId", inputList[i]);
+        query.bindValue(":computerId", inputList[i+1]);
 
         if (!query.exec())
         {
@@ -234,6 +232,4 @@ void Data::initializeRelations()
     }
     file.close();
     query.finish();
-
-    */
 }

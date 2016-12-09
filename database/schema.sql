@@ -54,9 +54,3 @@ computerId INTEGER NOT NULL,
 FOREIGN KEY(personId) REFERENCES Person(id),
 FOREIGN KEY(computerId) REFERENCES Computer(id)
 );
-
-Insert into Person_Computer(personId,computerId)
-Values(1,1);
-
-Insert into Person_Computer(personId,computerId)
-Values(1,2);
