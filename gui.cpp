@@ -30,15 +30,18 @@ Gui::~Gui()
     delete ui;
 }
 
-void Gui::checkStatus(){
+void Gui::checkStatus()
+{
 
     int selected = ui->tableView->selectionModel()->selectedRows().size();
 
-    if(selected){
+    if(selected)
+    {
         ui->deleteButton->setEnabled(true);
         ui->addEditButton->setText("Edit");
         selected > 1 ? ui->addEditButton->setEnabled(false) : ui->addEditButton->setEnabled(true);
-    }else{
+    }else
+    {
         ui->deleteButton->setEnabled(false);
         ui->addEditButton->setText("Add");
 
@@ -46,7 +49,8 @@ void Gui::checkStatus(){
     }
 
     bool hasChanged = 0;
-    if(currentMode == Person){
+    if(currentMode == Person)
+    {
         hasChanged = personModel->isDirty();
     }
     else if(currentMode == Computer)
@@ -54,7 +58,8 @@ void Gui::checkStatus(){
         hasChanged = computerModel->isDirty();
     }
 
-    if(hasChanged){
+    if(hasChanged)
+    {
         ui->saveButton->setEnabled(true);
         ui->revertButton->setEnabled(true);
     }
@@ -65,14 +70,16 @@ void Gui::checkStatus(){
     }
 }
 
-void Gui::loadTopTable(QSqlRelationalTableModel * model){
+void Gui::loadTopTable(QSqlRelationalTableModel * model)
+{
     ui->tableView-> setModel(model);
     ui->tableView->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->tableView->setColumnHidden(0,true);
 }
 
-void Gui::loadBottomTable(QSqlRelationalTableModel * model){
+void Gui::loadBottomTable(QSqlRelationalTableModel * model)
+{
     ui->tableView_2-> setModel(model);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
@@ -84,15 +91,19 @@ void Gui::on_addEditButton_clicked()
 {
     QModelIndexList selectedList = ui->tableView->selectionModel()->selectedRows();
 
-    if(currentMode == Person){
+    if(currentMode == Person)
+    {
 
-        if(selectedList.size()){ //if user has selection
+        if(selectedList.size()) //if user has selection
+        {
             onEditPersonButton();
-        }else{
+        }else
+        {
             onAddPersonButton();
         }
 
-    }else if(currentMode == Computer){
+    }else if(currentMode == Computer)
+    {
 
         if(selectedList.size()){ //if user has selection
             onEditComputerButton();
