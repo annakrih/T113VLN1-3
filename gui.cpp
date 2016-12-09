@@ -96,14 +96,16 @@ void Gui::on_addEditButton_clicked()
 
         if(selectedList.size()){ //if user has selection
             onEditComputerButton();
-        }else{
+        }else
+        {
             onAddComputerButton();
         }
 
     }
 }
 
-void Gui::onAddPersonButton(){
+void Gui::onAddPersonButton()
+{
 
     QMap<QString, int> gList = domain.getAcceptedGenderName();
     personDialogWindow = new PersonDialog(this,gList);
@@ -120,7 +122,8 @@ void Gui::onAddPersonButton(){
 
 }
 
-void Gui::onEditPersonButton(){
+void Gui::onEditPersonButton()
+{
     QMap<QString, int> gList = domain.getAcceptedGenderName();
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
@@ -144,7 +147,8 @@ void Gui::onEditPersonButton(){
     personDialogWindow->show();
 }
 
-void Gui::onAddComputerButton(){
+void Gui::onAddComputerButton()
+{
     QMap<int, QString> tList = domain.getAcceptedComputerTypeName();
     computerDialogWindow = new ComputerDialog(this,tList);
 
@@ -160,7 +164,8 @@ void Gui::onAddComputerButton(){
 
 }
 
-void Gui::onEditComputerButton(){
+void Gui::onEditComputerButton()
+{
     QMap<int, QString> tList = domain.getAcceptedComputerTypeName();
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
@@ -183,7 +188,8 @@ void Gui::onEditComputerButton(){
     computerDialogWindow->show();
 }
 
-void Gui::onPersonRejected(){
+void Gui::onPersonRejected()
+{
     this->setEnabled(true);
 }
 
@@ -204,7 +210,8 @@ void Gui::onNewPersonAccepted(const QString &n, const int &g, const QString &nat
     checkStatus();
 }
 
-void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d){
+void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d)
+{
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
 
@@ -220,9 +227,10 @@ void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, co
     ui->tableView->setModel(personModel);
 
     checkStatus();
-};
+}
 
-void Gui::onComputerAccepted(const QString &n, const int &t, const int &d, const int &b){
+void Gui::onComputerAccepted(const QString &n, const int &t, const int &d, const int &b)
+{
 
     this->setEnabled(true);
 
@@ -238,7 +246,8 @@ void Gui::onComputerAccepted(const QString &n, const int &t, const int &d, const
 
 }
 
-void Gui::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b){
+void Gui::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
+{
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
 
@@ -253,17 +262,19 @@ void Gui::onEditComputerAccepted(const int &id, const QString &n, const int &t, 
     ui->tableView->setModel(computerModel);
 
     checkStatus();
-};
+}
 
 
-void Gui::onComputerRejected(){
+void Gui::onComputerRejected()
+{
     this->setEnabled(true);
 }
 
 void Gui::on_tableView_clicked(const QModelIndex &index)
 {
 
-    if(lastSelection == index.row() ){
+    if(lastSelection == index.row() )
+    {
 
         overrideOnSelectionChange = true;
 
@@ -272,7 +283,8 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
 
         overrideOnSelectionChange = false;
 
-    }else{
+    }else
+    {
         lastSelection = index.row();
     }
 
@@ -302,14 +314,16 @@ void Gui::on_saveButton_released()
         saveModel(computerModel);
     }
 
-    for(int i = 0; i < ui->tableView->model()->rowCount(); i++){
+    for(int i = 0; i < ui->tableView->model()->rowCount(); i++)
+    {
         ui->tableView->showRow(i);
     }
 
     checkStatus();
 }
 
-void Gui::saveModel(QSqlRelationalTableModel * model){
+void Gui::saveModel(QSqlRelationalTableModel * model)
+{
     domain.submitDatabaseChanges(model);
 }
 
@@ -349,11 +363,13 @@ void Gui::on_revertButton_released()
     checkStatus();
 }
 
-void Gui::revertModel(QSqlRelationalTableModel * model){
+void Gui::revertModel(QSqlRelationalTableModel * model)
+{
 
     model->revertAll();
 
-    for(int i = 0; i < model->rowCount(); i++){
+    for(int i = 0; i < model->rowCount(); i++)
+    {
         ui->tableView->showRow(i);
     }
 
@@ -363,11 +379,13 @@ void Gui::revertModel(QSqlRelationalTableModel * model){
 void Gui::on_comboBox_currentIndexChanged(int index)
 {
 
-    if(index == 0){ //person
+    if(index == 0) //person
+    {
 
         switchToPerson();
 
-    }else if(index == 1){ //computer
+    }else if(index == 1)  //computer
+    {
 
         switchToComputer();
     }
@@ -381,9 +399,11 @@ void Gui::on_comboBox_currentIndexChanged(int index)
     checkStatus();
 }
 
-void Gui::switchToPerson(){ //happens on switch to person
+void Gui::switchToPerson() //happens on switch to person
+{
 
-    if(computerModel->isDirty()){
+    if(computerModel->isDirty())
+    {
         QString promptTitle = "Save";
         QString promptQuestion = "Would you like to save Computer before changing?";
         QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
@@ -405,9 +425,11 @@ void Gui::switchToPerson(){ //happens on switch to person
     //todo load bottom
 }
 
-void Gui::switchToComputer(){ //happens on switch to computer
+void Gui::switchToComputer() //happens on switch to computer
+{
 
-    if(personModel->isDirty()){
+    if(personModel->isDirty())
+    {
         QString promptTitle = "Save";
         QString promptQuestion = "Would you like to save Computer before changing?";
         QMessageBox::StandardButton prompt = QMessageBox::question(this, promptTitle, promptQuestion ,
@@ -441,6 +463,6 @@ void Gui::on_searchButton_released()
     }
     else if(currentMode == Computer)
     {
-        loadTopTable(domain.searchComputerName(search));
+        loadTopTable(domain. searchComputerDY(search));
     }
 }
