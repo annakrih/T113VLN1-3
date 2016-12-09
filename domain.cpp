@@ -68,35 +68,32 @@ void Domain::setConfig(Config c)
     data.writeConfigToFile(c);
 }
 
-QSqlRelationalTableModel * Domain::searchPersonName(QString name)
+QSqlRelationalTableModel * Domain::searchPersonName(QString search)
 {
-    QString filter = "person.name like '%"+name+"%'";
+    QString filter = "person.name like '%"+search+"%'";
     return data.readPeopleFromDatabase(filter);
 }
 
-QSqlRelationalTableModel * Domain::searchComputerName(QString name)
+QSqlRelationalTableModel * Domain::searchComputerName(QString search)
 {
-    QString filter = "computer.name like '%"+name+"%'";
+    QString filter = "computer.name like '%"+search+"%'";
     return data.readComputerFromDatabase(filter);
 }
 
-QSqlRelationalTableModel * Domain::searchComputerDY(QString name)
+QSqlRelationalTableModel * Domain::searchComputerDY(QString search)
 {
-    QStringList DesignY = name.split(" ");
+    QStringList designY = search.split(" ");
 
-    DesignY [0];
     QString filter;
-    if(DesignY.size() == 2)
+    if(designY.size() == 2)
     {
-        DesignY [1];
-        filter = "computer.designYear > "+DesignY[0]+ "AND" +DesignY[1]+"< +designYear[1]" ;
-        return data.readComputerFromDatabase(filter);
+        filter = "computer.designYear > "+designY[0]+ " AND computer.designYear < "+designY[1];
     }
     else
     {
-        filter = "computer.designYear = '"+DesignY[0]+"'";
-        return data.readComputerFromDatabase(filter);
+        filter = "computer.designYear = '"+designY[0]+"'";
     }
+    return data.readComputerFromDatabase(filter);
 
 }
 
