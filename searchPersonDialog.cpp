@@ -17,7 +17,8 @@ SearchPersonDialog::~SearchPersonDialog()
 
 void SearchPersonDialog::on_inputName_textChanged(const QString &arg1)
 {
-    if(arg1.length() && arg1[arg1.length() - 1] != ' '){
+    if(arg1.length() && arg1[arg1.length() - 1] != ' ')
+    {
         QString text = utils.capitalizeString(arg1);
         ui->inputName->setText(text);
     }
@@ -25,7 +26,8 @@ void SearchPersonDialog::on_inputName_textChanged(const QString &arg1)
 
 void SearchPersonDialog::on_inputNat_textChanged(const QString &arg1)
 {
-    if(arg1.length() && arg1[arg1.length() - 1] != ' '){
+    if(arg1.length() && arg1[arg1.length() - 1] != ' ')
+    {
         QString text = utils.capitalizeString(arg1);
         ui->inputNat->setText(text);
     }

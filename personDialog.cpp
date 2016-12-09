@@ -66,29 +66,33 @@ void PersonDialog::on_buttonBox_accepted()
     }
 }
 
-void PersonDialog::fillGenderMenu(QMap<QString,int> gMap){
+void PersonDialog::fillGenderMenu(QMap<QString,int> gMap)
+{
 
     ui->personGender->addItem("",0);
     QMapIterator<QString, int> i(gMap);
     i.toBack();
-    while (i.hasPrevious()) {
+    while (i.hasPrevious())
+    {
         i.previous();
         ui->personGender->addItem(i.key(),i.value());
     }
 
-};
+}
 
-void PersonDialog::fillNationalityMenu(){
+void PersonDialog::fillNationalityMenu()
+{
     for ( int i = 1; i < 256; i++ )
     {
        QLocale::Country foo = static_cast<QLocale::Country>(i);
        QString test = QLocale::countryToString(foo);
-
+       //TODO
        //ui->personGender->addItem(i.key(),i.value());
     }
 }
 
-void PersonDialog::checkForm(){
+void PersonDialog::checkForm()
+{
     const int needed = 5;
     int count = 0;
 
@@ -98,13 +102,16 @@ void PersonDialog::checkForm(){
     if(ui->personBY->value() != 0) count++;
     if(ui->personCheckDY->checkState() && ui->personBY->value() != 0){
         count++;
-    }else if(!ui->personCheckDY->checkState()){
+    }else if(!ui->personCheckDY->checkState())
+    {
         count++;
     }
 
-    if(count >= needed){
+    if(count >= needed)
+    {
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
-    }else{
+    }else
+    {
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     }
 
@@ -112,7 +119,8 @@ void PersonDialog::checkForm(){
 
 void PersonDialog::on_personName_textChanged(const QString &arg1)
 {
-    if(arg1.length() && arg1[arg1.length() - 1] != ' '){
+    if(arg1.length() && arg1[arg1.length() - 1] != ' ')
+    {
         QString text = utils.capitalizeString(arg1);
         ui->personName->setText(text);
     }
@@ -121,7 +129,8 @@ void PersonDialog::on_personName_textChanged(const QString &arg1)
 
 void PersonDialog::on_personNat_textChanged(const QString &arg1)
 {
-    if(arg1.length() && arg1[arg1.length() - 1] != ' '){
+    if(arg1.length() && arg1[arg1.length() - 1] != ' ')
+    {
         QString text = utils.capitalizeString(arg1);
         ui->personNat->setText(text);
     }
@@ -132,7 +141,8 @@ void PersonDialog::on_personBY_editingFinished()
 {
     int bY = ui->personBY->value();
     int dY = ui->personDY->value();
-    if(bY > dY){
+    if(bY > dY)
+    {
         ui->personDY->setValue(bY);
     }
     checkForm();
@@ -142,7 +152,8 @@ void PersonDialog::on_personDY_editingFinished()
 {
     int bY = ui->personBY->value();
     int dY = ui->personDY->value();
-    if(bY > dY){
+    if(bY > dY)
+    {
         ui->personDY->setValue(bY);
     }
     checkForm();
@@ -150,9 +161,11 @@ void PersonDialog::on_personDY_editingFinished()
 
 void PersonDialog::on_personCheckDY_toggled(bool checked)
 {
-    if(checked){
+    if(checked)
+    {
         ui->personDY->setDisabled(false);
-    }else{
+    }else
+    {
         ui->personDY->setDisabled(true);
     }
     checkForm();

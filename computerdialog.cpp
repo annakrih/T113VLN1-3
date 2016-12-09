@@ -20,7 +20,8 @@ ComputerDialog::ComputerDialog(QWidget *parent, QMap<int,QString> tList,
     fillTypeMenu(tList);
 
 
-    if(id){
+    if(id)
+    {
         ui->hiddenId->setValue(id);
         ui->cName->setFocus();
         ui->cName->setText(n);
@@ -70,9 +71,11 @@ void ComputerDialog::on_buttonBox_accepted()
 
 void ComputerDialog::on_wasItBuilt_toggled(bool checked)
 {
-    if(checked){
+    if(checked)
+    {
         ui->cBY->setDisabled(false);
-    }else{
+    }else
+    {
         ui->cBY->setDisabled(true);
     }
     checkForm();
@@ -99,7 +102,8 @@ void ComputerDialog::checkForm()
     {
         count++;
     }
-    else if(!ui->wasItBuilt->checkState()){
+    else if(!ui->wasItBuilt->checkState())
+    {
         count++;
     }
 

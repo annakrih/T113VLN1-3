@@ -72,7 +72,8 @@ void Gui::checkStatus()
     }
 }
 
-void Gui::loadTopTable(QSqlRelationalTableModel * model){
+void Gui::loadTopTable(QSqlRelationalTableModel * model)
+{
     ui->tableView-> setModel(model);
     ui->tableView->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);

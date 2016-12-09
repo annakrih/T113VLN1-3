@@ -6,21 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>393</width>
+    <height>248</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0.291, y1:0.568, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));</string>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>240</y>
+     <y>200</y>
      <width>341</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -32,11 +38,14 @@
   <widget class="QLabel" name="labelName">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>40</y>
+     <x>20</x>
+     <y>30</y>
      <width>41</width>
-     <height>16</height>
+     <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="text">
     <string>Name</string>
@@ -45,11 +54,14 @@
   <widget class="QLabel" name="labelDY">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>100</y>
+     <x>20</x>
+     <y>110</y>
      <width>71</width>
-     <height>16</height>
+     <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="text">
     <string>DesignYear</string>
@@ -58,11 +70,14 @@
   <widget class="QLabel" name="LabelBY">
    <property name="geometry">
     <rect>
-     <x>34</x>
+     <x>20</x>
      <y>70</y>
-     <width>59</width>
-     <height>16</height>
+     <width>61</width>
+     <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="text">
     <string>BuildYear</string>
@@ -71,11 +86,14 @@
   <widget class="QLabel" name="labelType">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>160</y>
+     <x>20</x>
+     <y>150</y>
      <width>41</width>
-     <height>16</height>
+     <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="text">
     <string>Type</string>
@@ -85,20 +103,26 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>40</y>
+     <y>30</y>
      <width>113</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
   </widget>
   <widget class="QSpinBox" name="InputBuildYearFrom">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>110</x>
      <y>70</y>
      <width>48</width>
-     <height>24</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
@@ -107,11 +131,14 @@
   <widget class="QSpinBox" name="InputDesignYearFrom">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>100</y>
+     <x>110</x>
+     <y>110</y>
      <width>48</width>
-     <height>24</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
@@ -120,21 +147,27 @@
   <widget class="QComboBox" name="InputType">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>160</y>
+     <x>90</x>
+     <y>150</y>
      <width>104</width>
      <height>26</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
   </widget>
   <widget class="QSpinBox" name="InputBuildYearTo">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>170</x>
      <y>70</y>
      <width>48</width>
-     <height>24</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
@@ -143,11 +176,14 @@
   <widget class="QSpinBox" name="InputDesignYearTo">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>100</y>
+     <x>170</x>
+     <y>110</y>
      <width>48</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qconicalgradient(cx:1, cy:0.0340909, angle:0, stop:0 rgba(35, 40, 3, 255), stop:0.16 rgba(136, 106, 22, 255), stop:0.225 rgba(166, 140, 41, 255), stop:0.285 rgba(204, 181, 74, 255), stop:0.345 rgba(235, 219, 102, 255), stop:0.415 rgba(245, 236, 112, 255), stop:0.52 rgba(209, 190, 76, 255), stop:0.57 rgba(187, 156, 51, 255), stop:0.635 rgba(168, 142, 42, 255), stop:0.695 rgba(202, 174, 68, 255), stop:0.75 rgba(218, 202, 86, 255), stop:0.815 rgba(208, 187, 73, 255), stop:0.88 rgba(187, 156, 51, 255), stop:0.935 rgba(137, 108, 26, 255), stop:1 rgba(35, 40, 3, 255));</string>
    </property>
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
