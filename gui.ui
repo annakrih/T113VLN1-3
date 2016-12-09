@@ -253,7 +253,7 @@ color:white;</string>
 color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Add Relation</string>
     </property>
    </widget>
    <zorder>searchComboBox</zorder>
