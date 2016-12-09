@@ -109,6 +109,8 @@ void Gui::onAddPersonButton(){
 void Gui::onEditPersonButton(){
     QMap<QString, int> gList = domain.getAcceptedGenderName();
 
+    lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
+
     personDialogWindow = new PersonDialog(this,gList
                           ,ui->tableView->model()->index(lastSelection,1).data().toString()
                           ,ui->tableView->model()->index(lastSelection,2).data().toString()
@@ -146,6 +148,8 @@ void Gui::onAddComputerButton(){
 
 void Gui::onEditComputerButton(){
     QMap<int, QString> tList = domain.getAcceptedComputerTypeName();
+
+    lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
 
     computerDialogWindow = new ComputerDialog(this,tList
                           ,ui->tableView->model()->index(lastSelection,1).data().toString()
@@ -188,6 +192,8 @@ void Gui::onNewPersonAccepted(const QString &n, const int &g, const QString &nat
 
 void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d){
 
+    lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
+
     this->setEnabled(true);
     QSqlRecord record = personModel->record();
     record.setValue(0,id);
@@ -219,6 +225,8 @@ void Gui::onComputerAccepted(const QString &n, const int &t, const int &d, const
 }
 
 void Gui::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b){
+
+    lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
 
     this->setEnabled(true);
     QSqlRecord record = computerModel->record();
