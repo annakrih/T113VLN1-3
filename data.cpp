@@ -20,6 +20,7 @@ void Data::importSQL()
 
     if(!tables)
     {
+        std::cout << "No database found, creating tables and importing data";
         QFile schema(schemaFile);
         if (schema.open(QIODevice::ReadOnly))
         {
@@ -109,27 +110,22 @@ QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
    return model;
 }
 
-QSqlQueryModel* Data::readComputerRelation(QString filter){
+QSqlQueryModel* Data::readComputerRelation(QString id){
 
     QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT P.* from Person as P INNER JOIN person_computer as PC on p.id = PC.personId INNER JOIN computer as C on PC.computerId = C.id where C.id ="+filter);
+    model->setQuery("SELECT P.* from Person as P INNER JOIN person_computer as PC on p.id = PC.personId INNER JOIN computer as C on PC.computerId = C.id where C.id ="+id);
 
     return model;
 };
 
-QSqlQueryModel* Data::readPersonRelation(QString filter){
+QSqlQueryModel* Data::readPersonRelation(QString id){
 
     QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT C.* from Computer as C INNER JOIN person_computer as PC on C.id = PC.computerId INNER JOIN person as p on PC.personId = P.id where P.id = "+filter);
+    model->setQuery("SELECT C.* from Computer as C INNER JOIN person_computer as PC on C.id = PC.computerId INNER JOIN person as p on PC.personId = P.id where P.id = "+id);
 
     return model;
 };
 
-
-void Data::clearDatabase()
-{
-    QSqlQuery query("delete from person");
-}
 
 void Data::initializeData()
 {

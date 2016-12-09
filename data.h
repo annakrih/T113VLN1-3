@@ -9,7 +9,6 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include "config.h"
 #include "utils.h"
 
 
@@ -22,22 +21,17 @@ class Data
 {
 private:
     Utils utils;
+
+    //custom dir/file variables;
     const QString databaseDir = utils.workingDir+"database/";
     const QString schemaFile = databaseDir + "schema.sql";
     const QString initialPersons = databaseDir + "personsInitialData.csv";
     const QString initialComputers = databaseDir + "computersInitialData.csv";
     const QString initialRelations = databaseDir + "relationsInitialData.csv";
 
+    //init database and locate db file;
     QSqlDatabase db;
     QString dbName = databaseDir + "team8.db";
-
-    //people file path
-    const QString peopleFile = databaseDir+"people.txt";
-    //config file path
-    const QString configFile = databaseDir+"config.txt";
-
-    //confic class contains config settings.
-    Config config;
 
 
 public:
@@ -46,26 +40,32 @@ public:
 
     void importSQL();
 
-    //reads information stored inside a file and puts it into the main person vector
+    //get tableModel of Person sql table, searchable with filter; (filter strings created in domain layer)
     QSqlRelationalTableModel* readPeopleFromDatabase(QString filter = "");
 
+    //get tableModel of Computer sql table, searchable with filter; (filter strings created in domain layer)
     QSqlRelationalTableModel* readComputerFromDatabase(QString filter = "");
 
-    QSqlQueryModel* readPersonRelation(QString filter = "");
+    //get tableModel of computer where person.id has a relation
+    QSqlQueryModel* readPersonRelation(QString id);
 
-    QSqlQueryModel* readComputerRelation(QString filter = "");
+    //get tableModel of person where person.id has a relation
+    QSqlQueryModel* readComputerRelation(QString id);
 
+    //submit any changes to table, QSqlRelationalTableModel deals with all inserts/deletes/updates needed. (awesome)
     QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);
 
-    void clearDatabase();
-
+    //gets the list of genders stored on the database, has both "M" and "Male" hence the double map.
+    //domain has functions get either char or string.
     QMap<int,QMap<QString,QString>>getAcceptedGender();
 
+    //gets the list of accepted computer types
     QMap<QString, int> getAcceptedComputerTypes();
 
+    //takes in personId and computerId and creates a relation between the two tables;
     void createPCRelation(int p, int c);
 
-    //functiion if file is empty
+    //function that import cvs files and their data to the database.
     void initializeData();
     void initializePersons();
     void initializeComputers();

@@ -6,8 +6,6 @@
 
 #include "personDialog.h"
 #include "computerdialog.h"
-#include "searchPersonDialog.h"
-
 
 #include <QMainWindow>
 
@@ -78,7 +76,6 @@ private:
     void loadTopTable(QSqlRelationalTableModel * model);
     void loadBottomTable(QSqlQueryModel * model);
     void loadBottomTableEditMode(QSqlRelationalTableModel * model);
-    SearchPersonDialog *searchPersonDialogWindow;
 
     void switchToPerson();
     void switchToComputer();

@@ -23,28 +23,20 @@ TEMPLATE = app
 SOURCES += $$PWD/main.cpp \
     $$PWD/domain.cpp \
     $$PWD/data.cpp \
-    $$PWD/config.cpp \
     $$PWD/utils.cpp \
     $$PWD/personDialog.cpp \
     $$PWD/gui.cpp \
-    $$PWD/searchPersonDialog.cpp \
-    $$PWD/searchComputerDialog.cpp \
     $$PWD/computerDialog.cpp
 
 HEADERS += \
     $$PWD/domain.h \
     $$PWD/data.h \
-    $$PWD/config.h \
     $$PWD/utils.h \
     $$PWD/personDialog.h \
     $$PWD/gui.h \
-    $$PWD/searchComputerDialog.h \
-    $$PWD/searchPersonDialog.h \
     $$PWD/computerDialog.h
 
 FORMS += \
     $$PWD/personDialog.ui \
     $$PWD/gui.ui \
-    $$PWD/searchComputerDialog.ui \
-    $$PWD/searchPersonDialog.ui \
     $$PWD/computerDialog.ui
