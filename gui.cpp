@@ -77,6 +77,7 @@ void Gui::loadTopTable(QSqlRelationalTableModel * model)
     ui->tableView-> setModel(model);
     ui->tableView->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
+    ui->tableView->verticalHeader()->hide();
     ui->tableView->setColumnHidden(0,true);
 }
 
@@ -84,6 +85,7 @@ void Gui::loadBottomTable(QSqlQueryModel * model){
     ui->tableView_2-> setModel(model);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
+    ui->tableView_2->verticalHeader()->hide();
     ui->tableView_2->setColumnHidden(0,true);
 }
 
