@@ -13,13 +13,14 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QString n, Q
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
     fillGenderMenu(gMap);
+    fillNationalityMenu();
 
     if(id){
         ui->hiddenId->setValue(id);
         ui->personName->setFocus();
         ui->personName->setText(n);
         ui->personGender->setCurrentText(g);
-        ui->personNat->setText(nat);
+        ui->personNat->setCurrentText(nat);
         ui->personBY->setValue(b);
         if(!d)
         {
@@ -43,7 +44,7 @@ void PersonDialog::on_buttonBox_accepted()
 {
     QString name = ui->personName->text().trimmed();
     int gender =  ui->personGender->itemData(ui->personGender->currentIndex()).toInt();
-    QString nationality = ui->personNat->text().trimmed();
+    QString nationality = ui->personNat->currentText().trimmed();
     int bY = ui->personBY->value();
     int dY;
     if(ui->personCheckDY->checkState() && ui->personBY->value() != 0)
@@ -82,12 +83,13 @@ void PersonDialog::fillGenderMenu(QMap<QString,int> gMap)
 
 void PersonDialog::fillNationalityMenu()
 {
+
+    ui->personGender->addItem("",0);
     for ( int i = 1; i < 256; i++ )
     {
        QLocale::Country foo = static_cast<QLocale::Country>(i);
-       QString test = QLocale::countryToString(foo);
-       //TODO
-       //ui->personGender->addItem(i.key(),i.value());
+       QString country = QLocale::countryToString(foo);
+       ui->personNat->addItem(country);
     }
 }
 
@@ -98,7 +100,7 @@ void PersonDialog::checkForm()
 
     if(ui->personName->text() != "") count++;
     if(ui->personGender->itemData(ui->personGender->currentIndex()).toInt() != 0) count++;
-    if(ui->personNat->text() != "") count++;
+    if(ui->personNat->currentText() != "") count++;
     if(ui->personBY->value() != 0) count++;
     if(ui->personCheckDY->checkState() && ui->personBY->value() != 0){
         count++;
@@ -127,13 +129,8 @@ void PersonDialog::on_personName_textChanged(const QString &arg1)
     checkForm();
 }
 
-void PersonDialog::on_personNat_textChanged(const QString &arg1)
+void PersonDialog::on_personNat_currentIndexChanged(const int &arg1)
 {
-    if(arg1.length() && arg1[arg1.length() - 1] != ' ')
-    {
-        QString text = utils.capitalizeString(arg1);
-        ui->personNat->setText(text);
-    }
     checkForm();
 }
 

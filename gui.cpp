@@ -580,13 +580,15 @@ void Gui::on_searchComboBox_currentIndexChanged(int index)
 void Gui::on_editRelation_toggled(bool checked)
 {
     editMode = checked;
-    if(editMode){
+    if(editMode)
+    {
 
         if(currentMode == Computer){
             loadBottomTableEditMode(personModel);
         }else if(currentMode == Person){
             loadBottomTableEditMode(computerModel);
         }
+
     }else{
         loadRelation();
     }
