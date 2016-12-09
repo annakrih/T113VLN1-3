@@ -37,6 +37,10 @@ private slots:
 
     void on_PersonDialog_finished(int result);
 
+    void on_personBY_valueChanged(int arg1);
+
+    void on_personDY_valueChanged(int arg1);
+
 signals:
     void newPersonAccepted(const QString &n, const int &g, const QString &nat, const int &b, const int &d);
     void editPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d);

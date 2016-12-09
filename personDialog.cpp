@@ -173,3 +173,13 @@ void PersonDialog::on_PersonDialog_finished(int result)
 {
     emit this->personRejected();
 }
+
+void PersonDialog::on_personBY_valueChanged(int arg1)
+{
+    checkForm();
+}
+
+void PersonDialog::on_personDY_valueChanged(int arg1)
+{
+    checkForm();
+}

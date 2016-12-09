@@ -31,6 +31,17 @@ Gui::~Gui()
 }
 
 void Gui::checkStatus(){
+
+    int selected = ui->tableView->selectionModel()->selectedRows().size();
+
+    if(selected){
+        ui->deleteButton->setEnabled(false);
+        ui->addEditButton->setText("Edit");
+        selected > 1 ? ui->deleteButton->setEnabled(false) : ui->deleteButton->setEnabled(true);
+    }else{
+        ui->addEditButton->setText("Add");
+    }
+
     bool hasChanged = 0;
     if(currentMode == Person){
         hasChanged = personModel->isDirty();
@@ -252,20 +263,17 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
     if(lastSelection == index.row() ){
 
         overrideOnSelectionChange = true;
-        std::cout << "0";
 
         ui->tableView->selectionModel()->clearSelection();
-        ui->deleteButton->setEnabled(false);
-        ui->addEditButton->setText("Add");
         lastSelection = -1;
 
         overrideOnSelectionChange = false;
 
     }else{
         lastSelection = index.row();
-        ui->deleteButton->setEnabled(true);
-        ui->addEditButton->setText("Edit");
     }
+
+    checkStatus();
 
 }
 
@@ -275,15 +283,9 @@ void Gui::onSelectionChange(const QItemSelection &a, const QItemSelection &b)
     if(!overrideOnSelectionChange)
     {
         lastSelection = -1;
-        ui->deleteButton->setEnabled(true);
-        ui->addEditButton->setText("Edit");
-
-        if(ui->tableView->selectionModel()->selectedRows().size() > 1){
-            ui->addEditButton->setEnabled(false);
-        }else{
-            ui->addEditButton->setEnabled(true);
-        }
     }
+
+    checkStatus();
 }
 
 void Gui::on_saveButton_released()
@@ -372,6 +374,8 @@ void Gui::on_comboBox_currentIndexChanged(int index)
       SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
       SLOT(onSelectionChange(const QItemSelection &, const QItemSelection &))
      );
+
+    checkStatus();
 }
 
 void Gui::switchToPerson(){ //happens on switch to person
@@ -394,8 +398,6 @@ void Gui::switchToPerson(){ //happens on switch to person
 
     currentMode = Person;
     ui->tableView->selectionModel()->clearSelection();
-    ui->deleteButton->setEnabled(false);
-    ui->addEditButton->setText("Add");
     loadTopTable(domain.getPersonModel());
     //todo load bottom
 }
@@ -420,8 +422,6 @@ void Gui::switchToComputer(){ //happens on switch to computer
 
      currentMode = Computer;
      ui->tableView->selectionModel()->clearSelection();
-     ui->deleteButton->setEnabled(false);
-     ui->addEditButton->setText("Add");
      loadTopTable(domain.getComputerModel());
      //todo load bottom
 
