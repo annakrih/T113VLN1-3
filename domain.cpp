@@ -150,7 +150,7 @@ QSqlRelationalTableModel * Domain::searchComputerType(QString search)
 {
     QMap<QString, int> types = data.getAcceptedComputerTypes();
 
-    QVariant typeId = types.value(search);
+    QVariant typeId = types.value(utils.capitalizeString(search));
 
     QString filter = "computer.typeId = '"+typeId.toString()+"'";
     return data.readComputerFromDatabase(filter);

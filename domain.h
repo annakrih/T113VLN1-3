@@ -17,7 +17,8 @@ class Domain
 private:
     //declare data variable, to have access to lower layer.
     Data data;
-    static const int dummyNull = 9999;
+
+    Utils utils;
 public:
     Domain();
 
