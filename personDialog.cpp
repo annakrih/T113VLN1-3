@@ -83,7 +83,7 @@ void PersonDialog::fillNationalityMenu(){
     {
        QLocale::Country foo = static_cast<QLocale::Country>(i);
        QString test = QLocale::countryToString(foo);
-
+       //TODO
        //ui->personGender->addItem(i.key(),i.value());
     }
 }

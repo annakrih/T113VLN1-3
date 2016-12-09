@@ -12,3 +12,4 @@ SearchComputerDialog::~SearchComputerDialog()
 {
     delete ui;
 }
+
