@@ -24,7 +24,7 @@ color: white;</string>
       <x>30</x>
       <y>50</y>
       <width>751</width>
-      <height>141</height>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -50,9 +50,9 @@ color:black;</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>200</y>
-      <width>75</width>
-      <height>23</height>
+      <y>230</y>
+      <width>71</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -70,9 +70,9 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>200</y>
-      <width>75</width>
-      <height>23</height>
+      <y>230</y>
+      <width>71</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -90,9 +90,9 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>200</y>
-      <width>75</width>
-      <height>23</height>
+      <y>230</y>
+      <width>71</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -112,9 +112,9 @@ color: rgb(0, 0, 0);
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>200</y>
+      <y>230</y>
       <width>75</width>
-      <height>23</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -129,9 +129,9 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>20</y>
-      <width>101</width>
-      <height>22</height>
+      <y>11</y>
+      <width>141</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -169,10 +169,10 @@ background-color: qconicalgradient(cx:1, cy:0, angle:0, stop:0 rgba(35, 40, 3, 2
    <widget class="QLineEdit" name="quickSearchInput">
     <property name="geometry">
      <rect>
-      <x>525</x>
-      <y>14</y>
-      <width>150</width>
-      <height>25</height>
+      <x>454</x>
+      <y>8</y>
+      <width>221</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -188,9 +188,9 @@ color: rgb(0, 0, 0);
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>240</y>
+      <y>270</y>
       <width>751</width>
-      <height>192</height>
+      <height>181</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -207,10 +207,10 @@ background-color: qconicalgradient(cx:1, cy:0, angle:0, stop:0 rgba(35, 40, 3, 2
    <widget class="QComboBox" name="searchComboBox">
     <property name="geometry">
      <rect>
-      <x>409</x>
-      <y>15</y>
-      <width>110</width>
-      <height>22</height>
+      <x>320</x>
+      <y>10</y>
+      <width>131</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -222,10 +222,10 @@ color: rgb(0, 0, 0);
    <widget class="QCheckBox" name="editRelation">
     <property name="geometry">
      <rect>
-      <x>618</x>
-      <y>201</y>
-      <width>81</width>
-      <height>17</height>
+      <x>570</x>
+      <y>230</y>
+      <width>111</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -242,10 +242,10 @@ color:white;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>200</y>
-      <width>75</width>
-      <height>23</height>
+      <x>680</x>
+      <y>230</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -275,7 +275,7 @@ color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>812</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
