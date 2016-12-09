@@ -96,11 +96,11 @@ QSqlRelationalTableModel * Domain::searchPersonBY(QString search)
     QString filter;
     if(birthY.size() == 2)
     {
-        filter = "computer.designYear > "+birthY[0]+ " AND computer.designYear < "+birthY[1];
+        filter = "person.birthYear > "+birthY[0]+ " AND person.birthYear < "+birthY[1];
     }
     else
     {
-        filter = "computer.designYear = '"+birthY[0]+"'";
+        filter = "person.birthYear = '"+birthY[0]+"'";
     }
     return data.readPeopleFromDatabase(filter);
 
@@ -113,11 +113,11 @@ QSqlRelationalTableModel * Domain::searchPersonDY(QString search)
     QString filter;
     if(deathY.size() == 2)
     {
-        filter = "computer.designYear > "+deathY[0]+ " AND computer.designYear < "+deathY[1];
+        filter = "person.deathYear > "+deathY[0]+ " AND person.deathYear < "+deathY[1];
     }
     else
     {
-        filter = "computer.designYear = '"+deathY[0]+"'";
+        filter = "person.deathYear = '"+deathY[0]+"'";
     }
     return data.readPeopleFromDatabase(filter);
 
@@ -133,7 +133,7 @@ QSqlRelationalTableModel * Domain::searchComputerType(QString search)
 {
     QMap<int, QString> types = data.getAcceptedComputerTypes();
 
-
+QString filter;
 
 
     //QString filter = "computer.typeId like '%"++"%'";
