@@ -110,12 +110,12 @@ void Gui::onEditPersonButton(){
     QMap<QString, int> gList = domain.getAcceptedGenderName();
 
     personDialogWindow = new PersonDialog(this,gList
-                          ,ui->tableView->model()->index(lastSelectedRow,1).data().toString()
-                          ,ui->tableView->model()->index(lastSelectedRow,2).data().toString()
-                          ,ui->tableView->model()->index(lastSelectedRow,3).data().toString()
-                          ,ui->tableView->model()->index(lastSelectedRow,4).data().toInt()
-                          ,ui->tableView->model()->index(lastSelectedRow,5).data().toInt()
-                          ,ui->tableView->model()->index(lastSelectedRow,0).data().toInt());
+                          ,ui->tableView->model()->index(lastSelection,1).data().toString()
+                          ,ui->tableView->model()->index(lastSelection,2).data().toString()
+                          ,ui->tableView->model()->index(lastSelection,3).data().toString()
+                          ,ui->tableView->model()->index(lastSelection,4).data().toInt()
+                          ,ui->tableView->model()->index(lastSelection,5).data().toInt()
+                          ,ui->tableView->model()->index(lastSelection,0).data().toInt());
 
     QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
     QObject::connect(personDialogWindow,
@@ -148,11 +148,11 @@ void Gui::onEditComputerButton(){
     QMap<int, QString> tList = domain.getAcceptedComputerTypeName();
 
     computerDialogWindow = new ComputerDialog(this,tList
-                          ,ui->tableView->model()->index(lastSelectedRow,1).data().toString()
-                          ,ui->tableView->model()->index(lastSelectedRow,2).data().toString()
-                          ,ui->tableView->model()->index(lastSelectedRow,3).data().toInt()
-                          ,ui->tableView->model()->index(lastSelectedRow,4).data().toInt()
-                          ,ui->tableView->model()->index(lastSelectedRow,0).data().toInt());
+                          ,ui->tableView->model()->index(lastSelection,1).data().toString()
+                          ,ui->tableView->model()->index(lastSelection,2).data().toString()
+                          ,ui->tableView->model()->index(lastSelection,3).data().toInt()
+                          ,ui->tableView->model()->index(lastSelection,4).data().toInt()
+                          ,ui->tableView->model()->index(lastSelection,0).data().toInt());
 
     QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onComputerRejected()));
     QObject::connect(computerDialogWindow,
@@ -196,7 +196,7 @@ void Gui::onEditPersonAccepted(const int &id, const QString &n, const int &g, co
     record.setValue(3,nat);
     record.setValue(4,b);
     record.setValue(5,d);
-    personModel->setRecord(lastSelectedRow,record);
+    personModel->setRecord(lastSelection,record);
     ui->tableView->setModel(personModel);
 
     checkStatus();
@@ -227,7 +227,7 @@ void Gui::onEditComputerAccepted(const int &id, const QString &n, const int &t, 
     record.setValue(2,t);
     record.setValue(3,d);
     record.setValue(4,b);
-    computerModel->setRecord(lastSelectedRow,record);
+    computerModel->setRecord(lastSelection,record);
     ui->tableView->setModel(computerModel);
 
     checkStatus();
