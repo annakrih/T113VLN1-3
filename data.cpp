@@ -14,7 +14,8 @@ Data::Data()
     readConfigFromFile();
 }
 
-void Data::importSQL(){
+void Data::importSQL()
+{
 
     QSqlQuery query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
     query.next();
@@ -29,7 +30,8 @@ void Data::importSQL(){
 
             foreach (QString command, schemaCommands)
             {
-                if (command.trimmed().isEmpty()) {
+                if (command.trimmed().isEmpty())
+                {
                     continue;
                 }
                 if (!query.exec(command))
@@ -42,11 +44,13 @@ void Data::importSQL(){
     }
 }
 
-QMap<int,QMap<QString,QString>> Data::getAcceptedGender(){
+QMap<int,QMap<QString,QString>> Data::getAcceptedGender()
+{
 
     QMap<int,QMap<QString,QString>> genders;
     QSqlQuery query("SELECT id, genderName, genderChar FROM Person_Gender");
-    while (query.next()) {
+    while (query.next())
+    {
        int id = query.value(0).toInt();
        QString gName = query.value(1).toString();
        QString gChar = query.value(2).toString();
@@ -55,7 +59,7 @@ QMap<int,QMap<QString,QString>> Data::getAcceptedGender(){
        genders.insert(id,strings);
     }
     return genders;
-};
+}
 
 QMap<int, QString> Data::getAcceptedComputerTypes()
 {
@@ -72,7 +76,8 @@ QMap<int, QString> Data::getAcceptedComputerTypes()
     return computerTypes;
 }
 
-QSqlRelationalTableModel* Data::submitDatabaseChanges(QSqlRelationalTableModel* model){
+QSqlRelationalTableModel* Data::submitDatabaseChanges(QSqlRelationalTableModel* model)
+{
     model->submitAll();
     return model;
 }
@@ -201,4 +206,37 @@ void Data::readConfigFromFile()
 void Data::clearDatabase()
 {
     QSqlQuery query("delete from person");
+}
+
+//Read from file with computers and persons
+void Data::initializeData()
+{
+    // QStream B QStringlist
+    // QStringlist.B.readAlc().split(",");
+
+    /*QSqlQuery query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
+    query.next();
+    int tables = query.value(0).toInt();
+
+    if(!tables)
+    {
+        QFile schema(schemaFile);
+        if (schema.open(QIODevice::ReadOnly))
+        {
+            QStringList schemaCommands = QTextStream(&schema).readAll().split(';');
+
+            foreach (QString command, schemaCommands)
+            {
+                if (command.trimmed().isEmpty())
+                {
+                    continue;
+                }
+                if (!query.exec(command))
+                {
+                    qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
+                }
+            }
+            query.finish();
+        }
+    }*/
 }
