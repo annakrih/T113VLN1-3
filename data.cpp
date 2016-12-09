@@ -208,25 +208,22 @@ void Data::clearDatabase()
     QSqlQuery query("delete from person");
 }
 
-//Read from file with computers and persons
 void Data::initializeData()
 {
-    // QStream B QStringlist
-    // QStringlist.B.readAlc().split(",");
-
-    /*QSqlQuery query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
+    QSqlQuery query;
     query.next();
-    int tables = query.value(0).toInt();
+  //  int tables = query.value(0).toInt();
 
-    if(!tables)
+   // if(!tables)
     {
-        QFile schema(schemaFile);
-        if (schema.open(QIODevice::ReadOnly))
+        QFile file("database/personsInitialData.csv");
+        if (file.open(QIODevice::ReadOnly|QIODevice::Text))
         {
-            QStringList schemaCommands = QTextStream(&schema).readAll().split(';');
+            QStringList fileCommands = QTextStream(&file).readAll().split(',');
 
-            foreach (QString command, schemaCommands)
+            foreach (QString command, fileCommands)
             {
+                //query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
                 if (command.trimmed().isEmpty())
                 {
                     continue;
@@ -238,5 +235,5 @@ void Data::initializeData()
             }
             query.finish();
         }
-    }*/
+    }
 }
