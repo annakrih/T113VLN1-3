@@ -16,7 +16,6 @@ Data::Data()
 
 void Data::importSQL()
 {
-
     QSqlQuery query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
     query.next();
     int tables = query.value(0).toInt();
@@ -46,7 +45,6 @@ void Data::importSQL()
 
 QMap<int,QMap<QString,QString>> Data::getAcceptedGender()
 {
-
     QMap<int,QMap<QString,QString>> genders;
     QSqlQuery query("SELECT id, genderName, genderChar FROM Person_Gender");
     while (query.next())
@@ -86,49 +84,45 @@ QSqlRelationalTableModel* Data::submitDatabaseChanges(QSqlRelationalTableModel* 
 //done at start up
 QSqlRelationalTableModel * Data::readPeopleFromDatabase(QString filter)
 {
+   QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
+   model->setTable("person");
+   model->setRelation(2, QSqlRelation("Person_Gender", "id", "GenderName"));
 
-       QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
-       model->setTable("person");
-       model->setRelation(2, QSqlRelation("Person_Gender", "id", "GenderName"));
+   //todo use filter as search
+   /*
+   QString test = "An";
+   QString filter = "person.name like '%"+test+"%' ";
+   model->setFilter(filter);
 
-       //todo use filter as search
-       /*
-       QString test = "An";
-       QString filter = "person.name like '%"+test+"%' ";
-       model->setFilter(filter);
+   //sort example
+   model->setSort(1, Qt::SortOrder::DescendingOrder);
+   */
 
-       //sort example
-       model->setSort(1, Qt::SortOrder::DescendingOrder);
-       */
+   model->setFilter(filter);
 
-       model->setFilter(filter);
+   model->select();
+   model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-       model->select();
-       model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-
-       return model;
+   return model;
 }
 
 QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
 {
+   QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
+   model->setTable("computer");
+   model->setRelation(2, QSqlRelation("Computer_Type", "id", "typeName"));
+   model->setFilter(filter);
 
-       QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
-       model->setTable("computer");
-       model->setRelation(2, QSqlRelation("Computer_Type", "id", "typeName"));
-       model->setFilter(filter);
+   model->select();
+   model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-       model->select();
-       model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-
-       return model;
+   return model;
 }
 
 QSqlQueryModel* Data::readComputerRelation(QString filter){
 
     QSqlQueryModel *model = new QSqlQueryModel;
     model->setQuery("SELECT P.* from Person as P left join person_computer as PC on p.id = PC.personId left join computer as C on PC.computerId = C.id where C.id ="+filter);
-
-
 
     return model;
 };
@@ -140,8 +134,6 @@ QSqlQueryModel* Data::readPersonRelation(QString filter){
 
     return model;
 };
-
-
 
 //getConfig returns a copy of the config object
 Config Data::getConfig()
