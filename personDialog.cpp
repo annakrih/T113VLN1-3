@@ -193,3 +193,8 @@ void PersonDialog::on_personDY_valueChanged(int arg1)
 {
     checkForm();
 }
+
+void PersonDialog::on_textEdit_textChanged()
+{
+    checkForm();
+}
