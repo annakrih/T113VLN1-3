@@ -23,7 +23,6 @@ public:
     ~MainWindow();
 
     void on_comboBox_currentIndexChanged(int index);
-    void fillSearchComboBoxP();
     void fillSearchComboBoxC();
     void on_searchComboBox_currentIndexChanged(int index);
     void loadPersonTable(QSqlRelationalTableModel * model);
@@ -36,17 +35,25 @@ private slots:
 
     void on_comboBox_searchComputer_currentIndexChanged(int index);
 
-    void on_searchButton_Comp_released();
+    void on_searchInput_Person_textEdited(const QString& searchString);
 
-    void on_searchButton_Person_released();
+    void on_searchInput_Comp_textEdited(const QString &searchString);
+
+    void on_button_advSearchPerson_released();
 
 private:
     Ui::MainWindow *ui;
     int currentPersonSearchIndex = 0;
     int currentCompSearchIndex = 0;
+    bool showMoreFilterOpsPersons = 0;
+//    bool showMoreFilterOpsComps = 0;
     Domain domain;
     QSqlRelationalTableModel* personModel;
     QSqlRelationalTableModel* computerModel;
+
+    void searchPerson(const QString& searchInput);
+    void searchComp(const QString& searchInput);
+
 };
 
 #endif // MAINWINDOW_H

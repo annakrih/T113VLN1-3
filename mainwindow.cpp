@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    fillSearchComboBoxP();
     fillSearchComboBoxC();
 
     personModel = domain.getPersonModel();
@@ -21,16 +20,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::fillSearchComboBoxP()
-{
-    ui->comboBox_searchPerson->addItem("Name",0);
-    ui->comboBox_searchPerson->addItem("Gender",1);
-    ui->comboBox_searchPerson->addItem("Nationality",2);
-    ui->comboBox_searchPerson->addItem("Birth year",3);
-    ui->comboBox_searchPerson->addItem("Death year",4);
-
-};
 
 void MainWindow::fillSearchComboBoxC()
 {
@@ -68,9 +57,9 @@ void MainWindow::on_comboBox_searchComputer_currentIndexChanged(int index)
     currentCompSearchIndex = index;
 }
 
-void MainWindow::on_searchButton_Comp_released()
+void MainWindow::searchComp(const QString& searchInput)
 {
-    QString search = ui->searchInput_Comp->text();
+ /*   QString search = ui->searchInput_Comp->text();
     std::cout << search.toStdString();
 
     if(currentCompSearchIndex == 0)
@@ -89,31 +78,48 @@ void MainWindow::on_searchButton_Comp_released()
     {
         loadCompTable(domain.searchComputerBY(search));
     }
+    */
 }
 
-void MainWindow::on_searchButton_Person_released()
+void MainWindow::searchPerson(const QString& searchInput)
 {
-    QString search = ui->searchInput_Person->text();
-    std::cout << search.toStdString();
+    std::cout << searchInput.toStdString();
 
     if(currentPersonSearchIndex == 0)
     {
-        loadPersonTable(domain.searchPersonName(search));
+        loadPersonTable(domain.searchPersonName(searchInput));
     }
     else if(currentPersonSearchIndex == 1)
     {
-        loadPersonTable(domain.searchPersonGender(search));
+        loadPersonTable(domain.searchPersonGender(searchInput));
     }
     else if(currentPersonSearchIndex == 2)
     {
-        loadPersonTable(domain.searchPersonNationality(search));
+        loadPersonTable(domain.searchPersonNationality(searchInput));
     }
     else if(currentPersonSearchIndex == 3)
     {
-        loadPersonTable(domain.searchPersonBY(search));
+        loadPersonTable(domain.searchPersonBY(searchInput));
     }
     else if(currentPersonSearchIndex == 4)
     {
-        loadPersonTable(domain.searchPersonDY(search));
+        loadPersonTable(domain.searchPersonDY(searchInput));
     }
+}
+
+void MainWindow::on_searchInput_Person_textEdited(const QString& searchString)
+{
+    searchPerson(searchString);
+}
+
+void MainWindow::on_searchInput_Comp_textEdited(const QString& searchString)
+{
+    searchComp(searchString);
+}
+
+void MainWindow::on_button_advSearchPerson_released()
+{
+    showMoreFilterOpsPersons = !showMoreFilterOpsPersons;
+    ui->widget_moreFilterOpsPersons->setVisible(showMoreFilterOpsPersons);
+    ui->widget_moreFilterOpsPersons->setEnabled(showMoreFilterOpsPersons);
 }
