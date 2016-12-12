@@ -1,0 +1,12 @@
+INPUT(
+./debug\.obj\main.o
+./debug\.obj\domain.o
+./debug\.obj\data.o
+./debug\.obj\utils.o
+./debug\.obj\personDialog.o
+./debug\.obj\gui.o
+./debug\.obj\computerDialog.o
+./debug\.obj\moc_personDialog.o
+./debug\.obj\moc_gui.o
+./debug\.obj\moc_computerDialog.o
+);
