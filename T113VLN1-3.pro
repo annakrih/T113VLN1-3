@@ -2,7 +2,7 @@ QT += core sql gui widgets
 
 CONFIG += c++11
 
-TARGET = T113VLN1-2
+TARGET = T113VLN1-3
 CONFIG += console
 CONFIG -= app_bundle
 
@@ -26,7 +26,8 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/utils.cpp \
     $$PWD/personDialog.cpp \
     $$PWD/gui.cpp \
-    $$PWD/computerDialog.cpp
+    $$PWD/computerDialog.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     $$PWD/domain.h \
@@ -34,9 +35,11 @@ HEADERS += \
     $$PWD/utils.h \
     $$PWD/personDialog.h \
     $$PWD/gui.h \
-    $$PWD/computerDialog.h
+    $$PWD/computerDialog.h \
+    mainwindow.h
 
 FORMS += \
     $$PWD/personDialog.ui \
     $$PWD/gui.ui \
-    $$PWD/computerDialog.ui
+    $$PWD/computerDialog.ui \
+    mainwindow.ui

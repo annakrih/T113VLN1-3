@@ -3,6 +3,9 @@
 #include <vector>
 #include "utils.h"
 #include "domain.h"
+#include <string>
+#include <iostream>
+#include <QMessageBox>
 
 #include "personDialog.h"
 #include "computerdialog.h"
