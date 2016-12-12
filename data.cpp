@@ -9,10 +9,10 @@ Data::Data()
     db.setDatabaseName(dbName);
     db.open();
 
-    importSQL();
+    importSchema();
 }
 
-void Data::importSQL()
+void Data::importSchema()
 {
     QSqlQuery query("SELECT count(name) as count FROM sqlite_master WHERE type='table'");
     query.next();
@@ -20,7 +20,7 @@ void Data::importSQL()
 
     if(!tables)
     {
-        std::cout << "No database found, creating tables and importing data";
+        qWarning(QString("No database found, creating tables and importing data").toLocal8Bit());
         QFile schema(schemaFile);
         if (schema.open(QIODevice::ReadOnly))
         {
@@ -129,9 +129,16 @@ QSqlQueryModel* Data::readPersonRelation(QString id){
 
 void Data::initializeData()
 {
-    initializePersons();
-    initializeComputers();
-    initializeRelations();
+    QFile gender(initialGender);
+    QFile person(initialPerson);
+    QFile computeryType(initialComputerType);
+    QFile computer(initialComputer);
+    QFile personComputer(initialPerson_Computer);
+    importCSV("Person_Gender", gender);
+    importCSV("Person", person);
+    importCSV("computer_type", computeryType);
+    importCSV("computer", computer);
+    importCSV("person_computer", personComputer);
 }
 
 void Data::createPCRelation(int p, int c){
@@ -153,98 +160,45 @@ void Data::createPCRelation(int p, int c){
 
 }
 
-void Data::initializePersons()
-{
-    QSqlQuery query;
-    query.prepare("INSERT INTO person (name, genderId, nationality, birthYear, deathYear)"
-                      "VALUES (:name, :genderId, :nationality, :birthYear, :deathYear)");
+void Data::importCSV(QString tableName, QFile & csvFile){
 
-    QFile file(initialPersons);
-    if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if(!csvFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        qFatal(QString("Failed to open file to initialize persons."+query.lastError().text() ).toLocal8Bit() );
+        qWarning(QString("Failed to open file:"+csvFile.fileName()+".").toLocal8Bit() );
         return;
     }
 
-    QStringList inputList = QTextStream(&file).readAll().split(',');
+    QStringList fileRow = QTextStream(&csvFile).readAll().split('\n');
+    QStringList tableColumn = QTextStream(&fileRow[0]) .readAll().split(',');
 
-    for (int i=0; i < inputList.size(); i += 5)
+    QString queryColumns, queryValues, queryString;
+    foreach(QString column, tableColumn){
+        column = column.trimmed();
+        queryColumns.append(column+",");
+        queryValues.append(":"+column+",");
+    }
+    queryColumns.chop(1);
+    queryValues.chop(1);
+    fileRow.pop_front();
+
+    queryString = "INSERT INTO "+tableName+"("+queryColumns+") Values ("+queryValues+")";
+
+
+    QSqlQuery query;
+    query.prepare(queryString);
+
+    foreach (QString row, fileRow)
     {
-        QString name = inputList[i];
-        query.bindValue(":name", name.trimmed());
-        int gender = inputList[i+1] == "M" ? 1 : 0;
-        query.bindValue(":genderId", gender);
-        query.bindValue(":nationality", inputList[i+4]);
-        query.bindValue(":birthYear", inputList[i+2]);
-        query.bindValue(":deathYear", inputList[i+3]);
+        QStringList columns = QTextStream(&row).readAll().split(',');
+        for(int i = 0; i < columns.size(); i++){
+            query.bindValue(":"+tableColumn[i].trimmed(), columns[i].trimmed());
+        }
 
         if (!query.exec())
         {
             qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
         }
     }
-    file.close();
-    query.finish();
-}
-
-void Data::initializeComputers()
-{
-    QSqlQuery query;
-    query.prepare("INSERT INTO computer (name, designYear, buildYear, typeId)"
-                      "VALUES (:name, :designYear, :buildYear, :typeId)");
-
-    QFile file(initialComputers);
-    if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        qFatal(QString("Failed to open file to computers."+query.lastError().text() ).toLocal8Bit());
-        return;
-    }
-
-    QStringList inputList = QTextStream(&file).readAll().split(',');
-
-    for (int i=0; i < inputList.size(); i += 4)
-    {
-        QString name = inputList[i];
-        query.bindValue(":name", name.trimmed());
-        query.bindValue(":typeId", inputList[i+1]);
-        query.bindValue(":designYear", inputList[i+2]);
-        query.bindValue(":buildYear", inputList[i+3]);
-
-        if (!query.exec())
-        {
-            qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
-        }
-    }
-    file.close();
-    query.finish();
-}
-
-void Data::initializeRelations()
-{
-    QSqlQuery query;
-    query.prepare("INSERT INTO Person_Computer (personId, computerId)"
-                      "VALUES (:personId, :computerId)");
-
-    QFile file(initialRelations);
-    if(! file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        qFatal(QString("Failed to open file to initialize relations."+query.lastError().text() ).toLocal8Bit());
-        return;
-    }
-
-    QStringList inputList = QTextStream(&file).readAll().split(',');
-
-
-    for (int i=0; i < (inputList.size()-1); i += 2)
-    {
-        query.bindValue(":personId", inputList[i]);
-        query.bindValue(":computerId", inputList[i+1]);
-
-        if (!query.exec())
-        {
-            qFatal(QString("One of the query failed to execute.\n Error detail: " + query.lastError().text()).toLocal8Bit());
-        }
-    }
-    file.close();
+    csvFile.close();
     query.finish();
 }

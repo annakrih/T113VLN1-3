@@ -1,0 +1,25 @@
+name, genderId, birthYear, deathYear, nationality
+Edsger W. Dijkstra,1,1930,2002,Netherlands
+Steve Jobs,1,1955,2011,UnitedStates
+Bill Gates,1,1955,0,UnitedStates
+Ada Lovelace,2,1815,1852,England
+Charles Babbage,1,1791,1871,England
+Linus Torvalds,1,1969,0,Finland
+Grace Hopper,2,1906,1992,UnitedStates
+Alan Turing,1,1912,1954,England
+Mark Zukerberg,1,1984,0,UnitedStates
+Bjarne Stroustrup,1,1950,0,Denmark
+Gabe Newell,1,1962,0,UnitedStates
+Richard Stallman,1,1953,0,UnitedStates
+John Carmack,1,1970,0,UnitedStates
+Yukihiro Matsumoto,1,1965,0,Japan
+Blaise Pascal,1,1623,1662,France
+Wilhelm Schickard,1,1592,1635,German
+Steve Wozniak,1,1950,0,UnitedStates
+Charles Xavier Thomas,1,1785,1870,France
+Paul Gardner Allen,1,1953,0,UnitedStates
+John Mauchly,1,1907,1980,UnitedStates
+J. Presper Eckert,1,1919,1995,UnitedStates
+John Vincent Atanasoff,1,1903,1995,UnitedStates
+Clifford Berry,1,1918,1963,UnitedStates
+Robert A. Henle,1,1924,1989,UnitedStates

@@ -25,9 +25,12 @@ private:
     //custom dir/file variables;
     const QString databaseDir = utils.workingDir+"database/";
     const QString schemaFile = databaseDir + "schema.sql";
-    const QString initialPersons = databaseDir + "personsInitialData.csv";
-    const QString initialComputers = databaseDir + "computersInitialData.csv";
-    const QString initialRelations = databaseDir + "relationsInitialData.csv";
+    const QString initialGender = databaseDir + "genderInitialData.csv";
+    const QString initialPerson = databaseDir + "personInitialData.csv";
+    const QString initialComputerType = databaseDir + "computerTypeInitialData.csv";
+    const QString initialComputer = databaseDir + "computerInitialData.csv";
+    const QString initialPerson_Computer = databaseDir + "relationInitialData.csv";
+
 
     //init database and locate db file;
     QSqlDatabase db;
@@ -38,7 +41,9 @@ public:
     //default constructor
     Data();
 
-    void importSQL();
+    void importSchema();
+
+    void importCSV(QString tableName, QFile &csvFile);
 
     //get tableModel of Person sql table, searchable with filter; (filter strings created in domain layer)
     QSqlRelationalTableModel* readPeopleFromDatabase(QString filter = "");
