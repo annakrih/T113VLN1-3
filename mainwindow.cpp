@@ -251,9 +251,10 @@ void MainWindow::onPersonSelectionChange()
 {
     if(!overrideOnPersonSelectionChange && !ui->table_Person->selectionModel()->selectedRows().isEmpty())
     {
+        lastPersonSelection  = ui->table_Person->selectionModel()->selectedRows().last().row();
+        loadPersonInfo();
         lastPersonSelection = -1;
-        ui->personinfo->show();
-        ui->computerInfo->hide();
+
     }
 
     //checkStatus();
@@ -288,9 +289,9 @@ void MainWindow::onCompSelectionChange()
 {
     if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
     {
-        lastCompSelection = 1;
-        ui->computerInfo->show();
-        ui->personinfo->hide();
+        lastCompSelection  = ui->table_Comp->selectionModel()->selectedRows().last().row();
+        loadComputerInfo();
+        lastCompSelection = -1;
     }
 
     //checkStatus();
@@ -522,19 +523,22 @@ void MainWindow::on_actionDelete_triggered()
 
 void MainWindow::loadPersonInfo () {
 
+    ui->computerInfo->hide();
     ui->label_name_pi->setText(ui->table_Person->model()->index(lastPersonSelection,1).data().toString());
     ui->label_nation_pi->setText(ui->table_Person->model()->index(lastPersonSelection,3).data().toString());
     ui->label_born_pi->setText(ui->table_Person->model()->index(lastPersonSelection,4).data().toString());
     ui->label_deathage_pi->setText(ui->table_Person->model()->index(lastPersonSelection,5).data().toString());
-
+    ui->personinfo->show();
 }
 
 void MainWindow::loadComputerInfo() {
 
-    ui->label_name_pi->setText(ui->table_Comp->model()->index(lastCompSelection,1).data().toString());
+    ui->personinfo->hide();
+    ui->label_name_ci->setText(ui->table_Comp->model()->index(lastCompSelection,1).data().toString());
     ui->label_type_ci->setText(ui->table_Comp->model()->index(lastCompSelection,2).data().toString());
     ui->label_dy_ci->setText(ui->table_Comp->model()->index(lastCompSelection,3).data().toString());
     ui->label_by_ci->setText(ui->table_Comp->model()->index(lastCompSelection,4).data().toString() );
+    ui->computerInfo->show();
 
 }
 

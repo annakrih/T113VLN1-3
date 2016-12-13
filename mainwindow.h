@@ -104,7 +104,7 @@ private slots:
 
     void on_actionDelete_triggered();
 
-     void loadPersonInfo ();
+     void loadPersonInfo();
 
      void loadComputerInfo();
 
