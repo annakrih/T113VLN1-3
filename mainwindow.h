@@ -25,6 +25,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void searchComp();
+
     void on_comboBox_currentIndexChanged(int index);
     void on_searchComboBox_currentIndexChanged(int index);
     void loadPersonTable();
@@ -115,8 +117,6 @@ private slots:
 =======
     void on_button_advSearchComp_released();
 
-    void on_searchInput_Comp_textEdited();
-
     void on_input_searchDesignYearFrom_editingFinished();
 
     void on_input_searchDesignYearTo_editingFinished();
@@ -138,10 +138,11 @@ private:
     int currentCompSearchIndex = 0;
 
     bool showAdvSearchPersons = 0;
+    bool showAdvSearchComps = 0;
+
     int lastPersonSelection = 0;
     int lastCompSelection = 0;
 
-    //bool showAdvSearchComps = 0;
     bool overrideOnPersonSelectionChange = 0;
     bool overrideOnCompSelectionChange = 0;
 

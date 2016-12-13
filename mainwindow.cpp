@@ -22,7 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
     fillNationalitySearchBox(domain.getAcceptedNationality());
 
     showAdvSearchPersons = 0;
-    ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
+    ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
+
+    showAdvSearchComps = 0;
+    ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
 
     connect(
       ui->table_Comp->selectionModel(),
@@ -125,7 +128,7 @@ void MainWindow::on_button_advSearchComp_released()
     }
 
     showAdvSearchComps = !showAdvSearchComps;
-    ui->widget_advSearchComp ->setVisible(showAdvSearchComps);
+    ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
 }
 
 void MainWindow::searchComp()
@@ -140,16 +143,17 @@ void MainWindow::searchComp()
         QString BYto = ui->input_searchBuildYearTo->text();
         QString compType = ui->input_searchCompType->itemData(ui->input_searchCompType->currentIndex()).toString();
 
-        personModel = domain.searchComputers(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
+        personModel = domain.searchComputer(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
     }
     else
     {
-        personModel = domain.searchComputers(searchNameInput);
+        personModel = domain.searchComputer(searchNameInput);
     }
     loadPersonTable();
 }
 
-void MainWindow::on_searchInput_Comp_textEdited()
+
+void MainWindow::on_searchInput_Comp_textEdited(const QString &arg1)
 {
     searchComp();
 }
@@ -182,7 +186,7 @@ void MainWindow::on_button_advSearchPerson_released()
     }
 
     showAdvSearchPersons = !showAdvSearchPersons;
-    ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
+    ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
 }
 
 
@@ -552,3 +556,4 @@ void MainWindow::on_button_addcomp_clicked()
 {
     addComputerDialog();
 }
+

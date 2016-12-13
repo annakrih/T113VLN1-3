@@ -48,34 +48,9 @@ public:
     QSqlRelationalTableModel * searchPerson(QString searchInput);
     QSqlRelationalTableModel * searchPerson(QString searchInput, QString gender, QString BYfrom, QString BYto, QString DYfrom, QString DYto, QString nationality);
 
-    //creates tailored search string for person.name, and returns a table of the result
-    QSqlRelationalTableModel * searchPersonName(QString search);
+    QSqlRelationalTableModel * searchComputer(QString searchNameInput);
+    QSqlRelationalTableModel * searchComputer(QString searchNameInput, QString DYfrom, QString DYto, QString BYfrom, QString BYto, QString type);
 
-    //creates tailored search string for person.genderId , and returns a table of the result (genderid as genderName)
-    QSqlRelationalTableModel * searchPersonGender(QString genderType);
-
-    //creates tailored search string for person.nationality, and returns a table of the result
-    QSqlRelationalTableModel * searchPersonNationality(QString search);
-
-    //creates tailored search string for person.birthYear, and returns a table of the result (accepts "from" or "from to")
-    QSqlRelationalTableModel * searchPersonBY(QString search);
-
-    //creates tailored search string for person.deathYear, and returns a table of the result (accepts "from" or "from to")
-    QSqlRelationalTableModel * searchPersonDY(QString search);
-
-
-
-    //creates tailored search string for computer.name, and returns a table of the result
-    QSqlRelationalTableModel * searchComputerName(QString search);
-
-    //creates tailored search string for computer.type, and returns a table of the result (typeid as typeName)
-    QSqlRelationalTableModel * searchComputerType(QString search);
-
-    //creates tailored search string for computer.designYear, and returns a table of the result
-    QSqlRelationalTableModel * searchComputerDY(QString search);
-
-    //creates tailored search string for computer.builtYear, and returns a table of the result
-    QSqlRelationalTableModel * searchComputerBY(QString search);
 
     //passes on personId and computerId to the data layer, creates relation
     void createPCRelation(int p, int c);
