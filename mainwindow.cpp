@@ -51,8 +51,6 @@ void MainWindow::loadPersonTable()
     ui->table_Person->setColumnHidden(0,true);
 
     connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
-    ui->table_Person->setMouseTracking(true);
-            ui->table_Person->viewport()->setAttribute(Qt::WA_Hover,true);
 }
 
 void MainWindow::loadCompTable()
@@ -63,6 +61,8 @@ void MainWindow::loadCompTable()
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
+
+    connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick(QPoint)));
 }
 
 
@@ -445,8 +445,18 @@ void MainWindow::saveModel(QSqlRelationalTableModel * model)
 
 void MainWindow::personRightClick(QPoint position)
 {
-    cout << "bap";
     QMenu *pContextMenu = new QMenu( this);
-    pContextMenu->addAction(ui->menuEdit->actions().first());
+    pContextMenu->addAction(ui->menuEdit->actions().at(0));
+    pContextMenu->addAction(ui->menuDelete->actions().at(0));
     pContextMenu->exec(QCursor::pos());
 }
+
+void MainWindow::computerRightClick(QPoint position)
+{
+    QMenu *cContextMenu = new QMenu( this);
+    cContextMenu->addAction(ui->menuEdit->actions().at(1));
+    cContextMenu->addAction(ui->menuDelete->actions().at(1));
+    cContextMenu->exec(QCursor::pos());
+}
+
+
