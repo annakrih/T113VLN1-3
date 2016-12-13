@@ -72,6 +72,8 @@ private slots:
 
     void on_actionEdit_person_triggered();
 
+    void on_input_searchNat_currentIndexChanged(const QString &nat);
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
