@@ -94,6 +94,12 @@ private slots:
 
     void saveModel(QSqlRelationalTableModel * model);
 
+    void personRightClick(QPoint position);
+
+    void deleteSelected();
+
+    void on_actionDelete_triggered();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

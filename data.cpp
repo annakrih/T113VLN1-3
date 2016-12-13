@@ -1,5 +1,7 @@
 #include "data.h"
 
+#include <QApplication>
+
 using namespace std;
 //data layer
 
@@ -235,4 +237,15 @@ void Data::importCSV(QString tableName, QFile & csvFile){
     }
     csvFile.close();
     query.finish();
+}
+
+//read css file
+QString Data::importCss()
+{
+    //fall sem sækir css skrá
+    QFile file("../stylefile.qss");
+    file.open(QFile::ReadOnly);
+    QString StyleFile = QTextStream(&file).readAll();
+
+    return StyleFile;
 }

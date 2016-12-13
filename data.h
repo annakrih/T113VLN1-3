@@ -46,6 +46,9 @@ public:
 
     void importCSV(QString tableName, QFile &csvFile);
 
+    //import from css file
+    QString importCss();
+
     //get tableModel of Person sql table, searchable with filter; (filter strings created in domain layer)
     QSqlRelationalTableModel* readPeopleFromDatabase(QString filter = "");
 
