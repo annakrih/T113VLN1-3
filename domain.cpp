@@ -130,15 +130,15 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
 
         if(!(BYfrom == "") && !(BYto==""))
         {
-            filter += "person.birthYear > "+BYfrom+ " AND person.birthYear < "+BYto;
+            filter += "person.birthYear >= "+BYfrom+ " AND person.birthYear <= "+BYto;
         }
         else if(!(BYfrom == ""))
         {
-            filter += "person.birthYear > '"+BYfrom+"'";
+            filter += "person.birthYear >= '"+BYfrom+"'";
         }
         else if(!(BYto == ""))
         {
-            filter += "person.birthYear < '"+BYto+"'";
+            filter += "person.birthYear <= '"+BYto+"'";
         }
         firstFilter = false;
     }
@@ -153,15 +153,15 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
 
         if(!(DYfrom == "") && !(DYto==""))
         {
-            filter += "person.deathYear > "+DYfrom+ " AND person.deathYear < "+DYto;
+            filter += "person.deathYear >= "+DYfrom+ " AND person.deathYear <= "+DYto;
         }
         else if(!(DYfrom == ""))
         {
-            filter += "person.deathYear > '"+DYfrom+"'";
+            filter += "person.deathYear >= '"+DYfrom+"'";
         }
         else if(!(DYto == ""))
         {
-            filter += "person.deathYear < '"+DYto+"'";
+            filter += "person.deathYear <= '"+DYto+"'";
         }
         firstFilter = false;
     }
@@ -256,7 +256,7 @@ QSqlRelationalTableModel * Domain::searchComputer(QString searchNameInput, QStri
     }
 
     std::cout << endl << filter.toStdString() << endl;
-    return data.readPeopleFromDatabase(filter);
+    return data.readComputerFromDatabase(filter);
 }
 
 QString Domain::getCssString()

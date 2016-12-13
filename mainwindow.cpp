@@ -143,13 +143,13 @@ void MainWindow::searchComp()
         QString BYto = ui->input_searchBuildYearTo->text();
         QString compType = ui->input_searchCompType->itemData(ui->input_searchCompType->currentIndex()).toString();
 
-        personModel = domain.searchComputer(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
+        computerModel= domain.searchComputer(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
     }
     else
     {
-        personModel = domain.searchComputer(searchNameInput);
+        computerModel = domain.searchComputer(searchNameInput);
     }
-    loadPersonTable();
+    loadCompTable();
 }
 
 
@@ -211,6 +211,12 @@ void MainWindow::on_input_searchBornTo_editingFinished()
 {
     searchPerson();
 }
+
+void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &arg1)
+{
+    searchPerson();
+}
+
 
 void MainWindow::on_input_searchDiedFrom_editingFinished()
 {
@@ -605,3 +611,4 @@ void MainWindow::on_actionRelations_triggered()
         //TODO loadRelationModel();
     }
 }
+

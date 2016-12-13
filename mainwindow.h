@@ -130,6 +130,8 @@ private slots:
 
     void on_actionRelations_triggered();
 
+    void on_input_searchCompType_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
