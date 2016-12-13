@@ -346,7 +346,7 @@
           <rect>
            <x>0</x>
            <y>130</y>
-           <width>201</width>
+           <width>210</width>
            <height>171</height>
           </rect>
          </property>
@@ -394,7 +394,54 @@
           <string>Photo</string>
          </property>
         </widget>
+        <zorder>label_bio_pi</zorder>
+        <zorder>textBrowser_bio_pi</zorder>
+        <zorder>textBrowser_relatedComp_pi</zorder>
+        <zorder>label_relatedcomp_pi</zorder>
+        <zorder>gridLayoutWidget</zorder>
+        <zorder>label_pic_pi</zorder>
+        <zorder>gridLayoutWidget_2</zorder>
+        <zorder>horizontalLayoutWidget</zorder>
        </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="HorizontalCi">
+        <item>
+         <widget class="QWidget" name="computerinfo" native="true"/>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_name_ci">
+            <property name="text">
+             <string>Name: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_dy_ci">
+            <property name="text">
+             <string>Design year: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_by_ci">
+            <property name="text">
+             <string>Build year: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_type_ci">
+            <property name="text">
+             <string>Type: </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
