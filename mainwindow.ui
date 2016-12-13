@@ -332,7 +332,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>Related Computures:</string>
+          <string>Related Computers:</string>
          </property>
         </widget>
         <widget class="QWidget" name="gridLayoutWidget">
