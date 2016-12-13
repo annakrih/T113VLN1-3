@@ -509,3 +509,14 @@ void MainWindow::loadComputerInfo() {
     ui->label_by_ci->setText(ui->table_Comp->model()->index(lastCompSelection,4).data().toString() );
 
 }
+
+
+void MainWindow::on_button_addPerson_clicked()
+{
+    addPersonDialog();
+}
+
+void MainWindow::on_button_addcomp_clicked()
+{
+    addComputerDialog();
+}

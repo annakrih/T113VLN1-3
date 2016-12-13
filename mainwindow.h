@@ -34,8 +34,10 @@ public:
 private slots:
     void addPersonDialog();
 
+    //add person icon, when pressed the add person window appears
     void editPersonDialog();
 
+    //add computer icon, when pressed the add computer window appears
     void addComputerDialog();
 
     void editComputerDialog();
@@ -105,6 +107,10 @@ private slots:
      void loadPersonInfo ();
 
      void loadComputerInfo();
+
+     void on_button_addPerson_clicked();
+
+     void on_button_addcomp_clicked();
 
 private:
     Ui::MainWindow *ui;
