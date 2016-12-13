@@ -1,7 +1,5 @@
 #include "utils.h"
 
-#include <QStringList>
-
 Utils::Utils()
 {
 

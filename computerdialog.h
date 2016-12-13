@@ -2,9 +2,12 @@
 #define COMPUTERDIALOG_H
 
 #include "utils.h"
-
 #include <QDialog>
 #include <QMap>
+#include "ui_computerdialog.h"
+#include <QPushButton>
+#include <QVariant>
+#include <iostream>
 
 namespace Ui {
 class ComputerDialog;

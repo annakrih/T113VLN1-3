@@ -3,6 +3,11 @@
 
 #include <QDialog>
 #include "utils.h"
+#include <string>
+#include <iostream>
+#include <QPushButton>
+#include <Qpixmap>
+#include <QFileDialog>
 
 namespace Ui {
 class PersonDialog;

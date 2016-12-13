@@ -6,11 +6,10 @@
 #include <string>
 #include <iostream>
 #include <QMessageBox>
-
 #include "personDialog.h"
 #include "computerdialog.h"
-
 #include <QMainWindow>
+
 
 namespace Ui {
 class Gui;

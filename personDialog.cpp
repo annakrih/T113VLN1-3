@@ -1,12 +1,6 @@
 #include "personDialog.h"
 #include "ui_personDialog.h"
 
-#include <string>
-#include <iostream>
-#include <QPushButton>
-#include <Qpixmap>
-#include <QFileDialog>
-
 PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString, int> natMap, QString n, QString g, QString nat, int b, int d, int id) :
     QDialog(parent),
     ui(new Ui::PersonDialog)

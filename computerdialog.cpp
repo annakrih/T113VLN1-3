@@ -1,9 +1,4 @@
 #include "computerdialog.h"
-#include "ui_computerdialog.h"
-#include <QPushButton>
-#include <QMap>
-#include <QVariant>
-#include <iostream>
 
 ComputerDialog::ComputerDialog(QWidget *parent, QMap<QString, int> tList,
                                QString n, QString t, int d, int b, int id) :

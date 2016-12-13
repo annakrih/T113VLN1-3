@@ -1,7 +1,5 @@
 #include "data.h"
 
-#include <QApplication>
-
 using namespace std;
 //data layer
 

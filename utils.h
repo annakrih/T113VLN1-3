@@ -4,6 +4,7 @@
 #include <QString>
 #include <QDir>
 #include <QDate>
+#include <QStringList>
 
 class Utils
 {
