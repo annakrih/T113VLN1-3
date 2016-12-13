@@ -204,8 +204,31 @@ void PersonDialog::on_textEdit_textChanged()
 void PersonDialog::on_inputPhoto_clicked()
 {
 
-    QString fileName = QFileDialog::getOpenFileName(this, "Open File",
-                                                    "/home",
-                                                    "Images (*.png *.xpm *.jpg)");
-    std::cout << fileName.toStdString();
+    QString fileName = QFileDialog::getOpenFileName(this, "Open File", "/home", "Images (*.png *.xpm *.jpg)");
+    if (fileName.length())
+    {
+        //File selected
+        QPixmap pixmap (fileName);
+        ui->label_image->setPixmap(pixmap);
+
+    }
+    else
+    {
+        //No file selected
+    }
+}
+
+void PersonDialog::on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint)
+{
+
+}
+
+void PersonDialog::on_Photo_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint)
+{
+
+}
+
+void PersonDialog::on_label_image_linkActivated(const QString &link)
+{
+
 }

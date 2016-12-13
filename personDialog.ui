@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>412</width>
-    <height>450</height>
+    <width>585</width>
+    <height>416</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -28,8 +28,8 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>410</y>
+     <x>420</x>
+     <y>380</y>
      <width>156</width>
      <height>23</height>
     </rect>
@@ -274,8 +274,8 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>346</x>
-     <y>9</y>
+     <x>550</x>
+     <y>10</y>
      <width>35</width>
      <height>18</height>
     </rect>
@@ -334,8 +334,8 @@
   <widget class="QPushButton" name="inputPhoto">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>370</y>
+     <x>360</x>
+     <y>140</y>
      <width>91</width>
      <height>32</height>
     </rect>
@@ -344,17 +344,20 @@
     <string>Add photo</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="inputRelation">
+  <widget class="QLabel" name="label_image">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>370</y>
-     <width>101</width>
-     <height>32</height>
+     <x>370</x>
+     <y>190</y>
+     <width>191</width>
+     <height>151</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));</string>
+   </property>
    <property name="text">
-    <string>Add relation</string>
+    <string/>
    </property>
   </widget>
  </widget>
