@@ -342,3 +342,8 @@ QSqlRelationalTableModel * Domain::searchComputers(QString searchNameInput, QStr
     std::cout << endl << filter.toStdString() << endl;
     return data.readPeopleFromDatabase(filter);
 }
+
+QString Domain::getCssString()
+{
+    return data.importCss();
+}

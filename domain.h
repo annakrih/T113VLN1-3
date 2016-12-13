@@ -80,6 +80,9 @@ public:
 
     //passes on personId and computerId to the data layer, creates relation
     void createPCRelation(int p, int c);
+
+    //get css string
+    QString getCssString();
 };
 
 #endif // Domain_H
