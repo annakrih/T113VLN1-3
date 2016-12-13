@@ -44,7 +44,7 @@ private slots:
     void on_textEdit_textChanged();
 
 signals:
-    void newPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
+    void addPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
     void editPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d);
     void personRejected();
 

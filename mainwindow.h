@@ -34,6 +34,8 @@ public:
 private slots:
     void addPersonDialog();
 
+    void editPersonDialog();
+
     void on_input_searchPerson_textEdited();
 
     void on_searchInput_Comp_textEdited(const QString &searchString);
@@ -64,7 +66,11 @@ private slots:
 
     void onPersonRejected();
 
-    void onNewPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
+    void onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
+
+    void onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d);
+
+    void on_actionEdit_person_triggered();
 
 private:
     Ui::MainWindow *ui;

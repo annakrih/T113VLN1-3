@@ -59,7 +59,7 @@ void PersonDialog::on_buttonBox_accepted()
 
     if(id == 0)//add
     {
-        emit this->newPersonAccepted(name,gender,nationality,bY,dY);
+        emit this->addPersonAccepted(name,gender,nationality,bY,dY);
     }
     else//edit
     {

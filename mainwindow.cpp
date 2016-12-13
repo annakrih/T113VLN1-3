@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
+    proxyPersonModel->setDynamicSortFilter(true);
 
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -258,6 +259,11 @@ void MainWindow::on_actionAdd_new_person_triggered()
     addPersonDialog();
 }
 
+void MainWindow::on_actionEdit_person_triggered()
+{
+    editPersonDialog();
+}
+
 void MainWindow::addPersonDialog(){
     QMap<QString, int> gList = domain.getAcceptedGenderName();
     QMap<QString, int> natList = domain.getAcceptedNationality();
@@ -265,9 +271,33 @@ void MainWindow::addPersonDialog(){
 
     QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
     QObject::connect(personDialogWindow,
-                     SIGNAL(newPersonAccepted(const QString &, const int &, const int &, const int &, const int &)),
+                     SIGNAL(addPersonAccepted(const QString &, const int &, const int &, const int &, const int &)),
                      this,
-                     SLOT(onNewPersonAccepted(const QString &, const int &, const int &, const int &, const int &)));
+                     SLOT(onAddPersonAccepted(const QString &, const int &, const int &, const int &, const int &)));
+
+    this->setEnabled(false);
+    personDialogWindow->setEnabled(true);
+    personDialogWindow->show();
+}
+
+void MainWindow::editPersonDialog()
+{
+    QMap<QString, int> gList = domain.getAcceptedGenderName();
+    QMap<QString, int> natList = domain.getAcceptedNationality();
+
+    personDialogWindow = new PersonDialog(this,gList,natList
+                          ,ui->table_Person->model()->index(lastPersonSelection,1).data().toString()
+                          ,ui->table_Person->model()->index(lastPersonSelection,2).data().toString()
+                          ,ui->table_Person->model()->index(lastPersonSelection,3).data().toString()
+                          ,ui->table_Person->model()->index(lastPersonSelection,4).data().toInt()
+                          ,ui->table_Person->model()->index(lastPersonSelection,5).data().toInt()
+                          ,ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
+
+    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
+    QObject::connect(personDialogWindow,
+                     SIGNAL(editPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &)),
+                     this,
+                     SLOT(onEditPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &)));
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
@@ -280,7 +310,8 @@ void MainWindow::onPersonRejected()
     this->setEnabled(true);
 }
 
-void MainWindow::onNewPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d)
+
+void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d)
 {
     this->setEnabled(true);
 
@@ -291,4 +322,16 @@ void MainWindow::onNewPersonAccepted(const QString &n, const int &g, const int &
     record.setValue(4,b);
     record.setValue(5,d);
     personModel->insertRecord(-1,record);
+}
+
+void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d)
+{
+    this->setEnabled(true);
+    personModel->setData(personModel->index(lastPersonSelection,0),id);
+    personModel->setData(personModel->index(lastPersonSelection,1),n);
+    personModel->setData(personModel->index(lastPersonSelection,2),g);
+    personModel->setData(personModel->index(lastPersonSelection,3),nat);
+    personModel->setData(personModel->index(lastPersonSelection,4),b);
+    personModel->setData(personModel->index(lastPersonSelection,5),d);
+
 }
