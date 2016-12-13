@@ -409,7 +409,6 @@ void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int
 
 }
 
-<<<<<<< HEAD
 void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
 {
     this->setEnabled(true);
@@ -419,5 +418,3 @@ void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const i
     computerModel->setData(computerModel->index(lastCompSelection,3),d);
     computerModel->setData(computerModel->index(lastCompSelection,4),b);
 }
-=======
->>>>>>> origin/master
