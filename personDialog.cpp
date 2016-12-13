@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <QPushButton>
+#include <Qpixmap>
+#include <QFileDialog>
 
 PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString, int> natMap, QString n, QString g, QString nat, int b, int d, int id) :
     QDialog(parent),
@@ -197,4 +199,13 @@ void PersonDialog::on_personDY_valueChanged(int arg1)
 void PersonDialog::on_textEdit_textChanged()
 {
     checkForm();
+}
+
+void PersonDialog::on_inputPhoto_clicked()
+{
+
+    QString fileName = QFileDialog::getOpenFileName(this, "Open File",
+                                                    "/home",
+                                                    "Images (*.png *.xpm *.jpg)");
+    std::cout << fileName.toStdString();
 }

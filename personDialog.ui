@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>390</width>
-    <height>404</height>
+    <width>412</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,8 +22,8 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>372</y>
+     <x>220</x>
+     <y>410</y>
      <width>156</width>
      <height>23</height>
     </rect>
@@ -44,8 +44,8 @@
   <widget class="QLineEdit" name="personName">
    <property name="geometry">
     <rect>
-     <x>82</x>
-     <y>39</y>
+     <x>60</x>
+     <y>30</y>
      <width>261</width>
      <height>20</height>
     </rect>
@@ -129,8 +129,8 @@
   <widget class="QSpinBox" name="personBY">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>65</y>
+     <x>90</x>
+     <y>60</y>
      <width>49</width>
      <height>20</height>
     </rect>
@@ -202,8 +202,8 @@
   <widget class="QSpinBox" name="personDY">
    <property name="geometry">
     <rect>
-     <x>109</x>
-     <y>91</y>
+     <x>90</x>
+     <y>90</y>
      <width>49</width>
      <height>20</height>
     </rect>
@@ -230,8 +230,8 @@
   <widget class="QComboBox" name="personGender">
    <property name="geometry">
     <rect>
-     <x>107</x>
-     <y>117</y>
+     <x>80</x>
+     <y>120</y>
      <width>69</width>
      <height>20</height>
     </rect>
@@ -245,7 +245,7 @@
     <rect>
      <x>172</x>
      <y>92</y>
-     <width>93</width>
+     <width>111</width>
      <height>17</height>
     </rect>
    </property>
@@ -292,9 +292,9 @@
   <widget class="QComboBox" name="personNat">
    <property name="geometry">
     <rect>
-     <x>107</x>
-     <y>143</y>
-     <width>69</width>
+     <x>90</x>
+     <y>140</y>
+     <width>121</width>
      <height>20</height>
     </rect>
    </property>
@@ -305,8 +305,8 @@
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>46</x>
-     <y>169</y>
+     <x>50</x>
+     <y>170</y>
      <width>300</width>
      <height>192</height>
     </rect>
@@ -317,12 +317,38 @@
     <rect>
      <x>9</x>
      <y>169</y>
-     <width>17</width>
+     <width>21</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Bio&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="inputPhoto">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>370</y>
+     <width>91</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add photo</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="inputRelation">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>370</y>
+     <width>101</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add relation</string>
    </property>
   </widget>
  </widget>
