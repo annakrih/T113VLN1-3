@@ -194,7 +194,7 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
     }
 
     //gender filter
-    if( !(gender=="0"))
+    if( !(gender=="" || gender =="0"))
     {
         if(!firstFilter)
         {
@@ -215,15 +215,15 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
 
         if(!(BYfrom == "") && !(BYto==""))
         {
-            filter = "person.birthYear > "+BYfrom+ " AND person.birthYear < "+BYto;
+            filter += "person.birthYear > "+BYfrom+ " AND person.birthYear < "+BYto;
         }
         else if(!(BYfrom == ""))
         {
-            filter = "person.birthYear > '"+BYfrom+"'";
+            filter += "person.birthYear > '"+BYfrom+"'";
         }
         else if(!(BYto == ""))
         {
-            filter = "person.birthYear < '"+BYto+"'";
+            filter += "person.birthYear < '"+BYto+"'";
         }
         firstFilter = false;
     }
@@ -238,30 +238,29 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
 
         if(!(DYfrom == "") && !(DYto==""))
         {
-            filter = "person.deathYear > "+DYfrom+ " AND person.deathYear < "+DYto;
+            filter += "person.deathYear > "+DYfrom+ " AND person.deathYear < "+DYto;
         }
         else if(!(DYfrom == ""))
         {
-            filter = "person.deathYear > '"+DYfrom+"'";
+            filter += "person.deathYear > '"+DYfrom+"'";
         }
         else if(!(DYto == ""))
         {
-            filter = "person.deathYear < '"+DYto+"'";
+            filter += "person.deathYear < '"+DYto+"'";
         }
         firstFilter = false;
     }
 
     //gender filter
-    if( !(nationality==""))
+    if( !(nationality=="0"))
     {
         if(!firstFilter)
         {
             filter += " AND ";
         }
-        std::cout << endl << "land:" << nationality.toStdString() << endl;
-        QString filter = "person.nationalityID like '%"+nationality+"%'";
+
+        filter += "person.nationalityId like '%"+nationality+"%'";
         firstFilter = false;
     }
-
     return data.readPeopleFromDatabase(filter);
 }
