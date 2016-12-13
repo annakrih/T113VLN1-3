@@ -71,14 +71,14 @@ QSqlRelationalTableModel * Domain::searchPersonName(QString name)
     return data.readPeopleFromDatabase(filter);
 }
 
-QSqlRelationalTableModel * Domain::searchPersonGender(QString search)
+QSqlRelationalTableModel * Domain::searchPersonGender(int genderType)
 {
     QString intSearch = 0;
-    if(search == "Male" || search == "male" || search == "m" || search == "M")
+    if(genderType == 1)
     {
         intSearch = "1";
     }
-    if(search == "Female" || search == "female" || search == "f" || search == "M")
+    if(genderType == 2)
     {
         intSearch = "2";
     }
@@ -180,3 +180,78 @@ void Domain::createPCRelation(int p, int c){
     data.createPCRelation(p,c);
 }
 
+QSqlRelationalTableModel * Domain::searchPerson(QString searchInput)
+{
+    return searchPerson(searchInput, 0, "", "", "", "", "");
+}
+
+
+QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gender, QString BYfrom, QString BYto, QString DYfrom, QString DYto, QString nationality)
+{
+    QString filter = "";
+    bool firstFilter = 1;
+
+    //name filter
+    if( !(searchInput==""))
+    {
+        filter += "person.name like '%"+searchInput+"%'";
+        firstFilter = 0;
+    }
+
+    //gender filter
+    if( !(gender=="0"))
+    {
+        if(!firstFilter)
+        {
+            filter += " AND ";
+        }
+
+        filter += "person.genderId like '%"+gender+"%'";
+    }
+
+    //birthYear filter
+    if( !(BYfrom == "") || !(BYto=="") )
+    {
+        if(!firstFilter)
+        {
+            filter += " AND ";
+        }
+
+        if(!(BYfrom == "") && !(BYto==""))
+        {
+            filter = "person.birthYear > "+BYfrom+ " AND person.birthYear < "+BYto;
+        }
+        else if(!(BYfrom == ""))
+        {
+            filter = "person.birthYear > '"+BYfrom+"'";
+        }
+        else if(!(BYto == ""))
+        {
+            filter = "person.birthYear < '"+BYto+"'";
+        }
+    }
+
+    //DeathYear filter
+    if( !(DYfrom == "") || !(DYto=="") )
+    {
+        if(!firstFilter)
+        {
+            filter += " AND ";
+        }
+
+        if(!(DYfrom == "") && !(DYto==""))
+        {
+            filter = "person.deathYear > "+DYfrom+ " AND person.deathYear < "+DYto;
+        }
+        else if(!(DYfrom == ""))
+        {
+            filter = "person.deathYear > '"+DYfrom+"'";
+        }
+        else if(!(DYto == ""))
+        {
+            filter = "person.deathYear < '"+DYto+"'";
+        }
+    }
+
+    return data.readPeopleFromDatabase(filter);
+}

@@ -43,13 +43,14 @@ public:
     //takes in a  model and passes it down to the Data layer, where its changes get submitted.
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 
-
+    QSqlRelationalTableModel * searchPerson(QString searchInput);
+    QSqlRelationalTableModel * searchPerson(QString searchInput, QString gender, QString BYfrom, QString BYto, QString DYfrom, QString DYto, QString nationality);
 
     //creates tailored search string for person.name, and returns a table of the result
     QSqlRelationalTableModel * searchPersonName(QString search);
 
     //creates tailored search string for person.genderId , and returns a table of the result (genderid as genderName)
-    QSqlRelationalTableModel * searchPersonGender(QString search);
+    QSqlRelationalTableModel * searchPersonGender(int genderType);
 
     //creates tailored search string for person.nationality, and returns a table of the result
     QSqlRelationalTableModel * searchPersonNationality(QString search);

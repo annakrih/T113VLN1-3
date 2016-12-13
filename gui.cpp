@@ -503,7 +503,7 @@ void Gui::switchToComputer() //happens on switch to computer
 
 void Gui::on_searchButton_released()
 {
-    QString search = ui->quickSearchInput->text();
+ /*   QString search = ui->quickSearchInput->text();
     std::cout << search.toStdString();
 
     if(currentMode == Person)
@@ -548,6 +548,8 @@ void Gui::on_searchButton_released()
             loadTopTable(domain.searchComputerBY(search));
         }
     }
+
+  */
 }
 
 void Gui::fillSearchComboBoxP()

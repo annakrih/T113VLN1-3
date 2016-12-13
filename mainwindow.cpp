@@ -6,13 +6,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    fillSearchComboBoxC();
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
 
     loadPersonTable(personModel);
     loadCompTable(computerModel);
+
+    showAdvSearchPersons = 0;
+    ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
+    ui->widget_moreFilterOpsPersons->setEnabled(showAdvSearchPersons);
 }
 
 MainWindow::~MainWindow()
@@ -20,14 +23,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::fillSearchComboBoxC()
-{
-    ui->comboBox_searchComputer->addItem("Name",0);
-    ui->comboBox_searchComputer->addItem("Type",1);
-    ui->comboBox_searchComputer->addItem("Design year",2);
-    ui->comboBox_searchComputer->addItem("Build year",3);
-};
 
 void MainWindow::loadPersonTable(QSqlRelationalTableModel * model)
 {
@@ -47,15 +42,38 @@ void MainWindow::loadCompTable(QSqlRelationalTableModel * model)
     ui->table_Comp->setColumnHidden(0,true);
 }
 
-void MainWindow::on_comboBox_searchPerson_currentIndexChanged(int index)
+
+void MainWindow::searchPerson()
 {
-    currentPersonSearchIndex = index;
+    QString searchInput = ui->input_searchPerson->text();
+
+    if(showAdvSearchPersons)
+    {
+        QString gender = "0";
+
+        if(ui->checkBox_searchFemale->isChecked())
+        {
+            gender = "2";
+        }
+        else if(ui->checkBox_searchMale->isChecked())
+        {
+            gender = "1";
+        }
+        QString BYfrom = ui->input_searchBornFrom->text();
+        QString BYto = ui->input_searchBornTo->text();
+        QString DYfrom = ui->input_searchDiedFrom->text();
+        QString DYto = ui->input_searchDiedTo->text();
+
+        QString nationality = "" ;                                                  //TODO! Tengja við drop down!
+
+        loadPersonTable(domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality));
+    }
+    else
+    {
+        loadPersonTable(domain.searchPerson(searchInput));
+    }
 }
 
-void MainWindow::on_comboBox_searchComputer_currentIndexChanged(int index)
-{
-    currentCompSearchIndex = index;
-}
 
 void MainWindow::searchComp(const QString& searchInput)
 {
@@ -81,35 +99,9 @@ void MainWindow::searchComp(const QString& searchInput)
     */
 }
 
-void MainWindow::searchPerson(const QString& searchInput)
+void MainWindow::on_input_searchPerson_textEdited()
 {
-    std::cout << searchInput.toStdString();
-
-    if(currentPersonSearchIndex == 0)
-    {
-        loadPersonTable(domain.searchPersonName(searchInput));
-    }
-    else if(currentPersonSearchIndex == 1)
-    {
-        loadPersonTable(domain.searchPersonGender(searchInput));
-    }
-    else if(currentPersonSearchIndex == 2)
-    {
-        loadPersonTable(domain.searchPersonNationality(searchInput));
-    }
-    else if(currentPersonSearchIndex == 3)
-    {
-        loadPersonTable(domain.searchPersonBY(searchInput));
-    }
-    else if(currentPersonSearchIndex == 4)
-    {
-        loadPersonTable(domain.searchPersonDY(searchInput));
-    }
-}
-
-void MainWindow::on_searchInput_Person_textEdited(const QString& searchString)
-{
-    searchPerson(searchString);
+    searchPerson();
 }
 
 void MainWindow::on_searchInput_Comp_textEdited(const QString& searchString)
@@ -119,7 +111,45 @@ void MainWindow::on_searchInput_Comp_textEdited(const QString& searchString)
 
 void MainWindow::on_button_advSearchPerson_released()
 {
-    showMoreFilterOpsPersons = !showMoreFilterOpsPersons;
-    ui->widget_moreFilterOpsPersons->setVisible(showMoreFilterOpsPersons);
-    ui->widget_moreFilterOpsPersons->setEnabled(showMoreFilterOpsPersons);
+    if(showAdvSearchPersons)
+    {
+        //todo: hreinsa advanced search
+    }
+
+    showAdvSearchPersons = !showAdvSearchPersons;
+    ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
+    ui->widget_moreFilterOpsPersons->setEnabled(showAdvSearchPersons);
+}
+
+
+void MainWindow::on_checkBox_searchFemale_released()
+{
+    ui->checkBox_searchMale->setChecked(false);
+    searchPerson();
+}
+
+void MainWindow::on_checkBox_searchMale_released()
+{
+    ui->checkBox_searchFemale->setChecked(false);
+    searchPerson();
+}
+
+void MainWindow::on_input_searchBornFrom_editingFinished()
+{
+    searchPerson();
+}
+
+void MainWindow::on_input_searchBornTo_editingFinished()
+{
+    searchPerson();
+}
+
+void MainWindow::on_input_searchDiedFrom_editingFinished()
+{
+    searchPerson();
+}
+
+void MainWindow::on_input_searchDiedTo_editingFinished()
+{
+    searchPerson();
 }
