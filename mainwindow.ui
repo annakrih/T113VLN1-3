@@ -394,13 +394,6 @@
           <string>Photo</string>
          </property>
         </widget>
-        <zorder>label_bio_pi</zorder>
-        <zorder>textBrowser_bio_pi</zorder>
-        <zorder>textBrowser_relatedComp_pi</zorder>
-        <zorder>label_relatedcomp_pi</zorder>
-        <zorder>gridLayoutWidget</zorder>
-        <zorder>label_pic_pi</zorder>
-        <zorder>computerInfo</zorder>
        </widget>
       </item>
       <item>
@@ -480,7 +473,7 @@
      <x>0</x>
      <y>0</y>
      <width>752</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
@@ -497,6 +490,7 @@
     </property>
     <addaction name="actionEdit_person"/>
     <addaction name="actionEdit_Computer"/>
+    <addaction name="actionDelete"/>
    </widget>
    <addaction name="menuComputer_History"/>
    <addaction name="menuEdit"/>
@@ -525,6 +519,11 @@
   <action name="actionSave_Changes">
    <property name="text">
     <string>Save Changes</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete</string>
    </property>
   </action>
  </widget>

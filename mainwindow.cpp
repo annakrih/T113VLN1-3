@@ -452,7 +452,7 @@ void MainWindow::personRightClick(QPoint position)
 {
     QMenu *pContextMenu = new QMenu( this);
     pContextMenu->addAction(ui->menuEdit->actions().at(0));
-    pContextMenu->addAction(ui->menuDelete->actions().at(0));
+    pContextMenu->addAction(ui->menuEdit->actions().at(2));
     pContextMenu->exec(QCursor::pos());
 }
 
@@ -460,7 +460,7 @@ void MainWindow::computerRightClick(QPoint position)
 {
     QMenu *cContextMenu = new QMenu( this);
     cContextMenu->addAction(ui->menuEdit->actions().at(1));
-    cContextMenu->addAction(ui->menuDelete->actions().at(1));
+    cContextMenu->addAction(ui->menuEdit->actions().at(2));
     cContextMenu->exec(QCursor::pos());
 }
 

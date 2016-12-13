@@ -96,6 +96,8 @@ private slots:
 
     void personRightClick(QPoint position);
 
+    void computerRightClick(QPoint position);
+
     void deleteSelected();
 
     void on_actionDelete_triggered();
