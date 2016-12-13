@@ -450,6 +450,7 @@ void MainWindow::on_input_searchBuildYearFrom_editingFinished()
 void MainWindow::on_input_searchBuildYearTo_editingFinished()
 {
     searchComp();
+}
 
 void MainWindow::on_actionSave_Changes_triggered()
 {
