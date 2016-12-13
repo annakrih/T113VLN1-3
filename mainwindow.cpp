@@ -566,5 +566,6 @@ void MainWindow::on_button_addcomp_clicked()
 void MainWindow::on_actionPersons_2_triggered()
 {
     domain.getDeletePersonTable();
-    saveChanges();
+    personModel = domain.getPersonModel();
+    loadPersonTable();
 }
