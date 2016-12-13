@@ -133,7 +133,8 @@ void Gui::onAddPersonButton()
 {
 
     QMap<QString, int> gList = domain.getAcceptedGenderName();
-    personDialogWindow = new PersonDialog(this,gList);
+    QMap<QString, int> natList = domain.getAcceptedNationality();
+    personDialogWindow = new PersonDialog(this,gList,natList);
 
     QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
     QObject::connect(personDialogWindow,
@@ -150,10 +151,11 @@ void Gui::onAddPersonButton()
 void Gui::onEditPersonButton()
 {
     QMap<QString, int> gList = domain.getAcceptedGenderName();
+    QMap<QString, int> natList = domain.getAcceptedNationality();
 
     lastSelection = ui->tableView->selectionModel()->selectedRows().last().row();
 
-    personDialogWindow = new PersonDialog(this,gList
+    personDialogWindow = new PersonDialog(this,gList,natList
                           ,ui->tableView->model()->index(lastSelection,1).data().toString()
                           ,ui->tableView->model()->index(lastSelection,2).data().toString()
                           ,ui->tableView->model()->index(lastSelection,3).data().toString()

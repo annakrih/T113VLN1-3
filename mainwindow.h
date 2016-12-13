@@ -8,6 +8,9 @@
 #include <iostream>
 #include <QMessageBox>
 
+#include "personDialog.h"
+#include "computerdialog.h"
+
 #include <QMainWindow>
 
 namespace Ui {
@@ -24,11 +27,13 @@ public:
 
     void on_comboBox_currentIndexChanged(int index);
     void on_searchComboBox_currentIndexChanged(int index);
-    void loadPersonTable(QSqlRelationalTableModel * model);
-    void loadCompTable(QSqlRelationalTableModel * model);
+    void loadPersonTable();
+    void loadCompTable();
     void fillNationalitySearchBox(QMap<QString, int> natList);
 
 private slots:
+    void addPersonDialog();
+
     void on_input_searchPerson_textEdited();
 
     void on_searchInput_Comp_textEdited(const QString &searchString);
@@ -55,8 +60,18 @@ private slots:
 
     void onCompSelectionChange();
 
+    void on_actionAdd_new_person_triggered();
+
+    void onPersonRejected();
+
+    void onNewPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
+
 private:
     Ui::MainWindow *ui;
+    PersonDialog *personDialogWindow;
+    QSortFilterProxyModel *proxyPersonModel = new QSortFilterProxyModel(this);
+    QSortFilterProxyModel *proxyCompModel = new QSortFilterProxyModel(this);
+    ComputerDialog *computerDialogWindow;
     int currentPersonSearchIndex = 0;
     int currentCompSearchIndex = 0;
     bool showAdvSearchPersons = 0;

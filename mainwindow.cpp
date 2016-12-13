@@ -13,8 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    loadPersonTable(personModel);
-    loadCompTable(computerModel);
+    loadPersonTable();
+    loadCompTable();
+
     fillNationalitySearchBox(domain.getAcceptedNationality());
 
     showAdvSearchPersons = 0;
@@ -39,18 +40,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::loadPersonTable(QSqlRelationalTableModel * model)
+void MainWindow::loadPersonTable()
 {
-    ui->table_Person-> setModel(model);
+    proxyPersonModel->setSourceModel(personModel);
+    ui->table_Person->setModel(proxyPersonModel);
     ui->table_Person->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->table_Person->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
 }
 
-void MainWindow::loadCompTable(QSqlRelationalTableModel * model)
+void MainWindow::loadCompTable()
 {
-    ui->table_Comp-> setModel(model);
+    proxyCompModel->setSourceModel(computerModel);
+    ui->table_Comp-> setModel(proxyCompModel);
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Comp->verticalHeader()->hide();
@@ -94,11 +97,11 @@ void MainWindow::searchPerson()
 
         QString nationality = "" ;                                                  //TODO! Tengja við drop down!
 
-        loadPersonTable(domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality));
+        //loadPersonTable(domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality));
     }
     else
     {
-        loadPersonTable(domain.searchPerson(searchInput));
+        //loadPersonTable(domain.searchPerson(searchInput));
     }
 }
 
@@ -249,3 +252,43 @@ void MainWindow::onCompSelectionChange()
     //checkStatus();
 }
 
+
+void MainWindow::on_actionAdd_new_person_triggered()
+{
+    addPersonDialog();
+}
+
+void MainWindow::addPersonDialog(){
+    QMap<QString, int> gList = domain.getAcceptedGenderName();
+    QMap<QString, int> natList = domain.getAcceptedNationality();
+    personDialogWindow = new PersonDialog(this,gList, natList);
+
+    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
+    QObject::connect(personDialogWindow,
+                     SIGNAL(newPersonAccepted(const QString &, const int &, const int &, const int &, const int &)),
+                     this,
+                     SLOT(onNewPersonAccepted(const QString &, const int &, const int &, const int &, const int &)));
+
+    this->setEnabled(false);
+    personDialogWindow->setEnabled(true);
+    personDialogWindow->show();
+}
+
+
+void MainWindow::onPersonRejected()
+{
+    this->setEnabled(true);
+}
+
+void MainWindow::onNewPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d)
+{
+    this->setEnabled(true);
+
+    QSqlRecord record = personModel->record();
+    record.setValue(1,n);
+    record.setValue(2,g);
+    record.setValue(3,nat);
+    record.setValue(4,b);
+    record.setValue(5,d);
+    personModel->insertRecord(-1,record);
+}

@@ -13,10 +13,10 @@ class PersonDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit PersonDialog(QWidget *parent, QMap<QString, int> gMap, QString n = "", QString g = "", QString nat = "", int b = 0, int d = 0, int id = 0);
+    explicit PersonDialog(QWidget *parent, QMap<QString, int> gMap, QMap<QString, int> natMap, QString n = "", QString g = "", QString nat = "", int b = 0, int d = 0, int id = 0);
     ~PersonDialog();
     void fillGenderMenu(QMap<QString, int> gMap);
-    void fillNationalityMenu();
+    void fillNationalityMenu(QMap<QString, int> natMap);
     void checkForm();
 
 private slots:
@@ -44,8 +44,8 @@ private slots:
     void on_textEdit_textChanged();
 
 signals:
-    void newPersonAccepted(const QString &n, const int &g, const QString &nat, const int &b, const int &d);
-    void editPersonAccepted(const int &id, const QString &n, const int &g, const QString &nat, const int &b, const int &d);
+    void newPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
+    void editPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d);
     void personRejected();
 
 private:

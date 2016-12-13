@@ -5,7 +5,7 @@
 #include <iostream>
 #include <QPushButton>
 
-PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QString n, QString g, QString nat, int b, int d, int id) :
+PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString, int> natMap, QString n, QString g, QString nat, int b, int d, int id) :
     QDialog(parent),
     ui(new Ui::PersonDialog)
 {
@@ -13,7 +13,7 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QString n, Q
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
     fillGenderMenu(gMap);
-    fillNationalityMenu();
+    fillNationalityMenu(natMap);
 
     if(id){
         ui->hiddenId->setValue(id);
@@ -44,7 +44,7 @@ void PersonDialog::on_buttonBox_accepted()
 {
     QString name = ui->personName->text().trimmed();
     int gender =  ui->personGender->itemData(ui->personGender->currentIndex()).toInt();
-    QString nationality = ui->personNat->currentText().trimmed();
+    int nationality = ui->personNat->itemData(ui->personNat->currentIndex()).toInt();;
     int bY = ui->personBY->value();
     int dY;
     if(ui->personCheckDY->checkState() && ui->personBY->value() != 0)
@@ -81,16 +81,16 @@ void PersonDialog::fillGenderMenu(QMap<QString,int> gMap)
 
 }
 
-void PersonDialog::fillNationalityMenu()
-{
+void PersonDialog::fillNationalityMenu(QMap<QString,int> natList){
 
-    ui->personGender->addItem("",0);
-    for ( int i = 1; i < 256; i++ )
+    ui->personNat->addItem("",0);
+    QMapIterator<QString, int> i(natList);
+    while (i.hasNext())
     {
-       QLocale::Country foo = static_cast<QLocale::Country>(i);
-       QString country = QLocale::countryToString(foo);
-       ui->personNat->addItem(country);
+        i.next();
+        ui->personNat->addItem(i.key(),i.value());
     }
+
 }
 
 void PersonDialog::checkForm()
