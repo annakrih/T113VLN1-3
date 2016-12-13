@@ -43,6 +43,10 @@
         <property name="text">
          <string/>
         </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>database/addcomp.png</normaloff>database/addcomp.png</iconset>
+        </property>
        </widget>
       </item>
      </layout>
