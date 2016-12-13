@@ -104,47 +104,7 @@
     <string>photo</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="le_name_pi">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>10</y>
-     <width>241</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="le_born_pi">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>40</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="le_deathage_pi">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>60</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="le_nation_pi">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>90</y>
-     <width>211</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="le_bio_pi">
+  <widget class="QTextBrowser" name="textBrowser_bio_pi">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -154,14 +114,66 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="le_relatedcomp_pi">
+  <widget class="QTextBrowser" name="textBrowser_relatedComp_pi">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>220</y>
-     <width>371</width>
+     <width>381</width>
      <height>71</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lName_pi">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>10</y>
+     <width>241</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lBorn_pi">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>40</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lDeathAge_pi">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>60</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lNationality_pi">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>90</y>
+     <width>171</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
