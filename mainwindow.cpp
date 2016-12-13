@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->personinfo->setVisible(false);
+    ui->computerInfo->setVisible(false);
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
@@ -21,7 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
     fillNationalitySearchBox(domain.getAcceptedNationality());
 
     showAdvSearchPersons = 0;
-    ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
+    ui->widget_advSearchPerson->setVisible(showAdvSearchPersons);
+
+    showAdvSearchComps = 0;
+    ui->widget_advSearchComp->setVisible(showAdvSearchComps);
 
     connect(
       ui->table_Comp->selectionModel(),
@@ -110,39 +114,9 @@ void MainWindow::searchPerson()
     loadPersonTable();
 }
 
-
-void MainWindow::searchComp(const QString& searchInput)
-{
- /*   QString search = ui->searchInput_Comp->text();
-    std::cout << search.toStdString();
-
-    if(currentCompSearchIndex == 0)
-    {
-        loadCompTable(domain.searchComputerName(search));
-    }
-    else if(currentCompSearchIndex == 1)
-    {
-        loadCompTable(domain.searchComputerType(search));
-    }
-    else if(currentCompSearchIndex == 2)
-    {
-        loadCompTable(domain.searchComputerDY(search));
-    }
-    else if(currentCompSearchIndex == 3)
-    {
-        loadCompTable(domain.searchComputerBY(search));
-    }
-    */
-}
-
 void MainWindow::on_input_searchPerson_textEdited()
 {
     searchPerson();
-}
-
-void MainWindow::on_searchInput_Comp_textEdited(const QString& searchString)
-{
-    searchComp(searchString);
 }
 
 void MainWindow::on_button_advSearchPerson_released()
@@ -150,10 +124,11 @@ void MainWindow::on_button_advSearchPerson_released()
     if(showAdvSearchPersons)
     {
         ui->input_searchNat->setCurrentIndex(0);
+        //TODO cleara allt
     }
 
     showAdvSearchPersons = !showAdvSearchPersons;
-    ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
+    ui->widget_advSearchPerson->setVisible(showAdvSearchPersons);
 }
 
 
@@ -239,6 +214,7 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 
         ui->table_Comp->selectionModel()->clearSelection();
         lastCompSelection = -1;
+        ui->computerInfo->setVisible(false);
 
         overrideOnCompSelectionChange = false;
 
@@ -258,6 +234,7 @@ void MainWindow::onCompSelectionChange()
     if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
     {
         lastCompSelection = 1;
+        ui->computerInfo->show();
     }
 
     //checkStatus();
@@ -419,6 +396,63 @@ void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const i
     computerModel->setData(computerModel->index(lastCompSelection,2),t);
     computerModel->setData(computerModel->index(lastCompSelection,3),d);
     computerModel->setData(computerModel->index(lastCompSelection,4),b);
+}
+
+void MainWindow::on_button_advSearchComp_released()
+{
+    if(showAdvSearchComps)
+    {
+        //TODO hreinsa advanced searching
+    }
+
+    showAdvSearchComps = !showAdvSearchComps;
+    ui->widget_advSearchComp ->setVisible(showAdvSearchComps);
+}
+
+void MainWindow::searchComp()
+{
+    QString searchNameInput = ui->searchInput_Comp->text();
+
+    if(showAdvSearchComps)
+    {
+        QString DYfrom = ui->input_searchDesignYearFrom->text();
+        QString DYto = ui->input_searchDesignYearTo->text();
+        QString BYfrom = ui->input_searchBuildYearFrom->text();
+        QString BYto = ui->input_searchBuildYearTo->text();
+        QString compType = ui->input_searchCompType->itemData(ui->input_searchCompType->currentIndex()).toString();
+
+        personModel = domain.searchComputers(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
+    }
+    else
+    {
+        personModel = domain.searchComputers(searchNameInput);
+    }
+    loadPersonTable();
+}
+
+void MainWindow::on_searchInput_Comp_textEdited()
+{
+    searchComp();
+}
+
+void MainWindow::on_input_searchDesignYearFrom_editingFinished()
+{
+    searchComp();
+}
+
+void MainWindow::on_input_searchDesignYearTo_editingFinished()
+{
+    searchComp();
+}
+
+void MainWindow::on_input_searchBuildYearFrom_editingFinished()
+{
+    searchComp();
+}
+
+void MainWindow::on_input_searchBuildYearTo_editingFinished()
+{
+    searchComp();
 }
 
 void MainWindow::on_actionSave_Changes_triggered()

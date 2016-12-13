@@ -42,8 +42,6 @@ private slots:
 
     void on_input_searchPerson_textEdited();
 
-    void on_searchInput_Comp_textEdited(const QString &searchString);
-
     void on_button_advSearchPerson_released();
 
     void on_checkBox_searchFemale_released();
@@ -88,6 +86,18 @@ private slots:
 
     void on_input_searchNat_currentIndexChanged(const QString &nat);
 
+    void on_button_advSearchComp_released();
+
+    void on_searchInput_Comp_textEdited();
+
+    void on_input_searchDesignYearFrom_editingFinished();
+
+    void on_input_searchDesignYearTo_editingFinished();
+
+    void on_input_searchBuildYearFrom_editingFinished();
+
+    void on_input_searchBuildYearTo_editingFinished();
+
     void on_actionSave_Changes_triggered();
 
     void saveChanges();
@@ -108,10 +118,11 @@ private:
     int currentCompSearchIndex = 0;
 
     bool showAdvSearchPersons = 0;
+    bool showAdvSearchComps = 0;
+
     int lastPersonSelection = 0;
     int lastCompSelection = 0;
 
-    //bool showAdvSearchComps = 0;
     bool overrideOnPersonSelectionChange = 0;
     bool overrideOnCompSelectionChange = 0;
 
@@ -121,7 +132,7 @@ private:
     QSqlRelationalTableModel* computerModel;
 
     void searchPerson();
-    void searchComp(const QString& searchInput);
+    void searchComp();
 
 };
 
