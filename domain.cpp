@@ -264,3 +264,8 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
     }
     return data.readPeopleFromDatabase(filter);
 }
+
+QString Domain::getCssString()
+{
+    return data.importCss();
+}
