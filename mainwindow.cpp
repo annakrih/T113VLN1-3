@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
 
+    ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
+
     loadPersonTable(personModel);
     loadCompTable(computerModel);
     fillNationalitySearchBox(domain.getAcceptedNationality());
@@ -17,13 +20,24 @@ MainWindow::MainWindow(QWidget *parent) :
     showAdvSearchPersons = 0;
     ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
     ui->widget_moreFilterOpsPersons->setEnabled(showAdvSearchPersons);
+
+    connect(
+      ui->table_Comp->selectionModel(),
+      SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+      SLOT(onCompSelectionChange())
+     );
+
+    connect(
+      ui->table_Person->selectionModel(),
+      SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+      SLOT(onPersonSelectionChange())
+     );
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 void MainWindow::loadPersonTable(QSqlRelationalTableModel * model)
 {
@@ -167,3 +181,71 @@ void MainWindow::on_input_searchDiedTo_editingFinished()
 {
     searchPerson();
 }
+
+void MainWindow::on_table_Person_clicked(const QModelIndex &index)
+{
+
+    if(lastPersonSelection == index.row() )
+    {
+        overrideOnPersonSelectionChange = true;
+
+        ui->table_Person->selectionModel()->clearSelection();
+        lastPersonSelection = -1;
+
+        overrideOnPersonSelectionChange = false;
+
+    }else
+    {
+        lastPersonSelection = index.row();
+
+        //loadRelation();
+    }
+
+    //checkStatus();
+
+}
+
+void MainWindow::onPersonSelectionChange()
+{
+    if(!overrideOnPersonSelectionChange)
+    {
+        lastPersonSelection = -1;
+    }
+
+    //checkStatus();
+}
+
+
+void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
+{
+
+    if(lastCompSelection == index.row() )
+    {
+        overrideOnCompSelectionChange = true;
+
+        ui->table_Comp->selectionModel()->clearSelection();
+        lastCompSelection = -1;
+
+        overrideOnCompSelectionChange = false;
+
+    }else
+    {
+        lastCompSelection = index.row();
+
+        //loadRelation();
+    }
+
+    //checkStatus();
+
+}
+
+void MainWindow::onCompSelectionChange()
+{
+    if(!overrideOnCompSelectionChange)
+    {
+        lastCompSelection = -1;
+    }
+
+    //checkStatus();
+}
+

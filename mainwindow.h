@@ -28,7 +28,6 @@ public:
     void loadCompTable(QSqlRelationalTableModel * model);
     void fillNationalitySearchBox(QMap<QString, int> natList);
 
-
 private slots:
     void on_input_searchPerson_textEdited();
 
@@ -48,12 +47,24 @@ private slots:
 
     void on_input_searchDiedTo_editingFinished();
 
+    void on_table_Person_clicked(const QModelIndex &index);
+
+    void onPersonSelectionChange();
+
+    void on_table_Comp_clicked(const QModelIndex &index);
+
+    void onCompSelectionChange();
+
 private:
     Ui::MainWindow *ui;
     int currentPersonSearchIndex = 0;
     int currentCompSearchIndex = 0;
     bool showAdvSearchPersons = 0;
+    int lastPersonSelection = 0;
+    int lastCompSelection = 0;
 //    bool showAdvSearchComps = 0;
+    bool overrideOnPersonSelectionChange = 0;
+    bool overrideOnCompSelectionChange = 0;
     Domain domain;
     QSqlRelationalTableModel* personModel;
     QSqlRelationalTableModel* computerModel;
