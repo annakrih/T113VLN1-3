@@ -215,15 +215,15 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
 
         if(!(BYfrom == "") && !(BYto==""))
         {
-            filter += "person.birthYear > "+BYfrom+ " AND person.birthYear < "+BYto;
+            filter += "person.birthYear >= "+BYfrom+ " AND person.birthYear <= "+BYto;
         }
         else if(!(BYfrom == ""))
         {
-            filter += "person.birthYear > '"+BYfrom+"'";
+            filter += "person.birthYear >= '"+BYfrom+"'";
         }
         else if(!(BYto == ""))
         {
-            filter += "person.birthYear < '"+BYto+"'";
+            filter += "person.birthYear <= '"+BYto+"'";
         }
         firstFilter = false;
     }
@@ -238,15 +238,15 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
 
         if(!(DYfrom == "") && !(DYto==""))
         {
-            filter += "person.deathYear > "+DYfrom+ " AND person.deathYear < "+DYto;
+            filter += "person.deathYear >= "+DYfrom+ " AND person.deathYear <= "+DYto;
         }
         else if(!(DYfrom == ""))
         {
-            filter += "person.deathYear > '"+DYfrom+"'";
+            filter += "person.deathYear >= '"+DYfrom+"'";
         }
         else if(!(DYto == ""))
         {
-            filter += "person.deathYear < '"+DYto+"'";
+            filter += "person.deathYear <= '"+DYto+"'";
         }
         firstFilter = false;
     }
@@ -260,7 +260,85 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
         }
 
         filter += "person.nationalityId like '%"+nationality+"%'";
+    }
+    return data.readPeopleFromDatabase(filter);
+}
+
+QSqlRelationalTableModel * Domain::searchComputers(QString searchNameInput)
+{
+    return searchComputers(searchNameInput, "", "", "", "", "");
+}
+
+QSqlRelationalTableModel * Domain::searchComputers(QString searchNameInput, QString DYfrom, QString DYto, QString BYfrom, QString BYto, QString type)
+{
+    QString filter = "";
+    bool firstFilter = true;
+
+    //name filter
+    if( !(searchNameInput==""))
+    {
+        filter += "computer.name like '%"+searchNameInput+"%'";
         firstFilter = false;
     }
+
+    //DesignYear filter
+    if( !(DYfrom == "") || !(DYto=="") )
+    {
+        if(!firstFilter)
+        {
+            filter += " AND ";
+        }
+
+        if(!(DYfrom == "") && !(DYto==""))
+        {
+            filter += "computer.designYear >= "+DYfrom+ " AND computer.designYear <= "+DYto;
+        }
+        else if(!(DYfrom == ""))
+        {
+            filter += "computer.designYear >= '"+DYfrom+"'";
+        }
+        else if(!(DYto == ""))
+        {
+            filter += "computer.designYear <= '"+DYto+"'";
+        }
+        firstFilter = false;
+    }
+
+    //BuildYear filter
+    if( !(BYfrom == "") || !(BYto=="") )
+    {
+        if(!firstFilter)
+        {
+            filter += " AND ";
+        }
+
+        if(!(BYfrom == "") && !(BYto==""))
+        {
+            filter += "computer.buildYear >= "+BYfrom+ " AND computer.buildYear <= "+BYto;
+        }
+        else if(!(BYfrom == ""))
+        {
+            filter += "computer.buildYear >= '"+BYfrom+"'";
+        }
+        else if(!(BYto == ""))
+        {
+            filter += "computer.buildYear <= '"+BYto+"'";
+        }
+        firstFilter = false;
+    }
+
+
+    //ComputerType filter
+    if( !(type=="0" || type==""))
+    {
+        if(!firstFilter)
+        {
+            filter += " AND ";
+        }
+
+        filter += "computer.typeId like '%"+type+"%'";
+    }
+
+    std::cout << endl << filter.toStdString() << endl;
     return data.readPeopleFromDatabase(filter);
 }
