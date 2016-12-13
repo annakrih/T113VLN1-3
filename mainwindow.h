@@ -36,6 +36,10 @@ private slots:
 
     void editPersonDialog();
 
+    void addComputerDialog();
+
+    void editComputerDialog();
+
     void on_input_searchPerson_textEdited();
 
     void on_searchInput_Comp_textEdited(const QString &searchString);
@@ -66,27 +70,43 @@ private slots:
 
     void onPersonRejected();
 
+    void onComputerRejected();
+
     void onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
 
-    void onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d);
+    void onAddComputerAccepted(const QString &n, const int &t, const int &d, const int &b);
+
+    void onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d);    
+
+    void onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b);
 
     void on_actionEdit_person_triggered();
+
+    void on_actionAdd_new_computer_triggered();
+
+    void on_actionEdit_Computer_triggered();
 
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
+    ComputerDialog *computerDialogWindow;
+
     QSortFilterProxyModel *proxyPersonModel = new QSortFilterProxyModel(this);
     QSortFilterProxyModel *proxyCompModel = new QSortFilterProxyModel(this);
-    ComputerDialog *computerDialogWindow;
+
     int currentPersonSearchIndex = 0;
     int currentCompSearchIndex = 0;
+
     bool showAdvSearchPersons = 0;
     int lastPersonSelection = 0;
     int lastCompSelection = 0;
-//    bool showAdvSearchComps = 0;
+
+    //bool showAdvSearchComps = 0;
     bool overrideOnPersonSelectionChange = 0;
     bool overrideOnCompSelectionChange = 0;
+
     Domain domain;
+
     QSqlRelationalTableModel* personModel;
     QSqlRelationalTableModel* computerModel;
 

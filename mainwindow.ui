@@ -30,8 +30,8 @@
        <attribute name="title">
         <string>Persons</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
          <widget class="QFrame" name="horizontalFrame">
           <property name="maximumSize">
            <size>
@@ -60,7 +60,7 @@
           </layout>
          </widget>
         </item>
-        <item>
+        <item row="1" column="0">
          <widget class="QWidget" name="widget_moreFilterOpsPersons" native="true">
           <property name="maximumSize">
            <size>
@@ -191,14 +191,14 @@
           </layout>
          </widget>
         </item>
-        <item>
+        <item row="2" column="0">
          <widget class="Line" name="line_3">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
-        <item>
+        <item row="3" column="0">
          <widget class="QTableView" name="table_Person">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -281,7 +281,7 @@
      <x>0</x>
      <y>0</y>
      <width>649</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">

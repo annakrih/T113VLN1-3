@@ -37,7 +37,7 @@ private slots:
     void on_cBY_editingFinished();
 
 signals:
-    void newComputerAccepted(const QString &n, const int &t, const int &d, const int &b);
+    void addComputerAccepted(const QString &n, const int &t, const int &d, const int &b);
     void editComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b);
     void computerRejected();
 

@@ -259,10 +259,21 @@ void MainWindow::on_actionAdd_new_person_triggered()
     addPersonDialog();
 }
 
+void MainWindow::on_actionAdd_new_computer_triggered()
+{
+    addComputerDialog();
+}
+
 void MainWindow::on_actionEdit_person_triggered()
 {
     editPersonDialog();
 }
+
+void MainWindow::on_actionEdit_Computer_triggered()
+{
+    editComputerDialog();
+}
+
 
 void MainWindow::addPersonDialog(){
     QMap<QString, int> gList = domain.getAcceptedGenderName();
@@ -278,6 +289,22 @@ void MainWindow::addPersonDialog(){
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
     personDialogWindow->show();
+}
+
+void MainWindow::addComputerDialog()
+{
+    QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
+    computerDialogWindow = new ComputerDialog(this,tList);
+
+    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onComputerRejected()));
+    QObject::connect(computerDialogWindow,
+                     SIGNAL(addComputerAccepted(const QString &, const int &, const int &, const int &)),
+                     this,
+                     SLOT(onAddComputerAccepted(const QString &, const int &, const int &, const int &)));
+
+    this->setEnabled(false);
+    computerDialogWindow->setEnabled(true);
+    computerDialogWindow->show();
 }
 
 void MainWindow::editPersonDialog()
@@ -304,12 +331,38 @@ void MainWindow::editPersonDialog()
     personDialogWindow->show();
 }
 
+void MainWindow::editComputerDialog()
+{
+    QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
+
+    computerDialogWindow = new ComputerDialog(this,tList
+                          ,ui->table_Comp->model()->index(lastCompSelection,1).data().toString()
+                          ,ui->table_Comp->model()->index(lastCompSelection,2).data().toString()
+                          ,ui->table_Comp->model()->index(lastCompSelection,3).data().toInt()
+                          ,ui->table_Comp->model()->index(lastCompSelection,4).data().toInt()
+                          ,ui->table_Comp->model()->index(lastCompSelection,0).data().toInt());
+
+    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onComputerRejected()));
+    QObject::connect(computerDialogWindow,
+                     SIGNAL(editComputerAccepted(const int &,const QString &, const int &, const int &, const int &)),
+                     this,
+                     SLOT(onEditComputerAccepted(const int &,const QString &, const int &, const int &, const int &)));
+
+    this->setEnabled(false);
+    computerDialogWindow->setEnabled(true);
+    computerDialogWindow->show();
+}
+
 
 void MainWindow::onPersonRejected()
 {
     this->setEnabled(true);
 }
 
+void MainWindow::onComputerRejected()
+{
+    this->setEnabled(true);
+}
 
 void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d)
 {
@@ -324,6 +377,18 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     personModel->insertRecord(-1,record);
 }
 
+void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int &d, const int &b)
+{
+    this->setEnabled(true);
+
+    QSqlRecord record = computerModel->record();
+    record.setValue(1,n);
+    record.setValue(2,t);
+    record.setValue(3,d);
+    record.setValue(4,b);
+    computerModel->insertRecord(-1,record);
+}
+
 void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d)
 {
     this->setEnabled(true);
@@ -334,4 +399,14 @@ void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int
     personModel->setData(personModel->index(lastPersonSelection,4),b);
     personModel->setData(personModel->index(lastPersonSelection,5),d);
 
+}
+
+void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
+{
+    this->setEnabled(true);
+    computerModel->setData(computerModel->index(lastCompSelection,0),id);
+    computerModel->setData(computerModel->index(lastCompSelection,1),n);
+    computerModel->setData(computerModel->index(lastCompSelection,2),t);
+    computerModel->setData(computerModel->index(lastCompSelection,3),d);
+    computerModel->setData(computerModel->index(lastCompSelection,4),b);
 }
