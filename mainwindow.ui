@@ -498,12 +498,9 @@
         <zorder>label_relatedcomp_pi</zorder>
         <zorder>gridLayoutWidget</zorder>
         <zorder>label_pic_pi</zorder>
-<<<<<<< HEAD
         <zorder>tabsWidget_personComputer</zorder>
-=======
         <zorder>gridLayoutWidget_2</zorder>
         <zorder>horizontalLayoutWidget</zorder>
->>>>>>> origin/master
        </widget>
       </item>
       <item>
