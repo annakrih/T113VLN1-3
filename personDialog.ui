@@ -10,6 +10,12 @@
     <height>404</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>390</width>
+    <height>404</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -245,7 +251,7 @@
     <rect>
      <x>172</x>
      <y>92</y>
-     <width>93</width>
+     <width>121</width>
      <height>17</height>
     </rect>
    </property>

@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->personinfo->setVisible(false);
+    ui->computerInfo->setVisible(false);
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
@@ -224,6 +225,7 @@ void MainWindow::onPersonSelectionChange()
     {
         lastPersonSelection = -1;
         ui->personinfo->show();
+        ui->computerInfo->hide();
     }
 
     //checkStatus();
@@ -239,6 +241,7 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 
         ui->table_Comp->selectionModel()->clearSelection();
         lastCompSelection = -1;
+        ui->computerInfo->setVisible(false);
 
         overrideOnCompSelectionChange = false;
 
@@ -258,6 +261,8 @@ void MainWindow::onCompSelectionChange()
     if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
     {
         lastCompSelection = 1;
+        ui->computerInfo->show();
+        ui->personinfo->hide();
     }
 
     //checkStatus();
@@ -433,7 +438,7 @@ void MainWindow::saveChanges(){
     }
 
     if(computerModel->isDirty()){
-        saveModel(personModel);
+        saveModel(computerModel);
     }
 
 }
@@ -451,6 +456,7 @@ void MainWindow::personRightClick(QPoint position)
     pContextMenu->exec(QCursor::pos());
 }
 
+<<<<<<< HEAD
 void MainWindow::computerRightClick(QPoint position)
 {
     QMenu *cContextMenu = new QMenu( this);
@@ -460,3 +466,31 @@ void MainWindow::computerRightClick(QPoint position)
 }
 
 
+=======
+void MainWindow::deleteSelected(){
+
+    int index = ui->tabsWidget_personComputer->currentIndex();
+
+    if(index == 0)//person
+    {
+        QModelIndexList selList = ui->table_Person->selectionModel()->selectedRows();
+        for(int i = 0; i < selList.size(); i++){
+            ui->table_Person->hideRow(selList[i].row());
+            personModel->removeRow(selList[i].row());
+        }
+    }
+    else if(index == 1)//computer
+    {
+        QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
+        for(int i = 0; i < selList.size(); i++){
+            ui->table_Comp->hideRow(selList[i].row());
+            computerModel->removeRow(selList[i].row());
+        }
+    }
+}
+
+void MainWindow::on_actionDelete_triggered()
+{
+    deleteSelected();
+}
+>>>>>>> origin/master
