@@ -32,7 +32,7 @@
          </sizepolicy>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_Persons">
          <attribute name="title">
@@ -264,6 +264,9 @@
             <width>470</width>
             <height>331</height>
            </rect>
+          </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
           </property>
           <property name="autoFillBackground">
            <bool>true</bool>
