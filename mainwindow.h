@@ -104,6 +104,8 @@ private slots:
 
      void loadPersonInfo ();
 
+     void loadComputerInfo();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

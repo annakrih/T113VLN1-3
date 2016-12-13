@@ -499,3 +499,12 @@ void MainWindow::loadPersonInfo () {
     ui->label_deathage_pi->setText(ui->table_Person->model()->index(lastPersonSelection,5).data().toString());
 
 }
+
+void MainWindow::loadComputerInfo() {
+
+    ui->label_name_pi->setText(ui->table_Comp->model()->index(lastCompSelection,1).data().toString());
+    ui->label_type_ci->setText(ui->table_Comp->model()->index(lastCompSelection,2).data().toString());
+    ui->label_dy_ci->setText(ui->table_Comp->model()->index(lastCompSelection,3).data().toString());
+    ui->label_by_ci->setText(ui->table_Comp->model()->index(lastCompSelection,4).data().toString() );
+
+}
