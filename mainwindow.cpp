@@ -49,6 +49,10 @@ void MainWindow::loadPersonTable()
     ui->table_Person->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
+
+    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
+    ui->table_Person->setMouseTracking(true);
+            ui->table_Person->viewport()->setAttribute(Qt::WA_Hover,true);
 }
 
 void MainWindow::loadCompTable()
@@ -431,9 +435,18 @@ void MainWindow::saveChanges(){
     if(computerModel->isDirty()){
         saveModel(personModel);
     }
+
 }
 
 void MainWindow::saveModel(QSqlRelationalTableModel * model)
 {
     domain.submitDatabaseChanges(model);
+}
+
+void MainWindow::personRightClick(QPoint position)
+{
+    cout << "bap";
+    QMenu *pContextMenu = new QMenu( this);
+    pContextMenu->addAction(ui->menuEdit->actions().first());
+    pContextMenu->exec(QCursor::pos());
 }

@@ -94,6 +94,8 @@ private slots:
 
     void saveModel(QSqlRelationalTableModel * model);
 
+    void personRightClick(QPoint position);
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
