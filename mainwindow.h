@@ -88,6 +88,12 @@ private slots:
 
     void on_input_searchNat_currentIndexChanged(const QString &nat);
 
+    void on_actionSave_Changes_triggered();
+
+    void saveChanges();
+
+    void saveModel(QSqlRelationalTableModel * model);
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

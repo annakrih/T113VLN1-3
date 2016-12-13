@@ -400,7 +400,7 @@
      <x>0</x>
      <y>0</y>
      <width>752</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
@@ -409,6 +409,7 @@
     </property>
     <addaction name="actionAdd_new_person"/>
     <addaction name="actionAdd_new_computer"/>
+    <addaction name="actionSave_Changes"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -439,6 +440,11 @@
   <action name="actionEdit_Computer">
    <property name="text">
     <string>Edit Computer</string>
+   </property>
+  </action>
+  <action name="actionSave_Changes">
+   <property name="text">
+    <string>Save Changes</string>
    </property>
   </action>
  </widget>

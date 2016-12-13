@@ -416,3 +416,24 @@ void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const i
     computerModel->setData(computerModel->index(lastCompSelection,3),d);
     computerModel->setData(computerModel->index(lastCompSelection,4),b);
 }
+
+void MainWindow::on_actionSave_Changes_triggered()
+{
+    saveChanges();
+}
+
+void MainWindow::saveChanges(){
+
+    if(personModel->isDirty()){
+        saveModel(personModel);
+    }
+
+    if(computerModel->isDirty()){
+        saveModel(personModel);
+    }
+}
+
+void MainWindow::saveModel(QSqlRelationalTableModel * model)
+{
+    domain.submitDatabaseChanges(model);
+}
