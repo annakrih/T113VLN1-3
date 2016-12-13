@@ -63,8 +63,7 @@ public:
     //creates tailored search string for person.deathYear, and returns a table of the result (accepts "from" or "from to")
     QSqlRelationalTableModel * searchPersonDY(QString search);
 
-    QSqlRelationalTableModel * searchComputers(QString searchNameInput);
-    QSqlRelationalTableModel * searchComputers(QString searchNameInput, QString DYfrom, QString DYto, QString BYfrom, QString BYto, QString type);
+
 
     //creates tailored search string for computer.name, and returns a table of the result
     QSqlRelationalTableModel * searchComputerName(QString search);

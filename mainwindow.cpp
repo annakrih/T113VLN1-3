@@ -22,10 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     fillNationalitySearchBox(domain.getAcceptedNationality());
 
     showAdvSearchPersons = 0;
-    ui->widget_advSearchPerson->setVisible(showAdvSearchPersons);
-
-    showAdvSearchComps = 0;
-    ui->widget_advSearchComp->setVisible(showAdvSearchComps);
+    ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
 
     connect(
       ui->table_Comp->selectionModel(),
@@ -114,9 +111,39 @@ void MainWindow::searchPerson()
     loadPersonTable();
 }
 
+
+void MainWindow::searchComp(const QString& searchInput)
+{
+ /*   QString search = ui->searchInput_Comp->text();
+    std::cout << search.toStdString();
+
+    if(currentCompSearchIndex == 0)
+    {
+        loadCompTable(domain.searchComputerName(search));
+    }
+    else if(currentCompSearchIndex == 1)
+    {
+        loadCompTable(domain.searchComputerType(search));
+    }
+    else if(currentCompSearchIndex == 2)
+    {
+        loadCompTable(domain.searchComputerDY(search));
+    }
+    else if(currentCompSearchIndex == 3)
+    {
+        loadCompTable(domain.searchComputerBY(search));
+    }
+    */
+}
+
 void MainWindow::on_input_searchPerson_textEdited()
 {
     searchPerson();
+}
+
+void MainWindow::on_searchInput_Comp_textEdited(const QString& searchString)
+{
+    searchComp(searchString);
 }
 
 void MainWindow::on_button_advSearchPerson_released()
@@ -124,11 +151,10 @@ void MainWindow::on_button_advSearchPerson_released()
     if(showAdvSearchPersons)
     {
         ui->input_searchNat->setCurrentIndex(0);
-        //TODO cleara allt
     }
 
     showAdvSearchPersons = !showAdvSearchPersons;
-    ui->widget_advSearchPerson->setVisible(showAdvSearchPersons);
+    ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
 }
 
 
@@ -199,6 +225,7 @@ void MainWindow::onPersonSelectionChange()
     {
         lastPersonSelection = -1;
         ui->personinfo->show();
+        ui->computerInfo->hide();
     }
 
     //checkStatus();
@@ -235,6 +262,7 @@ void MainWindow::onCompSelectionChange()
     {
         lastCompSelection = 1;
         ui->computerInfo->show();
+        ui->personinfo->hide();
     }
 
     //checkStatus();
@@ -398,63 +426,6 @@ void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const i
     computerModel->setData(computerModel->index(lastCompSelection,4),b);
 }
 
-void MainWindow::on_button_advSearchComp_released()
-{
-    if(showAdvSearchComps)
-    {
-        //TODO hreinsa advanced searching
-    }
-
-    showAdvSearchComps = !showAdvSearchComps;
-    ui->widget_advSearchComp ->setVisible(showAdvSearchComps);
-}
-
-void MainWindow::searchComp()
-{
-    QString searchNameInput = ui->searchInput_Comp->text();
-
-    if(showAdvSearchComps)
-    {
-        QString DYfrom = ui->input_searchDesignYearFrom->text();
-        QString DYto = ui->input_searchDesignYearTo->text();
-        QString BYfrom = ui->input_searchBuildYearFrom->text();
-        QString BYto = ui->input_searchBuildYearTo->text();
-        QString compType = ui->input_searchCompType->itemData(ui->input_searchCompType->currentIndex()).toString();
-
-        personModel = domain.searchComputers(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
-    }
-    else
-    {
-        personModel = domain.searchComputers(searchNameInput);
-    }
-    loadPersonTable();
-}
-
-void MainWindow::on_searchInput_Comp_textEdited()
-{
-    searchComp();
-}
-
-void MainWindow::on_input_searchDesignYearFrom_editingFinished()
-{
-    searchComp();
-}
-
-void MainWindow::on_input_searchDesignYearTo_editingFinished()
-{
-    searchComp();
-}
-
-void MainWindow::on_input_searchBuildYearFrom_editingFinished()
-{
-    searchComp();
-}
-
-void MainWindow::on_input_searchBuildYearTo_editingFinished()
-{
-    searchComp();
-}
-
 void MainWindow::on_actionSave_Changes_triggered()
 {
     saveChanges();
@@ -467,7 +438,7 @@ void MainWindow::saveChanges(){
     }
 
     if(computerModel->isDirty()){
-        saveModel(personModel);
+        saveModel(computerModel);
     }
 
 }
@@ -483,4 +454,31 @@ void MainWindow::personRightClick(QPoint position)
     QMenu *pContextMenu = new QMenu( this);
     pContextMenu->addAction(ui->menuEdit->actions().first());
     pContextMenu->exec(QCursor::pos());
+}
+
+void MainWindow::deleteSelected(){
+
+    int index = ui->tabsWidget_personComputer->currentIndex();
+
+    if(index == 0)//person
+    {
+        QModelIndexList selList = ui->table_Person->selectionModel()->selectedRows();
+        for(int i = 0; i < selList.size(); i++){
+            ui->table_Person->hideRow(selList[i].row());
+            personModel->removeRow(selList[i].row());
+        }
+    }
+    else if(index == 1)//computer
+    {
+        QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
+        for(int i = 0; i < selList.size(); i++){
+            ui->table_Comp->hideRow(selList[i].row());
+            computerModel->removeRow(selList[i].row());
+        }
+    }
+}
+
+void MainWindow::on_actionDelete_triggered()
+{
+    deleteSelected();
 }

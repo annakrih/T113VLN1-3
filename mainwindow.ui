@@ -295,67 +295,112 @@
           <height>0</height>
          </size>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
-         <item>
-          <widget class="QLabel" name="label_pic_pi">
-           <property name="text">
-            <string>Photo</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QGridLayout" name="gridpersoninfo">
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_name_pi">
-             <property name="text">
-              <string>Name: </string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="label_deathage_pi">
-             <property name="text">
-              <string>Death/Age: </string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="label_born_pi">
-             <property name="text">
-              <string>Born: </string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_nation_pi">
-             <property name="text">
-              <string>Nationality:</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_bio_pi">
-           <property name="text">
-            <string>Bio: </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QTextBrowser" name="textBrowser_bio_pi"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_relatedcomp_pi">
-           <property name="text">
-            <string>Related Computers:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QTextBrowser" name="textBrowser_relatedComp_pi"/>
-         </item>
-        </layout>
+        <widget class="QLabel" name="label_bio_pi">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>300</y>
+           <width>59</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Bio: </string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="textBrowser_bio_pi">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>320</y>
+           <width>201</width>
+           <height>91</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="textBrowser_relatedComp_pi">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>430</y>
+           <width>201</width>
+           <height>91</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_relatedcomp_pi">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>410</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Related Computers:</string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="gridLayoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>130</y>
+           <width>210</width>
+           <height>171</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridpersoninfo">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_name_pi">
+            <property name="text">
+             <string>Name: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_deathage_pi">
+            <property name="text">
+             <string>Death/Age: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_born_pi">
+            <property name="text">
+             <string>Born: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_nation_pi">
+            <property name="text">
+             <string>Nationality:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QLabel" name="label_pic_pi">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>81</width>
+           <height>111</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Photo</string>
+         </property>
+        </widget>
+        <zorder>label_bio_pi</zorder>
+        <zorder>textBrowser_bio_pi</zorder>
+        <zorder>textBrowser_relatedComp_pi</zorder>
+        <zorder>label_relatedcomp_pi</zorder>
+        <zorder>gridLayoutWidget</zorder>
+        <zorder>label_pic_pi</zorder>
+        <zorder>computerInfo</zorder>
        </widget>
       </item>
       <item>
@@ -368,47 +413,59 @@
             <height>0</height>
            </size>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <widget class="QLabel" name="label_pic_ci">
-             <property name="text">
-              <string>Photo</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QGridLayout" name="gridLayout">
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_type_ci">
-               <property name="text">
-                <string>Type: </string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_dy_ci">
-               <property name="text">
-                <string>Design year: </string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_by_ci">
-               <property name="text">
-                <string>Build year: </string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_name_ci">
-               <property name="text">
-                <string>Name: </string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
+          <widget class="QWidget" name="gridLayoutWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>140</y>
+             <width>201</width>
+             <height>381</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_type_ci">
+              <property name="text">
+               <string>Type: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_dy_ci">
+              <property name="text">
+               <string>Design year: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_by_ci">
+              <property name="text">
+               <string>Build year: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_name_ci">
+              <property name="text">
+               <string>Name: </string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QLabel" name="label_pic_ci">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>151</width>
+             <height>131</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Photo</string>
+           </property>
+          </widget>
          </widget>
         </item>
        </layout>
