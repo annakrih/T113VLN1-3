@@ -96,7 +96,7 @@ void MainWindow::searchPerson()
         QString DYfrom = ui->input_searchDiedFrom->text();
         QString DYto = ui->input_searchDiedTo->text();
 
-        QString nationality = "" ;                                                  //TODO! Tengja við drop down!
+        QString nationality = ui->input_searchNat->itemData(ui->input_searchNat->currentIndex()).toString();                                                  //TODO! Tengja við drop down!
 
         //loadPersonTable(domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality));
     }
