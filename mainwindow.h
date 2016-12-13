@@ -124,6 +124,8 @@ private slots:
 
     void on_input_searchBuildYearTo_editingFinished();
 
+    void on_actionPersons_2_triggered();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

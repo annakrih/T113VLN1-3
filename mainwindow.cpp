@@ -562,3 +562,9 @@ void MainWindow::on_button_addcomp_clicked()
     addComputerDialog();
 }
 
+
+void MainWindow::on_actionPersons_2_triggered()
+{
+    domain.getDeletePersonTable();
+    saveChanges();
+}

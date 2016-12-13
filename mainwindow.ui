@@ -616,7 +616,7 @@
      <x>0</x>
      <y>0</y>
      <width>752</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
@@ -631,9 +631,17 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <widget class="QMenu" name="menuDelete_all_2">
+     <property name="title">
+      <string>Delete all</string>
+     </property>
+     <addaction name="actionPersons_2"/>
+     <addaction name="actionComputers_2"/>
+    </widget>
     <addaction name="actionEdit_person"/>
     <addaction name="actionEdit_Computer"/>
     <addaction name="actionDelete"/>
+    <addaction name="menuDelete_all_2"/>
    </widget>
    <addaction name="menuComputer_History"/>
    <addaction name="menuEdit"/>
@@ -667,6 +675,16 @@
   <action name="actionDelete">
    <property name="text">
     <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionPersons_2">
+   <property name="text">
+    <string>Persons</string>
+   </property>
+  </action>
+  <action name="actionComputers_2">
+   <property name="text">
+    <string>Computers</string>
    </property>
   </action>
  </widget>
