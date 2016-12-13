@@ -456,7 +456,6 @@ void MainWindow::personRightClick(QPoint position)
     pContextMenu->exec(QCursor::pos());
 }
 
-<<<<<<< HEAD
 void MainWindow::computerRightClick(QPoint position)
 {
     QMenu *cContextMenu = new QMenu( this);
@@ -465,8 +464,6 @@ void MainWindow::computerRightClick(QPoint position)
     cContextMenu->exec(QCursor::pos());
 }
 
-
-=======
 void MainWindow::deleteSelected(){
 
     int index = ui->tabsWidget_personComputer->currentIndex();
@@ -493,4 +490,3 @@ void MainWindow::on_actionDelete_triggered()
 {
     deleteSelected();
 }
->>>>>>> origin/master
