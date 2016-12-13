@@ -110,11 +110,10 @@ private slots:
 
      void loadComputerInfo();
 
-<<<<<<< HEAD
      void on_button_addPerson_clicked();
 
      void on_button_addcomp_clicked();
-=======
+
     void on_button_advSearchComp_released();
 
     void on_input_searchDesignYearFrom_editingFinished();
@@ -124,7 +123,6 @@ private slots:
     void on_input_searchBuildYearFrom_editingFinished();
 
     void on_input_searchBuildYearTo_editingFinished();
->>>>>>> origin/master
 
 private:
     Ui::MainWindow *ui;
