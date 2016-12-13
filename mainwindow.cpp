@@ -225,6 +225,7 @@ void MainWindow::onPersonSelectionChange()
     {
         lastPersonSelection = -1;
         ui->personinfo->show();
+        ui->computerInfo->hide();
     }
 
     //checkStatus();
@@ -261,6 +262,7 @@ void MainWindow::onCompSelectionChange()
     {
         lastCompSelection = 1;
         ui->computerInfo->show();
+        ui->personinfo->hide();
     }
 
     //checkStatus();
