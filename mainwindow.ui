@@ -27,25 +27,49 @@
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="1">
-       <widget class="QPushButton" name="button_addcomp">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="button_addPerson">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>database/addcomp.png</normaloff>database/addcomp.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/icons/images/adduser.png</normaloff>:/icons/images/adduser.png</iconset>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="button_addPerson">
+      <item row="0" column="1">
+       <widget class="QPushButton" name="button_addcomp">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>database/adduser.png</normaloff>database/adduser.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/icons/images/addcomp.png</normaloff>:/icons/images/addcomp.png</iconset>
         </property>
        </widget>
       </item>
@@ -61,6 +85,29 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="pushButton_editSelectedEntry">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/icons/images/editIcon.png</normaloff>:/icons/images/editIcon.png</iconset>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -715,6 +762,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

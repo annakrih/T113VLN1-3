@@ -255,7 +255,6 @@ QSqlRelationalTableModel * Domain::searchComputer(QString searchNameInput, QStri
         filter += "computer.typeId like '%"+type+"%'";
     }
 
-    std::cout << endl << filter.toStdString() << endl;
     return data.readComputerFromDatabase(filter);
 }
 
