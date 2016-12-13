@@ -112,38 +112,66 @@ void MainWindow::searchPerson()
 }
 
 
-void MainWindow::searchComp(const QString& searchInput)
-{
- /*   QString search = ui->searchInput_Comp->text();
-    std::cout << search.toStdString();
-
-    if(currentCompSearchIndex == 0)
-    {
-        loadCompTable(domain.searchComputerName(search));
-    }
-    else if(currentCompSearchIndex == 1)
-    {
-        loadCompTable(domain.searchComputerType(search));
-    }
-    else if(currentCompSearchIndex == 2)
-    {
-        loadCompTable(domain.searchComputerDY(search));
-    }
-    else if(currentCompSearchIndex == 3)
-    {
-        loadCompTable(domain.searchComputerBY(search));
-    }
-    */
-}
-
 void MainWindow::on_input_searchPerson_textEdited()
 {
     searchPerson();
 }
 
-void MainWindow::on_searchInput_Comp_textEdited(const QString& searchString)
+void MainWindow::on_button_advSearchComp_released()
 {
-    searchComp(searchString);
+    if(showAdvSearchComps)
+    {
+        //TODO hreinsa advanced searching
+    }
+
+    showAdvSearchComps = !showAdvSearchComps;
+    ui->widget_advSearchComp ->setVisible(showAdvSearchComps);
+}
+
+void MainWindow::searchComp()
+{
+    QString searchNameInput = ui->searchInput_Comp->text();
+
+    if(showAdvSearchComps)
+    {
+        QString DYfrom = ui->input_searchDesignYearFrom->text();
+        QString DYto = ui->input_searchDesignYearTo->text();
+        QString BYfrom = ui->input_searchBuildYearFrom->text();
+        QString BYto = ui->input_searchBuildYearTo->text();
+        QString compType = ui->input_searchCompType->itemData(ui->input_searchCompType->currentIndex()).toString();
+
+        personModel = domain.searchComputers(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
+    }
+    else
+    {
+        personModel = domain.searchComputers(searchNameInput);
+    }
+    loadPersonTable();
+}
+
+void MainWindow::on_searchInput_Comp_textEdited()
+{
+    searchComp();
+}
+
+void MainWindow::on_input_searchDesignYearFrom_editingFinished()
+{
+    searchComp();
+}
+
+void MainWindow::on_input_searchDesignYearTo_editingFinished()
+{
+    searchComp();
+}
+
+void MainWindow::on_input_searchBuildYearFrom_editingFinished()
+{
+    searchComp();
+}
+
+void MainWindow::on_input_searchBuildYearTo_editingFinished()
+{
+    searchComp();
 }
 
 void MainWindow::on_button_advSearchPerson_released()

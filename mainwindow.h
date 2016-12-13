@@ -106,6 +106,18 @@ private slots:
 
      void loadComputerInfo();
 
+    void on_button_advSearchComp_released();
+
+    void on_searchInput_Comp_textEdited();
+
+    void on_input_searchDesignYearFrom_editingFinished();
+
+    void on_input_searchDesignYearTo_editingFinished();
+
+    void on_input_searchBuildYearFrom_editingFinished();
+
+    void on_input_searchBuildYearTo_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
