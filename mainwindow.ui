@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>649</width>
+    <width>692</width>
     <height>600</height>
    </rect>
   </property>
@@ -319,19 +319,6 @@
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="lBorn_pi">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>40</y>
-           <width>91</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
         <widget class="QTextBrowser" name="textBrowser_relatedComp_pi">
          <property name="geometry">
           <rect>
@@ -353,45 +340,6 @@
          </property>
          <property name="text">
           <string>Related Computures:</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="lDeathAge_pi">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>60</y>
-           <width>71</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="lName_pi">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>10</y>
-           <width>241</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="lNationality_pi">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>90</y>
-           <width>171</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
          </property>
         </widget>
         <widget class="QWidget" name="gridLayoutWidget">
@@ -458,7 +406,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>649</width>
+     <width>692</width>
      <height>22</height>
     </rect>
    </property>

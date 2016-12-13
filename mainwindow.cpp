@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->personinfo->setVisible(false);
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
@@ -199,6 +200,7 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 
         ui->table_Person->selectionModel()->clearSelection();
         lastPersonSelection = -1;
+        ui->personinfo->setVisible(false);
 
         overrideOnPersonSelectionChange = false;
 
@@ -220,6 +222,7 @@ void MainWindow::onPersonSelectionChange()
         lastPersonSelection = -1;
     }else if(!ui->table_Person->selectionModel()->selectedRows().isEmpty()){
         lastPersonSelection = ui->table_Person->selectionModel()->selectedRows().last().row();
+        ui->personinfo->setVisible(true);
     }
 
     //checkStatus();
