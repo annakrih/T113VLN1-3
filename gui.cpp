@@ -563,7 +563,7 @@ void Gui::fillSearchComboBoxP()
     ui->searchComboBox->addItem("Birth year",3);
     ui->searchComboBox->addItem("Death year",4);
 
-};
+}
 
 void Gui::fillSearchComboBoxC()
 {
@@ -572,7 +572,7 @@ void Gui::fillSearchComboBoxC()
     ui->searchComboBox->addItem("Type",1);
     ui->searchComboBox->addItem("Design year",2);
     ui->searchComboBox->addItem("Build year",3);
-};
+}
 
 void Gui::on_searchComboBox_currentIndexChanged(int index)
 {
