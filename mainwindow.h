@@ -102,6 +102,8 @@ private slots:
 
     void on_actionDelete_triggered();
 
+     void loadPersonInfo ();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

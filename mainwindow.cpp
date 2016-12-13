@@ -490,3 +490,12 @@ void MainWindow::on_actionDelete_triggered()
 {
     deleteSelected();
 }
+
+void MainWindow::loadPersonInfo () {
+
+    ui->label_name_pi->setText(ui->table_Person->model()->index(lastPersonSelection,1).data().toString());
+    ui->label_nation_pi->setText(ui->table_Person->model()->index(lastPersonSelection,3).data().toString());
+    ui->label_born_pi->setText(ui->table_Person->model()->index(lastPersonSelection,4).data().toString());
+    ui->label_deathage_pi->setText(ui->table_Person->model()->index(lastPersonSelection,5).data().toString());
+
+}
