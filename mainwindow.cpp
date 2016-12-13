@@ -479,7 +479,8 @@ void MainWindow::deleteSelected(){
     else if(index == 1)//computer
     {
         QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
-        for(int i = 0; i < selList.size(); i++){
+        for(int i = 0; i < selList.size(); i++)
+        {
             ui->table_Comp->hideRow(selList[i].row());
             computerModel->removeRow(selList[i].row());
         }
