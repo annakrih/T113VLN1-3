@@ -193,7 +193,7 @@ void MainWindow::on_input_searchNat_currentIndexChanged(const QString &nat)
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
 
-    if(lastPersonSelection == index.row() )
+    if(lastPersonSelection == index.row())
     {
         overrideOnPersonSelectionChange = true;
 
@@ -218,7 +218,7 @@ void MainWindow::onPersonSelectionChange()
 {
     if(!overrideOnPersonSelectionChange && !ui->table_Person->selectionModel()->selectedRows().isEmpty())
     {
-        lastPersonSelection = ui->table_Person->selectionModel()->selectedRows().last().row();
+        lastPersonSelection = -1;
         ui->personinfo->show();
     }
 
@@ -253,7 +253,7 @@ void MainWindow::onCompSelectionChange()
 {
     if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
     {
-        lastCompSelection = ui->table_Comp->selectionModel()->selectedRows().last().row();
+        lastCompSelection = 1;
     }
 
     //checkStatus();
