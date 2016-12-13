@@ -43,6 +43,8 @@ private slots:
 
     void on_textEdit_textChanged();
 
+    void on_inputPhoto_clicked();
+
 signals:
     void addPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
     void editPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d);
