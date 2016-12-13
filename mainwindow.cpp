@@ -217,12 +217,10 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 
 void MainWindow::onPersonSelectionChange()
 {
-    if(!overrideOnPersonSelectionChange)
+    if(!overrideOnPersonSelectionChange && !ui->table_Person->selectionModel()->selectedRows().isEmpty())
     {
-        lastPersonSelection = -1;
-    }else if(!ui->table_Person->selectionModel()->selectedRows().isEmpty()){
         lastPersonSelection = ui->table_Person->selectionModel()->selectedRows().last().row();
-        ui->personinfo->setVisible(true);
+        ui->personinfo->show();
     }
 
     //checkStatus();
@@ -254,10 +252,8 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 
 void MainWindow::onCompSelectionChange()
 {
-    if(!overrideOnCompSelectionChange)
+    if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
     {
-        lastCompSelection = -1;
-    }else if(!ui->table_Comp->selectionModel()->selectedRows().isEmpty()){
         lastCompSelection = ui->table_Comp->selectionModel()->selectedRows().last().row();
     }
 
