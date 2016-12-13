@@ -20,7 +20,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-<<<<<<< HEAD
    <layout class="QGridLayout" name="gridLayout_4">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabsWidget_personComputer">
@@ -118,40 +117,7 @@
               <widget class="QLineEdit" name="input_searchDiedTo">
                <property name="enabled">
                 <bool>true</bool>
-=======
-   <layout class="QVBoxLayout" name="verticalLayout_3">
-    <item>
-     <layout class="QHBoxLayout" name="HorizontalPi">
-      <item>
-       <widget class="QTabWidget" name="tabsWidget_personComputer">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <widget class="QWidget" name="tab_Persons">
-         <attribute name="title">
-          <string>Persons</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QFrame" name="horizontalFrame">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>40</height>
-             </size>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <widget class="QLineEdit" name="input_searchPerson">
-               <property name="styleSheet">
-                <string notr="true"/>
->>>>>>> origin/master
+				
                </property>
                <property name="placeholderText">
                 <string> Search persons by name...</string>
