@@ -37,6 +37,16 @@ QSqlQueryModel * Domain::getDeletePersonTable()
     return data.deleteAllPersons();
 }
 
+QSqlQueryModel * Domain::getDeleteComputerTable()
+{
+    return data.deleteAllComputers();
+}
+
+QSqlQueryModel * Domain::getDeleteRelationTable()
+{
+    return data.deleteAllRelations();
+}
+
 QMap<QString,int> Domain::getAcceptedGenderName()
 {
 

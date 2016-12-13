@@ -67,6 +67,8 @@ public:
     //deleting every instance from computer table
     QSqlQueryModel* deleteAllComputers();
 
+    QSqlQueryModel* deleteAllRelations();
+
     //submit any changes to table, QSqlRelationalTableModel deals with all inserts/deletes/updates needed. (awesome)
     QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);
 

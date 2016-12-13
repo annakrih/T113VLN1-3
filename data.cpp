@@ -183,6 +183,16 @@ QSqlQueryModel* Data::deleteAllComputers()
     return model;
 }
 
+QSqlQueryModel* Data::deleteAllRelations()
+{
+    QSqlQueryModel *model = new QSqlQueryModel;
+
+    model->setQuery("DELETE FROM Person_Computer");
+    model->setQuery("DELETE FROM sqlite_sequence WHERE name=Person_Computer");
+
+    return model;
+}
+
 
 void Data::initializeData()
 {

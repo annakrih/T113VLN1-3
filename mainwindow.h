@@ -126,6 +126,10 @@ private slots:
 
     void on_actionPersons_2_triggered();
 
+    void on_actionComputers_2_triggered();
+
+    void on_actionRelations_triggered();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

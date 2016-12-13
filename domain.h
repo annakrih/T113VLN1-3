@@ -45,6 +45,11 @@ public:
     //passes a message down to data layer for deleting all instances in person table
     QSqlQueryModel * getDeletePersonTable();
 
+    //passes a message down to data layer for deleting all instances in computer table
+    QSqlQueryModel * getDeleteComputerTable();
+
+    QSqlQueryModel * getDeleteRelationTable();
+
     //takes in a  model and passes it down to the Data layer, where its changes get submitted.
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 

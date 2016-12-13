@@ -62,7 +62,7 @@
          </sizepolicy>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_Persons">
          <attribute name="title">
@@ -637,6 +637,7 @@
      </property>
      <addaction name="actionPersons_2"/>
      <addaction name="actionComputers_2"/>
+     <addaction name="actionRelations"/>
     </widget>
     <addaction name="actionEdit_person"/>
     <addaction name="actionEdit_Computer"/>
@@ -685,6 +686,11 @@
   <action name="actionComputers_2">
    <property name="text">
     <string>Computers</string>
+   </property>
+  </action>
+  <action name="actionRelations">
+   <property name="text">
+    <string>Relations</string>
    </property>
   </action>
  </widget>

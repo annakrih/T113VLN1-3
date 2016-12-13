@@ -569,3 +569,17 @@ void MainWindow::on_actionPersons_2_triggered()
     personModel = domain.getPersonModel();
     loadPersonTable();
 }
+
+void MainWindow::on_actionComputers_2_triggered()
+{
+    domain.getDeleteComputerTable();
+    computerModel = domain.getComputerModel();
+    loadCompTable();
+}
+
+void MainWindow::on_actionRelations_triggered()
+{
+    domain.getDeleteRelationTable();
+    //TODO relationModel = domain.getRelationModel();
+    //TODO loadRelationModel();
+}
