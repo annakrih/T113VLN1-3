@@ -212,6 +212,7 @@ void PersonDialog::on_inputPhoto_clicked()
         //File selected
         QPixmap pixmap (fileName);
         ui->label_image->setPixmap(pixmap);
+        ui->label_image->setScaledContents(true);
 
     }
     else
