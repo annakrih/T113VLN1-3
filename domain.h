@@ -28,6 +28,8 @@ public:
     //returns QMap of <"Typename", id>
     QMap<QString, int> getAcceptedComputerTypeName();
 
+    QMap<QString, int> getAcceptedNationality();
+
     //fetches person tableModel from data layer
     QSqlRelationalTableModel * getPersonModel(QString filter = "");
 
@@ -50,7 +52,7 @@ public:
     QSqlRelationalTableModel * searchPersonName(QString search);
 
     //creates tailored search string for person.genderId , and returns a table of the result (genderid as genderName)
-    QSqlRelationalTableModel * searchPersonGender(int genderType);
+    QSqlRelationalTableModel * searchPersonGender(QString genderType);
 
     //creates tailored search string for person.nationality, and returns a table of the result
     QSqlRelationalTableModel * searchPersonNationality(QString search);

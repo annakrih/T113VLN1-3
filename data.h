@@ -26,6 +26,7 @@ private:
     const QString databaseDir = utils.workingDir+"database/";
     const QString schemaFile = databaseDir + "schema.sql";
     const QString initialGender = databaseDir + "genderInitialData.csv";
+    const QString initialNationality = databaseDir + "nationalityInitialData.csv";
     const QString initialPerson = databaseDir + "personInitialData.csv";
     const QString initialComputerType = databaseDir + "computerTypeInitialData.csv";
     const QString initialComputer = databaseDir + "computerInitialData.csv";
@@ -66,6 +67,8 @@ public:
 
     //gets the list of accepted computer types
     QMap<QString, int> getAcceptedComputerTypes();
+
+    QMap<QString, int> getAcceptedNationality();
 
     //takes in personId and computerId and creates a relation between the two tables;
     void createPCRelation(int p, int c);

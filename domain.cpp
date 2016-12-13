@@ -65,25 +65,20 @@ QMap<QString, int> Domain::getAcceptedComputerTypeName()
     return data.getAcceptedComputerTypes();
 }
 
+QMap<QString, int> Domain::getAcceptedNationality()
+{
+    return data.getAcceptedNationality();
+}
+
 QSqlRelationalTableModel * Domain::searchPersonName(QString name)
 {
     QString filter = "person.name like '%"+name+"%'";
     return data.readPeopleFromDatabase(filter);
 }
 
-QSqlRelationalTableModel * Domain::searchPersonGender(int genderType)
+QSqlRelationalTableModel * Domain::searchPersonGender(QString genderType)
 {
-    QString intSearch = 0;
-    if(genderType == 1)
-    {
-        intSearch = "1";
-    }
-    if(genderType == 2)
-    {
-        intSearch = "2";
-    }
-
-    QString filter = "person.genderId like '%"+intSearch+"%'";
+    QString filter = "person.genderId like '%"+genderType+"%'";
     return data.readPeopleFromDatabase(filter);
 }
 

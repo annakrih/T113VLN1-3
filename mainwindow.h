@@ -26,6 +26,7 @@ public:
     void on_searchComboBox_currentIndexChanged(int index);
     void loadPersonTable(QSqlRelationalTableModel * model);
     void loadCompTable(QSqlRelationalTableModel * model);
+    void fillNationalitySearchBox(QMap<QString, int> natList);
 
 
 private slots:

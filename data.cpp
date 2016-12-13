@@ -75,6 +75,22 @@ QMap<QString, int> Data::getAcceptedComputerTypes()
     return computerTypes;
 }
 
+QMap<QString, int> Data::getAcceptedNationality()
+{
+    QMap<QString, int> nationality;
+    QSqlQuery query("SELECT id, countryName FROM person_nationality");
+    while(query.next())
+    {
+        int id = query.value(0).toInt();
+        QString countryName = query.value(1).toString();
+
+        nationality.insert(countryName, id);
+    }
+
+    return nationality;
+}
+
+
 QSqlRelationalTableModel* Data::submitDatabaseChanges(QSqlRelationalTableModel* model)
 {
     model->submitAll();
@@ -87,7 +103,8 @@ QSqlRelationalTableModel * Data::readPeopleFromDatabase(QString filter)
 {
    QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
    model->setTable("person");
-   model->setRelation(2, QSqlRelation("Person_Gender", "id", "GenderName"));
+   model->setRelation(2, QSqlRelation("Person_Gender", "id", "genderName"));
+   model->setRelation(3, QSqlRelation("Person_Nationality", "id", "countryName"));
 
    model->setFilter(filter);
 
@@ -130,11 +147,13 @@ QSqlQueryModel* Data::readPersonRelation(QString id){
 void Data::initializeData()
 {
     QFile gender(initialGender);
+    QFile nationality(initialNationality);
     QFile person(initialPerson);
     QFile computeryType(initialComputerType);
     QFile computer(initialComputer);
     QFile personComputer(initialPerson_Computer);
     importCSV("Person_Gender", gender);
+    importCSV("Person_Nationality", nationality);
     importCSV("Person", person);
     importCSV("computer_type", computeryType);
     importCSV("computer", computer);
@@ -160,6 +179,7 @@ void Data::createPCRelation(int p, int c){
 
 }
 
+//todo deal with commas in values
 void Data::importCSV(QString tableName, QFile & csvFile){
 
     if(!csvFile.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -189,8 +209,10 @@ void Data::importCSV(QString tableName, QFile & csvFile){
 
     foreach (QString row, fileRow)
     {
-        QStringList columns = QTextStream(&row).readAll().split(',');
+
+        QStringList columns = QTextStream(&row).readAll().split(QRegularExpression(","));
         for(int i = 0; i < columns.size(); i++){
+            std:cout << QString(":"+tableColumn[i].trimmed()+","+ columns[i].trimmed()+"\n").toStdString();
             query.bindValue(":"+tableColumn[i].trimmed(), columns[i].trimmed());
         }
 

@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     loadPersonTable(personModel);
     loadCompTable(computerModel);
+    fillNationalitySearchBox(domain.getAcceptedNationality());
 
     showAdvSearchPersons = 0;
     ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
@@ -40,6 +41,19 @@ void MainWindow::loadCompTable(QSqlRelationalTableModel * model)
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
+}
+
+
+void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList){
+
+    ui->input_searchNat->addItem("",0);
+    QMapIterator<QString, int> i(natList);
+    while (i.hasNext())
+    {
+        i.next();
+        ui->input_searchNat->addItem(i.key(),i.value());
+    }
+
 }
 
 

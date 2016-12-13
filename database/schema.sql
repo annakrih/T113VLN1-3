@@ -4,14 +4,21 @@ genderName TEXT NOT NULL,
 genderChar TEXT
 );
 
+Create Table IF NOT EXISTS Person_nationality(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+countryCode TEXT NOT NULL,
+countryName TEXT
+);
+
 Create table IF NOT EXISTS Person(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name TEXT NOT NULL,
 genderId INTEGER NOT NULL,
-nationality TEXT NOT NULL,
+nationalityId INTEGER NOT NULL,
 birthYear INTEGER NOT NULL,
 deathYear INTEGER,
-FOREIGN KEY(genderId) REFERENCES Person_Gender(id)
+FOREIGN KEY(genderId) REFERENCES Person_Gender(id),
+FOREIGN KEY(nationalityId) REFERENCES Person_nationality(id)
 );
 
 Create table IF NOT EXISTS Computer_Type(
