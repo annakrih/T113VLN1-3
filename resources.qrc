@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>database/addcomp.png</file>
+        <file>database/adduser.png</file>
+    </qresource>
+</RCC>

@@ -46,3 +46,6 @@ FORMS += \
     $$PWD/computerDialog.ui \
     mainwindow.ui \
     $$PWD/personinfo.ui \
+
+RESOURCES += \
+    resources.qrc
