@@ -59,7 +59,7 @@ void ComputerDialog::on_buttonBox_accepted()
 
     if(id == 0)//add
     {
-        emit this->newComputerAccepted(name,type,dY,bY);
+        emit this->addComputerAccepted(name,type,dY,bY);
     }
     else//edit
     {

@@ -184,13 +184,13 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput)
 QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gender, QString BYfrom, QString BYto, QString DYfrom, QString DYto, QString nationality)
 {
     QString filter = "";
-    bool firstFilter = 1;
+    bool firstFilter = true;
 
     //name filter
     if( !(searchInput==""))
     {
         filter += "person.name like '%"+searchInput+"%'";
-        firstFilter = 0;
+        firstFilter = false;
     }
 
     //gender filter
@@ -202,6 +202,7 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
         }
 
         filter += "person.genderId like '%"+gender+"%'";
+        firstFilter = false;
     }
 
     //birthYear filter
@@ -224,6 +225,7 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
         {
             filter = "person.birthYear < '"+BYto+"'";
         }
+        firstFilter = false;
     }
 
     //DeathYear filter
@@ -246,6 +248,19 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
         {
             filter = "person.deathYear < '"+DYto+"'";
         }
+        firstFilter = false;
+    }
+
+    //gender filter
+    if( !(nationality==""))
+    {
+        if(!firstFilter)
+        {
+            filter += " AND ";
+        }
+        std::cout << endl << "land:" << nationality.toStdString() << endl;
+        QString filter = "person.nationalityID like '%"+nationality+"%'";
+        firstFilter = false;
     }
 
     return data.readPeopleFromDatabase(filter);
