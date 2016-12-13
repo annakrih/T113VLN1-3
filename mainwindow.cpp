@@ -52,6 +52,10 @@ void MainWindow::loadPersonTable()
     ui->table_Person->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
+
+    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
+    ui->table_Person->setMouseTracking(true);
+            ui->table_Person->viewport()->setAttribute(Qt::WA_Hover,true);
 }
 
 void MainWindow::loadCompTable()
@@ -167,7 +171,7 @@ void MainWindow::on_input_searchNat_currentIndexChanged(const QString &nat)
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
 
-    if(lastPersonSelection == index.row() )
+    if(lastPersonSelection == index.row())
     {
         overrideOnPersonSelectionChange = true;
 
@@ -192,7 +196,7 @@ void MainWindow::onPersonSelectionChange()
 {
     if(!overrideOnPersonSelectionChange && !ui->table_Person->selectionModel()->selectedRows().isEmpty())
     {
-        lastPersonSelection = ui->table_Person->selectionModel()->selectedRows().last().row();
+        lastPersonSelection = -1;
         ui->personinfo->show();
     }
 
@@ -227,7 +231,7 @@ void MainWindow::onCompSelectionChange()
 {
     if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
     {
-        lastCompSelection = ui->table_Comp->selectionModel()->selectedRows().last().row();
+        lastCompSelection = 1;
     }
 
     //checkStatus();
@@ -446,4 +450,33 @@ void MainWindow::on_input_searchBuildYearFrom_editingFinished()
 void MainWindow::on_input_searchBuildYearTo_editingFinished()
 {
     searchComp();
+
+void MainWindow::on_actionSave_Changes_triggered()
+{
+    saveChanges();
+}
+
+void MainWindow::saveChanges(){
+
+    if(personModel->isDirty()){
+        saveModel(personModel);
+    }
+
+    if(computerModel->isDirty()){
+        saveModel(personModel);
+    }
+
+}
+
+void MainWindow::saveModel(QSqlRelationalTableModel * model)
+{
+    domain.submitDatabaseChanges(model);
+}
+
+void MainWindow::personRightClick(QPoint position)
+{
+    cout << "bap";
+    QMenu *pContextMenu = new QMenu( this);
+    pContextMenu->addAction(ui->menuEdit->actions().first());
+    pContextMenu->exec(QCursor::pos());
 }

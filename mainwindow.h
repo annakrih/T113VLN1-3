@@ -98,6 +98,14 @@ private slots:
 
     void on_input_searchBuildYearTo_editingFinished();
 
+    void on_actionSave_Changes_triggered();
+
+    void saveChanges();
+
+    void saveModel(QSqlRelationalTableModel * model);
+
+    void personRightClick(QPoint position);
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
