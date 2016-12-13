@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->personinfo->setVisible(false);
+    ui->computerInfo->setVisible(false);
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
@@ -239,6 +240,7 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 
         ui->table_Comp->selectionModel()->clearSelection();
         lastCompSelection = -1;
+        ui->computerInfo->setVisible(false);
 
         overrideOnCompSelectionChange = false;
 
@@ -258,6 +260,7 @@ void MainWindow::onCompSelectionChange()
     if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
     {
         lastCompSelection = 1;
+        ui->computerInfo->show();
     }
 
     //checkStatus();

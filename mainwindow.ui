@@ -400,46 +400,73 @@
         <zorder>label_relatedcomp_pi</zorder>
         <zorder>gridLayoutWidget</zorder>
         <zorder>label_pic_pi</zorder>
-        <zorder>gridLayoutWidget_2</zorder>
-        <zorder>horizontalLayoutWidget</zorder>
+        <zorder>computerInfo</zorder>
        </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="HorizontalCi">
         <item>
-         <widget class="QWidget" name="computerinfo" native="true"/>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <widget class="QLabel" name="label_name_ci">
-            <property name="text">
-             <string>Name: </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_dy_ci">
-            <property name="text">
-             <string>Design year: </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_by_ci">
-            <property name="text">
-             <string>Build year: </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_type_ci">
-            <property name="text">
-             <string>Type: </string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QWidget" name="computerInfo" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
+          <widget class="QWidget" name="gridLayoutWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>140</y>
+             <width>201</width>
+             <height>381</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_type_ci">
+              <property name="text">
+               <string>Type: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_dy_ci">
+              <property name="text">
+               <string>Design year: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_by_ci">
+              <property name="text">
+               <string>Build year: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_name_ci">
+              <property name="text">
+               <string>Name: </string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QLabel" name="label_pic_ci">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>151</width>
+             <height>131</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Photo</string>
+           </property>
+          </widget>
+         </widget>
         </item>
        </layout>
       </item>
@@ -453,7 +480,7 @@
      <x>0</x>
      <y>0</y>
      <width>752</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
