@@ -323,7 +323,8 @@ void MainWindow::on_actionEdit_Computer_triggered()
 }
 
 
-void MainWindow::addPersonDialog(){
+void MainWindow::addPersonDialog()
+{
     QMap<QString, int> gList = domain.getAcceptedGenderName();
     QMap<QString, int> natList = domain.getAcceptedNationality();
     personDialogWindow = new PersonDialog(this,gList, natList);
@@ -464,7 +465,8 @@ void MainWindow::on_actionSave_Changes_triggered()
     saveChanges();
 }
 
-void MainWindow::saveChanges(){
+void MainWindow::saveChanges()
+{
 
     if(personModel->isDirty()){
         saveModel(personModel);
@@ -504,7 +506,8 @@ void MainWindow::deleteSelected(){
     if(index == 0)//person
     {
         QModelIndexList selList = ui->table_Person->selectionModel()->selectedRows();
-        for(int i = 0; i < selList.size(); i++){
+        for(int i = 0; i < selList.size(); i++)
+        {
             ui->table_Person->hideRow(selList[i].row());
             personModel->removeRow(selList[i].row());
         }
@@ -525,7 +528,8 @@ void MainWindow::on_actionDelete_triggered()
     deleteSelected();
 }
 
-void MainWindow::loadPersonInfo () {
+void MainWindow::loadPersonInfo ()
+{
 
     ui->computerInfo->hide();
     ui->label_name_pi->setText(ui->table_Person->model()->index(lastPersonSelection,1).data().toString());
@@ -535,7 +539,8 @@ void MainWindow::loadPersonInfo () {
     ui->personinfo->show();
 }
 
-void MainWindow::loadComputerInfo() {
+void MainWindow::loadComputerInfo()
+{
 
     ui->personinfo->hide();
     ui->label_name_ci->setText(ui->table_Comp->model()->index(lastCompSelection,1).data().toString());

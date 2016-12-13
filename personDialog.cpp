@@ -17,7 +17,8 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString,
     fillGenderMenu(gMap);
     fillNationalityMenu(natMap);
 
-    if(id){
+    if(id)
+    {
         ui->hiddenId->setValue(id);
         ui->personName->setFocus();
         ui->personName->setText(n);
@@ -83,7 +84,8 @@ void PersonDialog::fillGenderMenu(QMap<QString,int> gMap)
 
 }
 
-void PersonDialog::fillNationalityMenu(QMap<QString,int> natList){
+void PersonDialog::fillNationalityMenu(QMap<QString,int> natList)
+{
 
     ui->personNat->addItem("",0);
     QMapIterator<QString, int> i(natList);
