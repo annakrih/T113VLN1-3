@@ -61,6 +61,12 @@ public:
     //get tableModel of person where person.id has a relation
     QSqlQueryModel* readComputerRelation(QString id);
 
+    //deleting every instance from person table
+    QSqlQueryModel* deleteAllPersons();
+
+    //deleting every instance from computer table
+    QSqlQueryModel* deleteAllComputers();
+
     //submit any changes to table, QSqlRelationalTableModel deals with all inserts/deletes/updates needed. (awesome)
     QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);
 

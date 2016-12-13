@@ -32,6 +32,11 @@ QSqlQueryModel * Domain::getComputerRelationModel(QString filter)
     return data.readComputerRelation(filter);
 }
 
+QSqlQueryModel * Domain::getDeletePersonTable()
+{
+    return data.deleteAllPersons();
+}
+
 QMap<QString,int> Domain::getAcceptedGenderName()
 {
 

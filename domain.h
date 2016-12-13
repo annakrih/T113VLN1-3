@@ -42,6 +42,9 @@ public:
     //fetches computer relation tableModel from data layer
     QSqlQueryModel * getComputerRelationModel(QString filter = "");
 
+    //passes a message down to data layer for deleting all instances in person table
+    QSqlQueryModel * getDeletePersonTable();
+
     //takes in a  model and passes it down to the Data layer, where its changes get submitted.
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 

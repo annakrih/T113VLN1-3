@@ -157,6 +157,24 @@ QSqlQueryModel* Data::readPersonRelation(QString id){
     return model;
 };
 
+QSqlQueryModel* Data::deleteAllPersons()
+{
+    QSqlQueryModel *model = new QSqlQueryModel;
+    model->setQuery("DELETE FROM Person");
+    model->setQuery("DELETE FROM sqlite_sequence WHERE name=Person");
+
+    return model;
+}
+
+QSqlQueryModel* Data::deleteAllComputers()
+{
+    QSqlQueryModel *model = new QSqlQueryModel;
+    model->setQuery("DELETE FROM Computer");
+    model->setQuery("DELETE FROM sqlite_sequence WHERE name=Computer");
+
+    return model;
+}
+
 
 void Data::initializeData()
 {
