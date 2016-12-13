@@ -82,9 +82,13 @@ private slots:
 
     void on_actionEdit_person_triggered();
 
+<<<<<<< HEAD
     void on_actionAdd_new_computer_triggered();
 
     void on_actionEdit_Computer_triggered();
+=======
+    void on_input_searchNat_currentIndexChanged(const QString &nat);
+>>>>>>> origin/master
 
 private:
     Ui::MainWindow *ui;

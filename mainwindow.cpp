@@ -21,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     showAdvSearchPersons = 0;
     ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
-    ui->widget_moreFilterOpsPersons->setEnabled(showAdvSearchPersons);
 
     connect(
       ui->table_Comp->selectionModel(),
@@ -95,15 +94,16 @@ void MainWindow::searchPerson()
         QString BYto = ui->input_searchBornTo->text();
         QString DYfrom = ui->input_searchDiedFrom->text();
         QString DYto = ui->input_searchDiedTo->text();
+        QString nationality = ui->input_searchNat->itemData(ui->input_searchNat->currentIndex()).toString();
+      //  QString nationality = ui->input_searchNat->currentText();
 
-        QString nationality = ui->input_searchNat->itemData(ui->input_searchNat->currentIndex()).toString();                                                  //TODO! Tengja við drop down!
-
-        //loadPersonTable(domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality));
+        personModel = domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality);
     }
     else
     {
-        //loadPersonTable(domain.searchPerson(searchInput));
+        personModel = domain.searchPerson(searchInput);
     }
+    loadPersonTable();
 }
 
 
@@ -145,12 +145,11 @@ void MainWindow::on_button_advSearchPerson_released()
 {
     if(showAdvSearchPersons)
     {
-        //todo: hreinsa advanced search
+        ui->input_searchNat->setCurrentIndex(0);
     }
 
     showAdvSearchPersons = !showAdvSearchPersons;
     ui->widget_moreFilterOpsPersons->setVisible(showAdvSearchPersons);
-    ui->widget_moreFilterOpsPersons->setEnabled(showAdvSearchPersons);
 }
 
 
@@ -186,6 +185,11 @@ void MainWindow::on_input_searchDiedTo_editingFinished()
     searchPerson();
 }
 
+void MainWindow::on_input_searchNat_currentIndexChanged(const QString &nat)
+{
+    searchPerson();
+}
+
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
 
@@ -214,6 +218,8 @@ void MainWindow::onPersonSelectionChange()
     if(!overrideOnPersonSelectionChange)
     {
         lastPersonSelection = -1;
+    }else if(!ui->table_Person->selectionModel()->selectedRows().isEmpty()){
+        lastPersonSelection = ui->table_Person->selectionModel()->selectedRows().last().row();
     }
 
     //checkStatus();
@@ -248,6 +254,8 @@ void MainWindow::onCompSelectionChange()
     if(!overrideOnCompSelectionChange)
     {
         lastCompSelection = -1;
+    }else if(!ui->table_Comp->selectionModel()->selectedRows().isEmpty()){
+        lastCompSelection = ui->table_Comp->selectionModel()->selectedRows().last().row();
     }
 
     //checkStatus();
@@ -401,6 +409,7 @@ void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int
 
 }
 
+<<<<<<< HEAD
 void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
 {
     this->setEnabled(true);
@@ -410,3 +419,5 @@ void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const i
     computerModel->setData(computerModel->index(lastCompSelection,3),d);
     computerModel->setData(computerModel->index(lastCompSelection,4),b);
 }
+=======
+>>>>>>> origin/master

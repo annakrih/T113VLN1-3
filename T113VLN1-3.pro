@@ -27,7 +27,8 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/personDialog.cpp \
     $$PWD/gui.cpp \
     $$PWD/computerDialog.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    $$PWD/personinfo.cpp \
 
 HEADERS += \
     $$PWD/domain.h \
@@ -36,10 +37,12 @@ HEADERS += \
     $$PWD/personDialog.h \
     $$PWD/gui.h \
     $$PWD/computerDialog.h \
-    mainwindow.h
+    mainwindow.h \
+    $$PWD/personinfo.h \
 
 FORMS += \
     $$PWD/personDialog.ui \
     $$PWD/gui.ui \
     $$PWD/computerDialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    $$PWD/personinfo.ui \
