@@ -106,6 +106,13 @@ QSqlRelationalTableModel * Data::readPeopleFromDatabase(QString filter)
    model->setRelation(2, QSqlRelation("Person_Gender", "id", "genderName"));
    model->setRelation(3, QSqlRelation("Person_Nationality", "id", "countryName"));
 
+   model->setHeaderData(1, Qt::Horizontal, "Name");
+   model->setHeaderData(2, Qt::Horizontal, "Gender");
+   model->setHeaderData(3, Qt::Horizontal, "Nationality");
+   model->setHeaderData(4, Qt::Horizontal, "Birth Year");
+   model->setHeaderData(5, Qt::Horizontal, "Death Year");
+
+
    model->setFilter(filter);
 
    model->select();
@@ -120,6 +127,11 @@ QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
    model->setTable("computer");
    model->setRelation(2, QSqlRelation("Computer_Type", "id", "typeName"));
    model->setFilter(filter);
+
+   model->setHeaderData(1, Qt::Horizontal, "Name");
+   model->setHeaderData(2, Qt::Horizontal, "Type");
+   model->setHeaderData(3, Qt::Horizontal, "Design Year");
+   model->setHeaderData(4, Qt::Horizontal, "Build Year");
 
    model->select();
    model->setEditStrategy(QSqlTableModel::OnManualSubmit);

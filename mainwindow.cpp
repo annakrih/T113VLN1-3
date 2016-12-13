@@ -214,6 +214,8 @@ void MainWindow::onPersonSelectionChange()
     if(!overrideOnPersonSelectionChange)
     {
         lastPersonSelection = -1;
+    }else if(!ui->table_Person->selectionModel()->selectedRows().isEmpty()){
+        lastPersonSelection = ui->table_Person->selectionModel()->selectedRows().last().row();
     }
 
     //checkStatus();
@@ -248,6 +250,8 @@ void MainWindow::onCompSelectionChange()
     if(!overrideOnCompSelectionChange)
     {
         lastCompSelection = -1;
+    }else if(!ui->table_Comp->selectionModel()->selectedRows().isEmpty()){
+        lastCompSelection = ui->table_Comp->selectionModel()->selectedRows().last().row();
     }
 
     //checkStatus();
