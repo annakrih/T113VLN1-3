@@ -565,21 +565,43 @@ void MainWindow::on_button_addcomp_clicked()
 
 void MainWindow::on_actionPersons_2_triggered()
 {
-    domain.getDeletePersonTable();
-    personModel = domain.getPersonModel();
-    loadPersonTable();
+    QString promptTitle = "DELETE ALL";
+    QString promptQuestion = "Are you sure you want to delete every instance in Person table\nThis cannot be undone";
+    QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
+                                                               QMessageBox::Yes|QMessageBox::No);
+
+    if(prompt == QMessageBox::Yes)
+    {
+        domain.getDeletePersonTable();
+        personModel = domain.getPersonModel();
+        loadPersonTable();
+    }
 }
 
 void MainWindow::on_actionComputers_2_triggered()
 {
-    domain.getDeleteComputerTable();
-    computerModel = domain.getComputerModel();
-    loadCompTable();
+    QString promptTitle = "DELETE ALL";
+    QString promptQuestion = "Are you sure you want to delete every instance in Computer table\nThis cannot be undone";
+    QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
+                                                               QMessageBox::Yes|QMessageBox::No);
+    if(prompt == QMessageBox::Yes)
+    {
+        domain.getDeleteComputerTable();
+        computerModel = domain.getComputerModel();
+        loadCompTable();
+    }
 }
 
 void MainWindow::on_actionRelations_triggered()
 {
-    domain.getDeleteRelationTable();
-    //TODO relationModel = domain.getRelationModel();
-    //TODO loadRelationModel();
+    QString promptTitle = "DELETE ALL";
+    QString promptQuestion = "Are you sure you want to delete every instance in Relation table\nThis cannot be undone";
+    QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
+                                                               QMessageBox::Yes|QMessageBox::No);
+    if(prompt == QMessageBox::Yes)
+    {
+        domain.getDeleteRelationTable();
+        //TODO relationModel = domain.getRelationModel();
+        //TODO loadRelationModel();
+    }
 }
