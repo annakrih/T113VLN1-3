@@ -438,7 +438,7 @@ void MainWindow::saveChanges(){
     }
 
     if(computerModel->isDirty()){
-        saveModel(personModel);
+        saveModel(computerModel);
     }
 
 }
@@ -454,4 +454,31 @@ void MainWindow::personRightClick(QPoint position)
     QMenu *pContextMenu = new QMenu( this);
     pContextMenu->addAction(ui->menuEdit->actions().first());
     pContextMenu->exec(QCursor::pos());
+}
+
+void MainWindow::deleteSelected(){
+
+    int index = ui->tabsWidget_personComputer->currentIndex();
+
+    if(index == 0)//person
+    {
+        QModelIndexList selList = ui->table_Person->selectionModel()->selectedRows();
+        for(int i = 0; i < selList.size(); i++){
+            ui->table_Person->hideRow(selList[i].row());
+            personModel->removeRow(selList[i].row());
+        }
+    }
+    else if(index == 1)//computer
+    {
+        QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
+        for(int i = 0; i < selList.size(); i++){
+            ui->table_Comp->hideRow(selList[i].row());
+            computerModel->removeRow(selList[i].row());
+        }
+    }
+}
+
+void MainWindow::on_actionDelete_triggered()
+{
+    deleteSelected();
 }
