@@ -29,6 +29,8 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/computerDialog.cpp \
     mainwindow.cpp \
     $$PWD/personinfo.cpp \
+    ptocrelation.cpp \
+    ctoprelation.cpp
 
 HEADERS += \
     $$PWD/domain.h \
@@ -39,6 +41,8 @@ HEADERS += \
     $$PWD/computerDialog.h \
     mainwindow.h \
     $$PWD/personinfo.h \
+    ptocrelation.h \
+    ctoprelation.h
 
 FORMS += \
     $$PWD/personDialog.ui \
@@ -46,6 +50,8 @@ FORMS += \
     $$PWD/computerDialog.ui \
     mainwindow.ui \
     $$PWD/personinfo.ui \
+    ptocrelation.ui \
+    ctoprelation.ui
 
 RESOURCES += \
     resources.qrc
