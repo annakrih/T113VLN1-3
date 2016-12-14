@@ -154,6 +154,8 @@ private slots:
 
     void on_actionAdd_new_relation_triggered();
 
+    void on_button_advSearchComp_clicked();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
