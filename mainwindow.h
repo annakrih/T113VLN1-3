@@ -8,6 +8,7 @@
 #include <iostream>
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
+#include <QCloseEvent>
 
 #include "personDialog.h"
 #include "computerdialog.h"
@@ -161,6 +162,8 @@ private slots:
     void loadRelation();
 
     void on_input_searchNat_activated(const QString &arg1);
+
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::MainWindow *ui;

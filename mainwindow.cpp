@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
 
+
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
 
@@ -515,11 +516,13 @@ void MainWindow::on_actionSave_Changes_triggered()
 void MainWindow::saveChanges()
 {
 
-    if(personModel->isDirty()){
+    if(personModel->isDirty())
+    {
         saveModel(personModel);
     }
 
-    if(computerModel->isDirty()){
+    if(computerModel->isDirty())
+    {
         saveModel(computerModel);
     }
 
@@ -783,4 +786,23 @@ void MainWindow::loadRelation()
 void MainWindow::on_input_searchNat_activated(const QString &arg1)
 {
 
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if(computerModel->isDirty() || personModel->isDirty())
+    {
+        QString promptTitle = "Unsaved changes";
+        QString promptQuestion = "Detected unsaved changes to database, do you want to save them";
+        QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
+                                                                   QMessageBox::Yes|QMessageBox::No);
+        if(prompt == QMessageBox::Yes)
+        {
+            saveChanges();
+        }
+        else if(prompt == QMessageBox::No)
+        {
+
+        }
+    }
 }
