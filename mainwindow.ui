@@ -835,9 +835,6 @@
            </layout>
           </widget>
          </item>
-         <item>
-          <widget class="QTableView" name="tableView"/>
-         </item>
         </layout>
        </widget>
       </item>
