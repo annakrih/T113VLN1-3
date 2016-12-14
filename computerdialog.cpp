@@ -31,7 +31,7 @@ ComputerDialog::ComputerDialog(QWidget *parent, QMap<QString, int> tList,
             ui->cDY->setValue(b);
         }
     }
-
+    ui->hiddenId->setDisabled(true);
     checkForm();
 }
 

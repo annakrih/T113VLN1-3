@@ -70,6 +70,11 @@ void MainWindow::loadCompTable()
     connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick(QPoint)));
 }
 
+void MainWindow::loadRelationTable()
+{
+
+}
+
 
 void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
 {

@@ -28,7 +28,7 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString,
             ui->personDY->setValue(d);
         }
     }
-
+    ui->hiddenId->setDisabled(true);
     checkForm();
 }
 

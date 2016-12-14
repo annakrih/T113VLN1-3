@@ -32,6 +32,7 @@ public:
     void on_searchComboBox_currentIndexChanged(int index);
     void loadPersonTable();
     void loadCompTable();
+    void loadRelationTable();
     void fillNationalitySearchBox(QMap<QString, int> natList);
     void fillComputerTypeSearchBox(QMap<QString, int> compTypeList);
 
@@ -179,6 +180,7 @@ private:
 
     bool overrideOnPersonSelectionChange = 0;
     bool overrideOnCompSelectionChange = 0;
+
 
     Domain domain;
 
