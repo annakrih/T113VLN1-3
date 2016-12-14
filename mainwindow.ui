@@ -661,7 +661,7 @@
           <widget class="QWidget" name="personInfoWidget" native="true">
            <layout class="QVBoxLayout" name="personInfo">
             <item>
-             <widget class="QLabel" name="label_pic_pi">
+             <widget class="QLabel" name="image_personInfo">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -681,7 +681,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Photo</string>
+               <string/>
               </property>
              </widget>
             </item>

@@ -84,11 +84,11 @@ private slots:
 
     void onComputerRejected();
 
-    void onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
+    void onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace);
 
     void onAddComputerAccepted(const QString &n, const int &t, const int &d, const int &b);
 
-    void onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d);    
+    void onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace);
 
     void onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b);
 

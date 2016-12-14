@@ -58,6 +58,8 @@ void MainWindow::loadPersonTable()
     ui->table_Person->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
+    ui->table_Person->setColumnHidden(6,true);
+
 
     connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
 }
@@ -376,9 +378,9 @@ void MainWindow::addPersonDialog()
 
     QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
     QObject::connect(personDialogWindow,
-                     SIGNAL(addPersonAccepted(const QString &, const int &, const int &, const int &, const int &)),
+                     SIGNAL(addPersonAccepted(const QString &, const int &, const int &, const int &, const int &, const QString &)),
                      this,
-                     SLOT(onAddPersonAccepted(const QString &, const int &, const int &, const int &, const int &)));
+                     SLOT(onAddPersonAccepted(const QString &, const int &, const int &, const int &, const int &, const QString &)));
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
@@ -423,9 +425,9 @@ void MainWindow::editPersonDialog()
 
     QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
     QObject::connect(personDialogWindow,
-                     SIGNAL(editPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &)),
+                     SIGNAL(editPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &, const QString &)),
                      this,
-                     SLOT(onEditPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &)));
+                     SLOT(onEditPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &, const QString &)));
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
@@ -467,9 +469,14 @@ void MainWindow::onComputerRejected()
     this->setEnabled(true);
 }
 
-void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d)
+void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace)
 {
     this->setEnabled(true);
+
+    QFile* file = new QFile(imagePlace);
+    file->open(QIODevice::ReadOnly);
+    QByteArray image = file->readAll();
+    QString imageBlob = QString(image.toBase64());
 
     QSqlRecord record = personModel->record();
     record.setValue(1,n);
@@ -477,6 +484,7 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     record.setValue(3,nat);
     record.setValue(4,b);
     record.setValue(5,d);
+    record.setValue(6,imageBlob);
     personModel->insertRecord(-1,record);
 }
 
@@ -492,16 +500,22 @@ void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int
     computerModel->insertRecord(-1,record);
 }
 
-void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d)
+void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace)
 {
     this->setEnabled(true);
+
+    QFile* file = new QFile(imagePlace);
+    file->open(QIODevice::ReadOnly);
+    QByteArray image = file->readAll();
+    QString imageBlob = QString(image.toBase64());
+
     personModel->setData(personModel->index(lastPersonSelection,0),id);
     personModel->setData(personModel->index(lastPersonSelection,1),n);
     personModel->setData(personModel->index(lastPersonSelection,2),g);
     personModel->setData(personModel->index(lastPersonSelection,3),nat);
     personModel->setData(personModel->index(lastPersonSelection,4),b);
     personModel->setData(personModel->index(lastPersonSelection,5),d);
-
+    personModel->setData(personModel->index(lastPersonSelection,6),imageBlob);
 }
 
 void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
@@ -587,13 +601,24 @@ void MainWindow::on_actionDelete_triggered()
 
 void MainWindow::loadPersonInfo ()
 {
-
     ui->computerInfo->hide();
     QString name = "<h3>"+(ui->table_Person->model()->index(lastPersonSelection,1).data().toString())+"</h3>";
     ui->label_name_pi->setText(name);
     ui->label_nation_pi->setText(ui->table_Person->model()->index(lastPersonSelection,3).data().toString());
     ui->label_born_pi->setText(ui->table_Person->model()->index(lastPersonSelection,4).data().toString());
     ui->label_deathage_pi->setText(ui->table_Person->model()->index(lastPersonSelection,5).data().toString());
+
+    QByteArray imageData = QByteArray::fromBase64(ui->table_Person->model()->index(lastPersonSelection,6).data().toString().toLocal8Bit());
+    QImage img;
+    if (img.loadFromData(imageData)) {
+        // show this label somewhere.
+        QLabel image_personInfo;
+        ui->image_personInfo->setPixmap(QPixmap::fromImage(img));
+    }else
+    {
+        ui->image_personInfo->clear();
+    }
+
     ui->personInfoWidget->show();
 }
 

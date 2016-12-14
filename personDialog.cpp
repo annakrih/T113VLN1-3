@@ -30,6 +30,7 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString,
     }
     ui->hiddenId->setDisabled(true);
     checkForm();
+    fileName = "";
 }
 
 PersonDialog::~PersonDialog()
@@ -56,11 +57,11 @@ void PersonDialog::on_buttonBox_accepted()
 
     if(id == 0)//add
     {
-        emit this->addPersonAccepted(name,gender,nationality,bY,dY);
+        emit this->addPersonAccepted(name,gender,nationality,bY,dY,fileName);
     }
     else//edit
     {
-        emit this->editPersonAccepted(id,name,gender,nationality,bY,dY);
+        emit this->editPersonAccepted(id,name,gender,nationality,bY,dY,fileName);
     }
 
     this->close();
@@ -204,14 +205,13 @@ void PersonDialog::on_textEdit_textChanged()
 void PersonDialog::on_inputPhoto_clicked()
 {
 
-    QString fileName = QFileDialog::getOpenFileName(this, "Open File", "/home", "Images (*.png *.xpm *.jpg)");
+    fileName = QFileDialog::getOpenFileName(this, "Open File", "/home", "Images (*.png *.xpm *.jpg)");
     if (fileName.length())
     {
         //File selected
         QPixmap pixmap (fileName);
         ui->label_image->setPixmap(pixmap);
         ui->label_image->setScaledContents(true);
-
     }
     else
     {
