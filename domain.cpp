@@ -93,7 +93,7 @@ void Domain::createPCRelation(int p, int c)
 
 QSqlRelationalTableModel * Domain::searchPerson(QString searchInput)
 {
-    return searchPerson(searchInput, 0, "", "", "", "", "");
+    return searchPerson(searchInput, "0", "", "", "", "", "");
 }
 
 
@@ -110,7 +110,7 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
     }
 
     //gender filter
-    if( !(gender=="" || gender =="0"))
+    if( !(gender =="0"))
     {
         if(!firstFilter)
         {
@@ -168,7 +168,7 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
     }
 
     //gender filter
-    if( !(nationality==""))
+    if( !(nationality=="0"))
     {
         if(!firstFilter)
         {
@@ -178,6 +178,7 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
         filter += "person.nationalityId like '"+nationality+"'";
         firstFilter = false;
     }
+    std::cout << endl << filter.toStdString() << endl;
     return data.readPeopleFromDatabase(filter);
 }
 
