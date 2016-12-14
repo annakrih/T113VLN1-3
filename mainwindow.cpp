@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    //TODO setWindowTitle("newTitle");
     ui->setupUi(this);
     this->setStyleSheet(domain.getCssString());
     ui->personInfoWidget->setVisible(false);
@@ -382,6 +383,7 @@ void MainWindow::addPersonDialog()
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
     personDialogWindow->show();
+    changesMade = 1;
 }
 
 void MainWindow::addComputerDialog()
@@ -398,6 +400,7 @@ void MainWindow::addComputerDialog()
     this->setEnabled(false);
     computerDialogWindow->setEnabled(true);
     computerDialogWindow->show();
+    changesMade = 1;
 }
 
 void MainWindow::addRelationDialog()
@@ -427,6 +430,7 @@ void MainWindow::editPersonDialog()
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
     personDialogWindow->show();
+    changesMade = 1;
 }
 
 void MainWindow::editComputerDialog()
@@ -449,6 +453,7 @@ void MainWindow::editComputerDialog()
     this->setEnabled(false);
     computerDialogWindow->setEnabled(true);
     computerDialogWindow->show();
+    changesMade = 1;
 }
 
 
@@ -577,6 +582,7 @@ void MainWindow::deleteSelected(){
 void MainWindow::on_actionDelete_triggered()
 {
     deleteSelected();
+    changesMade = 1;
 }
 
 void MainWindow::loadPersonInfo ()
@@ -806,4 +812,18 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
         }
     }
+}
+
+QString MainWindow::hasTableChanged()
+{
+    QString windowName = "";
+    if(changesMade)
+    {
+        windowName = "MainWindow*";
+    }
+    else if(!changesMade)
+    {
+        windowName = "MainWindow";
+    }
+    return windowName;
 }

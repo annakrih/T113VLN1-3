@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
 #include <QCloseEvent>
+#include <QWidget>
 
 #include "personDialog.h"
 #include "computerdialog.h"
@@ -165,6 +166,8 @@ private slots:
 
     void closeEvent(QCloseEvent *event);
 
+    QString hasTableChanged();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
@@ -185,6 +188,7 @@ private:
     bool overrideOnPersonSelectionChange = 0;
     bool overrideOnCompSelectionChange = 0;
 
+    bool changesMade = 0;
 
     Domain domain;
 
