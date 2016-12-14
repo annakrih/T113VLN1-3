@@ -86,7 +86,8 @@ QMap<QString, int> Domain::getAcceptedNationality()
 }
 
 
-void Domain::createPCRelation(int p, int c){
+void Domain::createPCRelation(int p, int c)
+{
     data.createPCRelation(p,c);
 }
 

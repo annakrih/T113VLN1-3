@@ -9,7 +9,8 @@
 #include <QVariant>
 #include <iostream>
 
-namespace Ui {
+namespace Ui
+{
 class ComputerDialog;
 }
 

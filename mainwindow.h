@@ -13,7 +13,8 @@
 
 #include <QMainWindow>
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
@@ -33,7 +34,6 @@ public:
     void loadCompTable();
     void fillNationalitySearchBox(QMap<QString, int> natList);
     void fillComputerTypeSearchBox(QMap<QString, int> compTypeList);
-
 
 private slots:
     void addPersonDialog();
@@ -183,7 +183,6 @@ private:
 
     void searchPerson();
     void searchComp(const QString& searchInput);
-
 };
 
 #endif // MAINWINDOW_H
