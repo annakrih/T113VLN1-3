@@ -32,6 +32,8 @@ public:
     void loadPersonTable();
     void loadCompTable();
     void fillNationalitySearchBox(QMap<QString, int> natList);
+    void fillComputerTypeSearchBox(QMap<QString, int> compTypeList);
+
 
 private slots:
     void addPersonDialog();
@@ -106,13 +108,13 @@ private slots:
 
     void on_actionDelete_triggered();
 
-     void loadPersonInfo();
+    void loadPersonInfo();
 
-     void loadComputerInfo();
+    void loadComputerInfo();
 
-     void on_button_addPerson_clicked();
+    void on_button_addPerson_clicked();
 
-     void on_button_addcomp_clicked();
+    void on_button_addcomp_clicked();
 
     void on_button_advSearchComp_released();
 
@@ -130,7 +132,7 @@ private slots:
 
     void on_actionRelations_triggered();
 
-    void on_input_searchCompType_currentIndexChanged(const QString &arg1);
+    void on_input_searchCompType_currentIndexChanged(const QString &type);
 
     void on_pushButton_editSelectedEntry_pressed();
 

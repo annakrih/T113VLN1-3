@@ -231,7 +231,6 @@ void Data::createPCRelation(int p, int c)
 //todo deal with commas in values
 void Data::importCSV(QString tableName, QFile & csvFile)
 {
-
     if(!csvFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qWarning(QString("Failed to open file:"+csvFile.fileName()+".").toLocal8Bit() );

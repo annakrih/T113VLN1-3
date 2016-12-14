@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     loadCompTable();
 
     fillNationalitySearchBox(domain.getAcceptedNationality());
+    fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
 
     showAdvSearchPersons = 0;
     ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
@@ -70,7 +71,8 @@ void MainWindow::loadCompTable()
 }
 
 
-void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList){
+void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
+{
 
     ui->input_searchNat->addItem("",0);
     QMapIterator<QString, int> i(natList);
@@ -80,6 +82,17 @@ void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList){
         ui->input_searchNat->addItem(i.key(),i.value());
     }
 
+}
+
+void MainWindow::fillComputerTypeSearchBox(QMap<QString,int> compTypeList)
+{
+    ui->input_searchCompType->addItem("",0);
+    QMapIterator<QString,int> i(compTypeList);
+    while(i.hasNext())
+    {
+        i.next();
+        ui->input_searchCompType->addItem(i.key(), i.value());
+    }
 }
 
 
@@ -212,9 +225,9 @@ void MainWindow::on_input_searchBornTo_editingFinished()
     searchPerson();
 }
 
-void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &arg1)
+void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &type)
 {
-    searchPerson();
+    searchComp();
 }
 
 
