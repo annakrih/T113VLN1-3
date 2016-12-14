@@ -612,3 +612,17 @@ void MainWindow::on_actionRelations_triggered()
     }
 }
 
+
+void MainWindow::on_pushButton_editSelectedEntry_pressed()
+{
+    int index = ui->tabsWidget_personComputer->currentIndex();
+
+    if(index == 0)//person
+    {
+        editPersonDialog();
+    }
+    else if(index == 1)//computer
+    {
+        editComputerDialog();
+    }
+}
