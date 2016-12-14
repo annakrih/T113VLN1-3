@@ -152,6 +152,8 @@ private slots:
 
     void on_input_searchBuildYearTo_textEdited(const QString &arg1);
 
+    void on_actionAdd_new_relation_triggered();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

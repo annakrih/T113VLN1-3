@@ -743,3 +743,26 @@ void MainWindow::on_input_searchBuildYearTo_textEdited(const QString &arg1)
     }
     ui->input_searchBuildYearTo->setText(newString);
 }
+
+void MainWindow::on_actionAdd_new_relation_triggered()
+{
+    int index = ui->tabsWidget_personComputer->currentIndex();
+
+    int computerId, personId;
+    QString computerName,  personName;
+
+    /*if(index == 1)
+    {
+        computerId = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data().toInt();
+        personId = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),0).data().toInt();
+        computerName = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data().toString();
+        personName = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),1).data().toString();
+    }
+    else if(index == 0)
+    {
+        personId = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data().toInt();
+        computerId = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),0).data().toInt();
+        computerName = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),1).data().toString();
+        personName = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data().toString();
+    }*/
+}

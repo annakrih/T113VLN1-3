@@ -693,6 +693,7 @@
     </property>
     <addaction name="actionAdd_new_person"/>
     <addaction name="actionAdd_new_computer"/>
+    <addaction name="actionAdd_new_relation"/>
     <addaction name="actionSave_Changes"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -759,6 +760,11 @@
   <action name="actionRelations">
    <property name="text">
     <string>Relations</string>
+   </property>
+  </action>
+  <action name="actionAdd_new_relation">
+   <property name="text">
+    <string>Add new relation</string>
    </property>
   </action>
  </widget>
