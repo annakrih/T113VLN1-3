@@ -93,7 +93,7 @@ void Domain::createPCRelation(int p, int c)
 
 QSqlRelationalTableModel * Domain::searchPerson(QString searchInput)
 {
-    return searchPerson(searchInput, "0", "", "", "", "", "");
+    return searchPerson(searchInput, "0", "", "", "", "", "0");
 }
 
 
