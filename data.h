@@ -12,8 +12,6 @@
 #include "utils.h"
 #include <QApplication>
 
-
-
 using namespace std;
 
 //data layer
@@ -37,7 +35,6 @@ private:
     //init database and locate db file;
     QSqlDatabase db;
     QString dbName = databaseDir + "team8.db";
-
 
 public:
     //default constructor

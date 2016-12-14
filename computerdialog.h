@@ -9,7 +9,11 @@
 #include <QVariant>
 #include <iostream>
 
-namespace Ui {
+#include "personDialog.h"
+#include "computerdialog.h"
+
+namespace Ui
+{
 class ComputerDialog;
 }
 
@@ -20,6 +24,7 @@ class ComputerDialog : public QDialog
 public:
     explicit ComputerDialog(QWidget *parent = 0, QMap<QString, int> tList = QMap<QString, int>{} ,
                             QString n = "", QString t = 0, int d = 0, int b = 0, int id = 0);
+
 
 private slots:
     void on_buttonBox_accepted();
@@ -50,6 +55,9 @@ private:
     Utils utils;
     void checkForm();
     void fillTypeMenu(QMap<QString, int> tList);
+
+    void loadPersonTable();
+
 };
 
 #endif // COMPUTERDIALOG_H

@@ -9,7 +9,8 @@
 #include <Qpixmap>
 #include <QFileDialog>
 
-namespace Ui {
+namespace Ui
+{
 class PersonDialog;
 }
 

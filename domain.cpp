@@ -86,7 +86,8 @@ QMap<QString, int> Domain::getAcceptedNationality()
 }
 
 
-void Domain::createPCRelation(int p, int c){
+void Domain::createPCRelation(int p, int c)
+{
     data.createPCRelation(p,c);
 }
 
@@ -167,14 +168,14 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
     }
 
     //gender filter
-    if( !(nationality=="0"))
+    if( !(nationality==""))
     {
         if(!firstFilter)
         {
             filter += " AND ";
         }
 
-        filter += "person.nationalityId like '%"+nationality+"%'";
+        filter += "person.nationalityId like '"+nationality+"'";
         firstFilter = false;
     }
     return data.readPeopleFromDatabase(filter);
