@@ -263,7 +263,6 @@ void Data::importCSV(QString tableName, QFile & csvFile)
         QStringList columns = QTextStream(&row).readAll().split(QRegularExpression(","));
         for(int i = 0; i < columns.size(); i++)
         {
-            std:cout << QString(":"+tableColumn[i].trimmed()+","+ columns[i].trimmed()+"\n").toStdString();
             query.bindValue(":"+tableColumn[i].trimmed(), columns[i].trimmed());
         }
 
