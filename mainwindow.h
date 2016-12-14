@@ -13,7 +13,8 @@
 
 #include <QMainWindow>
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
@@ -34,7 +35,6 @@ public:
     void fillNationalitySearchBox(QMap<QString, int> natList);
     void fillComputerTypeSearchBox(QMap<QString, int> compTypeList);
 
-
 private slots:
     void addPersonDialog();
 
@@ -45,6 +45,8 @@ private slots:
     void addComputerDialog();
 
     void editComputerDialog();
+
+    void addRelationDialog();
 
     void on_input_searchPerson_textEdited();
 
@@ -154,7 +156,7 @@ private slots:
 
     void on_actionAdd_new_relation_triggered();
 
-    void on_button_advSearchComp_clicked();
+    void loadRelation();
 
 private:
     Ui::MainWindow *ui;
@@ -183,7 +185,6 @@ private:
 
     void searchPerson();
     void searchComp(const QString& searchInput);
-
 };
 
 #endif // MAINWINDOW_H

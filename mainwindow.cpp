@@ -135,18 +135,13 @@ void MainWindow::on_input_searchPerson_textEdited()
 
 void MainWindow::on_button_advSearchComp_released()
 {
-    ui->input_searchDesignYearFrom->clear();
-    ui->input_searchDesignYearTo->clear();
-    ui->input_searchBuildYearFrom->clear();
-    ui->input_searchBuildYearTo->clear();
-
     if(showAdvSearchComps)
     {
-
+        //TODO hreinsa advanced searching
     }
+
     showAdvSearchComps = !showAdvSearchComps;
     ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
-
 }
 
 void MainWindow::searchComp()
@@ -336,6 +331,11 @@ void MainWindow::on_actionAdd_new_computer_triggered()
     addComputerDialog();
 }
 
+void MainWindow::on_actionAdd_new_relation_triggered()
+{
+    addRelationDialog();
+}
+
 void MainWindow::on_actionEdit_person_triggered()
 {
     editPersonDialog();
@@ -378,6 +378,11 @@ void MainWindow::addComputerDialog()
     this->setEnabled(false);
     computerDialogWindow->setEnabled(true);
     computerDialogWindow->show();
+}
+
+void MainWindow::addRelationDialog()
+{
+
 }
 
 void MainWindow::editPersonDialog()
@@ -751,30 +756,8 @@ void MainWindow::on_input_searchBuildYearTo_textEdited(const QString &arg1)
     ui->input_searchBuildYearTo->setText(newString);
 }
 
-void MainWindow::on_actionAdd_new_relation_triggered()
-{
-    int index = ui->tabsWidget_personComputer->currentIndex();
-
-    int computerId, personId;
-    QString computerName,  personName;
-
-    /*if(index == 1)
-    {
-        computerId = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data().toInt();
-        personId = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),0).data().toInt();
-        computerName = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data().toString();
-        personName = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),1).data().toString();
-    }
-    else if(index == 0)
-    {
-        personId = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),0).data().toInt();
-        computerId = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),0).data().toInt();
-        computerName = ui->tableView_2->model()->index(ui->tableView_2->selectionModel()->currentIndex().row(),1).data().toString();
-        personName = ui->tableView->model()->index(ui->tableView->selectionModel()->currentIndex().row(),1).data().toString();
-    }*/
-}
-
-void MainWindow::on_button_advSearchComp_clicked()
+void MainWindow::loadRelation()
 {
 
 }
+

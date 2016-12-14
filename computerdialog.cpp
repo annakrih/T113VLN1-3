@@ -62,8 +62,6 @@ void ComputerDialog::on_buttonBox_accepted()
     }
 }
 
-
-
 void ComputerDialog::on_wasItBuilt_toggled(bool checked)
 {
     if(checked)
