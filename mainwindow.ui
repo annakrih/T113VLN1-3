@@ -122,7 +122,7 @@
          </sizepolicy>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_Persons">
          <attribute name="title">
@@ -586,7 +586,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QTextBrowser" name="textBrowser_relatedComp_pi"/>
+          <widget class="QTableView" name="tableView"/>
          </item>
         </layout>
        </widget>

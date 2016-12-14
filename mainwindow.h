@@ -46,6 +46,8 @@ private slots:
 
     void editComputerDialog();
 
+    void addRelationDialog();
+
     void on_input_searchPerson_textEdited();
 
     void on_searchInput_Comp_textEdited(const QString &searchString);
@@ -153,6 +155,8 @@ private slots:
     void on_input_searchBuildYearTo_textEdited(const QString &arg1);
 
     void on_actionAdd_new_relation_triggered();
+
+    void loadRelation();
 
 private:
     Ui::MainWindow *ui;
