@@ -167,7 +167,7 @@
             </size>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="tab_Persons">
             <attribute name="title">
@@ -195,10 +195,16 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="button_advSearchPerson">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="minimumSize">
                    <size>
                     <width>130</width>
-                    <height>0</height>
+                    <height>23</height>
                    </size>
                   </property>
                   <property name="maximumSize">
@@ -456,6 +462,18 @@
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <property name="leftMargin">
+                <number>9</number>
+               </property>
+               <property name="topMargin">
+                <number>9</number>
+               </property>
+               <property name="rightMargin">
+                <number>9</number>
+               </property>
+               <property name="bottomMargin">
+                <number>9</number>
+               </property>
                <item>
                 <widget class="QLineEdit" name="searchInput_Comp">
                  <property name="styleSheet">
@@ -468,6 +486,15 @@
                </item>
                <item>
                 <widget class="QPushButton" name="button_advSearchComp">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>23</height>
+                  </size>
+                 </property>
                  <property name="toolTip">
                   <string/>
                  </property>
