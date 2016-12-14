@@ -158,6 +158,8 @@ private slots:
 
     void loadRelation();
 
+    void on_input_searchNat_activated(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

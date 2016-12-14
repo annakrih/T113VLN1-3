@@ -135,13 +135,14 @@ void MainWindow::on_input_searchPerson_textEdited()
 
 void MainWindow::on_button_advSearchComp_released()
 {
-    ui->input_searchDesignYearFrom->clear();
-    ui->input_searchDesignYearTo->clear();
-    ui->input_searchBuildYearFrom->clear();
-    ui->input_searchBuildYearTo->clear();
+
     if(showAdvSearchComps)
     {
-        //TODO hreinsa advanced searching
+        ui->input_searchCompType->setCurrentIndex(0);
+        ui->input_searchDesignYearFrom->clear();
+        ui->input_searchDesignYearTo->clear();
+        ui->input_searchBuildYearFrom->clear();
+        ui->input_searchBuildYearTo->clear();
     }
     showAdvSearchComps = !showAdvSearchComps;
     ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
@@ -772,3 +773,8 @@ void MainWindow::loadRelation()
 
 }
 
+
+void MainWindow::on_input_searchNat_activated(const QString &arg1)
+{
+
+}
