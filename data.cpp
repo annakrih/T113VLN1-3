@@ -280,7 +280,7 @@ void Data::importCSV(QString tableName, QFile & csvFile)
 QString Data::importCss()
 {
     //fall sem sækir css skrá
-    QFile file("../stylefile.qss");
+    QFile file(utils.workingDir+"stylefile.css");
     file.open(QFile::ReadOnly);
     QString StyleFile = QTextStream(&file).readAll();
 
