@@ -60,6 +60,7 @@ void ComputerDialog::on_buttonBox_accepted()
     {
         emit this->editComputerAccepted(id,name,type,dY,bY);
     }
+    this->close();
 }
 
 void ComputerDialog::on_wasItBuilt_toggled(bool checked)
@@ -125,13 +126,14 @@ void ComputerDialog::fillTypeMenu(QMap<QString, int> tList)
 
 void ComputerDialog::on_buttonBox_rejected()
 {
-    this->close();
     emit this->computerRejected();
+    this->close();
 }
 
 void ComputerDialog::on_ComputerDialog_finished(int result)
 {
     emit this->computerRejected();
+    this->close();
 }
 
 void ComputerDialog::on_cName_textChanged(const QString &arg1)

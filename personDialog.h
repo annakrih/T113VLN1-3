@@ -51,12 +51,6 @@ private slots:
 
     void on_inputPhoto_clicked();
 
-    void on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint);
-
-    void on_Photo_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint);
-
-    void on_label_image_linkActivated(const QString &link);
-
 signals:
     void addPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d);
     void editPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d);

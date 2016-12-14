@@ -62,6 +62,8 @@ void PersonDialog::on_buttonBox_accepted()
     {
         emit this->editPersonAccepted(id,name,gender,nationality,bY,dY);
     }
+
+    this->close();
 }
 
 void PersonDialog::fillGenderMenu(QMap<QString,int> gMap)
@@ -173,13 +175,15 @@ void PersonDialog::on_personGender_currentIndexChanged(int index)
 
 void PersonDialog::on_buttonBox_rejected()
 {
-    this->close();
+
     emit this->personRejected();
+    this->close();
 }
 
 void PersonDialog::on_PersonDialog_finished(int result)
 {
     emit this->personRejected();
+    this->close();
 }
 
 void PersonDialog::on_personBY_valueChanged(int arg1)
@@ -213,19 +217,4 @@ void PersonDialog::on_inputPhoto_clicked()
     {
         //No file selected
     }
-}
-
-void PersonDialog::on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint)
-{
-
-}
-
-void PersonDialog::on_Photo_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint)
-{
-
-}
-
-void PersonDialog::on_label_image_linkActivated(const QString &link)
-{
-
 }
