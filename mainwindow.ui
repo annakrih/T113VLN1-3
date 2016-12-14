@@ -569,16 +569,6 @@
           </layout>
          </item>
          <item>
-          <widget class="QLabel" name="label_bio_pi">
-           <property name="text">
-            <string>Bio: </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QTextBrowser" name="textBrowser_bio_pi"/>
-         </item>
-         <item>
           <widget class="QLabel" name="label_relatedcomp_pi">
            <property name="text">
             <string>Related Computers:</string>
@@ -684,7 +674,7 @@
      <x>0</x>
      <y>0</y>
      <width>752</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
