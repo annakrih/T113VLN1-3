@@ -11,7 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
-    proxyPersonModel->setDynamicSortFilter(true);
+    proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
 
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
