@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CToPRelation</class>
- <widget class="QDialog" name="CToPRelation">
+ <class>PRelationC</class>
+ <widget class="QDialog" name="PRelationC">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Add computer relation to person</string>
+      <string>Add person relation to computer</string>
      </property>
     </widget>
    </item>
@@ -232,7 +232,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>CToPRelation</receiver>
+   <receiver>PRelationC</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -248,7 +248,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>CToPRelation</receiver>
+   <receiver>PRelationC</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

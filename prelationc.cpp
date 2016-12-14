@@ -1,9 +1,9 @@
-#include "ctoprelation.h"
-#include "ui_ctoprelation.h"
+#include "prelationc.h"
+#include "ui_prelationc.h"
 
-CToPRelation::CToPRelation(QWidget *parent) :
+PRelationC::PRelationC(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CToPRelation)
+    ui(new Ui::PRelationC)
 {
     ui->setupUi(this);
     showAdvSearchPersons = 0;
@@ -14,12 +14,12 @@ CToPRelation::CToPRelation(QWidget *parent) :
     proxyPersonModel->setDynamicSortFilter(true);
 }
 
-CToPRelation::~CToPRelation()
+PRelationC::~PRelationC()
 {
     delete ui;
 }
 
-void CToPRelation::searchPerson()
+void PRelationC::searchPerson()
 {
     QString searchInput = ui->input_searchPerson->text();
 
@@ -50,39 +50,39 @@ void CToPRelation::searchPerson()
     loadPersonTable();
 }
 
-void CToPRelation::on_input_searchPerson_textEdited(const QString &arg1)
+void PRelationC::on_input_searchPerson_textEdited(const QString &arg1)
 {
     searchPerson();
 }
 
-void CToPRelation::on_input_searchBornFrom_textEdited(const QString &arg1)
+void PRelationC::on_input_searchBornFrom_textEdited(const QString &arg1)
 {
     searchPerson();
 }
 
-void CToPRelation::on_input_searchBornTo_textEdited(const QString &arg1)
+void PRelationC::on_input_searchBornTo_textEdited(const QString &arg1)
 {
     searchPerson();
 }
 
-void CToPRelation::on_input_searchDiedFrom_textEdited(const QString &arg1)
+void PRelationC::on_input_searchDiedFrom_textEdited(const QString &arg1)
 {
     searchPerson();
 }
 
-void CToPRelation::on_input_searchDiedTo_textEdited(const QString &arg1)
+void PRelationC::on_input_searchDiedTo_textEdited(const QString &arg1)
 {
     searchPerson();
 }
 
-void CToPRelation::on_button_advSearchPerson_released()
+void PRelationC::on_button_advSearchPerson_released()
 {
     //ToDo
     //showAdvSearchComps = !showAdvSearchComps;
    // ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
 }
 
-void CToPRelation::loadPersonTable()
+void PRelationC::loadPersonTable()
 {
     proxyPersonModel->setSourceModel(personModel);
     ui->table_Person->setModel(proxyPersonModel);

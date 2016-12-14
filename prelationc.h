@@ -1,5 +1,5 @@
-#ifndef CTOPRELATION_H
-#define CTOPRELATION_H
+#ifndef PRELATIONC_H
+#define PRELATIONC_H
 
 #include <vector>
 #include "utils.h"
@@ -15,16 +15,16 @@
 
 namespace Ui
 {
-class CToPRelation;
+class PRelationC;
 }
 
-class CToPRelation : public QDialog
+class PRelationC : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CToPRelation(QWidget *parent = 0);
-    ~CToPRelation();
+    explicit PRelationC(QWidget *parent = 0);
+    ~PRelationC();
 
 private slots:
     void on_input_searchPerson_textEdited(const QString &arg1);
@@ -40,7 +40,7 @@ private slots:
     void on_button_advSearchPerson_released();
 
 private:
-    Ui::CToPRelation *ui;
+    Ui::PRelationC *ui;
     void searchPerson();
     int showAdvSearchPersons;
     QSqlRelationalTableModel* personModel;
@@ -52,4 +52,4 @@ private:
     Domain domain;
 };
 
-#endif // CTOPRELATION_H
+#endif // PRELATIONC_H
