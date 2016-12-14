@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->personinfo->setVisible(false);
+    ui->personInfoWidget->setVisible(false);
     ui->computerInfo->setVisible(false);
 
     personModel = domain.getPersonModel();
@@ -260,7 +260,7 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 
         ui->table_Person->selectionModel()->clearSelection();
         lastPersonSelection = -1;
-        ui->personinfo->setVisible(false);
+        ui->personInfoWidget->setVisible(false);
 
         overrideOnPersonSelectionChange = false;
 
@@ -556,18 +556,20 @@ void MainWindow::loadPersonInfo ()
 {
 
     ui->computerInfo->hide();
-    ui->label_name_pi->setText(ui->table_Person->model()->index(lastPersonSelection,1).data().toString());
+    QString name = "<h3>"+(ui->table_Person->model()->index(lastPersonSelection,1).data().toString())+"</h3>";
+    ui->label_name_pi->setText(name);
     ui->label_nation_pi->setText(ui->table_Person->model()->index(lastPersonSelection,3).data().toString());
     ui->label_born_pi->setText(ui->table_Person->model()->index(lastPersonSelection,4).data().toString());
     ui->label_deathage_pi->setText(ui->table_Person->model()->index(lastPersonSelection,5).data().toString());
-    ui->personinfo->show();
+    ui->personInfoWidget->show();
 }
 
 void MainWindow::loadComputerInfo()
 {
 
-    ui->personinfo->hide();
-    ui->label_name_ci->setText(ui->table_Comp->model()->index(lastCompSelection,1).data().toString());
+    ui->personInfoWidget->hide();
+    QString name = "<h3>"+ui->table_Comp->model()->index(lastCompSelection,1).data().toString()+"</h3>";
+    ui->label_name_ci->setText(name);
     ui->label_type_ci->setText(ui->table_Comp->model()->index(lastCompSelection,2).data().toString());
     ui->label_dy_ci->setText(ui->table_Comp->model()->index(lastCompSelection,3).data().toString());
     ui->label_by_ci->setText(ui->table_Comp->model()->index(lastCompSelection,4).data().toString() );
