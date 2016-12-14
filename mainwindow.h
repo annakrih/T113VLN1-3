@@ -136,6 +136,22 @@ private slots:
 
     void on_pushButton_editSelectedEntry_pressed();
 
+    void on_input_searchBornFrom_textEdited(const QString &arg1);
+
+    void on_input_searchBornTo_textEdited(const QString &arg1);
+
+    void on_input_searchDiedFrom_textEdited(const QString &arg1);
+
+    void on_input_searchDiedTo_textEdited(const QString &arg1);
+
+    void on_input_searchDesignYearFrom_textEdited(const QString &arg1);
+
+    void on_input_searchDesignYearTo_textEdited(const QString &arg1);
+
+    void on_input_searchBuildYearFrom_textEdited(const QString &arg1);
+
+    void on_input_searchBuildYearTo_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

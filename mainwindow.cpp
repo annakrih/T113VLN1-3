@@ -639,3 +639,107 @@ void MainWindow::on_pushButton_editSelectedEntry_pressed()
         editComputerDialog();
     }
 }
+
+void MainWindow::on_input_searchBornFrom_textEdited(const QString &arg1)
+{
+    QString newString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            newString += arg1[i];
+        }
+    }
+    ui->input_searchBornFrom->setText(newString);
+}
+
+void MainWindow::on_input_searchBornTo_textEdited(const QString &arg1)
+{
+    QString newString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            newString += arg1[i];
+        }
+    }
+    ui->input_searchBornTo->setText(newString);
+}
+
+void MainWindow::on_input_searchDiedFrom_textEdited(const QString &arg1)
+{
+    QString newString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            newString += arg1[i];
+        }
+    }
+    ui->input_searchDiedFrom->setText(newString);
+}
+
+void MainWindow::on_input_searchDiedTo_textEdited(const QString &arg1)
+{
+    QString newString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            newString += arg1[i];
+        }
+    }
+    ui->input_searchDiedTo->setText(newString);
+}
+
+void MainWindow::on_input_searchDesignYearFrom_textEdited(const QString &arg1)
+{
+    QString newString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            newString += arg1[i];
+        }
+    }
+    ui->input_searchDesignYearFrom->setText(newString);
+}
+
+void MainWindow::on_input_searchDesignYearTo_textEdited(const QString &arg1)
+{
+    QString newString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            newString += arg1[i];
+        }
+    }
+    ui->input_searchDesignYearTo->setText(newString);
+}
+
+void MainWindow::on_input_searchBuildYearFrom_textEdited(const QString &arg1)
+{
+    QString newString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            newString += arg1[i];
+        }
+    }
+    ui->input_searchBuildYearFrom->setText(newString);
+}
+
+void MainWindow::on_input_searchBuildYearTo_textEdited(const QString &arg1)
+{
+    QString newString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            newString += arg1[i];
+        }
+    }
+    ui->input_searchBuildYearTo->setText(newString);
+}
