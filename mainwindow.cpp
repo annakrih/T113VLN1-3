@@ -135,11 +135,14 @@ void MainWindow::on_input_searchPerson_textEdited()
 
 void MainWindow::on_button_advSearchComp_released()
 {
+    ui->input_searchDesignYearFrom->clear();
+    ui->input_searchDesignYearTo->clear();
+    ui->input_searchBuildYearFrom->clear();
+    ui->input_searchBuildYearTo->clear();
     if(showAdvSearchComps)
     {
         //TODO hreinsa advanced searching
     }
-
     showAdvSearchComps = !showAdvSearchComps;
     ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
 }
@@ -193,9 +196,17 @@ void MainWindow::on_input_searchBuildYearTo_editingFinished()
 
 void MainWindow::on_button_advSearchPerson_released()
 {
+
     if(showAdvSearchPersons)
     {
         ui->input_searchNat->setCurrentIndex(0);
+
+        ui->checkBox_searchFemale->setChecked(false);
+        ui->checkBox_searchMale->setChecked(false);
+        ui->input_searchBornFrom->clear();
+        ui->input_searchBornTo->clear();
+        ui->input_searchDiedFrom->clear();
+        ui->input_searchDiedTo->clear();
     }
 
     showAdvSearchPersons = !showAdvSearchPersons;
