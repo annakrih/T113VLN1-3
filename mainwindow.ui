@@ -176,6 +176,12 @@
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
               <widget class="QFrame" name="horizontalFrame">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
@@ -185,6 +191,12 @@
                <layout class="QHBoxLayout" name="horizontalLayout">
                 <item>
                  <widget class="QLineEdit" name="input_searchPerson">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>21</height>
+                   </size>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true"/>
                   </property>
@@ -203,14 +215,14 @@
                   </property>
                   <property name="minimumSize">
                    <size>
-                    <width>130</width>
-                    <height>23</height>
+                    <width>140</width>
+                    <height>32</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>130</width>
-                    <height>16777215</height>
+                    <width>140</width>
+                    <height>32</height>
                    </size>
                   </property>
                   <property name="text">
@@ -322,6 +334,9 @@
                       <height>0</height>
                      </size>
                     </property>
+                    <property name="maxLength">
+                     <number>4</number>
+                    </property>
                     <property name="placeholderText">
                      <string> To</string>
                     </property>
@@ -338,6 +353,9 @@
                       <height>0</height>
                      </size>
                     </property>
+                    <property name="maxLength">
+                     <number>4</number>
+                    </property>
                     <property name="placeholderText">
                      <string> From</string>
                     </property>
@@ -353,6 +371,9 @@
                       <width>50</width>
                       <height>0</height>
                      </size>
+                    </property>
+                    <property name="maxLength">
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -388,6 +409,9 @@
                       <width>50</width>
                       <height>0</height>
                      </size>
+                    </property>
+                    <property name="maxLength">
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> From</string>
@@ -461,49 +485,69 @@
             </attribute>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <property name="leftMargin">
-                <number>9</number>
+              <widget class="QFrame" name="">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
                </property>
-               <property name="topMargin">
-                <number>9</number>
-               </property>
-               <property name="rightMargin">
-                <number>9</number>
-               </property>
-               <property name="bottomMargin">
-                <number>9</number>
-               </property>
-               <item>
-                <widget class="QLineEdit" name="searchInput_Comp">
-                 <property name="styleSheet">
-                  <string notr="true"/>
-                 </property>
-                 <property name="placeholderText">
-                  <string> Search computers by name...</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="button_advSearchComp">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>130</width>
-                   <height>23</height>
-                  </size>
-                 </property>
-                 <property name="toolTip">
-                  <string/>
-                 </property>
-                 <property name="text">
-                  <string>Advanced search</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <property name="leftMargin">
+                 <number>9</number>
+                </property>
+                <property name="topMargin">
+                 <number>9</number>
+                </property>
+                <property name="rightMargin">
+                 <number>9</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>9</number>
+                </property>
+                <item>
+                 <widget class="QLineEdit" name="searchInput_Comp">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>21</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="placeholderText">
+                   <string> Search computers by name...</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="button_advSearchComp">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>140</width>
+                    <height>32</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>140</width>
+                    <height>32</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string/>
+                  </property>
+                  <property name="text">
+                   <string>Advanced search</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
              </item>
              <item>
               <widget class="QWidget" name="widget_advancedSearchComp" native="true">
@@ -522,6 +566,9 @@
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
+                    <property name="maxLength">
+                     <number>4</number>
+                    </property>
                     <property name="placeholderText">
                      <string> To</string>
                     </property>
@@ -531,6 +578,9 @@
                    <widget class="QLineEdit" name="input_searchDesignYearTo">
                     <property name="enabled">
                      <bool>true</bool>
+                    </property>
+                    <property name="maxLength">
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -542,6 +592,9 @@
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
+                    <property name="maxLength">
+                     <number>4</number>
+                    </property>
                     <property name="placeholderText">
                      <string> From</string>
                     </property>
@@ -550,6 +603,12 @@
                   <item row="0" column="1">
                    <widget class="QLineEdit" name="input_searchDesignYearFrom">
                     <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="maxLength">
+                     <number>4</number>
+                    </property>
+                    <property name="frame">
                      <bool>true</bool>
                     </property>
                     <property name="placeholderText">
