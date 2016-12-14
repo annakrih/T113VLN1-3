@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <QMessageBox>
+#include <QSortFilterProxyModel>
 
 #include "personDialog.h"
 #include "computerdialog.h"

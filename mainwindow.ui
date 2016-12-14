@@ -58,6 +58,12 @@
                <height>70</height>
               </size>
              </property>
+             <property name="toolTip">
+              <string>Add person</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>0</number>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -80,6 +86,12 @@
                <width>70</width>
                <height>70</height>
               </size>
+             </property>
+             <property name="toolTip">
+              <string>Add computer</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>0</number>
              </property>
              <property name="text">
               <string/>
@@ -116,6 +128,12 @@
                <width>70</width>
                <height>70</height>
               </size>
+             </property>
+             <property name="toolTip">
+              <string>Edit selected</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>0</number>
              </property>
              <property name="text">
               <string/>
@@ -450,6 +468,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="button_advSearchComp">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
                  <property name="text">
                   <string>Advanced search</string>
                  </property>
@@ -848,7 +869,7 @@
      <x>0</x>
      <y>0</y>
      <width>999</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
