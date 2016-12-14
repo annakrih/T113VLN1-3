@@ -686,6 +686,19 @@
              </widget>
             </item>
             <item>
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QLabel" name="label_name_pi">
               <property name="maximumSize">
                <size>
@@ -700,20 +713,6 @@
             </item>
             <item>
              <layout class="QGridLayout" name="persInfNatBYDY">
-              <item row="2" column="1">
-               <widget class="QLabel" name="label_deathage_pi">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="DeathAgePersonInfo">
-                <property name="text">
-                 <string>Died:</string>
-                </property>
-               </widget>
-              </item>
               <item row="1" column="1">
                <widget class="QLabel" name="label_born_pi">
                 <property name="text">
@@ -721,24 +720,38 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="bornPersonInfo">
-                <property name="text">
-                 <string>Born: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="nationalitypersonInfo">
                 <property name="text">
                  <string>Nationality:</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="1" column="0">
+               <widget class="QLabel" name="DeathAgePersonInfo">
+                <property name="text">
+                 <string>Died:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
                <widget class="QLabel" name="label_nation_pi">
                 <property name="text">
                  <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="label_deathage_pi">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="bornPersonInfo">
+                <property name="text">
+                 <string>Born: </string>
                 </property>
                </widget>
               </item>
@@ -762,7 +775,7 @@
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>200</height>
+                <height>150</height>
                </size>
               </property>
              </widget>
@@ -780,23 +793,17 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label_pic_ci">
-              <property name="minimumSize">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
                <size>
-                <width>0</width>
-                <height>200</height>
+                <width>20</width>
+                <height>40</height>
                </size>
               </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>200</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
+             </spacer>
             </item>
             <item>
              <widget class="QLabel" name="label_name_ci">
@@ -875,7 +882,7 @@
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>200</height>
+                <height>150</height>
                </size>
               </property>
              </widget>
@@ -896,7 +903,7 @@
      <x>0</x>
      <y>0</y>
      <width>999</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">

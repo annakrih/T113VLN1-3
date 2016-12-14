@@ -614,6 +614,7 @@ void MainWindow::loadPersonInfo ()
         // show this label somewhere.
         QLabel image_personInfo;
         ui->image_personInfo->setPixmap(QPixmap::fromImage(img));
+        ui->image_personInfo->setScaledContents(true);
     }else
     {
         ui->image_personInfo->clear();
