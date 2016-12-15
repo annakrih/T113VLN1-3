@@ -525,6 +525,8 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     personModel->insertRecord(-1,record);
 
     nextPersonId++;
+
+    ui->tabsWidget_personComputer->setCurrentIndex(0);
 }
 
 void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int &d, const int &b)
@@ -540,6 +542,8 @@ void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int
     computerModel->insertRecord(-1,record);
 
     nextComputerId++;
+
+    ui->tabsWidget_personComputer->setCurrentIndex(1);
 }
 
 void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace)
