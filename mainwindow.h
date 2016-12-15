@@ -10,6 +10,7 @@
 #include <QSortFilterProxyModel>
 #include <QCloseEvent>
 #include <QWidget>
+#include <QTableView>
 
 #include "personDialog.h"
 #include "computerdialog.h"
@@ -35,7 +36,8 @@ public:
     void on_searchComboBox_currentIndexChanged(int index);
     void loadPersonTable();
     void loadCompTable();
-    void loadRelationTable();
+    void loadPITable();
+    void loadCITable();
     void fillNationalitySearchBox(QMap<QString, int> natList);
     void fillComputerTypeSearchBox(QMap<QString, int> compTypeList);
 
@@ -114,6 +116,12 @@ private slots:
 
     void on_actionDelete_triggered();
 
+    QList<int> getPersonRelationId(int id);
+
+    QList<int> getComputerRelationId(int id);
+
+    void hideAllRowsExcept(QTableView* table, QList<int> rowsNotToHide);
+
     void loadPersonInfo();
 
     void loadComputerInfo();
@@ -171,8 +179,16 @@ private:
     PersonDialog *personDialogWindow;
     ComputerDialog *computerDialogWindow;
 
+    Domain domain;
+
+    QSqlRelationalTableModel* personModel;
+    QSqlRelationalTableModel* computerModel;
+    QSqlRelationalTableModel* relationModel;
+
     QSortFilterProxyModel *proxyPersonModel = new QSortFilterProxyModel(this);
     QSortFilterProxyModel *proxyCompModel = new QSortFilterProxyModel(this);
+    QSortFilterProxyModel *proxyPIModel = new QSortFilterProxyModel(this);
+    QSortFilterProxyModel *proxyCIModel = new QSortFilterProxyModel(this);
 
     int currentPersonSearchIndex = 0;
     int currentCompSearchIndex = 0;
@@ -188,11 +204,6 @@ private:
     bool overrideTableClick = 0;
 
     bool changesMade = 0;
-
-    Domain domain;
-
-    QSqlRelationalTableModel* personModel;
-    QSqlRelationalTableModel* computerModel;
 
     void searchPerson();
     void searchComp(const QString& searchInput);

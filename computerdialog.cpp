@@ -130,30 +130,30 @@ void ComputerDialog::on_buttonBox_rejected()
     this->close();
 }
 
-void ComputerDialog::on_ComputerDialog_finished(int result)
+void ComputerDialog::on_ComputerDialog_finished()
 {
     emit this->computerRejected();
     this->close();
 }
 
-void ComputerDialog::on_cName_textChanged(const QString &arg1)
+void ComputerDialog::on_cName_textChanged()
 {
     //no capitalize string function is called here because computers can have for example all caps names
     //user must enter correct name
     checkForm();
 }
 
-void ComputerDialog::on_cType_currentIndexChanged(const QString &arg1)
+void ComputerDialog::on_cType_currentIndexChanged()
 {
     checkForm();
 }
 
-void ComputerDialog::on_cDY_valueChanged(int arg1)
+void ComputerDialog::on_cDY_valueChanged()
 {
     checkForm();
 }
 
-void ComputerDialog::on_cBY_valueChanged(int arg1)
+void ComputerDialog::on_cBY_valueChanged()
 {
     checkForm();
 }

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
+    relationModel = domain.getPCRelationModel();
     proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
 
@@ -74,11 +75,21 @@ void MainWindow::loadCompTable()
     ui->table_Comp->setColumnHidden(0,true);
 }
 
-void MainWindow::loadRelationTable()
+void MainWindow::loadPITable()
 {
-
+    proxyPIModel->setSourceModel(computerModel);
+    ui->tablePI-> setModel(proxyPIModel);
+    ui->tablePI->verticalHeader()->hide();
+    ui->tablePI->setColumnHidden(0,true);
 }
 
+void MainWindow::loadCITable()
+{
+    proxyCIModel->setSourceModel(personModel);
+    ui->tableCI-> setModel(proxyCIModel);
+    ui->tableCI->verticalHeader()->hide();
+    ui->tableCI->setColumnHidden(0,true);
+}
 
 void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
 {
@@ -591,6 +602,45 @@ void MainWindow::on_actionDelete_triggered()
     changesMade = 1;
 }
 
+QList<int> MainWindow::getPersonRelationId(int id){
+
+    QList<int> computerId;
+    for(int i = 0; i < relationModel->rowCount(); i++){
+        QModelIndex personIdIndex = relationModel->index(i,1);
+        QModelIndex ComputerIdIndex = relationModel->index(i,2);
+        if(relationModel->data(personIdIndex, Qt::DisplayRole).toInt() == id){
+            computerId.push_back(relationModel->data(ComputerIdIndex, Qt::DisplayRole).toInt());
+        }
+    }
+    return computerId;
+}
+
+QList<int> MainWindow::getComputerRelationId(int id){
+
+    QList<int> personId;
+    for(int i = 0; i < relationModel->rowCount(); i++){
+        QModelIndex personIdIndex = relationModel->index(i,1);
+        QModelIndex ComputerIdIndex = relationModel->index(i,2);
+        if(relationModel->data(ComputerIdIndex, Qt::DisplayRole).toInt() == id){
+            personId.push_back(relationModel->data(personIdIndex, Qt::DisplayRole).toInt());
+        }
+    }
+    return personId;
+}
+
+void MainWindow::hideAllRowsExcept(QTableView* table, QList<int> rowsNotToHide){
+
+    for(int i = 0; i <= table->model()->rowCount(); i++ ){
+        int id = relationModel->index(i+1,0).row();
+        if(!rowsNotToHide.contains(id)){
+            table->hideRow(i);
+        }else{
+            table->showRow(i);
+        }
+    }
+}
+
+
 void MainWindow::loadPersonInfo ()
 {
     ui->computerInfo->hide();
@@ -612,6 +662,11 @@ void MainWindow::loadPersonInfo ()
         ui->image_personInfo->clear();
     }
 
+    QList<int> relList = getPersonRelationId(ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
+    loadPITable();
+    hideAllRowsExcept(ui->tablePI, relList);
+
+
     ui->personInfoWidget->show();
 }
 
@@ -625,6 +680,10 @@ void MainWindow::loadComputerInfo()
     ui->label_dy_ci->setText(ui->table_Comp->model()->index(lastCompSelection,3).data().toString());
     ui->label_by_ci->setText(ui->table_Comp->model()->index(lastCompSelection,4).data().toString() );
     ui->computerInfo->show();
+
+    QList<int> relList = getComputerRelationId(ui->table_Comp->model()->index(lastCompSelection,0).data().toInt());
+    loadCITable();
+    hideAllRowsExcept(ui->tableCI, relList);
 
 }
 
@@ -649,8 +708,7 @@ void MainWindow::on_actionPersons_2_triggered()
 
     if(prompt == QMessageBox::Yes)
     {
-        domain.getDeletePersonTable();
-        personModel = domain.getPersonModel();
+        personModel = domain.deletePersonTable();
         loadPersonTable();
     }
 }
@@ -663,8 +721,7 @@ void MainWindow::on_actionComputers_2_triggered()
                                                                QMessageBox::Yes|QMessageBox::No);
     if(prompt == QMessageBox::Yes)
     {
-        domain.getDeleteComputerTable();
-        computerModel = domain.getComputerModel();
+        computerModel = domain.deleteComputerTable();
         loadCompTable();
     }
 }
@@ -677,9 +734,8 @@ void MainWindow::on_actionRelations_triggered()
                                                                QMessageBox::Yes|QMessageBox::No);
     if(prompt == QMessageBox::Yes)
     {
-        domain.getDeleteRelationTable();
-        //TODO relationModel = domain.getRelationModel();
-        //TODO loadRelationModel();
+        domain.deleteRelationTable();
+        relationModel = domain.deleteRelationTable();
     }
 }
 
