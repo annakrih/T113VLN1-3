@@ -4,5 +4,6 @@
         <file>images/addcomp.png</file>
         <file>images/addperson.png</file>
         <file>images/delete.png</file>
+        <file>images/plusIcon.png</file>
     </qresource>
 </RCC>

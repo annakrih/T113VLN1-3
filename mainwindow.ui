@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>999</width>
+    <width>1050</width>
     <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>960</width>
+    <width>1050</width>
     <height>600</height>
    </size>
   </property>
@@ -24,6 +24,12 @@
     <normaloff>database/addcomp.png</normaloff>database/addcomp.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1070</width>
+     <height>0</height>
+    </size>
+   </property>
    <layout class="QGridLayout" name="gridLayout_4">
     <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizLayoutForEverything">
@@ -761,7 +767,7 @@
        <widget class="QFrame" name="compPersonInfo">
         <property name="minimumSize">
          <size>
-          <width>350</width>
+          <width>450</width>
           <height>0</height>
          </size>
         </property>
@@ -834,36 +840,8 @@
             </item>
             <item>
              <layout class="QGridLayout" name="persInfNatBYDY">
-              <item row="2" column="0">
-               <widget class="QLabel" name="nationalitypersonInfo">
-                <property name="text">
-                 <string>Nationality:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="DeathAgePersonInfo">
-                <property name="text">
-                 <string>Died:</string>
-                </property>
-               </widget>
-              </item>
               <item row="2" column="1">
                <widget class="QLabel" name="label_nation_pi">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="bornPersonInfo">
-                <property name="text">
-                 <string>Born: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="label_deathage_pi">
                 <property name="text">
                  <string/>
                 </property>
@@ -876,17 +854,59 @@
                 </property>
                </widget>
               </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="label_deathage_pi">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="nationalitypersonInfo">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Nationality:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="DeathAgePersonInfo">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Died:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="bornPersonInfo">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Born: </string>
+                </property>
+               </widget>
+              </item>
              </layout>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_relatedcomp_pi">
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Related Computers:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QTableView" name="tablePI"/>
             </item>
             <item>
              <layout class="QHBoxLayout" name="personRelationBtnLayout">
@@ -894,9 +914,39 @@
                <number>0</number>
               </property>
               <item>
+               <widget class="QLabel" name="label_relatedcomp_pi">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Related Computers:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
                <widget class="QPushButton" name="addPersonRelation">
                 <property name="text">
-                 <string>Add</string>
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resources.qrc">
+                  <normaloff>:/icons/images/plusIcon.png</normaloff>:/icons/images/plusIcon.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
                 </property>
                </widget>
               </item>
@@ -906,11 +956,24 @@
                  <bool>false</bool>
                 </property>
                 <property name="text">
-                 <string>Delete</string>
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resources.qrc">
+                  <normaloff>:/icons/images/delete.png</normaloff>:/icons/images/delete.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
                 </property>
                </widget>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="tablePI"/>
             </item>
            </layout>
           </widget>
@@ -958,29 +1021,8 @@
             </item>
             <item>
              <layout class="QGridLayout" name="computerInfoBoard">
-              <item row="3" column="0">
-               <widget class="QLabel" name="TypeComputerInfo">
-                <property name="text">
-                 <string>Type: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="BuildYearComputerInfo">
-                <property name="text">
-                 <string>Build year: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="DesignYearComputerInfo">
-                <property name="text">
-                 <string>Design year: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="label_type_ci">
+              <item row="2" column="1">
+               <widget class="QLabel" name="label_by_ci">
                 <property name="text">
                  <string/>
                 </property>
@@ -993,48 +1035,106 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
-               <widget class="QLabel" name="label_by_ci">
+              <item row="3" column="1">
+               <widget class="QLabel" name="label_type_ci">
                 <property name="text">
                  <string/>
                 </property>
                </widget>
               </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="DesignYearComputerInfo">
+                <property name="text">
+                 <string>Design year: </string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="BuildYearComputerInfo">
+                <property name="text">
+                 <string>Build year: </string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="TypeComputerInfo">
+                <property name="text">
+                 <string>Type: </string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
             <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Related persons:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <layout class="QHBoxLayout" name="computerRelationBtnLayout">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Related persons:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="addComputerRelation">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/icons/images/plusIcon.png</normaloff>:/icons/images/plusIcon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="deleteComputerRelation">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/icons/images/delete.png</normaloff>:/icons/images/delete.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
             <item>
              <widget class="QTableView" name="tableCI"/>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="computerRelationBtnLayout">
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QPushButton" name="addComputerRelation">
-                <property name="text">
-                 <string>Add</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="deleteComputerRelation">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="text">
-                 <string>Delete</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
             </item>
            </layout>
           </widget>
@@ -1051,7 +1151,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>999</width>
+     <width>1050</width>
      <height>22</height>
     </rect>
    </property>
