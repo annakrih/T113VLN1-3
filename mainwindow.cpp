@@ -5,7 +5,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    //TODO setWindowTitle("newTitle");
     ui->setupUi(this);
     this->setStyleSheet(domain.getCssString());
     ui->personInfoWidget->setVisible(false);
@@ -630,6 +629,19 @@ void MainWindow::revertChanges()
         }
 
     }
+    if(relationModel->isDirty())
+    {
+        relationModel->revertAll();
+        int index = ui->tabsWidget_personComputer->currentIndex();
+        if(index == 0)
+        {
+            loadPersonInfo();
+        }
+        else if(index == 1)
+        {
+            loadComputerInfo();
+        }
+    }
 }
 
 void MainWindow::saveModel(QSqlRelationalTableModel * model)
@@ -932,21 +944,6 @@ void MainWindow::closeEvent()
         }
     }
 }
-
-QString MainWindow::hasTableChanged()
-{
-    QString windowName = "";
-    if(changesMade)
-    {
-        windowName = "MainWindow*";
-    }
-    else if(!changesMade)
-    {
-        windowName = "MainWindow";
-    }
-    return windowName;
-}
-
 
 void MainWindow::on_pushButton_Delete_released()
 {
