@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     relationModel = domain.getPCRelationModel();
     proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->pushButton_editSelectedEntry->setEnabled(false);
 
 
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -280,7 +281,12 @@ void MainWindow::on_input_searchNat_currentIndexChanged(const QString &arg1)
 
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
-
+    ui->pushButton_editSelectedEntry->setEnabled(true);
+    QModelIndexList selList = ui->table_Person->selectionModel()->selectedRows();
+    if(selList.size() > 1)
+    {
+        ui->pushButton_editSelectedEntry->setEnabled(true);
+    }
     if(lastPersonSelection == index.row() && !overrideTableClick)
     {
         overrideOnPersonSelectionChange = true;
@@ -288,6 +294,7 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
         lastPersonSelection = -1;
         ui->personInfoWidget->setVisible(false);
         overrideOnPersonSelectionChange = false;
+        ui->pushButton_editSelectedEntry->setEnabled(false);
     }else if(!overrideTableClick){
         int index = ui->table_Person->currentIndex().row();
         lastPersonSelection = index;
@@ -310,7 +317,12 @@ void MainWindow::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
 
 void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 {
-
+    ui->pushButton_editSelectedEntry->setEnabled(true);
+    QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
+    if(selList.size() > 1)
+    {
+        ui->pushButton_editSelectedEntry->setEnabled(true);
+    }
     if(lastCompSelection == index.row() && !overrideTableClick)
     {
         overrideOnCompSelectionChange = true;
@@ -318,6 +330,7 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
         lastCompSelection = -1;
         ui->computerInfo->setVisible(false);
         overrideOnCompSelectionChange = false;
+        ui->pushButton_editSelectedEntry->setEnabled(false);
     }else if(!overrideTableClick){
         int index = ui->table_Comp->currentIndex().row();
         lastPersonSelection = index;
