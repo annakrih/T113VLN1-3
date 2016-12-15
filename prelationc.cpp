@@ -1,7 +1,7 @@
 #include "prelationc.h"
 #include "ui_prelationc.h"
 
-PRelationC::PRelationC(QSortFilterProxyModel *model, QWidget *parent) :
+PRelationC::PRelationC(QSortFilterProxyModel *model, QList<int> relList, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PRelationC)
 {
@@ -16,6 +16,8 @@ PRelationC::PRelationC(QSortFilterProxyModel *model, QWidget *parent) :
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
     ui->table_Person->setColumnHidden(6,true);
+
+    hideRows(ui->table_Person,relList);
 
     connect(
       ui->table_Person->selectionModel(),
@@ -143,5 +145,18 @@ void PRelationC::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
         int index = c.row();
         lastSelection = index;
         overrideTableClick = true;
+    }
+}
+
+void PRelationC::hideRows(QTableView* table, QList<int> rowsToHide){
+
+    for(int i = 0; i < table->model()->rowCount(); i++ ){
+        int id = table->model()->index(i,0).data().toInt();
+
+        if(rowsToHide.contains(id)){
+            table->hideRow(i);
+        }else{
+            table->showRow(i);
+        }
     }
 }

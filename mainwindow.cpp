@@ -914,7 +914,10 @@ void MainWindow::on_pushButton_Delete_released()
 void MainWindow::on_addPersonRelation_released()
 {
     QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
-    pRelDialogWindow = new CRelationP(proxyCompModel, this);
+
+    QList<int> relList = getPersonRelationId(ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
+
+    pRelDialogWindow = new CRelationP(proxyCompModel, relList, this);
 
     QObject::connect(pRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(pRelDialogWindow,
@@ -931,7 +934,10 @@ void MainWindow::on_addPersonRelation_released()
 void MainWindow::on_addComputerRelation_released()
 {
     QMap<QString, int> tList = domain.getAcceptedNationality();
-    cRelDialogWindow = new PRelationC(proxyPersonModel, this);
+
+    QList<int> relList = getComputerRelationId(ui->table_Comp->model()->index(lastCompSelection,0).data().toInt());
+
+    cRelDialogWindow = new PRelationC(proxyPersonModel, relList, this);
 
     QObject::connect(cRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(cRelDialogWindow,
