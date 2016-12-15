@@ -134,7 +134,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="pushButton_Revert">
              <property name="minimumSize">
               <size>
                <width>40</width>

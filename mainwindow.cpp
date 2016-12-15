@@ -19,6 +19,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->pushButton_editSelectedEntry->setEnabled(false);
     ui->pushButton_Delete->setEnabled(false);
+    if(personModel->isDirty() || computerModel->isDirty() || relationModel->isDirty())
+    {
+        ui->pushButton_Revert->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_Revert->setEnabled(false);
+    }
 
 
     loadPersonTable();
@@ -394,11 +402,6 @@ void MainWindow::on_actionAdd_new_computer_triggered()
     addComputerDialog();
 }
 
-void MainWindow::on_actionAdd_new_relation_triggered()
-{
-    addRelationDialog();
-}
-
 void MainWindow::on_actionEdit_person_triggered()
 {
     editPersonDialog();
@@ -424,6 +427,7 @@ void MainWindow::addPersonDialog()
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
+    ui->pushButton_Revert->setEnabled(true);
     personDialogWindow->show();
     changesMade = 1;
 }
@@ -441,13 +445,9 @@ void MainWindow::addComputerDialog()
 
     this->setEnabled(false);
     computerDialogWindow->setEnabled(true);
+    ui->pushButton_Revert->setEnabled(true);
     computerDialogWindow->show();
     changesMade = 1;
-}
-
-void MainWindow::addRelationDialog()
-{
-
 }
 
 void MainWindow::editPersonDialog()
@@ -471,6 +471,7 @@ void MainWindow::editPersonDialog()
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
+    ui->pushButton_Revert->setEnabled(true);
     personDialogWindow->show();
     changesMade = 1;
 }
@@ -494,6 +495,7 @@ void MainWindow::editComputerDialog()
 
     this->setEnabled(false);
     computerDialogWindow->setEnabled(true);
+    ui->pushButton_Revert->setEnabled(true);
     computerDialogWindow->show();
     changesMade = 1;
 }
@@ -608,7 +610,7 @@ void MainWindow::saveChanges()
         saveModel(relationModel);
 
     }
-
+    ui->pushButton_Revert->setEnabled(true);
 }
 
 void MainWindow::revertChanges()
@@ -695,6 +697,7 @@ void MainWindow::deleteSelected(){
         }
     }
     ui->pushButton_Delete->setEnabled(false);
+    ui->pushButton_Revert->setEnabled(true);
 }
 
 void MainWindow::on_actionDelete_triggered()
@@ -1040,8 +1043,8 @@ void MainWindow::clearAll()
     ui->pushButton_Delete->setEnabled(false);
     ui->pushButton_editSelectedEntry->setEnabled(false);
 }
-
-void MainWindow::on_pushButton_released()
+void MainWindow::on_pushButton_Revert_released()
 {
     revertChanges();
+    ui->pushButton_Revert->setEnabled(false);
 }
