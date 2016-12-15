@@ -797,6 +797,9 @@
          </size>
         </property>
         <layout class="QHBoxLayout" name="horizForCompPersInfo">
+         <property name="bottomMargin">
+          <number>1</number>
+         </property>
          <item>
           <widget class="QWidget" name="personInfoWidget" native="true">
            <property name="sizePolicy">
@@ -954,6 +957,9 @@
               </item>
               <item>
                <widget class="QPushButton" name="addPersonRelation">
+                <property name="toolTip">
+                 <string>Add Relation</string>
+                </property>
                 <property name="text">
                  <string/>
                 </property>
@@ -973,6 +979,9 @@
                <widget class="QPushButton" name="deletePersonRelation">
                 <property name="enabled">
                  <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string>Delete Relation</string>
                 </property>
                 <property name="text">
                  <string/>
@@ -1020,7 +1029,7 @@
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>233</height>
+                <height>208</height>
                </size>
               </property>
              </spacer>
@@ -1113,6 +1122,9 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="addComputerRelation">
+                  <property name="toolTip">
+                   <string>Add Relation</string>
+                  </property>
                   <property name="text">
                    <string/>
                   </property>
@@ -1132,6 +1144,9 @@
                  <widget class="QPushButton" name="deleteComputerRelation">
                   <property name="enabled">
                    <bool>false</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Add Relation</string>
                   </property>
                   <property name="text">
                    <string/>
