@@ -24,11 +24,11 @@ ComputerDialog::ComputerDialog(QWidget *parent, QMap<QString, int> tList,
         ui->cDY->setValue(d);
         if(!b)
         {
-            ui->wasItBuilt->setChecked(true);
+            ui->wasItBuilt->setChecked(false);
         }
         else
         {
-            ui->cDY->setValue(b);
+            ui->cBY->setValue(b);
         }
     }
     ui->hiddenId->setDisabled(true);
