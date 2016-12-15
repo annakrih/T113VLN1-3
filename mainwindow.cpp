@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
     loadCompTable();
 
     fillNationalitySearchBox(domain.getAcceptedNationality());
-    fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
+   // fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
 
     showAdvSearchPersons = 0;
     ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
@@ -1064,6 +1064,7 @@ void MainWindow::clearAll()
     ui->actionEdit_Computer->setEnabled(false);
     ui->actionEdit_person->setEnabled(false);
 }
+
 void MainWindow::on_pushButton_Revert_released()
 {
     revertChanges();

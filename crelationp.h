@@ -1,5 +1,6 @@
 #ifndef CRELATIONP_H
 #define CRELATIONP_H
+#include "domain.h"
 
 #include <QDialog>
 #include <QTableView>
@@ -40,6 +41,22 @@ private slots:
     void searchComp();
 
     void loadCompTable();
+
+    void on_input_searchDesignYearFrom_editingFinished();
+
+    void on_input_searchDesignYearTo_editingFinished();
+
+    void on_input_searchBuildYearFrom_editingFinished();
+
+    void on_input_searchBuildYearTo_editingFinished();
+
+    void on_input_searchDesignYearFrom_textEdited(const QString &arg1);
+
+    void on_input_searchDesignYearTo_textEdited(const QString &arg1);
+
+    void on_input_searchBuildYearFrom_textEdited(const QString &arg1);
+
+    void on_input_searchBuildYearTo_textEdited(const QString &arg1);
 
 private:
     Ui::CRelationP *ui;

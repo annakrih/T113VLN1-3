@@ -19,6 +19,9 @@ CRelationP::CRelationP(QSortFilterProxyModel *model, QList<int> relList, int id,
 
     showAdvSearchComps = 0;
     ui->frame_advSearchComp->setVisible(showAdvSearchComps);
+
+//    fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
+
     personId = id;
 
     connect(
@@ -148,3 +151,69 @@ void CRelationP::loadCompTable()
     proxyCompModel->sort(1, Qt::AscendingOrder);
     */
 }
+
+void CRelationP::on_input_searchDesignYearFrom_editingFinished()
+{
+    searchComp();
+}
+
+void CRelationP::on_input_searchDesignYearTo_editingFinished()
+{
+    searchComp();
+
+}
+
+void CRelationP::on_input_searchBuildYearFrom_editingFinished()
+{
+    searchComp();
+
+}
+
+void CRelationP::on_input_searchBuildYearTo_editingFinished()
+{
+    searchComp();
+}
+
+QString aFunctionForSearchingComp(QString arg1)
+{
+    QString searchString;
+    for(int i = 0; i < arg1.size(); i++)
+    {
+        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
+        {
+            searchString += arg1[i];
+        }
+    }
+    return searchString;
+}
+
+void CRelationP::on_input_searchDesignYearFrom_textEdited(const QString &arg1)
+{
+    QString newString;
+    newString = aFunctionForSearchingComp(arg1);
+    ui->input_searchDesignYearFrom->setText(newString);
+}
+
+void CRelationP::on_input_searchDesignYearTo_textEdited(const QString &arg1)
+{
+    QString newString;
+    newString = aFunctionForSearchingComp(arg1);
+    ui->input_searchDesignYearTo->setText(newString);
+}
+
+void CRelationP::on_input_searchBuildYearFrom_textEdited(const QString &arg1)
+{
+    QString newString;
+    newString = aFunctionForSearchingComp(arg1);
+    ui->input_searchBuildYearFrom->setText(newString);
+}
+
+void CRelationP::on_input_searchBuildYearTo_textEdited(const QString &arg1)
+{
+    QString newString;
+    newString = aFunctionForSearchingComp(arg1);
+    ui->input_searchBuildYearTo->setText(newString);
+}
+
+
+
