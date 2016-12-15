@@ -91,11 +91,14 @@ void MainWindow::loadCompTable()
 void MainWindow::loadPITable()
 {
     proxyPIModel->setSourceModel(computerModel);
-    ui->tablePI-> setModel(proxyPIModel);
+    ui->tablePI->setModel(proxyPIModel);
     ui->tablePI->verticalHeader()->hide();
     ui->tablePI->setColumnHidden(0,true);
+    ui->tablePI->setColumnHidden(6,true);
     proxyPIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tablePI->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+
 }
 
 void MainWindow::loadCITable()
@@ -106,6 +109,7 @@ void MainWindow::loadCITable()
     ui->tableCI->setColumnHidden(0,true);
     proxyCIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tableCI->setSelectionBehavior(QAbstractItemView::SelectRows);
+
 }
 
 void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
@@ -682,7 +686,7 @@ QList<int> MainWindow::getComputerRelationId(int id){
 void MainWindow::hideAllRowsExcept(QTableView* table, QList<int> rowsNotToHide){
 
     for(int i = 0; i <= table->model()->rowCount(); i++ ){
-        int id = relationModel->index(i+1,0).row();
+        int id = table->model()->index(i,0).data().toInt();
         if(!rowsNotToHide.contains(id)){
             table->hideRow(i);
         }else{
@@ -805,107 +809,72 @@ void MainWindow::on_pushButton_editSelectedEntry_pressed()
     }
 }
 
-void MainWindow::on_input_searchBornFrom_textEdited(const QString &arg1)
+QString aFunctionForSearching(QString arg1)
 {
-    QString newString;
+    QString searchString;
     for(int i = 0; i < arg1.size(); i++)
     {
         if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
         {
-            newString += arg1[i];
+            searchString += arg1[i];
         }
     }
+    return searchString;
+}
+
+void MainWindow::on_input_searchBornFrom_textEdited(const QString &arg1)
+{
+    QString newString;
+    newString = aFunctionForSearching(arg1);
     ui->input_searchBornFrom->setText(newString);
 }
 
 void MainWindow::on_input_searchBornTo_textEdited(const QString &arg1)
 {
     QString newString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            newString += arg1[i];
-        }
-    }
+    newString = aFunctionForSearching(arg1);
     ui->input_searchBornTo->setText(newString);
 }
 
 void MainWindow::on_input_searchDiedFrom_textEdited(const QString &arg1)
 {
     QString newString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            newString += arg1[i];
-        }
-    }
+    newString = aFunctionForSearching(arg1);
     ui->input_searchDiedFrom->setText(newString);
 }
 
 void MainWindow::on_input_searchDiedTo_textEdited(const QString &arg1)
 {
     QString newString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            newString += arg1[i];
-        }
-    }
+    newString = aFunctionForSearching(arg1);
     ui->input_searchDiedTo->setText(newString);
 }
 
 void MainWindow::on_input_searchDesignYearFrom_textEdited(const QString &arg1)
 {
     QString newString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            newString += arg1[i];
-        }
-    }
+    newString = aFunctionForSearching(arg1);
     ui->input_searchDesignYearFrom->setText(newString);
 }
 
 void MainWindow::on_input_searchDesignYearTo_textEdited(const QString &arg1)
 {
     QString newString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            newString += arg1[i];
-        }
-    }
+    newString = aFunctionForSearching(arg1);
     ui->input_searchDesignYearTo->setText(newString);
 }
 
 void MainWindow::on_input_searchBuildYearFrom_textEdited(const QString &arg1)
 {
     QString newString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            newString += arg1[i];
-        }
-    }
+    newString = aFunctionForSearching(arg1);
     ui->input_searchBuildYearFrom->setText(newString);
 }
 
 void MainWindow::on_input_searchBuildYearTo_textEdited(const QString &arg1)
 {
     QString newString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            newString += arg1[i];
-        }
-    }
+    newString = aFunctionForSearching(arg1);
     ui->input_searchBuildYearTo->setText(newString);
 }
 
@@ -959,15 +928,16 @@ void MainWindow::on_addPersonRelation_released()
 {
     QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
 
-    QList<int> relList = getPersonRelationId(ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
+    int id = ui->table_Person->model()->index(lastPersonSelection,0).data().toInt();
+    QList<int> relList = getPersonRelationId(id);
 
-    pRelDialogWindow = new CRelationP(proxyCompModel, relList, this);
+    pRelDialogWindow = new CRelationP(proxyCompModel, relList, id, this);
 
     QObject::connect(pRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(pRelDialogWindow,
-                     SIGNAL(addPRelAccepted(const QList<int> &)),
+                     SIGNAL(addPRelAccepted(const QList<int> &, const int &)),
                      this,
-                     SLOT(onAddPRelAccepted(const QList<int> &)));
+                     SLOT(onAddPRelAccepted(const QList<int> &, const int &)));
 
     this->setEnabled(false);
     pRelDialogWindow->setEnabled(true);
@@ -979,15 +949,16 @@ void MainWindow::on_addComputerRelation_released()
 {
     QMap<QString, int> tList = domain.getAcceptedNationality();
 
-    QList<int> relList = getComputerRelationId(ui->table_Comp->model()->index(lastCompSelection,0).data().toInt());
+    int id = ui->table_Comp->model()->index(lastCompSelection,0).data().toInt();
+    QList<int> relList = getComputerRelationId(id);
 
-    cRelDialogWindow = new PRelationC(proxyPersonModel, relList, this);
+    cRelDialogWindow = new PRelationC(proxyPersonModel, relList, id, this);
 
     QObject::connect(cRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(cRelDialogWindow,
-                     SIGNAL(addCRelAccepted(const QList<int> &)),
+                     SIGNAL(addCRelAccepted(const QList<int> &, const int &)),
                      this,
-                     SLOT(onAddCRelAccepted(const QList<int> &)));
+                     SLOT(onAddCRelAccepted(const QList<int> &, const int &)));
 
     this->setEnabled(false);
     cRelDialogWindow->setEnabled(true);
@@ -995,22 +966,34 @@ void MainWindow::on_addComputerRelation_released()
     changesMade = 1;
 }
 
-void MainWindow::onAddPRelAccepted(const QList<int> &l)
+void MainWindow::onAddPRelAccepted(const QList<int> &l, const int &id)
 {
+    QSqlRecord record = relationModel->record();
+
     foreach(int i, l){
-        cout << i<< ", ";
+        record.setValue(1,id);
+        record.setValue(2,i);
+        relationModel->insertRecord(-1,record);
     }
 
-    cout << "add Person relation\n";
+    QList<int> relList = getPersonRelationId(id);
+    hideAllRowsExcept(ui->tablePI, relList);
+
 }
 
-void MainWindow::onAddCRelAccepted(const QList<int> &l)
+void MainWindow::onAddCRelAccepted(const QList<int> &l, const int &id)
 {
+    QSqlRecord record = relationModel->record();
+
     foreach(int i, l){
-        cout << i<< ", ";
+        record.setValue(1,i);
+        record.setValue(2,id);
+        relationModel->insertRecord(-1,record);
     }
 
-    cout << "add Computer relation\n";
+    QList<int> relList = getComputerRelationId(id);
+    hideAllRowsExcept(ui->tableCI, relList);
+
 }
 
 void MainWindow::on_tabsWidget_personComputer_tabBarClicked(int index)

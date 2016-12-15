@@ -15,12 +15,12 @@ class CRelationP : public QDialog
     Q_OBJECT
 
 public:
-    explicit CRelationP(QSortFilterProxyModel* model, QList<int> relList, QWidget *parent = 0);
+    explicit CRelationP(QSortFilterProxyModel* model, QList<int> relList, int id, QWidget *parent = 0);
     ~CRelationP();
 
 signals:
     void relationRejected();
-    void addPRelAccepted(const QList<int> &);
+    void addPRelAccepted(const QList<int> &, const int &);
 
 private slots:
     void on_buttonBox_accepted();
@@ -39,6 +39,7 @@ private:
     Ui::CRelationP *ui;
 
     int lastSelection;
+    int personId;
 
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;

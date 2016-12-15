@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QTableView>
 #include <QSortFilterProxyModel>
+#include "domain.h"
 
 namespace Ui
 {
@@ -16,7 +17,7 @@ class PRelationC : public QDialog
     Q_OBJECT
 
 public:
-    explicit PRelationC(QSortFilterProxyModel* model, QList<int> relList, QWidget *parent = 0);
+    explicit PRelationC(QSortFilterProxyModel* model, QList<int> relList, int id, QWidget *parent = 0);
     ~PRelationC();
 
 private slots:
@@ -46,7 +47,7 @@ private slots:
 
 signals:
     void relationRejected();
-    void addCRelAccepted(const QList<int> &l);
+    void addCRelAccepted(const QList<int> &l, const int &);
 
 
 private:
@@ -54,6 +55,8 @@ private:
     void searchPerson();
     int showAdvSearchPersons;
     int lastSelection;
+
+    int computerId;
 
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;

@@ -103,7 +103,7 @@ QSqlRelationalTableModel * Data::readPeopleFromDatabase(QString filter)
 {
    QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
    model->setTable("person");
-   //model->setSort(1, Qt::AscendingOrder);
+   model->setSort(1, Qt::AscendingOrder);
    model->setRelation(2, QSqlRelation("Person_Gender", "id", "genderName"));
    model->setRelation(3, QSqlRelation("Person_Nationality", "id", "countryName"));
 
@@ -126,7 +126,7 @@ QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
 {
    QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
    model->setTable("computer");
-   //model->setSort(1, Qt::AscendingOrder);
+   model->setSort(1, Qt::AscendingOrder);
    model->setRelation(2, QSqlRelation("Computer_Type", "id", "typeName"));
    model->setFilter(filter);
 
