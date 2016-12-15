@@ -169,7 +169,6 @@ QSqlRelationalTableModel * Domain::searchPerson(QString searchInput, QString gen
         filter += "person.nationalityId like '"+nationality+"'";
         firstFilter = false;
     }
-    std::cout << endl << filter.toStdString() << endl;
     return data.readPeopleFromDatabase(filter);
 }
 
