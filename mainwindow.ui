@@ -70,12 +70,15 @@
              <property name="icon">
               <iconset resource="resources.qrc">
                <normaloff>:/icons/images/adduser.png</normaloff>:/icons/images/adduser.png</iconset>
+<<<<<<< HEAD
              </property>
              <property name="iconSize">
               <size>
                <width>20</width>
                <height>20</height>
               </size>
+=======
+>>>>>>> parent of 3a3231d... icons í main window
              </property>
             </widget>
            </item>
@@ -106,26 +109,12 @@
               <iconset resource="resources.qrc">
                <normaloff>:/icons/images/addcomp.png</normaloff>:/icons/images/addcomp.png</iconset>
              </property>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
              <property name="iconSize">
               <size>
-<<<<<<< HEAD
-               <width>24</width>
-               <height>24</height>
-=======
                <width>20</width>
                <height>20</height>
->>>>>>> origin/master
               </size>
              </property>
-=======
->>>>>>> parent of 3a3231d... icons í main window
-=======
->>>>>>> parent of 3a3231d... icons í main window
-=======
->>>>>>> parent of 3a3231d... icons í main window
             </widget>
            </item>
            <item>
