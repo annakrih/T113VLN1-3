@@ -139,56 +139,47 @@ QSqlRelationalTableModel * Data::readComputerFromDatabase(QString filter)
    return model;
 }
 
-QSqlQueryModel* Data::readComputerRelation(QString id)
+QSqlRelationalTableModel* Data::readPCRelationFromDatabase()
 {
 
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT P.* from Person as P INNER JOIN person_computer as PC on p.id = PC.personId INNER JOIN computer as C on PC.computerId = C.id where C.id ="+id);
+    QSqlRelationalTableModel  *model = new QSqlRelationalTableModel (0, db);
+    model->setTable("person_computer");
+    model->select();
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     return model;
 }
 
-QSqlQueryModel* Data::readPersonRelation(QString id)
+QSqlRelationalTableModel* Data::deleteAllPersons()
 {
 
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT C.* from Computer as C INNER JOIN person_computer as PC on C.id = PC.computerId INNER JOIN person as p on PC.personId = P.id where P.id = "+id);
+    QSqlQuery query;
+    query.exec("DELETE FROM Person");
+    query.exec("DELETE FROM sqlite_sequence WHERE name=Person");
 
-    return model;
+    deleteAllRelations();
+
+    return readPeopleFromDatabase();
 }
 
-QSqlQueryModel* Data::deleteAllPersons()
+QSqlRelationalTableModel* Data::deleteAllComputers()
 {
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("DELETE FROM Person");
-    model->setQuery("DELETE FROM sqlite_sequence WHERE name=Person");
+    QSqlQuery query;
+    query.exec("DELETE FROM Computer");
+    query.exec("DELETE FROM sqlite_sequence WHERE name=Computer");
 
-    model->setQuery("DELETE FROM Person_Computer");
-    model->setQuery("DELETE FROM sqlite_sequence WHERE name=Person_Computer");
+    deleteAllRelations();
 
-    return model;
+    return readComputerFromDatabase();
 }
 
-QSqlQueryModel* Data::deleteAllComputers()
+QSqlRelationalTableModel *Data::deleteAllRelations()
 {
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("DELETE FROM Computer");
-    model->setQuery("DELETE FROM sqlite_sequence WHERE name=Computer");
+    QSqlQuery query;
+    query.exec("DELETE FROM Person_Computer");
+    query.exec("DELETE FROM sqlite_sequence WHERE name=Person_Computer");
 
-    model->setQuery("DELETE FROM Person_Computer");
-    model->setQuery("DELETE FROM sqlite_sequence WHERE name=Person_Computer");
-
-    return model;
-}
-
-QSqlQueryModel* Data::deleteAllRelations()
-{
-    QSqlQueryModel *model = new QSqlQueryModel;
-
-    model->setQuery("DELETE FROM Person_Computer");
-    model->setQuery("DELETE FROM sqlite_sequence WHERE name=Person_Computer");
-
-    return model;
+    return readPCRelationFromDatabase();
 }
 
 
@@ -263,7 +254,6 @@ void Data::importCSV(QString tableName, QFile & csvFile)
         QStringList columns = QTextStream(&row).readAll().split(QRegularExpression(","));
         for(int i = 0; i < columns.size(); i++)
         {
-            std:cout << QString(":"+tableColumn[i].trimmed()+","+ columns[i].trimmed()+"\n").toStdString();
             query.bindValue(":"+tableColumn[i].trimmed(), columns[i].trimmed());
         }
 

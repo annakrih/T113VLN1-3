@@ -336,12 +336,12 @@ void Gui::loadRelation(){
         if(currentMode == Person)
         {
             std::cout << id.toStdString() << "\n";
-            loadBottomTable(domain.getPersonRelationModel(id));
+            //loadBottomTable(domain.getPersonRelationModel(id));
         }
         else if(currentMode == Computer)
         {
             QString id = ui->tableView->model()->index(lastSelection,0).data().toString();
-            loadBottomTable(domain.getComputerRelationModel(id));
+            //loadBottomTable(domain.getComputerRelationModel(id));
         }
     }
 }
@@ -624,7 +624,7 @@ void Gui::on_addRelButton_released()
 
     if(prompt == QMessageBox::Yes)
     {
-        domain.createPCRelation(personId, computerId);
+        //domain.createPCRelation(personId, computerId);
     }
 
     if(currentMode == Computer)

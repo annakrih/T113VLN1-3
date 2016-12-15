@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
+    relationModel = domain.getPCRelationModel();
     proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
 
@@ -33,16 +34,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
 
     connect(
-      ui->table_Comp->selectionModel(),
-      SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-      SLOT(onCompSelectionChange())
+      ui->table_Person->selectionModel(),
+      SIGNAL(currentRowChanged(const QModelIndex&,const QModelIndex&)),
+      SLOT(onPersonSelectionChange(const QModelIndex&,const QModelIndex&))
      );
 
     connect(
-      ui->table_Person->selectionModel(),
-      SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-      SLOT(onPersonSelectionChange())
+      ui->table_Comp->selectionModel(),
+      SIGNAL(currentRowChanged(const QModelIndex&,const QModelIndex&)),
+      SLOT(onCompSelectionChange(const QModelIndex&,const QModelIndex&))
      );
+
+    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick()));
+    connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick()));
 }
 
 MainWindow::~MainWindow()
@@ -58,8 +62,7 @@ void MainWindow::loadPersonTable()
     ui->table_Person->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
-
-    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
+    ui->table_Person->setColumnHidden(6,true);
 }
 
 void MainWindow::loadCompTable()
@@ -70,15 +73,23 @@ void MainWindow::loadCompTable()
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
-
-    connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick(QPoint)));
 }
 
-void MainWindow::loadRelationTable()
+void MainWindow::loadPITable()
 {
-
+    proxyPIModel->setSourceModel(computerModel);
+    ui->tablePI-> setModel(proxyPIModel);
+    ui->tablePI->verticalHeader()->hide();
+    ui->tablePI->setColumnHidden(0,true);
 }
 
+void MainWindow::loadCITable()
+{
+    proxyCIModel->setSourceModel(personModel);
+    ui->tableCI-> setModel(proxyCIModel);
+    ui->tableCI->verticalHeader()->hide();
+    ui->tableCI->setColumnHidden(0,true);
+}
 
 void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
 {
@@ -179,7 +190,7 @@ void MainWindow::searchComp()
 }
 
 
-void MainWindow::on_searchInput_Comp_textEdited(const QString &arg1)
+void MainWindow::on_searchInput_Comp_textEdited()
 {
     searchComp();
 }
@@ -246,7 +257,7 @@ void MainWindow::on_input_searchBornTo_editingFinished()
     searchPerson();
 }
 
-void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &type)
+void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &arg1)
 {
     searchComp();
 }
@@ -262,7 +273,7 @@ void MainWindow::on_input_searchDiedTo_editingFinished()
     searchPerson();
 }
 
-void MainWindow::on_input_searchNat_currentIndexChanged(const QString &nat)
+void MainWindow::on_input_searchNat_currentIndexChanged(const QString &arg1)
 {
     searchPerson();
 }
@@ -270,72 +281,60 @@ void MainWindow::on_input_searchNat_currentIndexChanged(const QString &nat)
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
 
-    if(lastPersonSelection == index.row())
+    if(lastPersonSelection == index.row() && !overrideTableClick)
     {
         overrideOnPersonSelectionChange = true;
-
         ui->table_Person->selectionModel()->clearSelection();
         lastPersonSelection = -1;
         ui->personInfoWidget->setVisible(false);
-
         overrideOnPersonSelectionChange = false;
-
-    }else
-    {
-        lastPersonSelection = index.row();
-
-        //loadRelation();
+    }else if(!overrideTableClick){
+        int index = ui->table_Person->currentIndex().row();
+        lastPersonSelection = index;
+        loadPersonInfo();
     }
-
-    //checkStatus();
-
+    overrideTableClick = false;
 }
 
-void MainWindow::onPersonSelectionChange()
+void MainWindow::onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p)
 {
-    if(!overrideOnPersonSelectionChange && !ui->table_Person->selectionModel()->selectedRows().isEmpty())
+    if(!overrideOnPersonSelectionChange)
     {
-        lastPersonSelection  = ui->table_Person->selectionModel()->selectedRows().last().row();
+        overrideTableClick = true;
+        int index = c.row();
+        lastPersonSelection = index;
         loadPersonInfo();
-        lastPersonSelection = -1;
-
     }
-
-    //checkStatus();
 }
 
 
 void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 {
 
-    if(lastCompSelection == index.row() )
+    if(lastCompSelection == index.row() && !overrideTableClick)
     {
         overrideOnCompSelectionChange = true;
-
         ui->table_Comp->selectionModel()->clearSelection();
         lastCompSelection = -1;
         ui->computerInfo->setVisible(false);
-
         overrideOnCompSelectionChange = false;
-
-    }else
-    {
-        lastCompSelection = index.row();
-
-        //loadRelation();
+    }else if(!overrideTableClick){
+        int index = ui->table_Comp->currentIndex().row();
+        lastPersonSelection = index;
+        loadPersonInfo();
     }
-
-    //checkStatus();
+    overrideTableClick = false;
 
 }
 
-void MainWindow::onCompSelectionChange()
+void MainWindow::onCompSelectionChange(const QModelIndex &c,const QModelIndex &p)
 {
-    if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
+    if(!overrideOnCompSelectionChange)
     {
-        lastCompSelection  = ui->table_Comp->selectionModel()->selectedRows().last().row();
+        int index = c.row();
+        lastCompSelection = index;
+        overrideTableClick = true;
         loadComputerInfo();
-        lastCompSelection = -1;
     }
 
     //checkStatus();
@@ -376,9 +375,9 @@ void MainWindow::addPersonDialog()
 
     QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
     QObject::connect(personDialogWindow,
-                     SIGNAL(addPersonAccepted(const QString &, const int &, const int &, const int &, const int &)),
+                     SIGNAL(addPersonAccepted(const QString &, const int &, const int &, const int &, const int &, const QString &)),
                      this,
-                     SLOT(onAddPersonAccepted(const QString &, const int &, const int &, const int &, const int &)));
+                     SLOT(onAddPersonAccepted(const QString &, const int &, const int &, const int &, const int &, const QString &)));
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
@@ -421,11 +420,11 @@ void MainWindow::editPersonDialog()
                           ,ui->table_Person->model()->index(lastPersonSelection,5).data().toInt()
                           ,ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
 
-    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
+    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(personDialogWindow,
-                     SIGNAL(editPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &)),
+                     SIGNAL(editPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &, const QString &)),
                      this,
-                     SLOT(onEditPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &)));
+                     SLOT(onEditPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &, const QString &)));
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
@@ -444,7 +443,7 @@ void MainWindow::editComputerDialog()
                           ,ui->table_Comp->model()->index(lastCompSelection,4).data().toInt()
                           ,ui->table_Comp->model()->index(lastCompSelection,0).data().toInt());
 
-    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onComputerRejected()));
+    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(computerDialogWindow,
                      SIGNAL(editComputerAccepted(const int &,const QString &, const int &, const int &, const int &)),
                      this,
@@ -457,19 +456,20 @@ void MainWindow::editComputerDialog()
 }
 
 
-void MainWindow::onPersonRejected()
+void MainWindow::onDialogRejected()
 {
     this->setEnabled(true);
 }
 
-void MainWindow::onComputerRejected()
-{
-    this->setEnabled(true);
-}
 
-void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d)
+void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace)
 {
     this->setEnabled(true);
+
+    QFile* file = new QFile(imagePlace);
+    file->open(QIODevice::ReadOnly);
+    QByteArray image = file->readAll();
+    QString imageBlob = QString(image.toBase64());
 
     QSqlRecord record = personModel->record();
     record.setValue(1,n);
@@ -477,6 +477,7 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     record.setValue(3,nat);
     record.setValue(4,b);
     record.setValue(5,d);
+    record.setValue(6,imageBlob);
     personModel->insertRecord(-1,record);
 }
 
@@ -492,16 +493,22 @@ void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int
     computerModel->insertRecord(-1,record);
 }
 
-void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d)
+void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace)
 {
     this->setEnabled(true);
+
+    QFile* file = new QFile(imagePlace);
+    file->open(QIODevice::ReadOnly);
+    QByteArray image = file->readAll();
+    QString imageBlob = QString(image.toBase64());
+
     personModel->setData(personModel->index(lastPersonSelection,0),id);
     personModel->setData(personModel->index(lastPersonSelection,1),n);
     personModel->setData(personModel->index(lastPersonSelection,2),g);
     personModel->setData(personModel->index(lastPersonSelection,3),nat);
     personModel->setData(personModel->index(lastPersonSelection,4),b);
     personModel->setData(personModel->index(lastPersonSelection,5),d);
-
+    personModel->setData(personModel->index(lastPersonSelection,6),imageBlob);
 }
 
 void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
@@ -525,11 +532,22 @@ void MainWindow::saveChanges()
     if(personModel->isDirty())
     {
         saveModel(personModel);
+
+        for(int i = 0; i < personModel->rowCount(); i++)
+        {
+            ui->table_Person->showRow(i);
+        }
     }
 
     if(computerModel->isDirty())
     {
         saveModel(computerModel);
+
+        for(int i = 0; i < computerModel->rowCount(); i++)
+        {
+            ui->table_Comp->showRow(i);
+        }
+
     }
 
 }
@@ -539,15 +557,15 @@ void MainWindow::saveModel(QSqlRelationalTableModel * model)
     domain.submitDatabaseChanges(model);
 }
 
-void MainWindow::personRightClick(QPoint position)
+void MainWindow::personRightClick()
 {
-    QMenu *pContextMenu = new QMenu( this);
+    QMenu *pContextMenu = new QMenu(this);
     pContextMenu->addAction(ui->menuEdit->actions().at(0));
     pContextMenu->addAction(ui->menuEdit->actions().at(2));
     pContextMenu->exec(QCursor::pos());
 }
 
-void MainWindow::computerRightClick(QPoint position)
+void MainWindow::computerRightClick()
 {
     QMenu *cContextMenu = new QMenu( this);
     cContextMenu->addAction(ui->menuEdit->actions().at(1));
@@ -565,7 +583,8 @@ void MainWindow::deleteSelected(){
         for(int i = 0; i < selList.size(); i++)
         {
             ui->table_Person->hideRow(selList[i].row());
-            personModel->removeRow(selList[i].row());
+            QModelIndex realRow = proxyPersonModel->mapToSource(selList[i]);
+            personModel->removeRow(realRow.row());
         }
     }
     else if(index == 1)//computer
@@ -573,8 +592,10 @@ void MainWindow::deleteSelected(){
         QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
         for(int i = 0; i < selList.size(); i++)
         {
+
             ui->table_Comp->hideRow(selList[i].row());
-            computerModel->removeRow(selList[i].row());
+            QModelIndex realRow = proxyCompModel->mapToSource(selList[i]);
+            computerModel->removeRow(realRow.row());
         }
     }
 }
@@ -585,15 +606,71 @@ void MainWindow::on_actionDelete_triggered()
     changesMade = 1;
 }
 
+QList<int> MainWindow::getPersonRelationId(int id){
+
+    QList<int> computerId;
+    for(int i = 0; i < relationModel->rowCount(); i++){
+        QModelIndex personIdIndex = relationModel->index(i,1);
+        QModelIndex ComputerIdIndex = relationModel->index(i,2);
+        if(relationModel->data(personIdIndex, Qt::DisplayRole).toInt() == id){
+            computerId.push_back(relationModel->data(ComputerIdIndex, Qt::DisplayRole).toInt());
+        }
+    }
+    return computerId;
+}
+
+QList<int> MainWindow::getComputerRelationId(int id){
+
+    QList<int> personId;
+    for(int i = 0; i < relationModel->rowCount(); i++){
+        QModelIndex personIdIndex = relationModel->index(i,1);
+        QModelIndex ComputerIdIndex = relationModel->index(i,2);
+        if(relationModel->data(ComputerIdIndex, Qt::DisplayRole).toInt() == id){
+            personId.push_back(relationModel->data(personIdIndex, Qt::DisplayRole).toInt());
+        }
+    }
+    return personId;
+}
+
+void MainWindow::hideAllRowsExcept(QTableView* table, QList<int> rowsNotToHide){
+
+    for(int i = 0; i <= table->model()->rowCount(); i++ ){
+        int id = relationModel->index(i+1,0).row();
+        if(!rowsNotToHide.contains(id)){
+            table->hideRow(i);
+        }else{
+            table->showRow(i);
+        }
+    }
+}
+
+
 void MainWindow::loadPersonInfo ()
 {
-
     ui->computerInfo->hide();
     QString name = "<h3>"+(ui->table_Person->model()->index(lastPersonSelection,1).data().toString())+"</h3>";
     ui->label_name_pi->setText(name);
     ui->label_nation_pi->setText(ui->table_Person->model()->index(lastPersonSelection,3).data().toString());
     ui->label_born_pi->setText(ui->table_Person->model()->index(lastPersonSelection,4).data().toString());
     ui->label_deathage_pi->setText(ui->table_Person->model()->index(lastPersonSelection,5).data().toString());
+
+    QByteArray imageData = QByteArray::fromBase64(ui->table_Person->model()->index(lastPersonSelection,6).data().toString().toLocal8Bit());
+    QImage img;
+    if (img.loadFromData(imageData)) {
+        // show this label somewhere.
+        QLabel image_personInfo;
+        ui->image_personInfo->setPixmap(QPixmap::fromImage(img));
+        ui->image_personInfo->setScaledContents(true);
+    }else
+    {
+        ui->image_personInfo->clear();
+    }
+
+    QList<int> relList = getPersonRelationId(ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
+    loadPITable();
+    hideAllRowsExcept(ui->tablePI, relList);
+
+
     ui->personInfoWidget->show();
 }
 
@@ -607,6 +684,10 @@ void MainWindow::loadComputerInfo()
     ui->label_dy_ci->setText(ui->table_Comp->model()->index(lastCompSelection,3).data().toString());
     ui->label_by_ci->setText(ui->table_Comp->model()->index(lastCompSelection,4).data().toString() );
     ui->computerInfo->show();
+
+    QList<int> relList = getComputerRelationId(ui->table_Comp->model()->index(lastCompSelection,0).data().toInt());
+    loadCITable();
+    hideAllRowsExcept(ui->tableCI, relList);
 
 }
 
@@ -631,8 +712,7 @@ void MainWindow::on_actionPersons_2_triggered()
 
     if(prompt == QMessageBox::Yes)
     {
-        domain.getDeletePersonTable();
-        personModel = domain.getPersonModel();
+        personModel = domain.deletePersonTable();
         loadPersonTable();
     }
 }
@@ -645,8 +725,7 @@ void MainWindow::on_actionComputers_2_triggered()
                                                                QMessageBox::Yes|QMessageBox::No);
     if(prompt == QMessageBox::Yes)
     {
-        domain.getDeleteComputerTable();
-        computerModel = domain.getComputerModel();
+        computerModel = domain.deleteComputerTable();
         loadCompTable();
     }
 }
@@ -659,9 +738,8 @@ void MainWindow::on_actionRelations_triggered()
                                                                QMessageBox::Yes|QMessageBox::No);
     if(prompt == QMessageBox::Yes)
     {
-        domain.getDeleteRelationTable();
-        //TODO relationModel = domain.getRelationModel();
-        //TODO loadRelationModel();
+        domain.deleteRelationTable();
+        relationModel = domain.deleteRelationTable();
     }
 }
 
@@ -790,12 +868,7 @@ void MainWindow::loadRelation()
 }
 
 
-void MainWindow::on_input_searchNat_activated(const QString &arg1)
-{
-
-}
-
-void MainWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent()
 {
     if(computerModel->isDirty() || personModel->isDirty())
     {
@@ -828,7 +901,62 @@ QString MainWindow::hasTableChanged()
     return windowName;
 }
 
+<<<<<<< HEAD
 void MainWindow::on_pushButton_released()
 {
     deleteSelected();
 }
+=======
+void MainWindow::on_addPersonRelation_released()
+{
+    QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
+    pRelDialogWindow = new CRelationP(proxyCompModel, this);
+
+    QObject::connect(pRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
+    QObject::connect(pRelDialogWindow,
+                     SIGNAL(addPRelAccepted(const QList<int> &)),
+                     this,
+                     SLOT(onAddPRelAccepted(const QList<int> &)));
+
+    this->setEnabled(false);
+    pRelDialogWindow->setEnabled(true);
+    pRelDialogWindow->show();
+    changesMade = 1;
+}
+
+void MainWindow::on_addComputerRelation_released()
+{
+    QMap<QString, int> tList = domain.getAcceptedNationality();
+    cRelDialogWindow = new PRelationC(proxyPersonModel, this);
+
+    QObject::connect(cRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
+    QObject::connect(cRelDialogWindow,
+                     SIGNAL(addCRelAccepted(const QList<int> &)),
+                     this,
+                     SLOT(onAddCRelAccepted(const QList<int> &)));
+
+    this->setEnabled(false);
+    cRelDialogWindow->setEnabled(true);
+    cRelDialogWindow->show();
+    changesMade = 1;
+}
+
+void MainWindow::onAddPRelAccepted(const QList<int> &l)
+{
+    foreach(int i, l){
+        cout << i<< ", ";
+    }
+
+    cout << "add Person relation\n";
+}
+
+void MainWindow::onAddCRelAccepted(const QList<int> &l)
+{
+    foreach(int i, l){
+        cout << i<< ", ";
+    }
+
+    cout << "add Computer relation\n";
+}
+
+>>>>>>> origin/master

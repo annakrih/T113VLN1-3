@@ -17,32 +17,29 @@ QSqlRelationalTableModel * Domain::getPersonModel(QString filter)
     return data.readPeopleFromDatabase(filter);
 }
 
-QSqlQueryModel * Domain::getPersonRelationModel(QString filter)
-{
-    return data.readPersonRelation(filter);
-}
-
 QSqlRelationalTableModel * Domain::getComputerModel(QString filter)
 {
     return data.readComputerFromDatabase(filter);
 }
 
-QSqlQueryModel * Domain::getComputerRelationModel(QString filter)
+
+QSqlRelationalTableModel * Domain::getPCRelationModel()
 {
-    return data.readComputerRelation(filter);
+    return data.readPCRelationFromDatabase();
 }
 
-QSqlQueryModel * Domain::getDeletePersonTable()
+
+QSqlRelationalTableModel * Domain::deletePersonTable()
 {
     return data.deleteAllPersons();
 }
 
-QSqlQueryModel * Domain::getDeleteComputerTable()
+QSqlRelationalTableModel * Domain::deleteComputerTable()
 {
     return data.deleteAllComputers();
 }
 
-QSqlQueryModel * Domain::getDeleteRelationTable()
+QSqlRelationalTableModel *Domain::deleteRelationTable()
 {
     return data.deleteAllRelations();
 }
@@ -83,12 +80,6 @@ QMap<QString, int> Domain::getAcceptedComputerTypeName()
 QMap<QString, int> Domain::getAcceptedNationality()
 {
     return data.getAcceptedNationality();
-}
-
-
-void Domain::createPCRelation(int p, int c)
-{
-    data.createPCRelation(p,c);
 }
 
 QSqlRelationalTableModel * Domain::searchPerson(QString searchInput)

@@ -53,16 +53,12 @@ public:
     //get tableModel of Computer sql table, searchable with filter; (filter strings created in domain layer)
     QSqlRelationalTableModel* readComputerFromDatabase(QString filter = "");
 
-    //get tableModel of computer where person.id has a relation
-    QSqlQueryModel* readPersonRelation(QString id);
-
-    //get tableModel of person where person.id has a relation
-    QSqlQueryModel* readComputerRelation(QString id);
+    QSqlRelationalTableModel* readPCRelationFromDatabase();
 
     //Functioning to delete all instances of Persons, Computers and Relations:
-    QSqlQueryModel* deleteAllPersons();
-    QSqlQueryModel* deleteAllComputers();
-    QSqlQueryModel* deleteAllRelations();
+    QSqlRelationalTableModel *deleteAllPersons();
+    QSqlRelationalTableModel* deleteAllComputers();
+    QSqlRelationalTableModel* deleteAllRelations();
 
     //submit any changes to table, QSqlRelationalTableModel deals with all inserts/deletes/updates needed. (awesome)
     QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);

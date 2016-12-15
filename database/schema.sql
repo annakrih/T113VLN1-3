@@ -17,6 +17,7 @@ genderId INTEGER NOT NULL,
 nationalityId INTEGER NOT NULL,
 birthYear INTEGER NOT NULL,
 deathYear INTEGER,
+image BLOB,
 FOREIGN KEY(genderId) REFERENCES Person_Gender(id),
 FOREIGN KEY(nationalityId) REFERENCES Person_nationality(id)
 );
