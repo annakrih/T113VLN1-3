@@ -5,5 +5,7 @@
         <file>images/addperson.png</file>
         <file>images/delete.png</file>
         <file>images/plusIcon.png</file>
+        <file>images/undo-1.png</file>
+        <file>images/undo.png</file>
     </qresource>
 </RCC>

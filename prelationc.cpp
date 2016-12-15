@@ -58,11 +58,11 @@ void PRelationC::searchPerson()
         QString DYto = ui->input_searchDiedTo->text();
         QString nationality = ui->input_searchNat->itemData(ui->input_searchNat->currentIndex()).toString();
 
-        //personModel = domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality);
+        personModel = domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality);
     }
     else
     {
-        //personModel = domain.searchPerson(searchInput);
+        personModel = domain.searchPerson(searchInput);
     }
 }
 
