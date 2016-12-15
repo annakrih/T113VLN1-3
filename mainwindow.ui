@@ -71,6 +71,12 @@
               <iconset resource="resources.qrc">
                <normaloff>:/icons/images/adduser.png</normaloff>:/icons/images/adduser.png</iconset>
              </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
             </widget>
            </item>
            <item>
@@ -100,6 +106,12 @@
               <iconset resource="resources.qrc">
                <normaloff>:/icons/images/addcomp.png</normaloff>:/icons/images/addcomp.png</iconset>
              </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
             </widget>
            </item>
            <item>
@@ -125,8 +137,8 @@
              </property>
              <property name="maximumSize">
               <size>
-               <width>40</width>
-               <height>40</height>
+               <width>70</width>
+               <height>70</height>
               </size>
              </property>
              <property name="toolTip">
@@ -136,7 +148,17 @@
               <number>0</number>
              </property>
              <property name="text">
-              <string>d</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/icons/images/delete.png</normaloff>:/icons/images/delete.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -166,6 +188,12 @@
              <property name="icon">
               <iconset resource="resources.qrc">
                <normaloff>:/icons/images/editIcon.png</normaloff>:/icons/images/editIcon.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -1009,7 +1037,7 @@
      <x>0</x>
      <y>0</y>
      <width>999</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
