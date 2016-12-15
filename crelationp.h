@@ -2,21 +2,42 @@
 #define CRELATIONP_H
 
 #include <QDialog>
+#include <QSortFilterProxyModel>
 
 namespace Ui {
-class CrelationP;
+class CRelationP;
 }
 
-class CrelationP : public QDialog
+class CRelationP : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CrelationP(QWidget *parent = 0);
-    ~CrelationP();
+    explicit CRelationP(QSortFilterProxyModel* model,QWidget *parent = 0);
+    ~CRelationP();
+
+signals:
+    void relationRejected();
+    void addPRelAccepted();
+
+private slots:
+    void on_buttonBox_accepted();
+
+    void on_buttonBox_rejected();
+
+    void on_CRelationP_finished();
+
+    void on_table_Comp_clicked(const QModelIndex &index);
+
+    void onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p);
 
 private:
-    Ui::CrelationP *ui;
+    Ui::CRelationP *ui;
+
+    int lastSelection;
+
+    bool overrideTableClick = 0;
+    bool overrideOnSelectionChange = 0;
 };
 
 #endif // CRELATIONP_H

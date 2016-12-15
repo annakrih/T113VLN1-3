@@ -1,7 +1,7 @@
 #include "prelationc.h"
 #include "ui_prelationc.h"
 
-PRelationC::PRelationC(QWidget *parent) :
+PRelationC::PRelationC(QSortFilterProxyModel *model, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PRelationC)
 {
@@ -9,9 +9,21 @@ PRelationC::PRelationC(QWidget *parent) :
     showAdvSearchPersons = 0;
     ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
 
-    personModel = domain.getPersonModel();
-    loadPersonTable();
-    proxyPersonModel->setDynamicSortFilter(true);
+    ui->buttonBox->buttons().first()->setText("Add");
+    ui->table_Person->setModel(model);
+    ui->table_Person->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->table_Person->verticalHeader()->hide();
+    ui->table_Person->setColumnHidden(0,true);
+    ui->table_Person->setColumnHidden(6,true);
+
+    connect(
+      ui->table_Person->selectionModel(),
+      SIGNAL(currentRowChanged(const QModelIndex&,const QModelIndex&)),
+      SLOT(onPersonSelectionChange(const QModelIndex&,const QModelIndex&))
+     );
+
+    //connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
 }
 
 PRelationC::~PRelationC()
@@ -41,13 +53,12 @@ void PRelationC::searchPerson()
         QString DYto = ui->input_searchDiedTo->text();
         QString nationality = ui->input_searchNat->itemData(ui->input_searchNat->currentIndex()).toString();
 
-        personModel = domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality);
+        //personModel = domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality);
     }
     else
     {
-        personModel = domain.searchPerson(searchInput);
+        //personModel = domain.searchPerson(searchInput);
     }
-    loadPersonTable();
 }
 
 void PRelationC::on_input_searchPerson_textEdited()
@@ -82,14 +93,47 @@ void PRelationC::on_button_advSearchPerson_released()
    // ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
 }
 
-void PRelationC::loadPersonTable()
+void PRelationC::on_buttonBox_accepted()
 {
-    proxyPersonModel->setSourceModel(personModel);
-    ui->table_Person->setModel(proxyPersonModel);
-    ui->table_Person->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
-    ui->table_Person->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
-    ui->table_Person->verticalHeader()->hide();
-    ui->table_Person->setColumnHidden(0,true);
+    emit this->addCRelAccepted();
+}
 
-    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
+void PRelationC::on_buttonBox_rejected()
+{
+    emit this->relationRejected();
+}
+
+void PRelationC::on_PRelationC_finished()
+{
+    emit this->relationRejected();
+}
+
+
+void PRelationC::on_table_Person_clicked(const QModelIndex &index)
+{
+
+    if(lastSelection == index.row() && !overrideTableClick)
+    {
+        overrideOnSelectionChange = true;
+        ui->table_Person->selectionModel()->clearSelection();
+        lastSelection = -1;
+        overrideOnSelectionChange = false;
+
+    }else if(!overrideTableClick)
+    {
+        int index = ui->table_Person->currentIndex().row();
+        lastSelection = index;
+    }
+    overrideTableClick = false;
+
+}
+
+void PRelationC::onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p)
+{
+    if(!overrideOnSelectionChange)
+    {
+        int index = c.row();
+        lastSelection = index;
+        overrideTableClick = true;
+    }
 }

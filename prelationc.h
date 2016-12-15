@@ -1,15 +1,8 @@
 #ifndef PRELATIONC_H
 #define PRELATIONC_H
 
-#include <vector>
 #include "utils.h"
-#include "domain.h"
-#include <string>
-#include <iostream>
-#include <QMessageBox>
-
-#include "personDialog.h"
-#include "computerdialog.h"
+#include <QSortFilterProxyModel>
 
 #include <QDialog>
 
@@ -23,7 +16,7 @@ class PRelationC : public QDialog
     Q_OBJECT
 
 public:
-    explicit PRelationC(QWidget *parent = 0);
+    explicit PRelationC(QSortFilterProxyModel* model,QWidget *parent = 0);
     ~PRelationC();
 
 private slots:
@@ -39,17 +32,32 @@ private slots:
 
     void on_button_advSearchPerson_released();
 
+    void on_buttonBox_accepted();
+
+    void on_buttonBox_rejected();
+
+    void on_PRelationC_finished();
+
+    void on_table_Person_clicked(const QModelIndex &index);
+
+    void onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p);
+
+signals:
+    void relationRejected();
+    void addCRelAccepted();
+
+
 private:
     Ui::PRelationC *ui;
     void searchPerson();
     int showAdvSearchPersons;
-    QSqlRelationalTableModel* personModel;
-    void loadPersonTable();
+    int lastSelection;
 
-    QSortFilterProxyModel *proxyPersonModel = new QSortFilterProxyModel(this);
-    QSortFilterProxyModel *proxyCompModel = new QSortFilterProxyModel(this);
+    bool overrideTableClick = 0;
+    bool overrideOnSelectionChange = 0;
 
-    Domain domain;
+
+    //Domain domain;
 };
 
 #endif // PRELATIONC_H

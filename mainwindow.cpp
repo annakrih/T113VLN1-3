@@ -302,7 +302,6 @@ void MainWindow::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
     {
         overrideTableClick = true;
         int index = c.row();
-        cout << index;
         lastPersonSelection = index;
         loadPersonInfo();
     }
@@ -421,7 +420,7 @@ void MainWindow::editPersonDialog()
                           ,ui->table_Person->model()->index(lastPersonSelection,5).data().toInt()
                           ,ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
 
-    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
+    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(personDialogWindow,
                      SIGNAL(editPersonAccepted(const int &,const QString &, const int &, const int &, const int &, const int &, const QString &)),
                      this,
@@ -444,7 +443,7 @@ void MainWindow::editComputerDialog()
                           ,ui->table_Comp->model()->index(lastCompSelection,4).data().toInt()
                           ,ui->table_Comp->model()->index(lastCompSelection,0).data().toInt());
 
-    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onComputerRejected()));
+    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(computerDialogWindow,
                      SIGNAL(editComputerAccepted(const int &,const QString &, const int &, const int &, const int &)),
                      this,
@@ -457,15 +456,11 @@ void MainWindow::editComputerDialog()
 }
 
 
-void MainWindow::onPersonRejected()
+void MainWindow::onDialogRejected()
 {
     this->setEnabled(true);
 }
 
-void MainWindow::onComputerRejected()
-{
-    this->setEnabled(true);
-}
 
 void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace)
 {
@@ -905,3 +900,48 @@ QString MainWindow::hasTableChanged()
     }
     return windowName;
 }
+
+void MainWindow::on_addPersonRelation_released()
+{
+    QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
+    pRelDialogWindow = new CRelationP(proxyCompModel, this);
+
+    QObject::connect(pRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
+    QObject::connect(pRelDialogWindow,
+                     SIGNAL(addPRelAccepted()),
+                     this,
+                     SLOT(onAddPRelAccepted()));
+
+    this->setEnabled(false);
+    pRelDialogWindow->setEnabled(true);
+    pRelDialogWindow->show();
+    changesMade = 1;
+}
+
+void MainWindow::on_addComputerRelation_released()
+{
+    QMap<QString, int> tList = domain.getAcceptedNationality();
+    cRelDialogWindow = new PRelationC(proxyPersonModel, this);
+
+    QObject::connect(cRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
+    QObject::connect(cRelDialogWindow,
+                     SIGNAL(addCRelAccepted()),
+                     this,
+                     SLOT(onAddCRelAccepted()));
+
+    this->setEnabled(false);
+    cRelDialogWindow->setEnabled(true);
+    cRelDialogWindow->show();
+    changesMade = 1;
+}
+
+void MainWindow::onAddPRelAccepted()
+{
+    cout << "add Person relation\n";
+}
+
+void MainWindow::onAddCRelAccepted()
+{
+    cout << "add Computer relation\n";
+}
+

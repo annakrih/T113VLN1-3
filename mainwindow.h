@@ -14,6 +14,8 @@
 
 #include "personDialog.h"
 #include "computerdialog.h"
+#include "prelationc.h"
+#include "crelationp.h"
 
 #include <QMainWindow>
 
@@ -82,9 +84,7 @@ private slots:
 
     void on_actionAdd_new_person_triggered();
 
-    void onPersonRejected();
-
-    void onComputerRejected();
+    void onDialogRejected();
 
     void onAddPersonAccepted(const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace);
 
@@ -174,10 +174,20 @@ private slots:
 
     QString hasTableChanged();
 
+    void on_addPersonRelation_released();
+
+    void onAddPRelAccepted();
+
+    void onAddCRelAccepted();
+
+    void on_addComputerRelation_released();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
     ComputerDialog *computerDialogWindow;
+    CRelationP* pRelDialogWindow;
+    PRelationC* cRelDialogWindow;
 
     Domain domain;
 
