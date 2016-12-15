@@ -95,7 +95,15 @@ void PRelationC::on_button_advSearchPerson_released()
 
 void PRelationC::on_buttonBox_accepted()
 {
-    emit this->addCRelAccepted();
+    QModelIndexList selList = ui->table_Person->selectionModel()->selectedRows();
+    QList<int> idList;
+
+    for(int i = 0; i < selList.size(); i++){
+        int row = selList[i].row();
+        idList.push_back(ui->table_Person->model()->index(row,0).data().toInt());
+    }
+
+    emit this->addCRelAccepted(idList);
 }
 
 void PRelationC::on_buttonBox_rejected()

@@ -908,9 +908,9 @@ void MainWindow::on_addPersonRelation_released()
 
     QObject::connect(pRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(pRelDialogWindow,
-                     SIGNAL(addPRelAccepted()),
+                     SIGNAL(addPRelAccepted(const QList<int> &)),
                      this,
-                     SLOT(onAddPRelAccepted()));
+                     SLOT(onAddPRelAccepted(const QList<int> &)));
 
     this->setEnabled(false);
     pRelDialogWindow->setEnabled(true);
@@ -925,9 +925,9 @@ void MainWindow::on_addComputerRelation_released()
 
     QObject::connect(cRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(cRelDialogWindow,
-                     SIGNAL(addCRelAccepted()),
+                     SIGNAL(addCRelAccepted(const QList<int> &)),
                      this,
-                     SLOT(onAddCRelAccepted()));
+                     SLOT(onAddCRelAccepted(const QList<int> &)));
 
     this->setEnabled(false);
     cRelDialogWindow->setEnabled(true);
@@ -935,13 +935,21 @@ void MainWindow::on_addComputerRelation_released()
     changesMade = 1;
 }
 
-void MainWindow::onAddPRelAccepted()
+void MainWindow::onAddPRelAccepted(const QList<int> &l)
 {
+    foreach(int i, l){
+        cout << i<< ", ";
+    }
+
     cout << "add Person relation\n";
 }
 
-void MainWindow::onAddCRelAccepted()
+void MainWindow::onAddCRelAccepted(const QList<int> &l)
 {
+    foreach(int i, l){
+        cout << i<< ", ";
+    }
+
     cout << "add Computer relation\n";
 }
 

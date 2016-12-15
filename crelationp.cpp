@@ -27,7 +27,15 @@ CRelationP::~CRelationP()
 
 void CRelationP::on_buttonBox_accepted()
 {
-    emit this->addPRelAccepted();
+    QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
+    QList<int> idList;
+
+    for(int i = 0; i < selList.size(); i++){
+        int row = selList[i].row();
+        idList.push_back(ui->table_Comp->model()->index(row,0).data().toInt());
+    }
+
+    emit this->addPRelAccepted(idList);
 }
 
 void CRelationP::on_buttonBox_rejected()

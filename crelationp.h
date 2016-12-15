@@ -18,7 +18,7 @@ public:
 
 signals:
     void relationRejected();
-    void addPRelAccepted();
+    void addPRelAccepted(const QList<int> &);
 
 private slots:
     void on_buttonBox_accepted();

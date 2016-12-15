@@ -176,9 +176,9 @@ private slots:
 
     void on_addPersonRelation_released();
 
-    void onAddPRelAccepted();
+    void onAddPRelAccepted(const QList<int> &l);
 
-    void onAddCRelAccepted();
+    void onAddCRelAccepted(const QList<int> &l);
 
     void on_addComputerRelation_released();
 

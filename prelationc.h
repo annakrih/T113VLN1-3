@@ -3,6 +3,7 @@
 
 #include "utils.h"
 #include <QSortFilterProxyModel>
+#include <QModelIndexList>
 
 #include <QDialog>
 
@@ -44,7 +45,7 @@ private slots:
 
 signals:
     void relationRejected();
-    void addCRelAccepted();
+    void addCRelAccepted(const QList<int> &l);
 
 
 private:
