@@ -106,7 +106,7 @@ void MainWindow::loadCITable()
     ui->tableCI-> setModel(proxyCIModel);
     ui->tableCI->verticalHeader()->hide();
     ui->tableCI->setColumnHidden(0,true);
-    ui->tablePI->setColumnHidden(6,true);
+    ui->tableCI->setColumnHidden(6,true);
     proxyCIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tableCI->setSelectionBehavior(QAbstractItemView::SelectRows);
 
