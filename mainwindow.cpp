@@ -14,12 +14,6 @@ MainWindow::MainWindow(QWidget *parent) :
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
     relationModel = domain.getPCRelationModel();
-    proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
-    proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
-
-
-    ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     loadPersonTable();
     loadCompTable();
@@ -63,6 +57,9 @@ void MainWindow::loadPersonTable()
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
     ui->table_Person->setColumnHidden(6,true);
+    proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
+
 }
 
 void MainWindow::loadCompTable()
@@ -73,6 +70,9 @@ void MainWindow::loadCompTable()
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
+    proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
+
 }
 
 void MainWindow::loadPITable()
@@ -81,6 +81,8 @@ void MainWindow::loadPITable()
     ui->tablePI-> setModel(proxyPIModel);
     ui->tablePI->verticalHeader()->hide();
     ui->tablePI->setColumnHidden(0,true);
+    proxyPIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->tablePI->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 void MainWindow::loadCITable()
@@ -89,6 +91,8 @@ void MainWindow::loadCITable()
     ui->tableCI-> setModel(proxyCIModel);
     ui->tableCI->verticalHeader()->hide();
     ui->tableCI->setColumnHidden(0,true);
+    proxyCIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->tableCI->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
@@ -373,7 +377,7 @@ void MainWindow::addPersonDialog()
     QMap<QString, int> natList = domain.getAcceptedNationality();
     personDialogWindow = new PersonDialog(this,gList, natList);
 
-    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
+    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(personDialogWindow,
                      SIGNAL(addPersonAccepted(const QString &, const int &, const int &, const int &, const int &, const QString &)),
                      this,
@@ -390,7 +394,7 @@ void MainWindow::addComputerDialog()
     QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
     computerDialogWindow = new ComputerDialog(this,tList);
 
-    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onComputerRejected()));
+    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(computerDialogWindow,
                      SIGNAL(addComputerAccepted(const QString &, const int &, const int &, const int &)),
                      this,
