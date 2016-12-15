@@ -184,6 +184,13 @@ QSqlRelationalTableModel *Data::deleteAllRelations()
     return readPCRelationFromDatabase();
 }
 
+int Data::getNextAutoId(QString table)
+{
+    QSqlQuery query("SELECT SEQ from sqlite_sequence WHERE name='"+table+"'");
+    query.next();
+    return query.value(0).toInt()+1;
+}
+
 
 void Data::initializeData()
 {

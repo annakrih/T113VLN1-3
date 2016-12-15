@@ -27,9 +27,9 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/personDialog.cpp \
     $$PWD/gui.cpp \
     $$PWD/computerDialog.cpp \
-    mainwindow.cpp \
-    prelationc.cpp \
-    crelationp.cpp
+    $$PWD/mainwindow.cpp \
+    $$PWD/prelationc.cpp \
+    $$PWD/crelationp.cpp
 
 HEADERS += \
     $$PWD/domain.h \
@@ -38,17 +38,17 @@ HEADERS += \
     $$PWD/personDialog.h \
     $$PWD/gui.h \
     $$PWD/computerDialog.h \
-    mainwindow.h \
-    prelationc.h \
-    crelationp.h
+    $$PWD/mainwindow.h \
+    $$PWD/prelationc.h \
+    $$PWD/crelationp.h
 
 FORMS += \
     $$PWD/personDialog.ui \
     $$PWD/gui.ui \
     $$PWD/computerDialog.ui \
-    mainwindow.ui \
-    prelationc.ui \
-    crelationp.ui
+    $$PWD/mainwindow.ui \
+    $$PWD/prelationc.ui \
+    $$PWD/crelationp.ui
 
 RESOURCES += \
-    resources.qrc
+    $$PWD/resources.qrc

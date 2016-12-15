@@ -46,6 +46,8 @@ public:
 
     QSqlRelationalTableModel * deleteRelationTable();
 
+    int getNextAutoId(QString table);
+
     //takes in a  model and passes it down to the Data layer, where its changes get submitted.
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 

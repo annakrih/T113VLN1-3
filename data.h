@@ -60,6 +60,8 @@ public:
     QSqlRelationalTableModel* deleteAllComputers();
     QSqlRelationalTableModel* deleteAllRelations();
 
+    int getNextAutoId(QString table);
+
     //submit any changes to table, QSqlRelationalTableModel deals with all inserts/deletes/updates needed. (awesome)
     QSqlRelationalTableModel* submitDatabaseChanges(QSqlRelationalTableModel* model);
 

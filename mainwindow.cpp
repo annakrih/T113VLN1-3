@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->personInfoWidget->setVisible(false);
     ui->computerInfo->setVisible(false);
 
+    nextPersonId = domain.getNextAutoId("Person");
+    nextComputerId = domain.getNextAutoId("Computer");
+
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
     relationModel = domain.getPCRelationModel();
@@ -497,6 +500,7 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     QString imageBlob = QString(image.toBase64());
 
     QSqlRecord record = personModel->record();
+    record.setValue(0,nextPersonId);
     record.setValue(1,n);
     record.setValue(2,g);
     record.setValue(3,nat);
@@ -504,6 +508,8 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     record.setValue(5,d);
     record.setValue(6,imageBlob);
     personModel->insertRecord(-1,record);
+
+    nextPersonId++;
 }
 
 void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int &d, const int &b)
@@ -511,11 +517,14 @@ void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int
     this->setEnabled(true);
 
     QSqlRecord record = computerModel->record();
+    record.setValue(0,nextComputerId);
     record.setValue(1,n);
     record.setValue(2,t);
     record.setValue(3,d);
     record.setValue(4,b);
     computerModel->insertRecord(-1,record);
+
+    nextComputerId++;
 }
 
 void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace)

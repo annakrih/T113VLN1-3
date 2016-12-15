@@ -194,6 +194,9 @@ private:
 
     Domain domain;
 
+    int nextPersonId = 0;
+    int nextComputerId = 0;
+
     QSqlRelationalTableModel* personModel;
     QSqlRelationalTableModel* computerModel;
     QSqlRelationalTableModel* relationModel;
