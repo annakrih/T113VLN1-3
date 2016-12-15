@@ -69,12 +69,12 @@
              </property>
              <property name="icon">
               <iconset resource="resources.qrc">
-               <normaloff>:/icons/images/adduser.png</normaloff>:/icons/images/adduser.png</iconset>
+               <normaloff>:/icons/images/addperson.png</normaloff>:/icons/images/addperson.png</iconset>
              </property>
              <property name="iconSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>24</width>
+               <height>24</height>
               </size>
              </property>
             </widget>
@@ -108,8 +108,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>24</width>
+               <height>24</height>
               </size>
              </property>
             </widget>
@@ -159,8 +159,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>24</width>
+               <height>24</height>
               </size>
              </property>
             </widget>
@@ -194,8 +194,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>20</width>
-               <height>20</height>
+               <width>24</width>
+               <height>24</height>
               </size>
              </property>
             </widget>
@@ -767,13 +767,19 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>350</width>
+          <width>200000</width>
           <height>16777215</height>
          </size>
         </property>
         <layout class="QHBoxLayout" name="horizForCompPersInfo">
          <item>
           <widget class="QWidget" name="personInfoWidget" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <layout class="QVBoxLayout" name="personInfo">
             <item>
              <widget class="QLabel" name="image_personInfo">
@@ -911,6 +917,12 @@
          </item>
          <item>
           <widget class="QWidget" name="computerInfo" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>200</width>
@@ -1040,7 +1052,7 @@
      <x>0</x>
      <y>0</y>
      <width>999</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
