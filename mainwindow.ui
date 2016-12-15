@@ -752,7 +752,7 @@
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>40</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -826,6 +826,27 @@
             <item>
              <widget class="QTableView" name="tablePI"/>
             </item>
+            <item>
+             <layout class="QHBoxLayout" name="personRelationBtnLayout">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="addPersonRelation">
+                <property name="text">
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="deletePersonRelation">
+                <property name="text">
+                 <string>Delete</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
            </layout>
           </widget>
          </item>
@@ -846,7 +867,7 @@
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>247</height>
+                <height>241</height>
                </size>
               </property>
              </spacer>
@@ -919,6 +940,27 @@
             </item>
             <item>
              <widget class="QTableView" name="tableCI"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="computerRelationBtnLayout">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="addComputerRelation">
+                <property name="text">
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="deleteComputerRelation">
+                <property name="text">
+                 <string>Remove</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </widget>
