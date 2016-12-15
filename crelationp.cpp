@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-CRelationP::CRelationP(QSortFilterProxyModel *model, QList<int> relList, QWidget *parent) :
+CRelationP::CRelationP(QSortFilterProxyModel *model, QList<int> relList, int id, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CRelationP)
 {
@@ -16,6 +16,8 @@ CRelationP::CRelationP(QSortFilterProxyModel *model, QList<int> relList, QWidget
     ui->table_Comp->setColumnHidden(0,true);
 
     hideRows(ui->table_Comp,relList);
+
+    personId = id;
 
     connect(
       ui->table_Comp->selectionModel(),
@@ -39,7 +41,7 @@ void CRelationP::on_buttonBox_accepted()
         idList.push_back(ui->table_Comp->model()->index(row,0).data().toInt());
     }
 
-    emit this->addPRelAccepted(idList);
+    emit this->addPRelAccepted(idList, personId);
 }
 
 void CRelationP::on_buttonBox_rejected()

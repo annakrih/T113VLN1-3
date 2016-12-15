@@ -2,7 +2,7 @@
 #include "ui_prelationc.h"
 #include "domain.h"
 
-PRelationC::PRelationC(QSortFilterProxyModel *model, QList<int> relList, QWidget *parent) :
+PRelationC::PRelationC(QSortFilterProxyModel *model, QList<int> relList, int id, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PRelationC)
 {
@@ -19,6 +19,8 @@ PRelationC::PRelationC(QSortFilterProxyModel *model, QList<int> relList, QWidget
     ui->table_Person->setColumnHidden(6,true);
 
     hideRows(ui->table_Person,relList);
+
+    computerId = id;
 
     connect(
       ui->table_Person->selectionModel(),
@@ -106,7 +108,7 @@ void PRelationC::on_buttonBox_accepted()
         idList.push_back(ui->table_Person->model()->index(row,0).data().toInt());
     }
 
-    emit this->addCRelAccepted(idList);
+    emit this->addCRelAccepted(idList, computerId);
 }
 
 void PRelationC::on_buttonBox_rejected()

@@ -13,6 +13,7 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString,
 
     if(id)
     {
+        ui->inputPhoto->setText("Edit Photo");
         ui->hiddenId->setValue(id);
         ui->personName->setFocus();
         ui->personName->setText(n);
