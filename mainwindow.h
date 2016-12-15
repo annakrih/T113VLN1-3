@@ -174,7 +174,7 @@ private slots:
 
     QString hasTableChanged();
 
-    void on_pushButton_released();
+    void on_pushButton_Delete_released();
 
     void on_addPersonRelation_released();
 

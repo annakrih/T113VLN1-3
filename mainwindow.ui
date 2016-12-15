@@ -116,7 +116,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="pushButton_Delete">
              <property name="minimumSize">
               <size>
                <width>40</width>
@@ -1009,7 +1009,7 @@
      <x>0</x>
      <y>0</y>
      <width>999</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">

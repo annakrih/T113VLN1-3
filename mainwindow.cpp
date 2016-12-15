@@ -902,7 +902,7 @@ QString MainWindow::hasTableChanged()
 }
 
 
-void MainWindow::on_pushButton_released()
+void MainWindow::on_pushButton_Delete_released()
 {
     deleteSelected();
 }
