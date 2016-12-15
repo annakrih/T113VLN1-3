@@ -14,6 +14,7 @@
 
 namespace Ui
 {
+//class for computer dialog
 class ComputerDialog;
 }
 
@@ -25,8 +26,8 @@ public:
     explicit ComputerDialog(QWidget *parent = 0, QMap<QString, int> tList = QMap<QString, int>{} ,
                             QString n = "", QString t = 0, int d = 0, int b = 0, int id = 0);
 
-
 private slots:
+    //
     void on_buttonBox_accepted();
     void on_wasItBuilt_toggled(bool checked);
     void on_buttonBox_rejected();
@@ -45,10 +46,13 @@ private slots:
     void on_cBY_editingFinished();
 
 signals:
+    //function that adds new computer
     void addComputerAccepted(const QString &n, const int &t, const int &d, const int &b);
-    void editComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b);
-    void computerRejected();
 
+    //function to edit valid computer
+    void editComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b);
+
+    void computerRejected();
 
 private:
     Ui::ComputerDialog *ui;
@@ -57,7 +61,6 @@ private:
     void fillTypeMenu(QMap<QString, int> tList);
 
     void loadPersonTable();
-
 };
 
 #endif // COMPUTERDIALOG_H

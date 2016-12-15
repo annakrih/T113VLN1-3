@@ -5,7 +5,8 @@
 #include <QTableView>
 #include <QSortFilterProxyModel>
 
-namespace Ui {
+namespace Ui
+{
 class CRelationP;
 }
 
