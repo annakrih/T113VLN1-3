@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>images/adduser.png</file>
-        <file>images/addcomp.png</file>
         <file>images/editIcon.png</file>
+        <file>images/addcomp.png</file>
+        <file>images/addperson.png</file>
     </qresource>
 </RCC>
