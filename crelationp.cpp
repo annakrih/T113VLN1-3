@@ -1,7 +1,9 @@
 #include "crelationp.h"
 #include "ui_crelationp.h"
 
-CRelationP::CRelationP(QSortFilterProxyModel *model, QWidget *parent) :
+#include <iostream>
+
+CRelationP::CRelationP(QSortFilterProxyModel *model, QList<int> relList, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CRelationP)
 {
@@ -12,6 +14,8 @@ CRelationP::CRelationP(QSortFilterProxyModel *model, QWidget *parent) :
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
+
+    hideRows(ui->table_Comp,relList);
 
     connect(
       ui->table_Comp->selectionModel(),
@@ -75,3 +79,17 @@ void CRelationP::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
         overrideTableClick = true;
     }
 }
+
+void CRelationP::hideRows(QTableView* table, QList<int> rowsToHide){
+
+    for(int i = 0; i < table->model()->rowCount(); i++ ){
+        int id = table->model()->index(i,0).data().toInt();
+
+        if(rowsToHide.contains(id)){
+            table->hideRow(i);
+        }else{
+            table->showRow(i);
+        }
+    }
+}
+

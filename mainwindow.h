@@ -174,6 +174,8 @@ private slots:
 
     QString hasTableChanged();
 
+    void on_pushButton_Delete_released();
+
     void on_addPersonRelation_released();
 
     void onAddPRelAccepted(const QList<int> &l);
@@ -181,6 +183,7 @@ private slots:
     void onAddCRelAccepted(const QList<int> &l);
 
     void on_addComputerRelation_released();
+
 
 private:
     Ui::MainWindow *ui;

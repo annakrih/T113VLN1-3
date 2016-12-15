@@ -2,10 +2,9 @@
 #define PRELATIONC_H
 
 #include "utils.h"
-#include <QSortFilterProxyModel>
-#include <QModelIndexList>
-
 #include <QDialog>
+#include <QTableView>
+#include <QSortFilterProxyModel>
 
 namespace Ui
 {
@@ -17,7 +16,7 @@ class PRelationC : public QDialog
     Q_OBJECT
 
 public:
-    explicit PRelationC(QSortFilterProxyModel* model,QWidget *parent = 0);
+    explicit PRelationC(QSortFilterProxyModel* model, QList<int> relList, QWidget *parent = 0);
     ~PRelationC();
 
 private slots:
@@ -42,6 +41,8 @@ private slots:
     void on_table_Person_clicked(const QModelIndex &index);
 
     void onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p);
+
+    void hideRows(QTableView* table, QList<int> rowsToHide);
 
 signals:
     void relationRejected();

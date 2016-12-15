@@ -29,7 +29,7 @@ private slots:
     void on_buttonBox_accepted();
     void on_personName_textChanged(const QString &arg1);
 
-    void on_personNat_currentIndexChanged();
+    void on_personNat_currentIndexChanged(const int &arg1);
 
     void on_personBY_editingFinished();
 
@@ -37,17 +37,15 @@ private slots:
 
     void on_personCheckDY_toggled(bool checked);
 
-    void on_personGender_currentIndexChanged();
+    void on_personGender_currentIndexChanged(int index);
 
     void on_buttonBox_rejected();
 
-    void on_PersonDialog_finished();
+    void on_PersonDialog_finished(int result);
 
-    void on_personBY_valueChanged();
+    void on_personBY_valueChanged(int arg1);
 
-    void on_personDY_valueChanged();
-
-    void on_textEdit_textChanged();
+    void on_personDY_valueChanged(int arg1);
 
     void on_inputPhoto_clicked();
 

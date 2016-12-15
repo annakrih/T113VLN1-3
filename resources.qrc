@@ -1,7 +1,15 @@
 <RCC>
     <qresource prefix="/icons">
         <file>images/editIcon.png</file>
+<<<<<<< HEAD
         <file>images/addcomp.png</file>
         <file>images/addperson.png</file>
+=======
+        <file>images/removecomp.png</file>
+        <file>images/removeuser.png</file>
+        <file>images/addusers.png</file>
+        <file>images/delete.png</file>
+        <file>images/useradd.png</file>
+>>>>>>> origin/master
     </qresource>
 </RCC>
