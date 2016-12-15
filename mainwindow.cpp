@@ -43,6 +43,9 @@ MainWindow::MainWindow(QWidget *parent) :
       SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
       SLOT(onPersonSelectionChange())
      );
+
+    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
+    connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick(QPoint)));
 }
 
 MainWindow::~MainWindow()
@@ -59,9 +62,6 @@ void MainWindow::loadPersonTable()
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
     ui->table_Person->setColumnHidden(6,true);
-
-
-    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
 }
 
 void MainWindow::loadCompTable()
@@ -72,8 +72,6 @@ void MainWindow::loadCompTable()
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
-
-    connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick(QPoint)));
 }
 
 void MainWindow::loadRelationTable()
@@ -539,11 +537,22 @@ void MainWindow::saveChanges()
     if(personModel->isDirty())
     {
         saveModel(personModel);
+
+        for(int i = 0; i < personModel->rowCount(); i++)
+        {
+            ui->table_Person->showRow(i);
+        }
     }
 
     if(computerModel->isDirty())
     {
         saveModel(computerModel);
+
+        for(int i = 0; i < computerModel->rowCount(); i++)
+        {
+            ui->table_Comp->showRow(i);
+        }
+
     }
 
 }
@@ -555,7 +564,7 @@ void MainWindow::saveModel(QSqlRelationalTableModel * model)
 
 void MainWindow::personRightClick(QPoint position)
 {
-    QMenu *pContextMenu = new QMenu( this);
+    QMenu *pContextMenu = new QMenu(this);
     pContextMenu->addAction(ui->menuEdit->actions().at(0));
     pContextMenu->addAction(ui->menuEdit->actions().at(2));
     pContextMenu->exec(QCursor::pos());
@@ -579,7 +588,8 @@ void MainWindow::deleteSelected(){
         for(int i = 0; i < selList.size(); i++)
         {
             ui->table_Person->hideRow(selList[i].row());
-            personModel->removeRow(selList[i].row());
+            QModelIndex realRow = proxyPersonModel->mapToSource(selList[i]);
+            personModel->removeRow(realRow.row());
         }
     }
     else if(index == 1)//computer
@@ -587,8 +597,10 @@ void MainWindow::deleteSelected(){
         QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
         for(int i = 0; i < selList.size(); i++)
         {
+
             ui->table_Comp->hideRow(selList[i].row());
-            computerModel->removeRow(selList[i].row());
+            QModelIndex realRow = proxyCompModel->mapToSource(selList[i]);
+            computerModel->removeRow(realRow.row());
         }
     }
 }
