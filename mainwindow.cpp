@@ -901,12 +901,12 @@ QString MainWindow::hasTableChanged()
     return windowName;
 }
 
-<<<<<<< HEAD
+
 void MainWindow::on_pushButton_released()
 {
     deleteSelected();
 }
-=======
+
 void MainWindow::on_addPersonRelation_released()
 {
     QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
@@ -958,5 +958,3 @@ void MainWindow::onAddCRelAccepted(const QList<int> &l)
 
     cout << "add Computer relation\n";
 }
-
->>>>>>> origin/master
