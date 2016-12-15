@@ -37,13 +37,17 @@ private slots:
 
     void on_button_advSearchComp_released();
 
+    void searchComp();
+
+    void loadCompTable();
+
 private:
     Ui::CRelationP *ui;
 
     int lastSelection;
     int personId;
 
-    bool showAdvSearch;
+    bool showAdvSearchComps;
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;
 };

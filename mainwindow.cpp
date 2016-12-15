@@ -88,7 +88,6 @@ void MainWindow::loadCompTable()
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
     proxyCompModel->setDynamicSortFilter(true);
     proxyCompModel->sort(1, Qt::AscendingOrder);
-
 }
 
 void MainWindow::loadPITable()
