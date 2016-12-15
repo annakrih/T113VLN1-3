@@ -98,6 +98,7 @@ private slots:
 
     void on_actionAdd_new_computer_triggered();
 
+
     void on_actionEdit_Computer_triggered();
 
     void on_input_searchNat_currentIndexChanged(const QString &arg1);
