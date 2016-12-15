@@ -35,12 +35,15 @@ private slots:
 
     void hideRows(QTableView* table, QList<int> rowsToHide);
 
+    void on_button_advSearchComp_released();
+
 private:
     Ui::CRelationP *ui;
 
     int lastSelection;
     int personId;
 
+    bool showAdvSearch;
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;
 };

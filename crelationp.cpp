@@ -17,6 +17,8 @@ CRelationP::CRelationP(QSortFilterProxyModel *model, QList<int> relList, int id,
 
     hideRows(ui->table_Comp,relList);
 
+    showAdvSearch = 0;
+    ui->frame_advSearchComp->setVisible(showAdvSearch);
     personId = id;
 
     connect(
@@ -95,3 +97,9 @@ void CRelationP::hideRows(QTableView* table, QList<int> rowsToHide){
     }
 }
 
+
+void CRelationP::on_button_advSearchComp_released()
+{
+    showAdvSearch = !showAdvSearch;
+    ui->frame_advSearchComp->setVisible(showAdvSearch);
+}
