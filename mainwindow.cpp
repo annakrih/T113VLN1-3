@@ -33,15 +33,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
 
     connect(
-      ui->table_Comp->selectionModel(),
-      SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-      SLOT(onCompSelectionChange())
+      ui->table_Person->selectionModel(),
+      SIGNAL(currentRowChanged(const QModelIndex&,const QModelIndex&)),
+      SLOT(onPersonSelectionChange(const QModelIndex&,const QModelIndex&))
      );
 
     connect(
-      ui->table_Person->selectionModel(),
-      SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-      SLOT(onPersonSelectionChange())
+      ui->table_Comp->selectionModel(),
+      SIGNAL(currentRowChanged(const QModelIndex&,const QModelIndex&)),
+      SLOT(onCompSelectionChange(const QModelIndex&,const QModelIndex&))
      );
 
     connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick()));
@@ -281,13 +281,13 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
     overrideTableClick = false;
 }
 
-void MainWindow::onPersonSelectionChange()
+void MainWindow::onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p)
 {
-    if(!overrideOnPersonSelectionChange && !ui->table_Person->selectionModel()->selectedRows().isEmpty())
+    if(!overrideOnPersonSelectionChange)
     {
-        int index = ui->table_Person->currentIndex().row();
-        lastPersonSelection = index;
         overrideTableClick = true;
+        int index = c.row();
+        lastPersonSelection = index;
         loadPersonInfo();
     }
 }
@@ -308,11 +308,11 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 
 }
 
-void MainWindow::onCompSelectionChange()
+void MainWindow::onCompSelectionChange(const QModelIndex &c,const QModelIndex &p)
 {
-    if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
+    if(!overrideOnCompSelectionChange)
     {
-        int index = ui->table_Comp->currentIndex().row();
+        int index = c.row();
         lastCompSelection = index;
         overrideTableClick = true;
         loadComputerInfo();

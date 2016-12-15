@@ -72,11 +72,11 @@ private slots:
 
     void on_table_Person_clicked(const QModelIndex &index);
 
-    void onPersonSelectionChange();
+    void onPersonSelectionChange(const QModelIndex &c, const QModelIndex &p);
 
     void on_table_Comp_clicked(const QModelIndex &index);
 
-    void onCompSelectionChange();
+    void onCompSelectionChange(const QModelIndex &c, const QModelIndex &p);
 
     void on_actionAdd_new_person_triggered();
 
