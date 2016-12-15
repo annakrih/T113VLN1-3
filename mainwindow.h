@@ -98,6 +98,7 @@ private slots:
 
     void on_actionEdit_Computer_triggered();
 
+    void on_input_searchNat_currentIndexChanged(const QString &arg1);
 
     void on_actionSave_Changes_triggered();
 
@@ -137,6 +138,7 @@ private slots:
 
     void on_actionRelations_triggered();
 
+    void on_input_searchCompType_currentIndexChanged(const QString &arg1);
 
     void on_pushButton_editSelectedEntry_pressed();
 
@@ -183,6 +185,7 @@ private:
 
     bool overrideOnPersonSelectionChange = 0;
     bool overrideOnCompSelectionChange = 0;
+    bool overrideTableClick = 0;
 
     bool changesMade = 0;
 

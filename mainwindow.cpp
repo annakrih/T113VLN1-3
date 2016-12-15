@@ -270,62 +270,41 @@ void MainWindow::on_input_searchNat_currentIndexChanged(const QString &arg1)
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
 
-    if(lastPersonSelection == index.row())
+    if(lastPersonSelection == index.row() && !overrideTableClick)
     {
-        cout << index.row();
         overrideOnPersonSelectionChange = true;
-
         ui->table_Person->selectionModel()->clearSelection();
         lastPersonSelection = -1;
         ui->personInfoWidget->setVisible(false);
-
         overrideOnPersonSelectionChange = false;
-
-    }else
-    {
-        lastPersonSelection = index.row();
-
-        //loadRelation();
     }
-
-    //checkStatus();
-
+    overrideTableClick = false;
 }
 
 void MainWindow::onPersonSelectionChange()
 {
     if(!overrideOnPersonSelectionChange && !ui->table_Person->selectionModel()->selectedRows().isEmpty())
     {
-        cout << "click";
-        lastPersonSelection  = ui->table_Person->selectionModel()->selectedRows().last().row();
+        int index = ui->table_Person->currentIndex().row();
+        lastPersonSelection = index;
+        overrideTableClick = true;
         loadPersonInfo();
     }
-
-    //checkStatus();
 }
 
 
 void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 {
 
-    if(lastCompSelection == index.row() )
+    if(lastCompSelection == index.row() && !overrideTableClick)
     {
         overrideOnCompSelectionChange = true;
-
         ui->table_Comp->selectionModel()->clearSelection();
         lastCompSelection = -1;
         ui->computerInfo->setVisible(false);
-
         overrideOnCompSelectionChange = false;
-
-    }else
-    {
-        lastCompSelection = index.row();
-
-        //loadRelation();
     }
-
-    //checkStatus();
+    overrideTableClick = false;
 
 }
 
@@ -333,7 +312,9 @@ void MainWindow::onCompSelectionChange()
 {
     if(!overrideOnCompSelectionChange && !ui->table_Comp->selectionModel()->selectedRows().isEmpty())
     {
-        lastCompSelection  = ui->table_Comp->selectionModel()->selectedRows().last().row();
+        int index = ui->table_Comp->currentIndex().row();
+        lastCompSelection = index;
+        overrideTableClick = true;
         loadComputerInfo();
     }
 
