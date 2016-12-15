@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
+<<<<<<< HEAD
         <file>images/editIcon.png</file>
 <<<<<<< HEAD
         <file>images/addcomp.png</file>
@@ -11,5 +12,10 @@
         <file>images/delete.png</file>
         <file>images/useradd.png</file>
 >>>>>>> origin/master
+=======
+        <file>images/adduser.png</file>
+        <file>images/addcomp.png</file>
+        <file>images/editIcon.png</file>
+>>>>>>> parent of 3a3231d... icons í main window
     </qresource>
 </RCC>
