@@ -288,6 +288,10 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
         lastPersonSelection = -1;
         ui->personInfoWidget->setVisible(false);
         overrideOnPersonSelectionChange = false;
+    }else if(!overrideTableClick){
+        int index = ui->table_Person->currentIndex().row();
+        lastPersonSelection = index;
+        loadPersonInfo();
     }
     overrideTableClick = false;
 }
@@ -298,6 +302,7 @@ void MainWindow::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
     {
         overrideTableClick = true;
         int index = c.row();
+        cout << index;
         lastPersonSelection = index;
         loadPersonInfo();
     }
@@ -314,6 +319,10 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
         lastCompSelection = -1;
         ui->computerInfo->setVisible(false);
         overrideOnCompSelectionChange = false;
+    }else if(!overrideTableClick){
+        int index = ui->table_Comp->currentIndex().row();
+        lastPersonSelection = index;
+        loadPersonInfo();
     }
     overrideTableClick = false;
 
