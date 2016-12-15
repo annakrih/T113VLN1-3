@@ -185,6 +185,11 @@ private slots:
 
     void on_addComputerRelation_released();
 
+    void on_tabsWidget_personComputer_tabBarClicked(int index);
+
+
+
+    void clearAll();
 
 private:
     Ui::MainWindow *ui;

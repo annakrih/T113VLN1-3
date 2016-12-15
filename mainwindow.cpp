@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->pushButton_editSelectedEntry->setEnabled(false);
+    ui->pushButton_Delete->setEnabled(false);
 
 
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -297,11 +298,8 @@ void MainWindow::on_input_searchNat_currentIndexChanged(const QString &arg1)
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
     ui->pushButton_editSelectedEntry->setEnabled(true);
-    QModelIndexList selList = ui->table_Person->selectionModel()->selectedRows();
-    if(selList.size() > 1)
-    {
-        ui->pushButton_editSelectedEntry->setEnabled(true);
-    }
+    ui->pushButton_Delete->setEnabled(true);
+
     if(lastPersonSelection == index.row() && !overrideTableClick)
     {
         overrideOnPersonSelectionChange = true;
@@ -309,23 +307,33 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
         lastPersonSelection = -1;
         ui->personInfoWidget->setVisible(false);
         overrideOnPersonSelectionChange = false;
+
         ui->pushButton_editSelectedEntry->setEnabled(false);
-    }else if(!overrideTableClick){
+        ui->pushButton_Delete->setEnabled(false);
+    }
+    else if(!overrideTableClick)
+    {
         int index = ui->table_Person->currentIndex().row();
         lastPersonSelection = index;
         loadPersonInfo();
     }
+
+
+
     overrideTableClick = false;
 }
 
 void MainWindow::onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p)
-{
+{    
     if(!overrideOnPersonSelectionChange)
     {
         overrideTableClick = true;
         int index = c.row();
         lastPersonSelection = index;
         loadPersonInfo();
+
+        ui->pushButton_editSelectedEntry->setEnabled(false);
+        ui->pushButton_Delete->setEnabled(true);
     }
 }
 
@@ -333,11 +341,8 @@ void MainWindow::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
 void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 {
     ui->pushButton_editSelectedEntry->setEnabled(true);
-    QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
-    if(selList.size() > 1)
-    {
-        ui->pushButton_editSelectedEntry->setEnabled(true);
-    }
+    ui->pushButton_Delete->setEnabled(true);
+
     if(lastCompSelection == index.row() && !overrideTableClick)
     {
         overrideOnCompSelectionChange = true;
@@ -345,8 +350,12 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
         lastCompSelection = -1;
         ui->computerInfo->setVisible(false);
         overrideOnCompSelectionChange = false;
+
         ui->pushButton_editSelectedEntry->setEnabled(false);
-    }else if(!overrideTableClick){
+        ui->pushButton_Delete->setEnabled(false);
+    }
+    else if(!overrideTableClick)
+    {
         int index = ui->table_Comp->currentIndex().row();
         lastPersonSelection = index;
         loadPersonInfo();
@@ -359,10 +368,13 @@ void MainWindow::onCompSelectionChange(const QModelIndex &c,const QModelIndex &p
 {
     if(!overrideOnCompSelectionChange)
     {
+        overrideTableClick = true;
         int index = c.row();
         lastCompSelection = index;
-        overrideTableClick = true;
         loadComputerInfo();
+
+        ui->pushButton_editSelectedEntry->setEnabled(false);
+        ui->pushButton_Delete->setEnabled(true);
     }
 
     //checkStatus();
@@ -632,6 +644,7 @@ void MainWindow::deleteSelected(){
             computerModel->removeRow(realRow.row());
         }
     }
+    ui->pushButton_Delete->setEnabled(false);
 }
 
 void MainWindow::on_actionDelete_triggered()
@@ -939,6 +952,7 @@ QString MainWindow::hasTableChanged()
 void MainWindow::on_pushButton_Delete_released()
 {
     deleteSelected();
+
 }
 
 void MainWindow::on_addPersonRelation_released()
@@ -997,4 +1011,18 @@ void MainWindow::onAddCRelAccepted(const QList<int> &l)
     }
 
     cout << "add Computer relation\n";
+}
+
+void MainWindow::on_tabsWidget_personComputer_tabBarClicked(int index)
+{
+    clearAll();
+}
+
+void MainWindow::clearAll()
+{
+    ui->table_Comp->selectionModel()->clearSelection();
+    ui->table_Person->selectionModel()->clearSelection();
+
+    ui->pushButton_Delete->setEnabled(false);
+    ui->pushButton_editSelectedEntry->setEnabled(false);
 }
