@@ -54,7 +54,7 @@ private slots:
 
     void on_input_searchPerson_textEdited();
 
-    void on_searchInput_Comp_textEdited(const QString &searchString);
+    void on_searchInput_Comp_textEdited();
 
     void on_button_advSearchPerson_released();
 
@@ -98,7 +98,6 @@ private slots:
 
     void on_actionEdit_Computer_triggered();
 
-    void on_input_searchNat_currentIndexChanged(const QString &nat);
 
     void on_actionSave_Changes_triggered();
 
@@ -106,9 +105,9 @@ private slots:
 
     void saveModel(QSqlRelationalTableModel * model);
 
-    void personRightClick(QPoint position);
+    void personRightClick();
 
-    void computerRightClick(QPoint position);
+    void computerRightClick();
 
     void deleteSelected();
 
@@ -138,7 +137,6 @@ private slots:
 
     void on_actionRelations_triggered();
 
-    void on_input_searchCompType_currentIndexChanged(const QString &type);
 
     void on_pushButton_editSelectedEntry_pressed();
 
@@ -162,9 +160,7 @@ private slots:
 
     void loadRelation();
 
-    void on_input_searchNat_activated(const QString &arg1);
-
-    void closeEvent(QCloseEvent *event);
+    void closeEvent();
 
     QString hasTableChanged();
 

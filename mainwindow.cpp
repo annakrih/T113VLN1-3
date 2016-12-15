@@ -44,8 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
       SLOT(onPersonSelectionChange())
      );
 
-    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
-    connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick(QPoint)));
+    connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick()));
+    connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick()));
 }
 
 MainWindow::~MainWindow()
@@ -179,7 +179,7 @@ void MainWindow::searchComp()
 }
 
 
-void MainWindow::on_searchInput_Comp_textEdited(const QString &arg1)
+void MainWindow::on_searchInput_Comp_textEdited()
 {
     searchComp();
 }
@@ -246,7 +246,7 @@ void MainWindow::on_input_searchBornTo_editingFinished()
     searchPerson();
 }
 
-void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &type)
+void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &arg1)
 {
     searchComp();
 }
@@ -262,7 +262,7 @@ void MainWindow::on_input_searchDiedTo_editingFinished()
     searchPerson();
 }
 
-void MainWindow::on_input_searchNat_currentIndexChanged(const QString &nat)
+void MainWindow::on_input_searchNat_currentIndexChanged(const QString &arg1)
 {
     searchPerson();
 }
@@ -272,6 +272,7 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 
     if(lastPersonSelection == index.row())
     {
+        cout << index.row();
         overrideOnPersonSelectionChange = true;
 
         ui->table_Person->selectionModel()->clearSelection();
@@ -295,10 +296,9 @@ void MainWindow::onPersonSelectionChange()
 {
     if(!overrideOnPersonSelectionChange && !ui->table_Person->selectionModel()->selectedRows().isEmpty())
     {
+        cout << "click";
         lastPersonSelection  = ui->table_Person->selectionModel()->selectedRows().last().row();
         loadPersonInfo();
-        lastPersonSelection = -1;
-
     }
 
     //checkStatus();
@@ -335,7 +335,6 @@ void MainWindow::onCompSelectionChange()
     {
         lastCompSelection  = ui->table_Comp->selectionModel()->selectedRows().last().row();
         loadComputerInfo();
-        lastCompSelection = -1;
     }
 
     //checkStatus();
@@ -562,7 +561,7 @@ void MainWindow::saveModel(QSqlRelationalTableModel * model)
     domain.submitDatabaseChanges(model);
 }
 
-void MainWindow::personRightClick(QPoint position)
+void MainWindow::personRightClick()
 {
     QMenu *pContextMenu = new QMenu(this);
     pContextMenu->addAction(ui->menuEdit->actions().at(0));
@@ -570,7 +569,7 @@ void MainWindow::personRightClick(QPoint position)
     pContextMenu->exec(QCursor::pos());
 }
 
-void MainWindow::computerRightClick(QPoint position)
+void MainWindow::computerRightClick()
 {
     QMenu *cContextMenu = new QMenu( this);
     cContextMenu->addAction(ui->menuEdit->actions().at(1));
@@ -828,12 +827,7 @@ void MainWindow::loadRelation()
 }
 
 
-void MainWindow::on_input_searchNat_activated(const QString &arg1)
-{
-
-}
-
-void MainWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent()
 {
     if(computerModel->isDirty() || personModel->isDirty())
     {

@@ -40,3 +40,5 @@ Makefile*
 CMakeLists.txt.user*
 
 database/people.txt
+*.Release
+object_script.T113VLN1-3.Debug

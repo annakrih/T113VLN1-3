@@ -50,27 +50,27 @@ void PRelationC::searchPerson()
     loadPersonTable();
 }
 
-void PRelationC::on_input_searchPerson_textEdited(const QString &arg1)
+void PRelationC::on_input_searchPerson_textEdited()
 {
     searchPerson();
 }
 
-void PRelationC::on_input_searchBornFrom_textEdited(const QString &arg1)
+void PRelationC::on_input_searchBornFrom_textEdited()
 {
     searchPerson();
 }
 
-void PRelationC::on_input_searchBornTo_textEdited(const QString &arg1)
+void PRelationC::on_input_searchBornTo_textEdited()
 {
     searchPerson();
 }
 
-void PRelationC::on_input_searchDiedFrom_textEdited(const QString &arg1)
+void PRelationC::on_input_searchDiedFrom_textEdited()
 {
     searchPerson();
 }
 
-void PRelationC::on_input_searchDiedTo_textEdited(const QString &arg1)
+void PRelationC::on_input_searchDiedTo_textEdited()
 {
     searchPerson();
 }

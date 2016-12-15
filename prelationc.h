@@ -27,15 +27,15 @@ public:
     ~PRelationC();
 
 private slots:
-    void on_input_searchPerson_textEdited(const QString &arg1);
+    void on_input_searchPerson_textEdited();
 
-    void on_input_searchBornFrom_textEdited(const QString &arg1);
+    void on_input_searchBornFrom_textEdited();
 
-    void on_input_searchBornTo_textEdited(const QString &arg1);
+    void on_input_searchBornTo_textEdited();
 
-    void on_input_searchDiedFrom_textEdited(const QString &arg1);
+    void on_input_searchDiedFrom_textEdited();
 
-    void on_input_searchDiedTo_textEdited(const QString &arg1);
+    void on_input_searchDiedTo_textEdited();
 
     void on_button_advSearchPerson_released();
 
