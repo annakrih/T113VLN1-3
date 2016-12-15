@@ -18,14 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     computerModel = domain.getComputerModel();
     relationModel = domain.getPCRelationModel();
 
-    proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
-    proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->pushButton_editSelectedEntry->setEnabled(false);
     ui->pushButton_Delete->setEnabled(false);
-
-
-    ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 
     loadPersonTable();
@@ -72,6 +66,8 @@ void MainWindow::loadPersonTable()
     ui->table_Person->setColumnHidden(6,true);
     proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
+    proxyPersonModel->setDynamicSortFilter(true);
+    proxyPersonModel->sort(1, Qt::AscendingOrder);
 
 }
 
@@ -85,6 +81,8 @@ void MainWindow::loadCompTable()
     ui->table_Comp->setColumnHidden(0,true);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
+    proxyCompModel->setDynamicSortFilter(true);
+    proxyCompModel->sort(1, Qt::AscendingOrder);
 
 }
 
@@ -96,6 +94,7 @@ void MainWindow::loadPITable()
     ui->tablePI->setColumnHidden(0,true);
     proxyPIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tablePI->setSelectionBehavior(QAbstractItemView::SelectRows);
+    proxyPIModel->setDynamicSortFilter(true);
 
 
 }
@@ -109,6 +108,7 @@ void MainWindow::loadCITable()
     ui->tableCI->setColumnHidden(6,true);
     proxyCIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tableCI->setSelectionBehavior(QAbstractItemView::SelectRows);
+    proxyCIModel->setDynamicSortFilter(true);
 
 }
 
@@ -597,6 +597,12 @@ void MainWindow::saveChanges()
         {
             ui->table_Comp->showRow(i);
         }
+
+    }
+
+    if(relationModel->isDirty())
+    {
+        saveModel(relationModel);
 
     }
 
