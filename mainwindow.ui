@@ -134,6 +134,25 @@
             </spacer>
            </item>
            <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="minimumSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>70</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>revert</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="pushButton_Delete">
              <property name="enabled">
               <bool>true</bool>
@@ -1152,7 +1171,7 @@
      <x>0</x>
      <y>0</y>
      <width>1050</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">

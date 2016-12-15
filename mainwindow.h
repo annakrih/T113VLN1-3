@@ -107,6 +107,8 @@ private slots:
 
     void saveChanges();
 
+    void revertChanges();
+
     void saveModel(QSqlRelationalTableModel * model);
 
     void personRightClick();
@@ -190,6 +192,8 @@ private slots:
 
 
     void clearAll();
+
+    void on_pushButton_released();
 
 private:
     Ui::MainWindow *ui;

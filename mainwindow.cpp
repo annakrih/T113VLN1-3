@@ -602,6 +602,30 @@ void MainWindow::saveChanges()
 
 }
 
+void MainWindow::revertChanges()
+{
+    if(personModel->isDirty())
+    {
+        personModel->revertAll();
+
+        for(int i = 0; i < personModel->rowCount(); i++)
+        {
+            ui->table_Person->showRow(i);
+        }
+    }
+
+    if(computerModel->isDirty())
+    {
+        computerModel->revertAll();
+
+        for(int i = 0; i < computerModel->rowCount(); i++)
+        {
+            ui->table_Comp->showRow(i);
+        }
+
+    }
+}
+
 void MainWindow::saveModel(QSqlRelationalTableModel * model)
 {
     domain.submitDatabaseChanges(model);
@@ -1008,4 +1032,9 @@ void MainWindow::clearAll()
 
     ui->pushButton_Delete->setEnabled(false);
     ui->pushButton_editSelectedEntry->setEnabled(false);
+}
+
+void MainWindow::on_pushButton_released()
+{
+    revertChanges();
 }
