@@ -361,8 +361,8 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
     else if(!overrideTableClick)
     {
         int index = ui->table_Comp->currentIndex().row();
-        lastPersonSelection = index;
-        loadPersonInfo();
+        lastCompSelection = index;
+        loadComputerInfo();
     }
     overrideTableClick = false;
 
