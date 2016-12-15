@@ -94,6 +94,7 @@ void MainWindow::loadPITable()
     ui->tablePI-> setModel(proxyPIModel);
     ui->tablePI->verticalHeader()->hide();
     ui->tablePI->setColumnHidden(0,true);
+    ui->tablePI->setColumnHidden(6,true);
     proxyPIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tablePI->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
