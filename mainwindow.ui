@@ -27,7 +27,7 @@
    <layout class="QGridLayout" name="gridLayout_4">
     <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizLayoutForEverything">
-      <item>
+      <item alignment="Qt::AlignLeft">
        <widget class="QFrame" name="tabsAndToolbar">
         <property name="minimumSize">
          <size>
@@ -37,7 +37,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>800</width>
+          <width>600</width>
           <height>16777215</height>
          </size>
         </property>
@@ -701,7 +701,7 @@
         </layout>
        </widget>
       </item>
-      <item>
+      <item alignment="Qt::AlignLeft">
        <widget class="QFrame" name="compPersonInfo">
         <property name="minimumSize">
          <size>
@@ -840,6 +840,9 @@
               </item>
               <item>
                <widget class="QPushButton" name="deletePersonRelation">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Delete</string>
                 </property>
@@ -955,8 +958,11 @@
               </item>
               <item>
                <widget class="QPushButton" name="deleteComputerRelation">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
-                 <string>Remove</string>
+                 <string>Delete</string>
                 </property>
                </widget>
               </item>
