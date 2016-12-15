@@ -39,7 +39,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QFrame" name="">
+       <widget class="QFrame" name="frame">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -252,7 +252,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QFrame" name="">
+    <widget class="QFrame" name="frame">
      <property name="maximumSize">
       <size>
        <width>220</width>
@@ -312,7 +312,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Add photo</string>
+         <string>Select photo</string>
         </property>
        </widget>
       </item>

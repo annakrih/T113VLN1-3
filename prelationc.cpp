@@ -1,5 +1,6 @@
 #include "prelationc.h"
 #include "ui_prelationc.h"
+#include "domain.h"
 
 PRelationC::PRelationC(QSortFilterProxyModel *model, QList<int> relList, QWidget *parent) :
     QDialog(parent),

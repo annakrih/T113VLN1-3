@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QTableView>
 #include <QSortFilterProxyModel>
+#include "domain.h"
 
 namespace Ui
 {
