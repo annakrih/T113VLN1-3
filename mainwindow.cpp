@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
     relationModel = domain.getPCRelationModel();
-<<<<<<< HEAD
+
     proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->pushButton_editSelectedEntry->setEnabled(false);
@@ -22,8 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
-=======
->>>>>>> origin/master
+
 
     loadPersonTable();
     loadCompTable();
