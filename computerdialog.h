@@ -30,15 +30,15 @@ private slots:
     void on_buttonBox_accepted();
     void on_wasItBuilt_toggled(bool checked);
     void on_buttonBox_rejected();
-    void on_ComputerDialog_finished();
+    void on_ComputerDialog_finished(int result);
 
-    void on_cName_textChanged();
+    void on_cName_textChanged(const QString &arg1);
 
-    void on_cType_currentIndexChanged();
+    void on_cType_currentIndexChanged(const QString &arg1);
 
-    void on_cDY_valueChanged();
+    void on_cDY_valueChanged(int arg1);
 
-    void on_cBY_valueChanged();
+    void on_cBY_valueChanged(int arg1);
 
     void on_cDY_editingFinished();
 

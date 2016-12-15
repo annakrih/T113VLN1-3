@@ -2,6 +2,7 @@
 #define CRELATIONP_H
 
 #include <QDialog>
+#include <QTableView>
 #include <QSortFilterProxyModel>
 
 namespace Ui {
@@ -13,7 +14,7 @@ class CRelationP : public QDialog
     Q_OBJECT
 
 public:
-    explicit CRelationP(QSortFilterProxyModel* model,QWidget *parent = 0);
+    explicit CRelationP(QSortFilterProxyModel* model, QList<int> relList, QWidget *parent = 0);
     ~CRelationP();
 
 signals:
@@ -30,6 +31,8 @@ private slots:
     void on_table_Comp_clicked(const QModelIndex &index);
 
     void onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p);
+
+    void hideRows(QTableView* table, QList<int> rowsToHide);
 
 private:
     Ui::CRelationP *ui;

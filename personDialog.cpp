@@ -130,7 +130,7 @@ void PersonDialog::on_personName_textChanged(const QString &arg1)
     checkForm();
 }
 
-void PersonDialog::on_personNat_currentIndexChanged()
+void PersonDialog::on_personNat_currentIndexChanged(const int &arg1)
 {
     checkForm();
 }
@@ -169,7 +169,7 @@ void PersonDialog::on_personCheckDY_toggled(bool checked)
     checkForm();
 }
 
-void PersonDialog::on_personGender_currentIndexChanged()
+void PersonDialog::on_personGender_currentIndexChanged(int index)
 {
     checkForm();
 }
@@ -181,23 +181,18 @@ void PersonDialog::on_buttonBox_rejected()
     this->close();
 }
 
-void PersonDialog::on_PersonDialog_finished()
+void PersonDialog::on_PersonDialog_finished(int arg1)
 {
     emit this->personRejected();
     this->close();
 }
 
-void PersonDialog::on_personBY_valueChanged()
+void PersonDialog::on_personBY_valueChanged(int arg1)
 {
     checkForm();
 }
 
-void PersonDialog::on_personDY_valueChanged()
-{
-    checkForm();
-}
-
-void PersonDialog::on_textEdit_textChanged()
+void PersonDialog::on_personDY_valueChanged(int arg1)
 {
     checkForm();
 }

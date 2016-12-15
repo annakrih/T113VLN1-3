@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
     relationModel = domain.getPCRelationModel();
+<<<<<<< HEAD
     proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->pushButton_editSelectedEntry->setEnabled(false);
@@ -21,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
+=======
+>>>>>>> origin/master
 
     loadPersonTable();
     loadCompTable();
@@ -64,6 +67,9 @@ void MainWindow::loadPersonTable()
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
     ui->table_Person->setColumnHidden(6,true);
+    proxyPersonModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
+
 }
 
 void MainWindow::loadCompTable()
@@ -74,6 +80,9 @@ void MainWindow::loadCompTable()
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
+    proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
+
 }
 
 void MainWindow::loadPITable()
@@ -82,6 +91,8 @@ void MainWindow::loadPITable()
     ui->tablePI-> setModel(proxyPIModel);
     ui->tablePI->verticalHeader()->hide();
     ui->tablePI->setColumnHidden(0,true);
+    proxyPIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->tablePI->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 void MainWindow::loadCITable()
@@ -90,6 +101,8 @@ void MainWindow::loadCITable()
     ui->tableCI-> setModel(proxyCIModel);
     ui->tableCI->verticalHeader()->hide();
     ui->tableCI->setColumnHidden(0,true);
+    proxyCIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    ui->tableCI->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
@@ -386,7 +399,7 @@ void MainWindow::addPersonDialog()
     QMap<QString, int> natList = domain.getAcceptedNationality();
     personDialogWindow = new PersonDialog(this,gList, natList);
 
-    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));
+    QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(personDialogWindow,
                      SIGNAL(addPersonAccepted(const QString &, const int &, const int &, const int &, const int &, const QString &)),
                      this,
@@ -403,7 +416,7 @@ void MainWindow::addComputerDialog()
     QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
     computerDialogWindow = new ComputerDialog(this,tList);
 
-    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onComputerRejected()));
+    QObject::connect(computerDialogWindow, SIGNAL(computerRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(computerDialogWindow,
                      SIGNAL(addComputerAccepted(const QString &, const int &, const int &, const int &)),
                      this,
@@ -923,7 +936,10 @@ void MainWindow::on_pushButton_Delete_released()
 void MainWindow::on_addPersonRelation_released()
 {
     QMap<QString, int> tList = domain.getAcceptedComputerTypeName();
-    pRelDialogWindow = new CRelationP(proxyCompModel, this);
+
+    QList<int> relList = getPersonRelationId(ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
+
+    pRelDialogWindow = new CRelationP(proxyCompModel, relList, this);
 
     QObject::connect(pRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(pRelDialogWindow,
@@ -940,7 +956,10 @@ void MainWindow::on_addPersonRelation_released()
 void MainWindow::on_addComputerRelation_released()
 {
     QMap<QString, int> tList = domain.getAcceptedNationality();
-    cRelDialogWindow = new PRelationC(proxyPersonModel, this);
+
+    QList<int> relList = getComputerRelationId(ui->table_Comp->model()->index(lastCompSelection,0).data().toInt());
+
+    cRelDialogWindow = new PRelationC(proxyPersonModel, relList, this);
 
     QObject::connect(cRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(cRelDialogWindow,
