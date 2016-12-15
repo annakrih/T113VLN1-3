@@ -168,6 +168,8 @@ private slots:
 
     QString hasTableChanged();
 
+    void on_pushButton_released();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

@@ -827,3 +827,8 @@ QString MainWindow::hasTableChanged()
     }
     return windowName;
 }
+
+void MainWindow::on_pushButton_released()
+{
+    deleteSelected();
+}

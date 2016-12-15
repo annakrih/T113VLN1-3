@@ -116,6 +116,31 @@
             </spacer>
            </item>
            <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="minimumSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Delete</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>0</number>
+             </property>
+             <property name="text">
+              <string>d</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="pushButton_editSelectedEntry">
              <property name="minimumSize">
               <size>
