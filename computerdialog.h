@@ -29,20 +29,19 @@ public:
 private slots:
     //
     void on_buttonBox_accepted();
-    void on_wasItBuilt_toggled(bool checked);
     void on_buttonBox_rejected();
-    void on_ComputerDialog_finished(int result);
 
+    //closing window
+    void on_ComputerDialog_finished(int result);    
+
+    //calls a function that checks if all inputs have been filled
     void on_cName_textChanged(const QString &arg1);
-
     void on_cType_currentIndexChanged(const QString &arg1);
-
+    void on_wasItBuilt_toggled(bool checked);
     void on_cDY_valueChanged(int arg1);
-
     void on_cBY_valueChanged(int arg1);
 
     void on_cDY_editingFinished();
-
     void on_cBY_editingFinished();
 
 signals:
@@ -52,15 +51,18 @@ signals:
     //function to edit valid computer
     void editComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b);
 
+    //signal to mainwindow
     void computerRejected();
 
 private:
     Ui::ComputerDialog *ui;
     Utils utils;
-    void checkForm();
-    void fillTypeMenu(QMap<QString, int> tList);
 
-    void loadPersonTable();
+    //function that checks if all entries have been filled
+    void checkForm();
+
+    //fills the type drop down menu with the types in the database
+    void fillTypeMenu(QMap<QString, int> tList);
 };
 
 #endif // COMPUTERDIALOG_H

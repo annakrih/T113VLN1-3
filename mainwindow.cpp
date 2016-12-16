@@ -1100,7 +1100,7 @@ void MainWindow::buttonEnabledFunct()
         if(cSelList.size() > 1)
         {
             ui->pushButton_editSelectedEntry->setEnabled(false);
-            ui->actionAdd_new_computer->setEnabled(false);
+            ui->actionEdit_Computer->setEnabled(false);
 
             ui->pushButton_Delete->setEnabled(true);
             ui->actionDelete->setEnabled(true);
