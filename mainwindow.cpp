@@ -985,7 +985,9 @@ void MainWindow::on_actionDeleteAllPersons_triggered()
         personModel = domain.deletePersonTable();
         loadPersonTable();
     }
+
     buttonEnabledFunct();
+    sideViewCheck();
 }
 
 void MainWindow::on_actionDeleteAllComputers_triggered()
@@ -1000,6 +1002,7 @@ void MainWindow::on_actionDeleteAllComputers_triggered()
         loadCompTable();
     }
     buttonEnabledFunct();
+    sideViewCheck();
 }
 
 void MainWindow::on_actionDeleteAllRelations_triggered()
@@ -1014,8 +1017,26 @@ void MainWindow::on_actionDeleteAllRelations_triggered()
         relationModel = domain.deleteRelationTable();
     }
     buttonEnabledFunct();
+    sideViewCheck();
 }
 
+
+void MainWindow::sideViewCheck(){
+
+    if(ui->tabsWidget_personComputer->currentIndex() == 0){ //person
+        if(!ui->table_Person->selectionModel()->selectedRows().isEmpty()){
+            loadPersonInfo();
+        }else{
+            ui->personInfoWidget->hide();
+        }
+    }else if (ui->tabsWidget_personComputer->currentIndex() == 1){ //computer
+        if(!ui->table_Comp->selectionModel()->selectedRows().isEmpty()){
+            loadComputerInfo();
+        }else{
+            ui->computerInfo->hide();
+        }
+    }
+}
 
 void MainWindow::on_pushButton_editSelectedEntry_pressed()
 {

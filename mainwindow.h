@@ -143,6 +143,8 @@ private slots:
 
     void on_actionDeleteAllRelations_triggered();
 
+    void sideViewCheck();
+
     void on_input_searchCompType_currentIndexChanged(const QString &arg1);
 
     void on_pushButton_editSelectedEntry_pressed();
