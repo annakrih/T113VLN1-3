@@ -43,6 +43,8 @@ private slots:
 
     void on_cBY_valueChanged(int arg1);
 
+    void on_wasItBuilt_clicked(bool checked);
+
 signals:
     //function that adds new computer
     void addComputerAccepted(const QString &n, const int &t, const int &d, const int &b);

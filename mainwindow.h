@@ -49,33 +49,32 @@ private slots:
 
     void on_button_addcomp_clicked();
 
+    //calls the personDialog window:
     void addPersonDialog();
-
-    //add person icon, when pressed the add person window appears
     void editPersonDialog();
 
-    //add computer icon, when pressed the add computer window appears
+    //calls the computerDialog window:
     void addComputerDialog();
-
     void editComputerDialog();
 
-    void on_input_searchPerson_textEdited();
-
+    //shows/hides the advanced search for person
     void on_button_advSearchPerson_released();
 
-    void on_checkBox_searchFemale_released();
+    //calls searchPersonModel to update the table with the search results on these triggers:
+    void on_input_searchPerson_textEdited();
+    void on_input_searchNat_currentIndexChanged(const QString &arg1);
+    void on_input_searchBornFrom_editingFinished();
+    void on_input_searchBornTo_editingFinished();
+    void on_input_searchDiedFrom_editingFinished();
+    void on_input_searchDiedTo_editingFinished();
 
+    //calls the searchPersonModel and unchecks the other gender so only 1 gender can be checked
+    void on_checkBox_searchFemale_released();
     void on_checkBox_searchMale_released();
 
-    void on_input_searchNat_currentIndexChanged(const QString &arg1);
+    //calls searchPersonModel to update the table with the search results on these triggers:
 
-    void on_input_searchBornFrom_editingFinished();
 
-    void on_input_searchBornTo_editingFinished();
-
-    void on_input_searchDiedFrom_editingFinished();
-
-    void on_input_searchDiedTo_editingFinished();
 
     void on_searchInput_Comp_textEdited();
 

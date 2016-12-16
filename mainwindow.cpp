@@ -152,7 +152,6 @@ void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
         i.next();
         ui->input_searchNat->addItem(i.key(),i.value());
     }
-
 }
 
 void MainWindow::fillComputerTypeSearchBox(QMap<QString,int> compTypeList)

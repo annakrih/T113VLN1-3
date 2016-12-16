@@ -152,3 +152,9 @@ void ComputerDialog::on_cBY_valueChanged(int arg1)
    ui->errorMessage->setText("");
    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
+
+void ComputerDialog::on_wasItBuilt_clicked(bool wasNotBuilt)
+{
+    ui->cBY->setEnabled(!wasNotBuilt);
+    checkForm();
+}
