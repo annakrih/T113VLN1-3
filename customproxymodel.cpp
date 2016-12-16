@@ -43,9 +43,12 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
     {
         i.next();
         QModelIndex index = sourceModel()->index(sourceRow, i.key(), sourceParent);
-        if(relationColumn.contains(i.key())){
+        if(relationColumn.contains(i.key()))
+        {
             ret = (index.data().toString().toLower() == (i.value().toLower()));
-        }else{
+        }
+        else
+        {
             ret = (index.data().toString().toLower().contains(i.value().toLower()));
         }
 
