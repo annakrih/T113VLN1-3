@@ -175,6 +175,8 @@ private slots:
 
     void buttonEnabledFunct();
 
+    void on_deleteComputerRelation_released();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

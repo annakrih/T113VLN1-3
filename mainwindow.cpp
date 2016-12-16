@@ -1069,6 +1069,11 @@ void MainWindow::on_deletePersonRelation_released()
     deleteSelectedRelations();
 }
 
+void MainWindow::on_deleteComputerRelation_released()
+{
+    deleteSelectedRelations();
+}
+
 void MainWindow::deleteSelectedRelations()
 {
     int index = ui->tabsWidget_personComputer->currentIndex();
@@ -1186,3 +1191,4 @@ void MainWindow::buttonEnabledFunct()
         ui->pushButton_Revert->setEnabled(false);
     }
 }
+
