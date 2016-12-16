@@ -27,7 +27,7 @@ public:
                             QString n = "", QString t = 0, int d = 0, int b = 0, int id = 0);
 
 private slots:
-    //
+    //ok and cancel buttons
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
 
@@ -41,6 +41,8 @@ private slots:
     void on_cDY_valueChanged(int arg1);
     void on_cBY_valueChanged(int arg1);
 
+    //checks to see if user input can't be correct
+    //fx if year inputs are higher then current year or if computer was made before it was designed
     void on_cDY_editingFinished();
     void on_cBY_editingFinished();
 

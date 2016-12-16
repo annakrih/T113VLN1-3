@@ -46,7 +46,7 @@ void PersonDialog::on_buttonBox_accepted()
     int nationality = ui->personNat->itemData(ui->personNat->currentIndex()).toInt();;
     int bY = ui->personBY->value();
     int dY;
-    if(ui->personCheckDY->checkState() && ui->personBY->value() != 0)
+    if(ui->personCheckDY->checkState() && ui->personBY->value() != 0)//
     {
         dY = ui->personDY->value();
     }
@@ -74,6 +74,7 @@ void PersonDialog::fillGenderMenu(QMap<QString,int> gMap)
     ui->personGender->addItem("",0);
     QMapIterator<QString, int> i(gMap);
     i.toBack();
+    //fetching gender strings from database
     while (i.hasPrevious())
     {
         i.previous();
@@ -84,9 +85,9 @@ void PersonDialog::fillGenderMenu(QMap<QString,int> gMap)
 
 void PersonDialog::fillNationalityMenu(QMap<QString,int> natList)
 {
-
     ui->personNat->addItem("",0);
     QMapIterator<QString, int> i(natList);
+    //fetches natinality strings from database
     while (i.hasNext())
     {
         i.next();
@@ -100,21 +101,36 @@ void PersonDialog::checkForm()
     const int needed = 5;
     int count = 0;
 
-    if(ui->personName->text() != "") count++;
-    if(ui->personGender->itemData(ui->personGender->currentIndex()).toInt() != 0) count++;
-    if(ui->personNat->currentText() != "") count++;
-    if(ui->personBY->value() != 0) count++;
-    if(ui->personCheckDY->checkState() && ui->personBY->value() != 0){
+    if(ui->personName->text() != "")//name
+    {
         count++;
-    }else if(!ui->personCheckDY->checkState())
+    }
+    if(ui->personGender->itemData(ui->personGender->currentIndex()).toInt() != 0)//gender
+    {
+        count++;
+    }
+    if(ui->personNat->currentText() != "")//nationality
+    {
+        count++;
+    }
+    if(ui->personBY->value() != 0)//birth year
+    {
+        count++;
+    }
+    if(ui->personCheckDY->checkState() && ui->personBY->value() != 0)//is person dead
+    {
+        count++;
+    }
+    else if(!ui->personCheckDY->checkState())//death year
     {
         count++;
     }
 
-    if(count >= needed)
+    if(count >= needed)//enough entires to enable user to press ok
     {
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
-    }else
+    }
+    else//user has not entered enough inputs and cannot press ok
     {
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     }
@@ -123,6 +139,7 @@ void PersonDialog::checkForm()
 
 void PersonDialog::on_personName_textChanged(const QString &arg1)
 {
+    //calls capitalize string to make first char in every word capitalized
     if(arg1.length() && arg1[arg1.length() - 1] != ' ')
     {
         QString text = utils.capitalizeString(arg1);
@@ -140,7 +157,7 @@ void PersonDialog::on_personBY_editingFinished()
 {
     int bY = ui->personBY->value();
     int dY = ui->personDY->value();
-    if(bY > dY)
+    if(bY > dY)//sets death year equal to birth year if user enters a higher birth year then death year
     {
         ui->personDY->setValue(bY);
     }
@@ -151,7 +168,7 @@ void PersonDialog::on_personDY_editingFinished()
 {
     int bY = ui->personBY->value();
     int dY = ui->personDY->value();
-    if(bY > dY)
+    if(bY > dY)//sets death year equal to birth year if user sets death year lower then birth year
     {
         ui->personDY->setValue(bY);
     }
@@ -163,7 +180,8 @@ void PersonDialog::on_personCheckDY_toggled(bool checked)
     if(checked)
     {
         ui->personDY->setDisabled(false);
-    }else
+    }
+    else
     {
         ui->personDY->setDisabled(true);
     }
@@ -177,7 +195,6 @@ void PersonDialog::on_personGender_currentIndexChanged(int index)
 
 void PersonDialog::on_buttonBox_rejected()
 {
-
     emit this->personRejected();
     this->close();
 }
@@ -200,7 +217,6 @@ void PersonDialog::on_personDY_valueChanged(int arg1)
 
 void PersonDialog::on_inputPhoto_clicked()
 {
-
     fileName = QFileDialog::getOpenFileName(this, "Open File", "/home", "Images (*.png *.xpm *.jpg)");
     if (fileName.length())
     {
