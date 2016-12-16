@@ -58,14 +58,6 @@ public:
     //takes in a  model and passes it down to the Data layer, where its changes are submitted.
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 
-    //Search for person:
-    QSqlRelationalTableModel * searchPerson(QString searchInput);
-    QSqlRelationalTableModel * searchPerson(QString searchInput, QString gender, QString BYfrom, QString BYto, QString DYfrom, QString DYto, QString nationality);
-
-    //Search for computer:
-    QSqlRelationalTableModel * searchComputer(QString searchNameInput);
-    QSqlRelationalTableModel * searchComputer(QString searchNameInput, QString DYfrom, QString DYto, QString BYfrom, QString BYto, QString type);
-
     //Calls datalayer to import default data to an empty database.
     void initializeData();
 
