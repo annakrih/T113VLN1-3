@@ -720,6 +720,8 @@ void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int
     personModel->setData(personModel->index(lastPersonSelection,5),d);
     personModel->setData(personModel->index(lastPersonSelection,6),imageBlob);
     buttonEnabledFunct();
+
+    loadPersonInfo();
 }
 
 void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
