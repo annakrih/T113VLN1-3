@@ -183,7 +183,6 @@ private slots:
 
     void on_actionReset_to_default_database_triggered();
 
-
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

@@ -36,7 +36,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     loadPersonTable();
     loadCompTable();
-    loadPITable();
 
     fillNationalitySearchBox(domain.getAcceptedNationality());
     fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
@@ -390,6 +389,7 @@ void MainWindow::on_input_searchNat_currentIndexChanged(const QString &arg1)
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
     buttonEnabledFunct();
+
     if(lastPersonSelection == index.row() && !overrideTableClick)
     {
         overrideOnPersonSelectionChange = true;
@@ -468,8 +468,8 @@ void MainWindow::onCompSelectionChange(const QModelIndex &c,const QModelIndex &p
 
 void MainWindow::on_tablePI_clicked(const QModelIndex &index)
 {
-
     buttonEnabledFunct();
+
     if(lastPISelection == index.row() && !overrideTableClick)
     {
         overrideOnPISelectionChange = true;
@@ -1130,6 +1130,7 @@ void MainWindow::deleteSelectedRelations()
         {
             idToRemove.push_back(ui->tablePI->model()->index(selList[i].row(),0).data().toInt());
             ui->tablePI->hideRow(selList[i].row());
+            cout << ui->tablePI->model()->index(selList[i].row(),0).data().toInt() << " ";
         }
 
         foreach(int id, idToRemove){
@@ -1172,7 +1173,6 @@ void MainWindow::buttonEnabledFunct()
     if(index == 0)
     {
         QModelIndexList pRelSelList = ui->tablePI->selectionModel()->selectedRows();
-        cout << pRelSelList.size() << " ";
         if(pSelList.size() > 1)
         {
             ui->pushButton_editSelectedEntry->setEnabled(false);
@@ -1277,6 +1277,7 @@ void MainWindow::buttonEnabledFunct()
         ui->pushButton_Revert->setEnabled(false);
     }
 }
+
 
 void MainWindow::on_actionReset_to_default_database_triggered()
 {
