@@ -72,20 +72,14 @@ private slots:
     void on_checkBox_searchFemale_released();
     void on_checkBox_searchMale_released();
 
-    //calls searchPersonModel to update the table with the search results on these triggers:
-
-
-
-    void on_searchInput_Comp_textEdited();
-
+    //shows/hides the advanced search for computer
     void on_button_advSearchComp_released();
 
+    //calls searchComputerModel to update the table with the searchresults on these triggers:
+    void on_searchInput_Comp_textEdited();
     void on_input_searchDesignYearFrom_editingFinished();
-
     void on_input_searchDesignYearTo_editingFinished();
-
     void on_input_searchBuildYearFrom_editingFinished();
-
     void on_input_searchBuildYearTo_editingFinished();
 
     void onDialogRejected();
