@@ -28,7 +28,7 @@ private slots:
     void on_buttonBox_accepted();
 
     //emits the signal that the window has been closed, without making any changes
-    void on_buttonBox_rejected();  //when user chooses cancel
+    void on_buttonBox_rejected();  //when user clicks cancel
     void on_CRelationP_finished(); //when the user is closed
 
     //select and unselects a row in the table
@@ -37,7 +37,7 @@ private slots:
     //an event that is triggered when the selection is changed
     void onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p);
 
-    //hides the rows in the table that should not be shown
+    //hides rows in the table that should not be shown
     void hideRows(QTableView* table, QList<int> rowsToHide);
 
     //TODO

@@ -74,20 +74,24 @@ void PRelationC::searchPersonModel()
         lst.append(4);
         BYfrom = ui->input_searchBornFrom->text();
         BYto = ui->input_searchBornTo->text();
-        if(BYfrom != "" || BYto != ""){
+        if(BYfrom != "" || BYto != "")
+        {
             searchBY = "|Number|:";
             BYfrom != ""? searchBY.append(BYfrom): searchBY.append("0");
-            if(BYto != ""){
+            if(BYto != "")
+            {
                 searchBY.append(" ").append(BYto);
             }
         }
         lst.append(5);
         DYfrom = ui->input_searchDiedFrom->text();
         DYto = ui->input_searchDiedTo->text();
-        if(DYfrom != "" || DYto != ""){
+        if(DYfrom != "" || DYto != "")
+        {
             searchBY = "|Number|:";
             DYfrom != ""? searchBY.append(DYfrom): searchBY.append("0");
-            if(DYto != ""){
+            if(DYto != "")
+            {
                 searchBY.append(" ").append(DYto);
             }
         }
