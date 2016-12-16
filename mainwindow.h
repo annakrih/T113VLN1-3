@@ -7,10 +7,10 @@
 #include <string>
 #include <iostream>
 #include <QMessageBox>
-#include <QSortFilterProxyModel>
 #include <QCloseEvent>
 #include <QWidget>
 #include <QTableView>
+#include "customproxymodel.h"
 
 #include "personDialog.h"
 #include "computerdialog.h"
@@ -56,13 +56,13 @@ private slots:
 
     void on_input_searchPerson_textEdited();
 
-    void on_searchInput_Comp_textEdited();
-
     void on_button_advSearchPerson_released();
 
     void on_checkBox_searchFemale_released();
 
     void on_checkBox_searchMale_released();
+
+    void on_input_searchNat_currentIndexChanged(const QString &arg1);
 
     void on_input_searchBornFrom_editingFinished();
 
@@ -71,6 +71,8 @@ private slots:
     void on_input_searchDiedFrom_editingFinished();
 
     void on_input_searchDiedTo_editingFinished();
+
+    void on_searchInput_Comp_textEdited();
 
     void on_table_Person_clicked(const QModelIndex &index);
 
@@ -96,10 +98,7 @@ private slots:
 
     void on_actionAdd_new_computer_triggered();
 
-
     void on_actionEdit_Computer_triggered();
-
-    void on_input_searchNat_currentIndexChanged(const QString &arg1);
 
     void on_actionSave_Changes_triggered();
 
@@ -151,26 +150,6 @@ private slots:
 
     void on_pushButton_editSelectedEntry_pressed();
 
-    void on_input_searchBornFrom_textEdited(const QString &arg1);
-
-    void on_input_searchBornTo_textEdited(const QString &arg1);
-
-    void on_input_searchDiedFrom_textEdited(const QString &arg1);
-
-    void on_input_searchDiedTo_textEdited(const QString &arg1);
-
-    void on_input_searchDesignYearFrom_textEdited(const QString &arg1);
-
-    void on_input_searchDesignYearTo_textEdited(const QString &arg1);
-
-    void on_input_searchBuildYearFrom_textEdited(const QString &arg1);
-
-    void on_input_searchBuildYearTo_textEdited(const QString &arg1);
-
-    void loadRelation();
-
-    void closeEvent();
-
     void on_pushButton_Delete_released();
 
     void on_addPersonRelation_released();
@@ -183,11 +162,11 @@ private slots:
 
     void on_tabsWidget_personComputer_tabBarClicked(int index);
 
-
-
-    void clearAll();
+    void clearAllSelection();
 
     void on_pushButton_Revert_released();
+
+    void closeEvent();
 
 private:
     Ui::MainWindow *ui;
@@ -205,10 +184,10 @@ private:
     QSqlRelationalTableModel* computerModel;
     QSqlRelationalTableModel* relationModel;
 
-    QSortFilterProxyModel *proxyPersonModel = new QSortFilterProxyModel(this);
-    QSortFilterProxyModel *proxyCompModel = new QSortFilterProxyModel(this);
-    QSortFilterProxyModel *proxyPIModel = new QSortFilterProxyModel(this);
-    QSortFilterProxyModel *proxyCIModel = new QSortFilterProxyModel(this);
+    CustomProxyModel *proxyPersonModel = new CustomProxyModel(this);
+    CustomProxyModel *proxyCompModel = new CustomProxyModel(this);
+    CustomProxyModel *proxyPIModel = new CustomProxyModel(this);
+    CustomProxyModel *proxyCIModel = new CustomProxyModel(this);
 
     int currentPersonSearchIndex = 0;
     int currentCompSearchIndex = 0;
@@ -226,6 +205,7 @@ private:
     bool changesMade = 0;
 
     void searchPerson();
+    void searchPersonModel();
     void searchComp(const QString& searchInput);
 };
 

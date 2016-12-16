@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-CRelationP::CRelationP(QSortFilterProxyModel *model, QList<int> relList, int id, QWidget *parent) :
+CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CRelationP)
 {

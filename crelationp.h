@@ -1,10 +1,10 @@
 #ifndef CRELATIONP_H
 #define CRELATIONP_H
 #include "domain.h"
+#include "customproxymodel.h"
 
 #include <QDialog>
 #include <QTableView>
-#include <QSortFilterProxyModel>
 
 namespace Ui
 {
@@ -16,7 +16,7 @@ class CRelationP : public QDialog
     Q_OBJECT
 
 public:
-    explicit CRelationP(QSortFilterProxyModel* model, QList<int> relList, int id, QWidget *parent = 0);
+    explicit CRelationP(CustomProxyModel* model, QList<int> relList, int id, QWidget *parent = 0);
     ~CRelationP();
 
 signals:

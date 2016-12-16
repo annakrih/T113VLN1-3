@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QIntValidator>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,6 +8,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setStyleSheet(domain.getCssString());
+    ui->input_searchBornFrom->setValidator(new QIntValidator);
+    ui->input_searchBornTo->setValidator(new QIntValidator);
+    ui->input_searchDiedFrom->setValidator(new QIntValidator);
+    ui->input_searchDiedTo->setValidator(new QIntValidator);
+    ui->input_searchBuildYearFrom->setValidator(new QIntValidator);
+    ui->input_searchBuildYearTo->setValidator(new QIntValidator);
+    ui->input_searchDesignYearFrom->setValidator(new QIntValidator);
+    ui->input_searchDesignYearTo->setValidator(new QIntValidator);
+
     ui->personInfoWidget->setVisible(false);
     ui->computerInfo->setVisible(false);
 
@@ -20,10 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_editSelectedEntry->setEnabled(false);
     ui->actionEdit_Computer->setEnabled(false);
     ui->actionEdit_person->setEnabled(false);
-
     ui->pushButton_Delete->setEnabled(false);
     ui->actionDelete->setEnabled(false);
-
     ui->pushButton_Revert->setEnabled(false);
 
 
@@ -31,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     loadCompTable();
 
     fillNationalitySearchBox(domain.getAcceptedNationality());
-   // fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
+    fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
 
     showAdvSearchPersons = 0;
     ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
@@ -62,6 +70,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::loadPersonTable()
 {
+    QList<int> list;
+    list.append(2);
+    list.append(3);
+    proxyPersonModel->setRelationColumn(list);
     proxyPersonModel->setSourceModel(personModel);
     ui->table_Person->setModel(proxyPersonModel);
     ui->table_Person->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
@@ -78,6 +90,9 @@ void MainWindow::loadPersonTable()
 
 void MainWindow::loadCompTable()
 {
+    QList<int> list;
+    list.append(2);
+    proxyPersonModel->setRelationColumn(list);
     proxyCompModel->setSourceModel(computerModel);
     ui->table_Comp-> setModel(proxyCompModel);
     ui->table_Comp->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
@@ -140,42 +155,54 @@ void MainWindow::fillComputerTypeSearchBox(QMap<QString,int> compTypeList)
     }
 }
 
-
-void MainWindow::searchPerson()
+void MainWindow::searchPersonModel()
 {
-    QString searchInput = ui->input_searchPerson->text();
+    QList<int> lst;
+    lst.append(1);
+    QString name = ui->input_searchPerson->text();
+    QString gender = "";
+    QString nationality = "";
+    QString BYfrom = "";
+    QString DYfrom = "";
 
     if(showAdvSearchPersons)
     {
-        QString gender = "0";
-
+        lst.append(2);
         if(ui->checkBox_searchFemale->isChecked())
         {
-            gender = "2";
+            gender = "Female";
         }
         else if(ui->checkBox_searchMale->isChecked())
         {
-            gender = "1";
+            gender = "Male";
         }
-        QString BYfrom = ui->input_searchBornFrom->text();
+        lst.append(3);
+        nationality = ui->input_searchNat->currentText();
+        lst.append(4);
+        BYfrom = ui->input_searchBornFrom->text();
         QString BYto = ui->input_searchBornTo->text();
-        QString DYfrom = ui->input_searchDiedFrom->text();
+        lst.append(5);
+        DYfrom = ui->input_searchDiedFrom->text();
         QString DYto = ui->input_searchDiedTo->text();
-        QString nationality = ui->input_searchNat->itemData(ui->input_searchNat->currentIndex()).toString();
+    }
 
-        personModel = domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality);
+    proxyPersonModel->setFilterKeyColumns(lst);
+    proxyPersonModel->addFilterFixedString(1, name);
+    if(showAdvSearchPersons){
+        proxyPersonModel->addFilterFixedString(2, gender);
+        proxyPersonModel->addFilterFixedString(3, nationality);
+        proxyPersonModel->addFilterFixedString(4, BYfrom);
+        proxyPersonModel->addFilterFixedString(5, DYfrom);
     }
-    else
-    {
-        personModel = domain.searchPerson(searchInput);
-    }
-    loadPersonTable();
+    proxyPersonModel->invalidate();
+
+    ui->table_Person->hideColumn(0);
+    ui->table_Person->hideColumn(6);
 }
-
 
 void MainWindow::on_input_searchPerson_textEdited()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void MainWindow::on_button_advSearchComp_released()
@@ -253,6 +280,8 @@ void MainWindow::on_button_advSearchPerson_released()
         ui->input_searchBornTo->clear();
         ui->input_searchDiedFrom->clear();
         ui->input_searchDiedTo->clear();
+
+        ui->input_searchBornFrom->setCursorPosition(0);
     }
 
     showAdvSearchPersons = !showAdvSearchPersons;
@@ -263,23 +292,23 @@ void MainWindow::on_button_advSearchPerson_released()
 void MainWindow::on_checkBox_searchFemale_released()
 {
     ui->checkBox_searchMale->setChecked(false);
-    searchPerson();
+    searchPersonModel();
 }
 
 void MainWindow::on_checkBox_searchMale_released()
 {
     ui->checkBox_searchFemale->setChecked(false);
-    searchPerson();
+    searchPersonModel();
 }
 
 void MainWindow::on_input_searchBornFrom_editingFinished()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void MainWindow::on_input_searchBornTo_editingFinished()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &arg1)
@@ -290,17 +319,17 @@ void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &arg1
 
 void MainWindow::on_input_searchDiedFrom_editingFinished()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void MainWindow::on_input_searchDiedTo_editingFinished()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void MainWindow::on_input_searchNat_currentIndexChanged(const QString &arg1)
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
@@ -875,81 +904,6 @@ void MainWindow::on_pushButton_editSelectedEntry_pressed()
     }
 }
 
-QString aFunctionForSearching(QString arg1)
-{
-    QString searchString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            searchString += arg1[i];
-        }
-    }
-    return searchString;
-}
-
-void MainWindow::on_input_searchBornFrom_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearching(arg1);
-    ui->input_searchBornFrom->setText(newString);
-}
-
-void MainWindow::on_input_searchBornTo_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearching(arg1);
-    ui->input_searchBornTo->setText(newString);
-}
-
-void MainWindow::on_input_searchDiedFrom_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearching(arg1);
-    ui->input_searchDiedFrom->setText(newString);
-}
-
-void MainWindow::on_input_searchDiedTo_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearching(arg1);
-    ui->input_searchDiedTo->setText(newString);
-}
-
-void MainWindow::on_input_searchDesignYearFrom_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearching(arg1);
-    ui->input_searchDesignYearFrom->setText(newString);
-}
-
-void MainWindow::on_input_searchDesignYearTo_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearching(arg1);
-    ui->input_searchDesignYearTo->setText(newString);
-}
-
-void MainWindow::on_input_searchBuildYearFrom_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearching(arg1);
-    ui->input_searchBuildYearFrom->setText(newString);
-}
-
-void MainWindow::on_input_searchBuildYearTo_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearching(arg1);
-    ui->input_searchBuildYearTo->setText(newString);
-}
-
-void MainWindow::loadRelation()
-{
-
-}
-
-
 void MainWindow::closeEvent()
 {
     if(computerModel->isDirty() || personModel->isDirty())
@@ -1049,10 +1003,10 @@ void MainWindow::onAddCRelAccepted(const QList<int> &l, const int &id)
 
 void MainWindow::on_tabsWidget_personComputer_tabBarClicked(int index)
 {
-    clearAll();
+    clearAllSelection();
 }
 
-void MainWindow::clearAll()
+void MainWindow::clearAllSelection()
 {
     ui->table_Comp->selectionModel()->clearSelection();
     ui->table_Person->selectionModel()->clearSelection();

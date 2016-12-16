@@ -2,7 +2,7 @@
 #include "ui_prelationc.h"
 #include "domain.h"
 
-PRelationC::PRelationC(QSortFilterProxyModel *model, QList<int> relList, int id, QWidget *parent) :
+PRelationC::PRelationC(CustomProxyModel *model, QList<int> relList, int id, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PRelationC)
 {

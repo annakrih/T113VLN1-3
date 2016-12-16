@@ -4,8 +4,8 @@
 #include "utils.h"
 #include <QDialog>
 #include <QTableView>
-#include <QSortFilterProxyModel>
 #include "domain.h"
+#include "customproxymodel.h"
 
 namespace Ui
 {
@@ -17,7 +17,7 @@ class PRelationC : public QDialog
     Q_OBJECT
 
 public:
-    explicit PRelationC(QSortFilterProxyModel* model, QList<int> relList, int id, QWidget *parent = 0);
+    explicit PRelationC(CustomProxyModel* model, QList<int> relList, int id, QWidget *parent = 0);
     ~PRelationC();
 
 private slots:

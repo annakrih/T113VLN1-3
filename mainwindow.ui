@@ -258,7 +258,7 @@
             </size>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="tab_Persons">
             <attribute name="title">
@@ -425,8 +425,11 @@
                       <height>0</height>
                      </size>
                     </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
                     <property name="maxLength">
-                     <number>4</number>
+                     <number>32767</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -444,8 +447,11 @@
                       <height>0</height>
                      </size>
                     </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
                     <property name="maxLength">
-                     <number>4</number>
+                     <number>32767</number>
                     </property>
                     <property name="placeholderText">
                      <string> From</string>
@@ -463,8 +469,11 @@
                       <height>0</height>
                      </size>
                     </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
                     <property name="maxLength">
-                     <number>4</number>
+                     <number>32767</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -501,8 +510,11 @@
                       <height>0</height>
                      </size>
                     </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
                     <property name="maxLength">
-                     <number>4</number>
+                     <number>32767</number>
                     </property>
                     <property name="placeholderText">
                      <string> From</string>
@@ -657,8 +669,11 @@
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
                     <property name="maxLength">
-                     <number>4</number>
+                     <number>32767</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -670,8 +685,11 @@
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
                     <property name="maxLength">
-                     <number>4</number>
+                     <number>32767</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -683,8 +701,14 @@
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
                     <property name="maxLength">
-                     <number>4</number>
+                     <number>32767</number>
+                    </property>
+                    <property name="cursorPosition">
+                     <number>0</number>
                     </property>
                     <property name="placeholderText">
                      <string> From</string>
@@ -696,8 +720,11 @@
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
                     <property name="maxLength">
-                     <number>4</number>
+                     <number>32767</number>
                     </property>
                     <property name="frame">
                      <bool>true</bool>
@@ -1205,7 +1232,7 @@
      <x>0</x>
      <y>0</y>
      <width>1050</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
