@@ -17,7 +17,7 @@ class PRelationC : public QDialog
     Q_OBJECT
 
 public:
-    explicit PRelationC(CustomProxyModel* model, QList<int> relList, int id, QWidget *parent = 0);
+    explicit PRelationC(CustomProxyModel* model, QList<int> relList, int id, QMap<QString,int> natList, QWidget *parent = 0);
     ~PRelationC();
 
 private slots:
@@ -45,6 +45,10 @@ private slots:
 
     void hideRows(QTableView* table, QList<int> rowsToHide);
 
+    //if one checkBox is checked the other is unchecked and the search updated:
+    void on_checkBox_searchFemale_released();
+    void on_checkBox_searchMale_released();
+
 signals:
     void relationRejected();
     void addCRelAccepted(const QList<int> &l, const int &);
@@ -52,7 +56,10 @@ signals:
 
 private:
     Ui::PRelationC *ui;
-    void searchPerson();
+    CustomProxyModel *proxyPersonModel;
+    void searchPersonModel();
+    void fillNationalitySearchBox(QMap<QString,int> natList);
+
     int showAdvSearchPersons;
     int lastSelection;
 

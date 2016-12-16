@@ -132,6 +132,7 @@ void CRelationP::on_button_advSearchComp_released()
 
     showAdvSearchComps = !showAdvSearchComps;
     ui->frame_advSearchComp->setVisible(showAdvSearchComps);
+    searchCompModel();
 }
 
 void CRelationP::searchCompModel()

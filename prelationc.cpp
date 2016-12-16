@@ -2,13 +2,23 @@
 #include "ui_prelationc.h"
 #include "domain.h"
 
-PRelationC::PRelationC(CustomProxyModel *model, QList<int> relList, int id, QWidget *parent) :
+PRelationC::PRelationC(CustomProxyModel *model, QList<int> relList, int id, QMap<QString,int> natList, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PRelationC)
 {
     ui->setupUi(this);
+
+    ui->input_searchBornFrom->setValidator(new QIntValidator);
+    ui->input_searchBornTo->setValidator(new QIntValidator);
+    ui->input_searchDiedFrom->setValidator(new QIntValidator);
+    ui->input_searchDiedTo->setValidator(new QIntValidator);
+
     showAdvSearchPersons = 0;
     ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
+
+    fillNationalitySearchBox(domain.getAcceptedNationality());
+
+    proxyPersonModel = model;
 
     ui->buttonBox->buttons().first()->setText("Add");
     ui->table_Person->setModel(model);
@@ -27,8 +37,6 @@ PRelationC::PRelationC(CustomProxyModel *model, QList<int> relList, int id, QWid
       SIGNAL(currentRowChanged(const QModelIndex&,const QModelIndex&)),
       SLOT(onPersonSelectionChange(const QModelIndex&,const QModelIndex&))
      );
-
-    //connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick(QPoint)));
 }
 
 PRelationC::~PRelationC()
@@ -36,66 +44,94 @@ PRelationC::~PRelationC()
     delete ui;
 }
 
-void PRelationC::searchPerson()
+void PRelationC::searchPersonModel()
 {
-    QString searchInput = ui->input_searchPerson->text();
+    QList<int> lst;
+    lst.append(1);
+    QString name = ui->input_searchPerson->text();
+    QString gender = "";
+    QString nationality = "";
+    QString BYfrom = "";
+    QString DYfrom = "";
 
     if(showAdvSearchPersons)
     {
-        QString gender = "0";
-
+        lst.append(2);
         if(ui->checkBox_searchFemale->isChecked())
         {
-            gender = "2";
+            gender = "Female";
         }
         else if(ui->checkBox_searchMale->isChecked())
         {
-            gender = "1";
+            gender = "Male";
         }
-        QString BYfrom = ui->input_searchBornFrom->text();
+        lst.append(3);
+        nationality = ui->input_searchNat->currentText();
+        lst.append(4);
+        BYfrom = ui->input_searchBornFrom->text();
         QString BYto = ui->input_searchBornTo->text();
-        QString DYfrom = ui->input_searchDiedFrom->text();
+        lst.append(5);
+        DYfrom = ui->input_searchDiedFrom->text();
         QString DYto = ui->input_searchDiedTo->text();
-        QString nationality = ui->input_searchNat->itemData(ui->input_searchNat->currentIndex()).toString();
+    }
 
-        personModel = domain.searchPerson(searchInput, gender, BYfrom, BYto, DYfrom, DYto, nationality);
+    proxyPersonModel->setFilterKeyColumns(lst);
+    proxyPersonModel->addFilterFixedString(1, name);
+    if(showAdvSearchPersons){
+        proxyPersonModel->addFilterFixedString(2, gender);
+        proxyPersonModel->addFilterFixedString(3, nationality);
+        proxyPersonModel->addFilterFixedString(4, BYfrom);
+        proxyPersonModel->addFilterFixedString(5, DYfrom);
     }
-    else
-    {
-        personModel = domain.searchPerson(searchInput);
-    }
+    proxyPersonModel->invalidate();
+
+    ui->table_Person->hideColumn(0);
+    ui->table_Person->hideColumn(6);
 }
 
 void PRelationC::on_input_searchPerson_textEdited()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void PRelationC::on_input_searchBornFrom_textEdited()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void PRelationC::on_input_searchBornTo_textEdited()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void PRelationC::on_input_searchDiedFrom_textEdited()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void PRelationC::on_input_searchDiedTo_textEdited()
 {
-    searchPerson();
+    searchPersonModel();
 }
 
 void PRelationC::on_button_advSearchPerson_released()
 {
-    //ToDo
-    //showAdvSearchComps = !showAdvSearchComps;
-   // ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
+    if(showAdvSearchPersons)
+    {
+        ui->input_searchNat->setCurrentIndex(0);
+
+        ui->checkBox_searchFemale->setChecked(false);
+        ui->checkBox_searchMale->setChecked(false);
+        ui->input_searchBornFrom->clear();
+        ui->input_searchBornTo->clear();
+        ui->input_searchDiedFrom->clear();
+        ui->input_searchDiedTo->clear();
+        ui->input_searchBornFrom->setCursorPosition(0);
+    }
+
+    showAdvSearchPersons = !showAdvSearchPersons;
+    ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
+    searchPersonModel();
 }
 
 void PRelationC::on_buttonBox_accepted()
@@ -162,4 +198,28 @@ void PRelationC::hideRows(QTableView* table, QList<int> rowsToHide){
             table->showRow(i);
         }
     }
+}
+
+void PRelationC::fillNationalitySearchBox(QMap<QString,int> natList)
+{
+
+    ui->input_searchNat->addItem("",0);
+    QMapIterator<QString, int> i(natList);
+    while (i.hasNext())
+    {
+        i.next();
+        ui->input_searchNat->addItem(i.key(),i.value());
+    }
+}
+
+void PRelationC::on_checkBox_searchFemale_released()
+{
+    ui->checkBox_searchMale->setChecked(false);
+    searchPersonModel();
+}
+
+void PRelationC::on_checkBox_searchMale_released()
+{
+    ui->checkBox_searchFemale->setChecked(false);
+    searchPersonModel();
 }

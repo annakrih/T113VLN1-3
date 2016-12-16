@@ -217,6 +217,7 @@ void MainWindow::on_button_advSearchComp_released()
     }
     showAdvSearchComps = !showAdvSearchComps;
     ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
+    searchCompModel();
 }
 
 void MainWindow::searchCompModel()
@@ -282,7 +283,6 @@ void MainWindow::on_input_searchBuildYearTo_editingFinished()
 
 void MainWindow::on_button_advSearchPerson_released()
 {
-
     if(showAdvSearchPersons)
     {
         ui->input_searchNat->setCurrentIndex(0);
@@ -298,6 +298,7 @@ void MainWindow::on_button_advSearchPerson_released()
 
     showAdvSearchPersons = !showAdvSearchPersons;
     ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
+    searchPersonModel();
 }
 
 
@@ -939,12 +940,12 @@ void MainWindow::on_addPersonRelation_released()
 
 void MainWindow::on_addComputerRelation_released()
 {
-    QMap<QString, int> tList = domain.getAcceptedNationality();
+    QMap<QString, int> natList = domain.getAcceptedNationality();
 
     int id = ui->table_Comp->model()->index(lastCompSelection,0).data().toInt();
     QList<int> relList = getComputerRelationId(id);
 
-    cRelDialogWindow = new PRelationC(proxyPersonModel, relList, id, this);
+    cRelDialogWindow = new PRelationC(proxyPersonModel, relList, id, natList, this);
 
     QObject::connect(cRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(cRelDialogWindow,

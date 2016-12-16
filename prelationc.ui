@@ -80,6 +80,9 @@
           <property name="enabled">
            <bool>true</bool>
           </property>
+          <property name="maxLength">
+           <number>4</number>
+          </property>
           <property name="placeholderText">
            <string> From</string>
           </property>
@@ -89,6 +92,9 @@
          <widget class="QLineEdit" name="input_searchDiedTo">
           <property name="enabled">
            <bool>true</bool>
+          </property>
+          <property name="maxLength">
+           <number>4</number>
           </property>
           <property name="placeholderText">
            <string> To</string>
@@ -100,6 +106,9 @@
           <property name="enabled">
            <bool>true</bool>
           </property>
+          <property name="maxLength">
+           <number>4</number>
+          </property>
           <property name="placeholderText">
            <string> From</string>
           </property>
@@ -109,6 +118,9 @@
          <widget class="QLineEdit" name="input_searchBornTo">
           <property name="enabled">
            <bool>true</bool>
+          </property>
+          <property name="maxLength">
+           <number>4</number>
           </property>
           <property name="placeholderText">
            <string> To</string>
