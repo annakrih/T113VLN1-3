@@ -985,6 +985,7 @@ void MainWindow::on_actionDeleteAllPersons_triggered()
         personModel = domain.deletePersonTable();
         loadPersonTable();
     }
+    buttonEnabledFunct();
 }
 
 void MainWindow::on_actionDeleteAllComputers_triggered()
@@ -998,6 +999,7 @@ void MainWindow::on_actionDeleteAllComputers_triggered()
         computerModel = domain.deleteComputerTable();
         loadCompTable();
     }
+    buttonEnabledFunct();
 }
 
 void MainWindow::on_actionDeleteAllRelations_triggered()
@@ -1011,6 +1013,7 @@ void MainWindow::on_actionDeleteAllRelations_triggered()
         domain.deleteRelationTable();
         relationModel = domain.deleteRelationTable();
     }
+    buttonEnabledFunct();
 }
 
 
@@ -1068,6 +1071,8 @@ void MainWindow::on_addPersonRelation_released()
     pRelDialogWindow->setEnabled(true);
     pRelDialogWindow->show();
     changesMade = 1;
+
+    buttonEnabledFunct();
 }
 
 void MainWindow::on_addComputerRelation_released()
@@ -1104,6 +1109,7 @@ void MainWindow::onAddPRelAccepted(const QList<int> &l, const int &id)
     QList<int> relList = getPersonRelationId(id);
     hideAllRowsExcept(ui->tablePI, relList);
 
+    buttonEnabledFunct();
 }
 
 void MainWindow::onAddCRelAccepted(const QList<int> &l, const int &id)
@@ -1119,6 +1125,7 @@ void MainWindow::onAddCRelAccepted(const QList<int> &l, const int &id)
     QList<int> relList = getComputerRelationId(id);
     hideAllRowsExcept(ui->tableCI, relList);
 
+    buttonEnabledFunct();
 }
 
 void MainWindow::on_tabsWidget_personComputer_tabBarClicked(int index)
@@ -1325,6 +1332,7 @@ void MainWindow::buttonEnabledFunct()
 
     if(relationModel->isDirty() || computerModel->isDirty() || personModel->isDirty())
     {
+        cout << "test";
         ui->pushButton_Revert->setEnabled(true);
         ui->actionSave_Changes->setEnabled(true);
     }
@@ -1361,6 +1369,8 @@ void MainWindow::on_actionReset_to_default_database_triggered()
         relationModel = domain.getPCRelationModel();
         loadPersonTable();
         loadCompTable();
+
+        buttonEnabledFunct();
     }
 }
 
