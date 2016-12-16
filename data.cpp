@@ -39,6 +39,7 @@ void Data::importSchema()
             }
             query.finish();
         }
+        initializeDataTypes();
         initializeData();
     }
 
@@ -194,18 +195,22 @@ int Data::getNextAutoId(QString table)
 
 void Data::initializeData()
 {
-    QFile gender(initialGender);
-    QFile nationality(initialNationality);
     QFile person(initialPerson);
     QFile computeryType(initialComputerType);
     QFile computer(initialComputer);
     QFile personComputer(initialPerson_Computer);
-    importCSV("Person_Gender", gender);
-    importCSV("Person_Nationality", nationality);
     importCSV("Person", person);
-    importCSV("computer_type", computeryType);
     importCSV("computer", computer);
     importCSV("person_computer", personComputer);
+}
+
+void Data::initializeDataTypes(){
+    QFile gender(initialGender);
+    QFile nationality(initialNationality);
+    QFile computeryType(initialComputerType);
+    importCSV("Person_Gender", gender);
+    importCSV("Person_Nationality", nationality);
+    importCSV("computer_type", computeryType);
 }
 
 void Data::createPCRelation(int p, int c)

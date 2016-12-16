@@ -580,6 +580,8 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     QByteArray image = file->readAll();
     QString imageBlob = QString(image.toBase64());
 
+    cout << nat << " ";
+
     QSqlRecord record = personModel->record();
     record.setValue(0,nextPersonId);
     record.setValue(1,n);
