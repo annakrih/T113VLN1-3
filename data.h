@@ -82,7 +82,6 @@ public:
     void initializePersons();
     void initializeComputers();
     void initializeRelations();
-
 };
 
 #endif // DATA_H

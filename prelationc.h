@@ -9,7 +9,7 @@
 
 namespace Ui
 {
-class PRelationC;
+    class PRelationC;
 }
 
 class PRelationC : public QDialog
