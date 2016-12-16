@@ -323,6 +323,11 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>cName</tabstop>
+  <tabstop>cType</tabstop>
+  <tabstop>cDY</tabstop>
+  <tabstop>cBY</tabstop>
+  <tabstop>wasItBuilt</tabstop>
   <tabstop>hiddenId</tabstop>
  </tabstops>
  <resources/>
