@@ -177,13 +177,11 @@ private slots:
 
     void buttonEnabledFunct();
 
-<<<<<<< HEAD
     void on_tablePI_clicked(const QModelIndex &index);
-=======
+
     void on_deleteComputerRelation_released();
 
     void on_actionReset_to_default_database_triggered();
->>>>>>> origin/master
 
 private:
     Ui::MainWindow *ui;

@@ -1276,9 +1276,6 @@ void MainWindow::buttonEnabledFunct()
     }
 }
 
-<<<<<<< HEAD
-
-=======
 void MainWindow::on_actionReset_to_default_database_triggered()
 {
     QString promptTitle = "Reset to default database";
@@ -1305,4 +1302,3 @@ void MainWindow::on_actionReset_to_default_database_triggered()
         loadCompTable();
     }
 }
->>>>>>> origin/master
