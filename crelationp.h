@@ -53,7 +53,7 @@ private:
     int lastSelection;
     int personId;
 
-    CustomProxyModel * CompProxyModel;
+    CustomProxyModel * proxyCompModel;
 
     bool showAdvSearchComps;
     bool overrideTableClick = 0;

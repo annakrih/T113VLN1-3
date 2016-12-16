@@ -16,7 +16,7 @@ CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QMap
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
 
-    CompProxyModel = model;
+    proxyCompModel = model;
 
     hideRows(ui->table_Comp,relList);
 
@@ -152,6 +152,8 @@ void CRelationP::searchCompModel()
     QString BYfrom = "";
     QString BYto = "";
     QString compType = "";
+    QString searchDY = "";
+    QString searchBY = "";
 
     if(showAdvSearchComps)
     {
@@ -160,20 +162,33 @@ void CRelationP::searchCompModel()
         lst.append(3);
         DYfrom = ui->input_searchDesignYearFrom->text();
         DYto = ui->input_searchDesignYearTo->text();
+        if(DYfrom != "" || DYto != ""){
+            searchDY = "|Number|:";
+            DYfrom != ""? searchDY.append(DYfrom): searchDY.append("0");
+            if(DYto != ""){
+                searchDY.append(" ").append(DYto);
+            }
+        }
         lst.append(4);
         BYfrom = ui->input_searchBuildYearFrom->text();
         BYto = ui->input_searchBuildYearTo->text();
+        if(BYfrom != "" || BYto != ""){
+            searchBY = "|Number|:";
+            BYfrom != ""? searchBY.append(BYfrom): searchBY.append("0");
+            if(BYto != ""){
+                searchBY.append(" ").append(BYto);
+            }
+        }
     }
 
-    CompProxyModel->setFilterKeyColumns(lst);
-    CompProxyModel->addFilterFixedString(1, name);
-    if(showAdvSearchComps)
-    {
-        CompProxyModel->addFilterFixedString(2, compType);
-        CompProxyModel->addFilterFixedString(3, DYfrom);
-        CompProxyModel->addFilterFixedString(4, BYfrom);
+    proxyCompModel->setFilterKeyColumns(lst);
+    proxyCompModel->addFilterFixedString(1, name);
+    if(showAdvSearchComps){
+        proxyCompModel->addFilterFixedString(2, compType);
+        proxyCompModel->addFilterFixedString(3, searchDY);
+        proxyCompModel->addFilterFixedString(4, searchBY);
     }
-    CompProxyModel->invalidate();
+    proxyCompModel->invalidate();
 
     ui->table_Comp->hideColumn(0);
 }
