@@ -942,7 +942,6 @@ void MainWindow::loadPersonInfo ()
     loadPITable();
     hideAllRowsExcept(ui->tablePI, relList);
 
-
     ui->personInfoWidget->show();
 }
 
@@ -1041,10 +1040,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         if(prompt == QMessageBox::Yes)
         {
             saveChanges();
-        }
-        else if(prompt == QMessageBox::No)
-        {
-
         }
     }
 }
