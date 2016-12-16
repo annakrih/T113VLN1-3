@@ -1167,3 +1167,8 @@ void MainWindow::buttonEnabledFunct()
         ui->pushButton_Revert->setEnabled(false);
     }
 }
+
+void MainWindow::on_actionReset_to_default_database_triggered()
+{
+    //Delete
+}

@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Computer History</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -1103,7 +1103,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="">
+             <widget class="QFrame" name="frame">
               <layout class="QGridLayout" name="computerInfoBoard">
                <item row="2" column="1">
                 <widget class="QLabel" name="label_by_ci">
@@ -1260,7 +1260,10 @@
     <addaction name="actionAdd_new_person"/>
     <addaction name="actionAdd_new_computer"/>
     <addaction name="actionAdd_new_relation"/>
+    <addaction name="separator"/>
     <addaction name="actionSave_Changes"/>
+    <addaction name="separator"/>
+    <addaction name="actionReset_to_default_database"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -1331,6 +1334,11 @@
   <action name="actionAdd_new_relation">
    <property name="text">
     <string>Add new relation</string>
+   </property>
+  </action>
+  <action name="actionReset_to_default_database">
+   <property name="text">
+    <string>Reset to default database</string>
    </property>
   </action>
  </widget>

@@ -175,6 +175,8 @@ private slots:
 
     void buttonEnabledFunct();
 
+    void on_actionReset_to_default_database_triggered();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
