@@ -169,6 +169,12 @@ private slots:
 
     void closeEvent();
 
+    void on_deletePersonRelation_released();
+
+    void deleteSelectedRelations();
+
+    void isDirtyFunct();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;

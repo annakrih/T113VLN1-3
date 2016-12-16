@@ -906,7 +906,7 @@ void MainWindow::on_pushButton_editSelectedEntry_pressed()
 
 void MainWindow::closeEvent()
 {
-    if(computerModel->isDirty() || personModel->isDirty())
+    if(computerModel->isDirty() || personModel->isDirty() || relationModel->isDirty())
     {
         QString promptTitle = "Unsaved changes";
         QString promptQuestion = "Detected unsaved changes to database, do you want to save them";
@@ -1017,6 +1017,9 @@ void MainWindow::clearAllSelection()
     ui->pushButton_editSelectedEntry->setEnabled(false);
     ui->actionEdit_Computer->setEnabled(false);
     ui->actionEdit_person->setEnabled(false);
+
+    ui->personInfoWidget->setVisible(false);
+    ui->computerInfo->setVisible(false);
 }
 
 void MainWindow::on_pushButton_Revert_released()
@@ -1024,3 +1027,36 @@ void MainWindow::on_pushButton_Revert_released()
     revertChanges();
     ui->pushButton_Revert->setEnabled(false);
 }
+
+void MainWindow::on_deletePersonRelation_released()
+{
+    deleteSelectedRelations();
+}
+
+void MainWindow::deleteSelectedRelations()
+{
+    int index = ui->tabsWidget_personComputer->currentIndex();
+
+    if(index == 0)//person
+    {
+        QModelIndexList selList = ui->tablePI->selectionModel()->selectedRows();
+        for(int i = 0; i < selList.size(); i++)
+        {
+            ui->tablePI->hideRow(selList[i].row());
+            QModelIndex realRow = proxyPIModel->mapToSource(selList[i]);
+            relationModel->removeRow(realRow.row());
+        }
+    }
+    else if(index == 1)//computer
+    {
+        QModelIndexList selList = ui->tableCI->selectionModel()->selectedRows();
+        for(int i = 0; i < selList.size(); i++)
+        {
+            ui->tableCI->hideRow(selList[i].row());
+            QModelIndex realRow = proxyCIModel->mapToSource(selList[i]);
+            relationModel->removeRow(realRow.row());
+        }
+    }
+}
+
+

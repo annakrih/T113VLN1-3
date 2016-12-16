@@ -1021,7 +1021,7 @@
               <item>
                <widget class="QPushButton" name="deletePersonRelation">
                 <property name="enabled">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="toolTip">
                  <string>Delete Relation</string>
