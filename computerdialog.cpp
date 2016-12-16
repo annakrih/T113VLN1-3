@@ -64,19 +64,6 @@ void ComputerDialog::on_buttonBox_accepted()
     this->close();
 }
 
-void ComputerDialog::on_wasItBuilt_toggled(bool checked)
-{
-    if(!checked)//disabling build year entry if computer wasn't built
-    {
-        ui->cBY->setDisabled(false);
-    }
-    else
-    {
-        ui->cBY->setDisabled(true);
-    }
-    checkForm();
-}
-
 void ComputerDialog::checkForm()
 {
     bool entriesValid=1;
