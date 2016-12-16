@@ -63,7 +63,6 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
             ret = index.data().toInt() >= number.at(0).toInt();
             if(number.size() > 1)
             {
-                std::cout << ret;
                 ret = index.data().toInt() >= number.at(0).toInt() && index.data().toInt() <= number.at(1).toInt();
             }
         }

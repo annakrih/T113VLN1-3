@@ -29,7 +29,7 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/prelationc.cpp \
     $$PWD/crelationp.cpp \
-    customproxymodel.cpp
+    $$PWD/customproxymodel.cpp
 
 HEADERS += \
     $$PWD/domain.h \
@@ -40,7 +40,7 @@ HEADERS += \
     $$PWD/mainwindow.h \
     $$PWD/prelationc.h \
     $$PWD/crelationp.h \
-    customproxymodel.h
+    $$PWD/customproxymodel.h
 
 FORMS += \
     $$PWD/personDialog.ui \

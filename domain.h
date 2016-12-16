@@ -51,10 +51,11 @@ public:
     //passes a message down to data layer for deleting all instances in relation table
     QSqlRelationalTableModel * deleteRelationTable();
 
-    //get next ID for added person/computer to make relation
+    //get next autoIncrement ID for added person/computer, we do this so we can give it a valid ID right away
+    //this way we can add relation right away, without saving to the database first.
     int getNextAutoId(QString table);
 
-    //takes in a  model and passes it down to the Data layer, where its changes get submitted.
+    //takes in a  model and passes it down to the Data layer, where its changes are submitted.
     QSqlRelationalTableModel * submitDatabaseChanges(QSqlRelationalTableModel* model);
 
     //Search for person:
@@ -68,7 +69,7 @@ public:
     //Calls datalayer to import default data to an empty database.
     void initializeData();
 
-    //get css string
+    //get css from stylesheet.css file
     QString getCssString();
 };
 

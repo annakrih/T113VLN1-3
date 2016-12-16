@@ -31,6 +31,7 @@ private slots:
     void on_input_searchDiedFrom_textEdited();
     void on_input_searchDiedTo_textEdited();
     //if one checkBox is checked the other is unchecked and the search updated:
+    //this allows us to uncheck both boxes, unlike radio buttons where its one or the other.
     void on_checkBox_searchFemale_released();
     void on_checkBox_searchMale_released();
 
@@ -51,19 +52,33 @@ private slots:
     void hideRows(QTableView* table, QList<int> rowsToHide);
 
 signals:
+    //signals used to communicate with the main window.
+
+    //relationRejected means, no relations added, (cancel or x in the corner)
     void relationRejected();
+
+    //addCRelAccepted sends back parameters to the main window, a list of relation id's to add, and the id to add it to.
     void addCRelAccepted(const QList<int> &l, const int &);
 
 private:
     Ui::PRelationC *ui;
     CustomProxyModel *proxyPersonModel;
+
+    //searchPersonModel gets all the search inputs (name, type etc...)
+    //and runs it through the customProxyModel filter
     void searchPersonModel();
+
+    //fillNationalitySearchBox takes in a QMap of nationalities, (countryName, nationalityId)
+    //name is for the user, id for the database.
     void fillNationalitySearchBox(QMap<QString,int> natList);
 
-    int showAdvSearchPersons;
-    int lastSelection;
+    //id of computer being added to. (relations)
     int computerId;
 
+    bool showAdvSearchPersons = 0;
+
+    //variables used in our table mouse selection, allows for click to deselect.
+    int lastSelection;
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;
 };

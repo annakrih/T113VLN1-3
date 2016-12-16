@@ -13,7 +13,6 @@ PRelationC::PRelationC(CustomProxyModel *model, QList<int> relList, int id, QMap
     ui->input_searchDiedFrom->setValidator(new QIntValidator);
     ui->input_searchDiedTo->setValidator(new QIntValidator);
 
-    showAdvSearchPersons = 0;
     ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
 
     fillNationalitySearchBox(natList);

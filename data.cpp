@@ -283,7 +283,7 @@ void Data::importCSV(QString tableName, QFile & csvFile)
 QString Data::importCss()
 {
     //function to get css file
-    QFile file(utils.workingDir+"stylefile.css");
+    QFile file(utils.workingDir+"/stylesheet/stylefile.css");
     file.open(QFile::ReadOnly);
     QString StyleFile = QTextStream(&file).readAll();
 
