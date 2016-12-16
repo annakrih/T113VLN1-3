@@ -175,6 +175,8 @@ private slots:
 
     void buttonEnabledFunct();
 
+    void on_deleteComputerRelation_released();
+
     void on_actionReset_to_default_database_triggered();
 
 private:
