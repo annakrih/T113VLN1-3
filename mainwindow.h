@@ -169,8 +169,6 @@ private slots:
 
     void closeEvent();
 
-    void on_input_searchBuildYearTo_editingFinished();
-
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
@@ -207,9 +205,8 @@ private:
 
     bool changesMade = 0;
 
-    void searchPerson();
     void searchPersonModel();
-    void searchComp(const QString& searchInput);
+    void searchCompModel();
 };
 
 #endif // MAINWINDOW_H

@@ -220,51 +220,65 @@ void MainWindow::on_button_advSearchComp_released()
     ui->widget_advancedSearchComp->setVisible(showAdvSearchComps);
 }
 
-void MainWindow::searchComp()
+void MainWindow::searchCompModel()
 {
-    QString searchNameInput = ui->searchInput_Comp->text();
+    QList<int> lst;
+    lst.append(1);
+    QString name = ui->searchInput_Comp->text();
+    QString DYfrom = "";
+    QString DYto = "";
+    QString BYfrom = "";
+    QString BYto = "";
+    QString compType = "";
 
     if(showAdvSearchComps)
     {
-        QString DYfrom = ui->input_searchDesignYearFrom->text();
-        QString DYto = ui->input_searchDesignYearTo->text();
-        QString BYfrom = ui->input_searchBuildYearFrom->text();
-        QString BYto = ui->input_searchBuildYearTo->text();
-        QString compType = ui->input_searchCompType->itemData(ui->input_searchCompType->currentIndex()).toString();
+        lst.append(2);
+        compType = ui->input_searchCompType->currentText();
+        lst.append(3);
+        DYfrom = ui->input_searchDesignYearFrom->text();
+        DYto = ui->input_searchDesignYearTo->text();
+        lst.append(4);
+        BYfrom = ui->input_searchBuildYearFrom->text();
+        BYto = ui->input_searchBuildYearTo->text();
+    }
 
-        computerModel= domain.searchComputer(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
+    proxyCompModel->setFilterKeyColumns(lst);
+    proxyCompModel->addFilterFixedString(1, name);
+    if(showAdvSearchComps){
+        proxyCompModel->addFilterFixedString(2, compType);
+        proxyCompModel->addFilterFixedString(3, DYfrom);
+        proxyCompModel->addFilterFixedString(4, BYfrom);
     }
-    else
-    {
-        computerModel = domain.searchComputer(searchNameInput);
-    }
-    loadCompTable();
+    proxyCompModel->invalidate();
+
+    ui->table_Person->hideColumn(0);
 }
 
 
 void MainWindow::on_searchInput_Comp_textEdited()
 {
-    searchComp();
+    searchCompModel();
 }
 
 void MainWindow::on_input_searchDesignYearFrom_editingFinished()
 {
-    searchComp();
+    searchCompModel();
 }
 
 void MainWindow::on_input_searchDesignYearTo_editingFinished()
 {
-    searchComp();
+
 }
 
 void MainWindow::on_input_searchBuildYearFrom_editingFinished()
 {
-    searchComp();
+    searchCompModel();
 }
 
 void MainWindow::on_input_searchBuildYearTo_editingFinished()
 {
-    searchComp();
+    searchCompModel();
 }
 
 void MainWindow::on_button_advSearchPerson_released()
@@ -280,7 +294,6 @@ void MainWindow::on_button_advSearchPerson_released()
         ui->input_searchBornTo->clear();
         ui->input_searchDiedFrom->clear();
         ui->input_searchDiedTo->clear();
-
         ui->input_searchBornFrom->setCursorPosition(0);
     }
 
@@ -313,7 +326,7 @@ void MainWindow::on_input_searchBornTo_editingFinished()
 
 void MainWindow::on_input_searchCompType_currentIndexChanged(const QString &arg1)
 {
-    searchComp();
+    searchCompModel();
 }
 
 
