@@ -1076,21 +1076,40 @@ void MainWindow::deleteSelectedRelations()
     if(index == 0)//person
     {
         QModelIndexList selList = ui->tablePI->selectionModel()->selectedRows();
+        QList<int> idToRemove;
         for(int i = 0; i < selList.size(); i++)
         {
+            idToRemove.push_back(ui->tablePI->model()->index(selList[i].row(),0).data().toInt());
             ui->tablePI->hideRow(selList[i].row());
-            QModelIndex realRow = proxyPIModel->mapToSource(selList[i]);
-            relationModel->removeRow(realRow.row());
+            cout << ui->tablePI->model()->index(selList[i].row(),0).data().toInt() << " ";
+        }
+
+        foreach(int id, idToRemove){
+
+            for(int i = 0; i < relationModel->rowCount(); i++){
+                if(relationModel->index(i,2).data().toInt() == id){
+                    relationModel->removeRow(i);
+                }
+            }
         }
     }
     else if(index == 1)//computer
     {
         QModelIndexList selList = ui->tableCI->selectionModel()->selectedRows();
+        QList<int> idToRemove;
         for(int i = 0; i < selList.size(); i++)
         {
+            idToRemove.push_back(ui->tableCI->model()->index(selList[i].row(),0).data().toInt());
             ui->tableCI->hideRow(selList[i].row());
-            QModelIndex realRow = proxyCIModel->mapToSource(selList[i]);
-            relationModel->removeRow(realRow.row());
+            cout << ui->tableCI->model()->index(selList[i].row(),0).data().toInt() << " ";
+        }
+
+        foreach(int id, idToRemove){
+            for(int i = 0; i < relationModel->rowCount(); i++){
+                if(relationModel->index(i,1).data().toInt() == id){
+                    relationModel->removeRow(i);
+                }
+            }
         }
     }
 }

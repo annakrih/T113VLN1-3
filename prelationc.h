@@ -61,12 +61,7 @@ private:
 
     int showAdvSearchPersons;
     int lastSelection;
-
-    QSqlRelationalTableModel* personModel;
-
     int computerId;
-
-    Domain domain;
 
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;

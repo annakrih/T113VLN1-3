@@ -16,12 +16,12 @@ PRelationC::PRelationC(CustomProxyModel *model, QList<int> relList, int id, QMap
     showAdvSearchPersons = 0;
     ui->widget_advancedSearchPerson->setVisible(showAdvSearchPersons);
 
-    fillNationalitySearchBox(domain.getAcceptedNationality());
+    fillNationalitySearchBox(natList);
 
     proxyPersonModel = model;
 
     ui->buttonBox->buttons().first()->setText("Add");
-    ui->table_Person->setModel(model);
+    ui->table_Person->setModel(proxyPersonModel);
     ui->table_Person->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_Person->verticalHeader()->hide();
