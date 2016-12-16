@@ -54,12 +54,16 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
         QModelIndex id = sourceModel()->index(sourceRow, 0, sourceParent);
         if(relationColumn.contains(i.key()))
         {
+            //if column is a foreign key, use exact search
             ret = (index.data().toString().toLower() == (i.value().toLower())) || i.value() == "";
         }else
         {
+            //if column is not foreign key, use "like" search
             ret = (index.data().toString().toLower().contains(i.value().toLower()));
         }
 
+        //special case to search numbers to and from.
+        //|Number|: is prepended to all searches in our program that use from/to search.
         if(i.value().startsWith("|Number|:"))
         {
             QString numbers = i.value();
@@ -72,6 +76,7 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
             }
         }
 
+        //if row has id in dontShow list, dont show it! forced false.
         if(dontShow.contains(id.data().toInt())){
            ret = false;
         }
@@ -82,6 +87,8 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
         }
         else
         {
+            //if column is a relationColumn/foreign key .. and it's empty, then it has been deleted.
+            //abuse a quirk of QT to detect deleted row. and dont reshow it's broken form.
             for(int i = 0; i < relationColumn.size(); i++)
             {
                 QString data = sourceModel()->index(sourceRow, relationColumn[i], sourceParent).data().toString();
