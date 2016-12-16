@@ -1383,3 +1383,4 @@ void MainWindow::on_actionDelete_relation_triggered()
     }
     buttonEnabledFunct();
 }
+//
