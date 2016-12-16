@@ -34,17 +34,20 @@ private slots:
     //closing window
     void on_ComputerDialog_finished(int result);    
 
-    //calls a function that checks if all inputs have been filled
+    //triggers that call a function that checks if all required inputs have been filled and are valid
     void on_cName_textChanged(const QString &arg1);
     void on_cType_currentIndexChanged(const QString &arg1);
-
     void on_cBY_editingFinished();
     void on_cDY_editingFinished();
 
-    void on_cBY_valueChanged(int arg1);
-
+    //disables the build year input if checked, and enables it when unchecked.
+    //Then triggers a function that checks if all required inputs are valid
     void on_wasItBuilt_clicked(bool checked);
 
+    //disables the OK option while the build year is being edited and
+    //clears the error message if there was one.
+    //after editing of buildyear is finished it is checked if the input is valid.
+    void on_cBY_valueChanged(int arg1);
 signals:
     //function that adds new computer
     void addComputerAccepted(const QString &n, const int &t, const int &d, const int &b);
