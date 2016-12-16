@@ -251,7 +251,7 @@ void MainWindow::searchCompModel()
     }
     proxyCompModel->invalidate();
 
-    ui->table_Person->hideColumn(0);
+    ui->table_Comp->hideColumn(0);
 }
 
 
