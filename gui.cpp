@@ -4,7 +4,7 @@
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Gui)
-{
+    {
     ui->setupUi(this);
     ui->tableView->setColumnHidden(0,true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
