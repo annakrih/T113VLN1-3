@@ -36,20 +36,18 @@ private slots:
 
     void hideRows(QTableView* table, QList<int> rowsToHide);
 
-    void on_button_advSearchComp_released();
-
     void searchComp();
 
     void loadCompTable();
 
-    void on_input_searchDesignYearFrom_editingFinished();
+    //shows advanced search when the advSearchComp-button is released
+    void on_button_advSearchComp_released();
 
-    void on_input_searchDesignYearTo_editingFinished();
-
-    void on_input_searchBuildYearFrom_editingFinished();
-
-    void on_input_searchBuildYearTo_editingFinished();
-
+    //Calls the search function to update the computer table after editing is finished in:
+    void on_input_searchDesignYearFrom_editingFinished(); //design year from input
+    void on_input_searchDesignYearTo_editingFinished();   //design year to input
+    void on_input_searchBuildYearFrom_editingFinished();  //build year from input
+    void on_input_searchBuildYearTo_editingFinished();    //build year to input
 
 private:
     Ui::CRelationP *ui;
