@@ -169,6 +169,8 @@ private slots:
 
     void closeEvent();
 
+    void on_input_searchBuildYearTo_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     PersonDialog *personDialogWindow;
