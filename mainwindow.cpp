@@ -661,11 +661,6 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
 {
     this->setEnabled(true);
 
-    QFile* file = new QFile(imagePlace);
-    file->open(QIODevice::ReadOnly);
-    QByteArray image = file->readAll();
-    QString imageBlob = QString(image.toBase64());
-
     QSqlRecord record = personModel->record();
     record.setValue(0,nextPersonId);
     record.setValue(1,n);
@@ -673,9 +668,16 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     record.setValue(3,nat);
     record.setValue(4,b);
     record.setValue(5,d);
-    record.setValue(6,imageBlob);
-    personModel->insertRecord(-1,record);
 
+    if(imagePlace.size()){
+        QFile* file = new QFile(imagePlace);
+        file->open(QIODevice::ReadOnly);
+        QByteArray image = file->readAll();
+        QString imageBlob = QString(image.toBase64());
+        record.setValue(6,imageBlob);
+    }
+
+    personModel->insertRecord(-1,record);
     nextPersonId++;
 
     ui->tabsWidget_personComputer->setCurrentIndex(0);
@@ -1353,7 +1355,6 @@ void MainWindow::buttonEnabledFunct()
 
     if(relationModel->isDirty() || computerModel->isDirty() || personModel->isDirty())
     {
-        cout << "test";
         ui->pushButton_Revert->setEnabled(true);
         ui->actionSave_Changes->setEnabled(true);
     }
