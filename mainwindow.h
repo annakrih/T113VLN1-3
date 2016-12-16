@@ -169,14 +169,11 @@ private slots:
 
     void closeEvent();
 
-<<<<<<< HEAD
     void on_deletePersonRelation_released();
 
     void deleteSelectedRelations();
 
     void buttonEnabledFunct();
-=======
->>>>>>> origin/master
 
 private:
     Ui::MainWindow *ui;
