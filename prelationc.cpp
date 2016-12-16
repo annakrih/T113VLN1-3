@@ -95,7 +95,8 @@ void PRelationC::searchPersonModel()
 
     proxyPersonModel->setFilterKeyColumns(lst);
     proxyPersonModel->addFilterFixedString(1, name);
-    if(showAdvSearchPersons){
+    if(showAdvSearchPersons)
+    {
         proxyPersonModel->addFilterFixedString(2, gender);
         proxyPersonModel->addFilterFixedString(3, nationality);
         proxyPersonModel->addFilterFixedString(4, searchBY);
@@ -156,7 +157,8 @@ void PRelationC::on_buttonBox_accepted()
     QModelIndexList selList = ui->table_Person->selectionModel()->selectedRows();
     QList<int> idList;
 
-    for(int i = 0; i < selList.size(); i++){
+    for(int i = 0; i < selList.size(); i++)
+    {
         int row = selList[i].row();
         idList.push_back(ui->table_Person->model()->index(row,0).data().toInt());
     }
@@ -184,7 +186,8 @@ void PRelationC::on_table_Person_clicked(const QModelIndex &index)
         lastSelection = -1;
         overrideOnSelectionChange = false;
 
-    }else if(!overrideTableClick)
+    }
+    else if(!overrideTableClick)
     {
         int index = ui->table_Person->currentIndex().row();
         lastSelection = index;
@@ -204,12 +207,16 @@ void PRelationC::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
 
 void PRelationC::hideRows(QTableView* table, QList<int> rowsToHide){
 
-    for(int i = 0; i < table->model()->rowCount(); i++ ){
+    for(int i = 0; i < table->model()->rowCount(); i++ )
+    {
         int id = table->model()->index(i,0).data().toInt();
 
-        if(rowsToHide.contains(id)){
+        if(rowsToHide.contains(id))
+        {
             table->hideRow(i);
-        }else{
+        }
+        else
+        {
             table->showRow(i);
         }
     }
