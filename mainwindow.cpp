@@ -1170,7 +1170,13 @@ void MainWindow::buttonEnabledFunct()
 
 void MainWindow::on_actionReset_to_default_database_triggered()
 {
-    domain.deletePersonTable();
-    domain.deleteComputerTable();
+    personModel = domain.deletePersonTable();
+    computerModel = domain.deleteComputerTable();
+
     domain.initializeData();
+    personModel = domain.getPersonModel();
+    computerModel = domain.getComputerModel();
+    relationModel = domain.getPCRelationModel();
+    loadPersonTable();
+    loadCompTable();
 }
