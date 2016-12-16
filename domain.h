@@ -65,6 +65,9 @@ public:
     QSqlRelationalTableModel * searchComputer(QString searchNameInput);
     QSqlRelationalTableModel * searchComputer(QString searchNameInput, QString DYfrom, QString DYto, QString BYfrom, QString BYto, QString type);
 
+    //Calls datalayer to import default data to an empty database.
+    void initializeData();
+
     //get css string
     QString getCssString();
 };

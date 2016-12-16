@@ -70,7 +70,6 @@ void CRelationP::on_CRelationP_finished()
 
 void CRelationP::on_table_Comp_clicked(const QModelIndex &index)
 {
-
     if(lastSelection == index.row() && !overrideTableClick)
     {
         overrideOnSelectionChange = true;
@@ -99,7 +98,8 @@ void CRelationP::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
 void CRelationP::hideRows(QTableView* table, QList<int> rowsToHide)
 {
 
-    for(int i = 0; i < table->model()->rowCount(); i++ ){
+    for(int i = 0; i < table->model()->rowCount(); i++ )
+    {
         int id = table->model()->index(i,0).data().toInt();
 
         if(rowsToHide.contains(id))
@@ -159,34 +159,38 @@ void CRelationP::searchCompModel()
         lst.append(3);
         DYfrom = ui->input_searchDesignYearFrom->text();
         DYto = ui->input_searchDesignYearTo->text();
-        if(DYfrom != "" || DYto != ""){
+        if(DYfrom != "" || DYto != "")
+        {
             searchDY = "|Number|:";
             DYfrom != ""? searchDY.append(DYfrom): searchDY.append("0");
-            if(DYto != ""){
+            if(DYto != "")
+            {
                 searchDY.append(" ").append(DYto);
             }
         }
         lst.append(4);
         BYfrom = ui->input_searchBuildYearFrom->text();
         BYto = ui->input_searchBuildYearTo->text();
-        if(BYfrom != "" || BYto != ""){
+        if(BYfrom != "" || BYto != "")
+        {
             searchBY = "|Number|:";
             BYfrom != ""? searchBY.append(BYfrom): searchBY.append("0");
-            if(BYto != ""){
+            if(BYto != "")
+            {
                 searchBY.append(" ").append(BYto);
             }
         }
     }
-
     proxyCompModel->setFilterKeyColumns(lst);
     proxyCompModel->addFilterFixedString(1, name);
-    if(showAdvSearchComps){
+
+    if(showAdvSearchComps)
+    {
         proxyCompModel->addFilterFixedString(2, compType);
         proxyCompModel->addFilterFixedString(3, searchDY);
         proxyCompModel->addFilterFixedString(4, searchBY);
     }
     proxyCompModel->invalidate();
-
     ui->table_Comp->hideColumn(0);
 }
 

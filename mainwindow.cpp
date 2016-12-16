@@ -872,7 +872,7 @@ void MainWindow::on_button_addcomp_clicked()
 }
 
 
-void MainWindow::on_actionPersons_2_triggered()
+void MainWindow::on_actionDeleteAllPersons_triggered()
 {
     QString promptTitle = "DELETE ALL";
     QString promptQuestion = "Are you sure you want to delete every instance in Person table\nThis cannot be undone";
@@ -886,7 +886,7 @@ void MainWindow::on_actionPersons_2_triggered()
     }
 }
 
-void MainWindow::on_actionComputers_2_triggered()
+void MainWindow::on_actionDeleteAllComputers_triggered()
 {
     QString promptTitle = "DELETE ALL";
     QString promptQuestion = "Are you sure you want to delete every instance in Computer table\nThis cannot be undone";
@@ -899,7 +899,7 @@ void MainWindow::on_actionComputers_2_triggered()
     }
 }
 
-void MainWindow::on_actionRelations_triggered()
+void MainWindow::on_actionDeleteAllRelations_triggered()
 {
     QString promptTitle = "DELETE ALL";
     QString promptQuestion = "Are you sure you want to delete every instance in Relation table\nThis cannot be undone";
@@ -1192,3 +1192,10 @@ void MainWindow::buttonEnabledFunct()
     }
 }
 
+void MainWindow::on_actionReset_to_default_database_triggered()
+{
+    domain.deletePersonTable();
+    domain.deleteComputerTable();
+    domain.deleteRelationTable();
+    domain.initializeData();
+}
