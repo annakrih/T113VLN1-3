@@ -24,18 +24,23 @@ signals:
     void addPRelAccepted(const QList<int> &, const int &);
 
 private slots:
+    //When "Add" is clicked the function adds the selected computers to the person as a relation
     void on_buttonBox_accepted();
 
-    void on_buttonBox_rejected();
+    //emits the signal that the window has been closed, without making any changes
+    void on_buttonBox_rejected();  //when user chooses cancel
+    void on_CRelationP_finished(); //when the user is closed
 
-    void on_CRelationP_finished();
-
+    //select and unselects a row in the table
     void on_table_Comp_clicked(const QModelIndex &index);
 
+    //an event that is triggered when the selection is changed
     void onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p);
 
+    //hides the rows in the table that should not be shown
     void hideRows(QTableView* table, QList<int> rowsToHide);
 
+    //TODO
     void searchCompModel();
 
     //shows advanced search when the advSearchComp-button is released

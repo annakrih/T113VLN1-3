@@ -17,21 +17,21 @@ CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QMap
     ui->table_Comp->setColumnHidden(0,true);
 
     proxyCompModel = model;
-
     hideRows(ui->table_Comp,relList);
 
+    //Makes sure the user can only input numbers in the entries for searching by years:
     ui->input_searchBuildYearFrom->setValidator(new QIntValidator);
     ui->input_searchBuildYearTo->setValidator(new QIntValidator);
     ui->input_searchDesignYearFrom->setValidator(new QIntValidator);
     ui->input_searchDesignYearTo->setValidator(new QIntValidator);
 
+    //fills the drop down menu in advanced search with computer types
     fillComputerTypeSearchBox(tList);
 
     showAdvSearchComps = 0;
     ui->frame_advSearchComp->setVisible(showAdvSearchComps);
 
     personId = id;
-
     connect(
       ui->table_Comp->selectionModel(),
       SIGNAL(currentRowChanged(const QModelIndex&,const QModelIndex&)),
@@ -159,20 +159,24 @@ void CRelationP::searchCompModel()
         lst.append(3);
         DYfrom = ui->input_searchDesignYearFrom->text();
         DYto = ui->input_searchDesignYearTo->text();
-        if(DYfrom != "" || DYto != ""){
+        if(DYfrom != "" || DYto != "")
+        {
             searchDY = "|Number|:";
             DYfrom != ""? searchDY.append(DYfrom): searchDY.append("0");
-            if(DYto != ""){
+            if(DYto != "")
+            {
                 searchDY.append(" ").append(DYto);
             }
         }
         lst.append(4);
         BYfrom = ui->input_searchBuildYearFrom->text();
         BYto = ui->input_searchBuildYearTo->text();
-        if(BYfrom != "" || BYto != ""){
+        if(BYfrom != "" || BYto != "")
+        {
             searchBY = "|Number|:";
             BYfrom != ""? searchBY.append(BYfrom): searchBY.append("0");
-            if(BYto != ""){
+            if(BYto != "")
+            {
                 searchBY.append(" ").append(BYto);
             }
         }
@@ -180,7 +184,8 @@ void CRelationP::searchCompModel()
 
     proxyCompModel->setFilterKeyColumns(lst);
     proxyCompModel->addFilterFixedString(1, name);
-    if(showAdvSearchComps){
+    if(showAdvSearchComps)
+    {
         proxyCompModel->addFilterFixedString(2, compType);
         proxyCompModel->addFilterFixedString(3, searchDY);
         proxyCompModel->addFilterFixedString(4, searchBY);
