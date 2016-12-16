@@ -38,13 +38,9 @@ private slots:
     void on_cName_textChanged(const QString &arg1);
     void on_cType_currentIndexChanged(const QString &arg1);
     void on_wasItBuilt_toggled(bool checked);
-    void on_cDY_valueChanged(int arg1);
-    void on_cBY_valueChanged(int arg1);
 
-    //checks to see if user input can't be correct
-    //fx if year inputs are higher then current year or if computer was made before it was designed
-    void on_cDY_editingFinished();
     void on_cBY_editingFinished();
+    void on_cDY_editingFinished();
 
 signals:
     //function that adds new computer
@@ -68,3 +64,5 @@ private:
 };
 
 #endif // COMPUTERDIALOG_H
+
+

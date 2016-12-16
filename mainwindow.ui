@@ -1398,6 +1398,38 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>button_addPerson</tabstop>
+  <tabstop>button_addcomp</tabstop>
+  <tabstop>pushButton_Revert</tabstop>
+  <tabstop>pushButton_Delete</tabstop>
+  <tabstop>pushButton_editSelectedEntry</tabstop>
+  <tabstop>tabsWidget_personComputer</tabstop>
+  <tabstop>input_searchPerson</tabstop>
+  <tabstop>button_advSearchPerson</tabstop>
+  <tabstop>checkBox_searchFemale</tabstop>
+  <tabstop>checkBox_searchMale</tabstop>
+  <tabstop>input_searchBornFrom</tabstop>
+  <tabstop>input_searchBornTo</tabstop>
+  <tabstop>input_searchDiedFrom</tabstop>
+  <tabstop>input_searchDiedTo</tabstop>
+  <tabstop>input_searchNat</tabstop>
+  <tabstop>table_Person</tabstop>
+  <tabstop>addPersonRelation</tabstop>
+  <tabstop>deletePersonRelation</tabstop>
+  <tabstop>tablePI</tabstop>
+  <tabstop>addComputerRelation</tabstop>
+  <tabstop>deleteComputerRelation</tabstop>
+  <tabstop>tableCI</tabstop>
+  <tabstop>input_searchBuildYearTo</tabstop>
+  <tabstop>input_searchDesignYearTo</tabstop>
+  <tabstop>input_searchBuildYearFrom</tabstop>
+  <tabstop>input_searchDesignYearFrom</tabstop>
+  <tabstop>input_searchCompType</tabstop>
+  <tabstop>searchInput_Comp</tabstop>
+  <tabstop>table_Comp</tabstop>
+  <tabstop>button_advSearchComp</tabstop>
+ </tabstops>
  <resources>
   <include location="resources.qrc"/>
  </resources>

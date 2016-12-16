@@ -182,6 +182,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>searchInput_Comp</tabstop>
+  <tabstop>button_advSearchComp</tabstop>
+  <tabstop>input_searchDesignYearFrom</tabstop>
+  <tabstop>input_searchDesignYearTo</tabstop>
+  <tabstop>input_searchBuildYearFrom</tabstop>
+  <tabstop>input_searchBuildYearTo</tabstop>
+  <tabstop>input_searchCompType</tabstop>
+  <tabstop>table_Comp</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

@@ -7,10 +7,12 @@ ComputerDialog::ComputerDialog(QWidget *parent, QMap<QString, int> tList,
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    ui->cBY->setDisabled(true);
-    ui->wasItBuilt->setChecked(true);
+    ui->cBY->setDisabled(false);
+    ui->wasItBuilt->setChecked(false);
     ui->cBY->setMaximum(utils.getYear);
     ui->cDY-> setMaximum(utils.getYear);
+
+    ui->errorMessage->setStyleSheet("QLabel {color:red;}");
 
     fillTypeMenu(tList);
 
@@ -40,11 +42,11 @@ void ComputerDialog::on_buttonBox_accepted()
     int type =  ui->cType->itemData(ui->cType->currentIndex()).toInt();
     int dY = ui->cDY->value();
     int bY;
-    if(ui->wasItBuilt->checkState() && ui->cBY->value() != 0)
+    if(!ui->wasItBuilt->checkState() && ui->cBY->value() != 0)
     {
         bY = ui->cBY->value();
     }
-    else if(!ui->wasItBuilt->checkState())
+    else if(ui->wasItBuilt->checkState())
     {
         bY = 0;
     }
@@ -64,7 +66,7 @@ void ComputerDialog::on_buttonBox_accepted()
 
 void ComputerDialog::on_wasItBuilt_toggled(bool checked)
 {
-    if(checked)//disabling build year entry if computer wasn't built
+    if(!checked)//disabling build year entry if computer wasn't built
     {
         ui->cBY->setDisabled(false);
     }
@@ -77,39 +79,37 @@ void ComputerDialog::on_wasItBuilt_toggled(bool checked)
 
 void ComputerDialog::checkForm()
 {
-    const int needed = 4;
-    int count = 0;
+    bool entriesValid=1;
+    int designYear = ui->cDY->value();
+    int buildYear = ui->cBY->value();
 
-    if(ui->cName->text() != "")//name
+    if(ui->cName->text() == "")//name needs to be filled
     {
-        count++;
+        entriesValid = 0;
     }
-    if(ui->cType->itemData(ui->cType->currentIndex()).toInt() != 0)//type
+    if(ui->cType->itemData(ui->cType->currentIndex()).toInt() == 0)//type needs to be filled
     {
-        count++;
+        entriesValid = 0;
     }
-    if(ui->cDY->value() != 0)//design year
+    if(designYear == 0)//design year needs to be filled
     {
-        count++;
-    }
-    if(ui->wasItBuilt->checkState() && ui->cBY->value() != 0)//built year
-    {
-        count++;
-    }
-    else if(!ui->wasItBuilt->checkState())//was it built check
-    {
-        count++;
+        entriesValid = 0;
     }
 
-    if(count >= needed)//enough entries filled - accepts current inputs
+    ui->errorMessage->setText("");
+    if(!ui->wasItBuilt->checkState())
     {
-        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
-    }
-    else//not enough entries fillled
-    {
-        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+        if(buildYear<designYear) //build year cannot be smaller than design year
+        {
+            entriesValid = 0;
+            if (!(buildYear==0))
+            {
+            ui->errorMessage->setText("Build year cannot be before design year.");
+            }
+        }
     }
 
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(entriesValid);
 }
 
 void ComputerDialog::fillTypeMenu(QMap<QString, int> tList)
@@ -149,34 +149,13 @@ void ComputerDialog::on_cType_currentIndexChanged(const QString &arg1)
     checkForm();
 }
 
-void ComputerDialog::on_cDY_valueChanged(int arg1)
-{
-    checkForm();
-}
-
-void ComputerDialog::on_cBY_valueChanged(int arg1)
-{
-    checkForm();
-}
 
 void ComputerDialog::on_cDY_editingFinished()
 {
-    int cDY = ui->cDY->value();
-    int cBY = ui->cBY->value();
-    if(cDY > cBY)//sets build year equal to design year if input of design year is put above build year
-    {
-        ui->cBY->setValue(cDY);
-    }
     checkForm();
 }
 
 void ComputerDialog::on_cBY_editingFinished()
 {
-    int cDY = ui->cDY->value();
-    int cBY = ui->cBY->value();
-    if(cDY > cBY)//same as above sets built year to design year if build year is put below design year
-    {
-        ui->cBY->setValue(cDY);
-    }
     checkForm();
 }

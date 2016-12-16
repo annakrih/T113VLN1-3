@@ -239,6 +239,18 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>input_searchPerson</tabstop>
+  <tabstop>button_advSearchPerson</tabstop>
+  <tabstop>checkBox_searchFemale</tabstop>
+  <tabstop>checkBox_searchMale</tabstop>
+  <tabstop>input_searchBornFrom</tabstop>
+  <tabstop>input_searchBornTo</tabstop>
+  <tabstop>input_searchDiedFrom</tabstop>
+  <tabstop>input_searchDiedTo</tabstop>
+  <tabstop>input_searchNat</tabstop>
+  <tabstop>table_Person</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
