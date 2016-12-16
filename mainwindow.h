@@ -119,6 +119,10 @@ private slots:
 
     void computerRightClick();
 
+    void PIRightClick();
+
+    void CIRightClick();
+
     void deleteSelected();
 
     void on_actionDelete_triggered();
@@ -182,6 +186,12 @@ private slots:
     void on_deleteComputerRelation_released();
 
     void on_actionReset_to_default_database_triggered();
+
+    void on_tableCI_clicked(const QModelIndex &index);
+
+    void onCISelectionChange(const QModelIndex &c,const QModelIndex &p);
+
+    void on_actionDelete_relation_triggered();
 
 private:
     Ui::MainWindow *ui;

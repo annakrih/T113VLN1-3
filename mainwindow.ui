@@ -1054,6 +1054,9 @@
             </item>
             <item>
              <widget class="QTableView" name="tablePI">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
               <property name="editTriggers">
                <set>QAbstractItemView::NoEditTriggers</set>
               </property>
@@ -1243,6 +1246,9 @@
             </item>
             <item>
              <widget class="QTableView" name="tableCI">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
               <property name="editTriggers">
                <set>QAbstractItemView::NoEditTriggers</set>
               </property>
@@ -1301,6 +1307,7 @@
     <addaction name="actionEdit_Computer"/>
     <addaction name="actionDelete"/>
     <addaction name="menu_DeleteAll"/>
+    <addaction name="actionDelete_relation"/>
    </widget>
    <addaction name="menuComputer_History"/>
    <addaction name="menuEdit"/>
@@ -1359,6 +1366,11 @@
   <action name="actionReset_to_default_database">
    <property name="text">
     <string>Reset to default database</string>
+   </property>
+  </action>
+  <action name="actionDelete_relation">
+   <property name="text">
+    <string>Delete relation</string>
    </property>
   </action>
  </widget>

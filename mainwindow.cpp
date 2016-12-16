@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     loadPersonTable();
     loadCompTable();
+    loadCITable();
+    loadPITable();
 
     fillNationalitySearchBox(domain.getAcceptedNationality());
     fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
@@ -64,8 +66,16 @@ MainWindow::MainWindow(QWidget *parent) :
       SLOT(onPISelectionChange(const QModelIndex&, const QModelIndex&))
      );
 
+    connect(
+      ui->tableCI->selectionModel(),
+      SIGNAL(currentRowChanged(const QModelIndex&, const QModelIndex&)),
+      SLOT(onCISelectionChange(const QModelIndex&, const QModelIndex&))
+     );
+
     connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick()));
     connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick()));
+    connect(ui->tablePI,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(PIRightClick()));
+    connect(ui->tableCI,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(CIRightClick()));
 }
 
 MainWindow::~MainWindow()
@@ -502,6 +512,44 @@ void MainWindow::onPISelectionChange(const QModelIndex &c,const QModelIndex &p)
     //checkStatus();
 }
 
+void MainWindow::on_tableCI_clicked(const QModelIndex &index)
+{
+    buttonEnabledFunct();
+
+    if(lastCISelection == index.row() && !overrideTableClick)
+    {
+        overrideOnCISelectionChange = true;
+        ui->tableCI->selectionModel()->clearSelection();
+        lastCISelection = -1;
+        overrideOnCISelectionChange = false;
+
+        buttonEnabledFunct();
+    }
+    else if(!overrideTableClick)
+    {
+        int index = ui->tableCI->currentIndex().row();
+        lastCISelection = index;
+    }
+    overrideTableClick = false;
+}
+
+void MainWindow::onCISelectionChange(const QModelIndex &c,const QModelIndex &p)
+{
+    if(!overrideOnCISelectionChange)
+    {
+        overrideTableClick = true;
+        int index = c.row();
+        lastCISelection = index;
+
+        buttonEnabledFunct();
+    }
+
+
+    //checkStatus();
+}
+
+
+
 void MainWindow::on_actionAdd_new_person_triggered()
 {
     addPersonDialog();
@@ -785,6 +833,21 @@ void MainWindow::computerRightClick()
     cContextMenu->exec(QCursor::pos());
 }
 
+void MainWindow::PIRightClick()
+{
+    buttonEnabledFunct();
+    QMenu *piContextMenu = new QMenu( this);
+    piContextMenu->addAction(ui->menuEdit->actions().at(4));
+    piContextMenu->exec(QCursor::pos());
+}
+
+void MainWindow::CIRightClick()
+{
+    buttonEnabledFunct();
+    QMenu *ciContextMenu = new QMenu( this);
+    ciContextMenu->addAction(ui->menuEdit->actions().at(4));
+    ciContextMenu->exec(QCursor::pos());
+}
 void MainWindow::deleteSelected(){
 
     int index = ui->tabsWidget_personComputer->currentIndex();
@@ -1161,6 +1224,7 @@ void MainWindow::deleteSelectedRelations()
             }
         }
     }
+    buttonEnabledFunct();
 }
 
 void MainWindow::buttonEnabledFunct()
@@ -1183,13 +1247,13 @@ void MainWindow::buttonEnabledFunct()
 
             if(pRelSelList.size() > 0)
             {
-                cout << "on";
                 ui->deletePersonRelation->setEnabled(true);
+                ui->actionDelete_relation->setEnabled(true);
             }
             else if(!pRelSelList.size())
             {
-                cout << "off";
                 ui->deletePersonRelation->setEnabled(false);
+                ui->actionDelete_relation->setEnabled(false);
             }
         }
         else if(pSelList.size() == 1)
@@ -1202,13 +1266,13 @@ void MainWindow::buttonEnabledFunct()
 
             if(pRelSelList.size() > 0)
             {
-                cout << "on";
                 ui->deletePersonRelation->setEnabled(true);
+                ui->actionDelete_relation->setEnabled(true);
             }
             else
             {
-                cout << "off";
                 ui->deletePersonRelation->setEnabled(false);
+                ui->actionDelete_relation->setEnabled(false);
             }
         }
         else
@@ -1234,11 +1298,13 @@ void MainWindow::buttonEnabledFunct()
 
             if(cRelSelList.size() > 0)
             {
-                ui->deletePersonRelation->setEnabled(true);
+                ui->deleteComputerRelation->setEnabled(true);
+                ui->actionDelete_relation->setEnabled(true);
             }
             else
             {
-                ui->deletePersonRelation->setEnabled(false);
+                ui->deleteComputerRelation->setEnabled(false);
+                ui->actionDelete_relation->setEnabled(false);
             }
         }
         else if(cSelList.size() == 1)
@@ -1251,11 +1317,13 @@ void MainWindow::buttonEnabledFunct()
 
             if(cRelSelList.size() > 0)
             {
-                ui->deletePersonRelation->setEnabled(true);
+                ui->deleteComputerRelation->setEnabled(true);
+                ui->actionDelete_relation->setEnabled(true);
             }
             else
             {
-                ui->deletePersonRelation->setEnabled(false);
+                ui->deleteComputerRelation->setEnabled(false);
+                ui->actionDelete_relation->setEnabled(false);
             }
         }
         else
@@ -1268,13 +1336,15 @@ void MainWindow::buttonEnabledFunct()
         }
     }
 
-    if(relationModel->isDirty() || computerModel->isDirty() || personModel->isDirty() == true)
+    if(relationModel->isDirty() || computerModel->isDirty() || personModel->isDirty())
     {
         ui->pushButton_Revert->setEnabled(true);
+        ui->actionSave_Changes->setEnabled(true);
     }
     else
     {
         ui->pushButton_Revert->setEnabled(false);
+        ui->actionSave_Changes->setEnabled(false);
     }
 }
 
@@ -1306,3 +1376,19 @@ void MainWindow::on_actionReset_to_default_database_triggered()
     }
 }
 
+
+
+
+void MainWindow::on_actionDelete_relation_triggered()
+{
+    int index = ui->tabsWidget_personComputer->currentIndex();
+    if(index == 0)
+    {
+        on_deletePersonRelation_released();
+    }
+    else if(index == 1)
+    {
+        on_deleteComputerRelation_released();
+    }
+    buttonEnabledFunct();
+}
