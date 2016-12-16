@@ -60,7 +60,6 @@ private:
     bool overrideOnSelectionChange = 0;
 
     void fillComputerTypeSearchBox(QMap<QString,int> compTypeList);
-
 };
 
 #endif // CRELATIONP_H

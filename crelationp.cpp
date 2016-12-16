@@ -77,7 +77,6 @@ void CRelationP::on_table_Comp_clicked(const QModelIndex &index)
         ui->table_Comp->selectionModel()->clearSelection();
         lastSelection = -1;
         overrideOnSelectionChange = false;
-
     }
     else if(!overrideTableClick)
     {
@@ -85,7 +84,6 @@ void CRelationP::on_table_Comp_clicked(const QModelIndex &index)
         lastSelection = index;
     }
     overrideTableClick = false;
-
 }
 
 void CRelationP::onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p)
@@ -136,7 +134,6 @@ void CRelationP::on_button_advSearchComp_released()
         ui->input_searchBuildYearFrom->clear();
         ui->input_searchBuildYearTo->clear();
     }
-
     showAdvSearchComps = !showAdvSearchComps;
     ui->frame_advSearchComp->setVisible(showAdvSearchComps);
     searchCompModel();
@@ -212,7 +209,3 @@ void CRelationP::on_input_searchBuildYearTo_editingFinished()
 {
     searchCompModel();
 }
-
-
-
-

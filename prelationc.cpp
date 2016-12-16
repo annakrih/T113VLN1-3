@@ -174,7 +174,6 @@ void PRelationC::on_PRelationC_finished()
     emit this->relationRejected();
 }
 
-
 void PRelationC::on_table_Person_clicked(const QModelIndex &index)
 {
 
@@ -191,7 +190,6 @@ void PRelationC::on_table_Person_clicked(const QModelIndex &index)
         lastSelection = index;
     }
     overrideTableClick = false;
-
 }
 
 void PRelationC::onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p)

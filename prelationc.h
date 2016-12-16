@@ -53,7 +53,6 @@ signals:
     void relationRejected();
     void addCRelAccepted(const QList<int> &l, const int &);
 
-
 private:
     Ui::PRelationC *ui;
     CustomProxyModel *proxyPersonModel;
@@ -71,9 +70,6 @@ private:
 
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;
-
-
-    //Domain domain;
 };
 
 #endif // PRELATIONC_H
