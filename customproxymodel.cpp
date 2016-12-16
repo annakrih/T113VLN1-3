@@ -12,13 +12,17 @@ void CustomProxyModel::setFilterKeyColumns(const QList<int> &filterColumns)
     columnPatterns.clear();
 
     foreach(int column, filterColumns)
+    {
         columnPatterns.insert(column, QString());
+    }
 }
 
 void CustomProxyModel::addFilterFixedString(int column, const QString &pattern)
 {
     if(!columnPatterns.contains(column))
+    {
         return;
+    }
 
     columnPatterns[column] = pattern;
 }
@@ -43,12 +47,6 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
     {
         i.next();
         QModelIndex index = sourceModel()->index(sourceRow, i.key(), sourceParent);
-        if(relationColumn.contains(i.key()))
-        {
-            ret = (index.data().toString().toLower() == (i.value().toLower()));
-        }
-        else
-        {
         if(relationColumn.contains(i.key()))
         {
             ret = (index.data().toString().toLower() == (i.value().toLower())) || i.value() == "";
@@ -87,4 +85,4 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
         }
     }
     return ret;
-}}
+}
