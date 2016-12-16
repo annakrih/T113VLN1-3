@@ -334,11 +334,7 @@ void MainWindow::on_input_searchNat_currentIndexChanged(const QString &arg1)
 
 void MainWindow::on_table_Person_clicked(const QModelIndex &index)
 {
-    ui->pushButton_editSelectedEntry->setEnabled(true);
-    ui->actionEdit_person->setEnabled(true);
-
-    ui->pushButton_Delete->setEnabled(true);
-    ui->actionDelete->setEnabled(true);
+    buttonEnabledFunct();
 
     if(lastPersonSelection == index.row() && !overrideTableClick)
     {
@@ -348,11 +344,7 @@ void MainWindow::on_table_Person_clicked(const QModelIndex &index)
         ui->personInfoWidget->setVisible(false);
         overrideOnPersonSelectionChange = false;
 
-        ui->pushButton_editSelectedEntry->setEnabled(false);
-        ui->actionEdit_person->setEnabled(false);
-
-        ui->pushButton_Delete->setEnabled(false);
-        ui->actionDelete->setEnabled(false);
+        buttonEnabledFunct();
     }
     else if(!overrideTableClick)
     {
@@ -375,22 +367,14 @@ void MainWindow::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
         lastPersonSelection = index;
         loadPersonInfo();
 
-        ui->pushButton_editSelectedEntry->setEnabled(false);
-        ui->actionEdit_person->setEnabled(false);
-
-        ui->pushButton_Delete->setEnabled(true);
-        ui->actionDelete->setEnabled(true);
+        buttonEnabledFunct();
     }
 }
 
 
 void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
 {
-    ui->pushButton_editSelectedEntry->setEnabled(true);
-    ui->actionEdit_Computer->setEnabled(true);
-
-    ui->pushButton_Delete->setEnabled(true);
-    ui->actionDelete->setEnabled(true);
+    buttonEnabledFunct();
 
     if(lastCompSelection == index.row() && !overrideTableClick)
     {
@@ -400,11 +384,7 @@ void MainWindow::on_table_Comp_clicked(const QModelIndex &index)
         ui->computerInfo->setVisible(false);
         overrideOnCompSelectionChange = false;
 
-        ui->pushButton_editSelectedEntry->setEnabled(false);
-        ui->actionEdit_Computer->setEnabled(false);
-
-        ui->pushButton_Delete->setEnabled(false);
-        ui->actionDelete->setEnabled(false);
+        buttonEnabledFunct();
     }
     else if(!overrideTableClick)
     {
@@ -425,11 +405,7 @@ void MainWindow::onCompSelectionChange(const QModelIndex &c,const QModelIndex &p
         lastCompSelection = index;
         loadComputerInfo();
 
-        ui->pushButton_editSelectedEntry->setEnabled(false);
-        ui->actionEdit_Computer->setEnabled(false);
-
-        ui->pushButton_Delete->setEnabled(true);
-        ui->actionDelete->setEnabled(true);
+        buttonEnabledFunct();
     }
 
     //checkStatus();
@@ -471,7 +447,6 @@ void MainWindow::addPersonDialog()
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
-    ui->pushButton_Revert->setEnabled(true);
     personDialogWindow->show();
     changesMade = 1;
 }
@@ -489,7 +464,6 @@ void MainWindow::addComputerDialog()
 
     this->setEnabled(false);
     computerDialogWindow->setEnabled(true);
-    ui->pushButton_Revert->setEnabled(true);
     computerDialogWindow->show();
     changesMade = 1;
 }
@@ -515,7 +489,6 @@ void MainWindow::editPersonDialog()
 
     this->setEnabled(false);
     personDialogWindow->setEnabled(true);
-    ui->pushButton_Revert->setEnabled(true);
     personDialogWindow->show();
     changesMade = 1;
 }
@@ -539,7 +512,6 @@ void MainWindow::editComputerDialog()
 
     this->setEnabled(false);
     computerDialogWindow->setEnabled(true);
-    ui->pushButton_Revert->setEnabled(true);
     computerDialogWindow->show();
     changesMade = 1;
 }
@@ -573,6 +545,7 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     nextPersonId++;
 
     ui->tabsWidget_personComputer->setCurrentIndex(0);
+    buttonEnabledFunct();
 }
 
 void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int &d, const int &b)
@@ -590,6 +563,7 @@ void MainWindow::onAddComputerAccepted(const QString &n, const int &t, const int
     nextComputerId++;
 
     ui->tabsWidget_personComputer->setCurrentIndex(1);
+    buttonEnabledFunct();
 }
 
 void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace)
@@ -608,6 +582,7 @@ void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int
     personModel->setData(personModel->index(lastPersonSelection,4),b);
     personModel->setData(personModel->index(lastPersonSelection,5),d);
     personModel->setData(personModel->index(lastPersonSelection,6),imageBlob);
+    buttonEnabledFunct();
 }
 
 void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b)
@@ -618,6 +593,7 @@ void MainWindow::onEditComputerAccepted(const int &id, const QString &n, const i
     computerModel->setData(computerModel->index(lastCompSelection,2),t);
     computerModel->setData(computerModel->index(lastCompSelection,3),d);
     computerModel->setData(computerModel->index(lastCompSelection,4),b);
+    buttonEnabledFunct();
 }
 
 void MainWindow::on_actionSave_Changes_triggered()
@@ -740,10 +716,7 @@ void MainWindow::deleteSelected(){
             computerModel->removeRow(realRow.row());
         }
     }
-    ui->pushButton_Delete->setEnabled(false);
-    ui->actionDelete->setEnabled(false);
-
-    ui->pushButton_Revert->setEnabled(true);
+    buttonEnabledFunct();
 }
 
 void MainWindow::on_actionDelete_triggered()
@@ -1025,7 +998,7 @@ void MainWindow::clearAllSelection()
 void MainWindow::on_pushButton_Revert_released()
 {
     revertChanges();
-    ui->pushButton_Revert->setEnabled(false);
+    buttonEnabledFunct();
 }
 
 void MainWindow::on_deletePersonRelation_released()
@@ -1059,4 +1032,41 @@ void MainWindow::deleteSelectedRelations()
     }
 }
 
+void MainWindow::buttonEnabledFunct()
+{
+    QModelIndexList pSelList = ui->table_Person->selectionModel()->selectedRows();
+    QModelIndexList cSelList = ui->table_Comp->selectionModel()->selectedRows();
+    if(pSelList.size() > 1 || cSelList.size() > 1)
+    {
+        ui->pushButton_editSelectedEntry->setEnabled(false);
+        ui->actionEdit_person->setEnabled(false);
 
+        ui->pushButton_Delete->setEnabled(true);
+        ui->actionDelete->setEnabled(true);
+    }
+    else if(pSelList.size() == 1 || pSelList.size() == 1)
+    {
+        ui->pushButton_editSelectedEntry->setEnabled(true);
+        ui->actionEdit_person->setEnabled(true);
+
+        ui->pushButton_Delete->setEnabled(true);
+        ui->actionDelete->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_editSelectedEntry->setEnabled(false);
+        ui->actionEdit_person->setEnabled(false);
+
+        ui->pushButton_Delete->setEnabled(false);
+        ui->actionDelete->setEnabled(false);
+    }
+
+    if(relationModel->isDirty() || computerModel->isDirty() || personModel->isDirty() == true)
+    {
+        ui->pushButton_Revert->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_Revert->setEnabled(false);
+    }
+}

@@ -173,7 +173,7 @@ private slots:
 
     void deleteSelectedRelations();
 
-    void isDirtyFunct();
+    void buttonEnabledFunct();
 
 private:
     Ui::MainWindow *ui;
