@@ -204,7 +204,8 @@ void Data::initializeData()
     importCSV("person_computer", personComputer);
 }
 
-void Data::initializeDataTypes(){
+void Data::initializeDataTypes()
+{
     QFile gender(initialGender);
     QFile nationality(initialNationality);
     QFile computeryType(initialComputerType);
@@ -215,7 +216,6 @@ void Data::initializeDataTypes(){
 
 void Data::createPCRelation(int p, int c)
 {
-
     QSqlQuery query;
     query.prepare("INSERT INTO Person_Computer (personId, computerId)"
                       "VALUES (:personId, :computerId)");
