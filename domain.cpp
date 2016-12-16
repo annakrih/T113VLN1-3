@@ -258,3 +258,8 @@ QString Domain::getCssString()
 {
     return data.importCss();
 }
+
+void Domain::initializeData()
+{
+    data.initializeData();
+}

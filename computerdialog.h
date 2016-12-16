@@ -14,8 +14,8 @@
 
 namespace Ui
 {
-//class for computer dialog
-class ComputerDialog;
+    //class for computer dialog
+    class ComputerDialog;
 }
 
 class ComputerDialog : public QDialog

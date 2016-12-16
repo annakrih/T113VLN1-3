@@ -133,11 +133,11 @@ private slots:
 
     void loadComputerInfo();
 
-    void on_actionPersons_2_triggered();
+    void on_actionDeleteAllPersons_triggered();
 
-    void on_actionComputers_2_triggered();
+    void on_actionDeleteAllComputers_triggered();
 
-    void on_actionRelations_triggered();
+    void on_actionDeleteAllRelations_triggered();
 
     void on_input_searchCompType_currentIndexChanged(const QString &arg1);
 
@@ -177,7 +177,13 @@ private slots:
 
     void buttonEnabledFunct();
 
+<<<<<<< HEAD
     void on_tablePI_clicked(const QModelIndex &index);
+=======
+    void on_deleteComputerRelation_released();
+
+    void on_actionReset_to_default_database_triggered();
+>>>>>>> origin/master
 
 private:
     Ui::MainWindow *ui;

@@ -79,11 +79,11 @@ public:
     void createPCRelation(int p, int c);
 
     //function that import cvs files and their data to the database.
+    void initializeDataTypes();
     void initializeData();
     void initializePersons();
     void initializeComputers();
     void initializeRelations();
-
 };
 
 #endif // DATA_H

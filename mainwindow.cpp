@@ -622,6 +622,8 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     QByteArray image = file->readAll();
     QString imageBlob = QString(image.toBase64());
 
+    cout << nat << " ";
+
     QSqlRecord record = personModel->record();
     record.setValue(0,nextPersonId);
     record.setValue(1,n);
@@ -914,7 +916,7 @@ void MainWindow::on_button_addcomp_clicked()
 }
 
 
-void MainWindow::on_actionPersons_2_triggered()
+void MainWindow::on_actionDeleteAllPersons_triggered()
 {
     QString promptTitle = "DELETE ALL";
     QString promptQuestion = "Are you sure you want to delete every instance in Person table\nThis cannot be undone";
@@ -928,7 +930,7 @@ void MainWindow::on_actionPersons_2_triggered()
     }
 }
 
-void MainWindow::on_actionComputers_2_triggered()
+void MainWindow::on_actionDeleteAllComputers_triggered()
 {
     QString promptTitle = "DELETE ALL";
     QString promptQuestion = "Are you sure you want to delete every instance in Computer table\nThis cannot be undone";
@@ -941,7 +943,7 @@ void MainWindow::on_actionComputers_2_triggered()
     }
 }
 
-void MainWindow::on_actionRelations_triggered()
+void MainWindow::on_actionDeleteAllRelations_triggered()
 {
     QString promptTitle = "DELETE ALL";
     QString promptQuestion = "Are you sure you want to delete every instance in Relation table\nThis cannot be undone";
@@ -1111,6 +1113,11 @@ void MainWindow::on_deletePersonRelation_released()
     deleteSelectedRelations();
 }
 
+void MainWindow::on_deleteComputerRelation_released()
+{
+    deleteSelectedRelations();
+}
+
 void MainWindow::deleteSelectedRelations()
 {
     int index = ui->tabsWidget_personComputer->currentIndex();
@@ -1118,21 +1125,40 @@ void MainWindow::deleteSelectedRelations()
     if(index == 0)//person
     {
         QModelIndexList selList = ui->tablePI->selectionModel()->selectedRows();
+        QList<int> idToRemove;
         for(int i = 0; i < selList.size(); i++)
         {
+            idToRemove.push_back(ui->tablePI->model()->index(selList[i].row(),0).data().toInt());
             ui->tablePI->hideRow(selList[i].row());
-            QModelIndex realRow = proxyPIModel->mapToSource(selList[i]);
-            relationModel->removeRow(realRow.row());
+            cout << ui->tablePI->model()->index(selList[i].row(),0).data().toInt() << " ";
+        }
+
+        foreach(int id, idToRemove){
+
+            for(int i = 0; i < relationModel->rowCount(); i++){
+                if(relationModel->index(i,2).data().toInt() == id){
+                    relationModel->removeRow(i);
+                }
+            }
         }
     }
     else if(index == 1)//computer
     {
         QModelIndexList selList = ui->tableCI->selectionModel()->selectedRows();
+        QList<int> idToRemove;
         for(int i = 0; i < selList.size(); i++)
         {
+            idToRemove.push_back(ui->tableCI->model()->index(selList[i].row(),0).data().toInt());
             ui->tableCI->hideRow(selList[i].row());
-            QModelIndex realRow = proxyCIModel->mapToSource(selList[i]);
-            relationModel->removeRow(realRow.row());
+            cout << ui->tableCI->model()->index(selList[i].row(),0).data().toInt() << " ";
+        }
+
+        foreach(int id, idToRemove){
+            for(int i = 0; i < relationModel->rowCount(); i++){
+                if(relationModel->index(i,1).data().toInt() == id){
+                    relationModel->removeRow(i);
+                }
+            }
         }
     }
 }
@@ -1250,4 +1276,33 @@ void MainWindow::buttonEnabledFunct()
     }
 }
 
+<<<<<<< HEAD
 
+=======
+void MainWindow::on_actionReset_to_default_database_triggered()
+{
+    QString promptTitle = "Reset to default database";
+    QString promptQuestion = "Are you sure you want to reset the database to the default databse? \n"
+                             "This will delete all entries in the current database and cannot be undone.";
+    QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
+                                                               QMessageBox::Yes|QMessageBox::No);
+
+    if(prompt == QMessageBox::Yes)
+    {
+        personModel = domain.deletePersonTable();
+        computerModel = domain.deleteComputerTable();
+
+        domain.deletePersonTable();
+        domain.deleteComputerTable();
+        domain.deleteRelationTable();
+
+        domain.initializeData();
+
+        personModel = domain.getPersonModel();
+        computerModel = domain.getComputerModel();
+        relationModel = domain.getPCRelationModel();
+        loadPersonTable();
+        loadCompTable();
+    }
+}
+>>>>>>> origin/master

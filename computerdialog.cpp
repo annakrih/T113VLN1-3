@@ -14,7 +14,6 @@ ComputerDialog::ComputerDialog(QWidget *parent, QMap<QString, int> tList,
 
     fillTypeMenu(tList);
 
-
     if(id)
     {
         ui->hiddenId->setValue(id);

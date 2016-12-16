@@ -11,7 +11,7 @@
 
 namespace Ui
 {
-class PersonDialog;
+    class PersonDialog;
 }
 
 class PersonDialog : public QDialog

@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Computer History</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -903,75 +903,84 @@
               </property>
              </widget>
             </item>
+            <item alignment="Qt::AlignBottom">
+             <widget class="QFrame" name="frame">
+              <layout class="QGridLayout" name="persInfNatBYDY">
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_nation_pi">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_born_pi">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_deathage_pi">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="nationalitypersonInfo">
+                 <property name="maximumSize">
+                  <size>
+                   <width>150</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Nationality:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="DeathAgePersonInfo">
+                 <property name="maximumSize">
+                  <size>
+                   <width>150</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Died:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="bornPersonInfo">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>150</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Born: </string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
             <item>
-             <layout class="QGridLayout" name="persInfNatBYDY">
-              <item row="2" column="1">
-               <widget class="QLabel" name="label_nation_pi">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="label_born_pi">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="label_deathage_pi">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="nationalitypersonInfo">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Nationality:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="DeathAgePersonInfo">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Died:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="bornPersonInfo">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Born: </string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="Line" name="line_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="personRelationBtnLayout">
@@ -1094,50 +1103,59 @@
              </widget>
             </item>
             <item>
-             <layout class="QGridLayout" name="computerInfoBoard">
-              <item row="2" column="1">
-               <widget class="QLabel" name="label_by_ci">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="label_dy_ci">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="label_type_ci">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="DesignYearComputerInfo">
-                <property name="text">
-                 <string>Design year: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="BuildYearComputerInfo">
-                <property name="text">
-                 <string>Build year: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="TypeComputerInfo">
-                <property name="text">
-                 <string>Type: </string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QFrame" name="frame">
+              <layout class="QGridLayout" name="computerInfoBoard">
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_by_ci">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_dy_ci">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="label_type_ci">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="DesignYearComputerInfo">
+                 <property name="text">
+                  <string>Design year: </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="BuildYearComputerInfo">
+                 <property name="text">
+                  <string>Build year: </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="TypeComputerInfo">
+                 <property name="text">
+                  <string>Type: </string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_7">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -1232,7 +1250,7 @@
      <x>0</x>
      <y>0</y>
      <width>1050</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuComputer_History">
@@ -1242,24 +1260,27 @@
     <addaction name="actionAdd_new_person"/>
     <addaction name="actionAdd_new_computer"/>
     <addaction name="actionAdd_new_relation"/>
+    <addaction name="separator"/>
     <addaction name="actionSave_Changes"/>
+    <addaction name="separator"/>
+    <addaction name="actionReset_to_default_database"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
     </property>
-    <widget class="QMenu" name="menuDelete_all_2">
+    <widget class="QMenu" name="menu_DeleteAll">
      <property name="title">
       <string>Delete all</string>
      </property>
-     <addaction name="actionPersons_2"/>
-     <addaction name="actionComputers_2"/>
-     <addaction name="actionRelations"/>
+     <addaction name="actionDeleteAllPersons"/>
+     <addaction name="actionDeleteAllComputers"/>
+     <addaction name="actionDeleteAllRelations"/>
     </widget>
     <addaction name="actionEdit_person"/>
     <addaction name="actionEdit_Computer"/>
     <addaction name="actionDelete"/>
-    <addaction name="menuDelete_all_2"/>
+    <addaction name="menu_DeleteAll"/>
    </widget>
    <addaction name="menuComputer_History"/>
    <addaction name="menuEdit"/>
@@ -1295,17 +1316,17 @@
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionPersons_2">
+  <action name="actionDeleteAllPersons">
    <property name="text">
     <string>Persons</string>
    </property>
   </action>
-  <action name="actionComputers_2">
+  <action name="actionDeleteAllComputers">
    <property name="text">
     <string>Computers</string>
    </property>
   </action>
-  <action name="actionRelations">
+  <action name="actionDeleteAllRelations">
    <property name="text">
     <string>Relations</string>
    </property>
@@ -1313,6 +1334,11 @@
   <action name="actionAdd_new_relation">
    <property name="text">
     <string>Add new relation</string>
+   </property>
+  </action>
+  <action name="actionReset_to_default_database">
+   <property name="text">
+    <string>Reset to default database</string>
    </property>
   </action>
  </widget>

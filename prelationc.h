@@ -9,7 +9,7 @@
 
 namespace Ui
 {
-class PRelationC;
+    class PRelationC;
 }
 
 class PRelationC : public QDialog
@@ -53,7 +53,6 @@ signals:
     void relationRejected();
     void addCRelAccepted(const QList<int> &l, const int &);
 
-
 private:
     Ui::PRelationC *ui;
     CustomProxyModel *proxyPersonModel;
@@ -62,18 +61,10 @@ private:
 
     int showAdvSearchPersons;
     int lastSelection;
-
-    QSqlRelationalTableModel* personModel;
-
     int computerId;
-
-    Domain domain;
 
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;
-
-
-    //Domain domain;
 };
 
 #endif // PRELATIONC_H
