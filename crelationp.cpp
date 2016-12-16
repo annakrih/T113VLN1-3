@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QWidget *parent) :
+CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QMap<QString,int> tList, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CRelationP)
 {
@@ -16,6 +16,8 @@ CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QWid
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
 
+    CompProxyModel = model;
+
     hideRows(ui->table_Comp,relList);
 
     ui->input_searchBuildYearFrom->setValidator(new QIntValidator);
@@ -23,7 +25,7 @@ CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QWid
     ui->input_searchDesignYearFrom->setValidator(new QIntValidator);
     ui->input_searchDesignYearTo->setValidator(new QIntValidator);
 
- //   fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
+    fillComputerTypeSearchBox(tList);
 
     showAdvSearchComps = 0;
     ui->frame_advSearchComp->setVisible(showAdvSearchComps);
@@ -132,62 +134,59 @@ void CRelationP::on_button_advSearchComp_released()
     ui->frame_advSearchComp->setVisible(showAdvSearchComps);
 }
 
-void CRelationP::searchComp()
+void CRelationP::searchCompModel()
 {
-    QString searchNameInput = ui->searchInput_Comp->text();
+    QList<int> lst;
+    lst.append(1);
+    QString name = ui->searchInput_Comp->text();
+    QString DYfrom = "";
+    QString DYto = "";
+    QString BYfrom = "";
+    QString BYto = "";
+    QString compType = "";
 
     if(showAdvSearchComps)
     {
-        QString DYfrom = ui->input_searchDesignYearFrom->text();
-        QString DYto = ui->input_searchDesignYearTo->text();
-        QString BYfrom = ui->input_searchBuildYearFrom->text();
-        QString BYto = ui->input_searchBuildYearTo->text();
-        QString compType = ui->input_searchCompType->itemData(ui->input_searchCompType->currentIndex()).toString();
-
- //       computerModel= domain.searchComputer(searchNameInput, DYfrom, DYto, BYfrom, BYto, compType);
+        lst.append(2);
+        compType = ui->input_searchCompType->currentText();
+        lst.append(3);
+        DYfrom = ui->input_searchDesignYearFrom->text();
+        DYto = ui->input_searchDesignYearTo->text();
+        lst.append(4);
+        BYfrom = ui->input_searchBuildYearFrom->text();
+        BYto = ui->input_searchBuildYearTo->text();
     }
-    else
-    {
-  //      computerModel = domain.searchComputer(searchNameInput);
-    }
-    loadCompTable();
-}
 
-void CRelationP::loadCompTable()
-{
-/*    proxyCompModel->setSourceModel(computerModel);
-    ui->table_Comp-> setModel(proxyCompModel);
-    ui->table_Comp->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
-    ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
-    ui->table_Comp->verticalHeader()->hide();
-    ui->table_Comp->setColumnHidden(0,true);
-    proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
-    ui->table_Comp->setSelectionBehavior(QAbstractItemView::SelectRows);
-    proxyCompModel->setDynamicSortFilter(true);
-    proxyCompModel->sort(1, Qt::AscendingOrder);
-    */
+    CompProxyModel->setFilterKeyColumns(lst);
+    CompProxyModel->addFilterFixedString(1, name);
+    if(showAdvSearchComps){
+        CompProxyModel->addFilterFixedString(2, compType);
+        CompProxyModel->addFilterFixedString(3, DYfrom);
+        CompProxyModel->addFilterFixedString(4, BYfrom);
+    }
+    CompProxyModel->invalidate();
+
+    ui->table_Comp->hideColumn(0);
 }
 
 void CRelationP::on_input_searchDesignYearFrom_editingFinished()
 {
-    searchComp();
+    searchCompModel();
 }
 
 void CRelationP::on_input_searchDesignYearTo_editingFinished()
 {
-    searchComp();
-
+    searchCompModel();
 }
 
 void CRelationP::on_input_searchBuildYearFrom_editingFinished()
 {
-    searchComp();
-
+    searchCompModel();
 }
 
 void CRelationP::on_input_searchBuildYearTo_editingFinished()
 {
-    searchComp();
+    searchCompModel();
 }
 
 

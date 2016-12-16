@@ -16,7 +16,7 @@ class CRelationP : public QDialog
     Q_OBJECT
 
 public:
-    explicit CRelationP(CustomProxyModel* model, QList<int> relList, int id, QWidget *parent = 0);
+    explicit CRelationP(CustomProxyModel* model, QList<int> relList, int id, QMap<QString,int> tlist, QWidget *parent = 0);
     ~CRelationP();
 
 signals:
@@ -36,9 +36,7 @@ private slots:
 
     void hideRows(QTableView* table, QList<int> rowsToHide);
 
-    void searchComp();
-
-    void loadCompTable();
+    void searchCompModel();
 
     //shows advanced search when the advSearchComp-button is released
     void on_button_advSearchComp_released();
@@ -54,6 +52,8 @@ private:
 
     int lastSelection;
     int personId;
+
+    CustomProxyModel * CompProxyModel;
 
     bool showAdvSearchComps;
     bool overrideTableClick = 0;

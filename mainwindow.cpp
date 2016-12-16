@@ -921,7 +921,7 @@ void MainWindow::on_addPersonRelation_released()
     int id = ui->table_Person->model()->index(lastPersonSelection,0).data().toInt();
     QList<int> relList = getPersonRelationId(id);
 
-    pRelDialogWindow = new CRelationP(proxyCompModel, relList, id, this);
+    pRelDialogWindow = new CRelationP(proxyCompModel, relList, id, tList ,this);
 
     QObject::connect(pRelDialogWindow, SIGNAL(relationRejected()), this, SLOT(onDialogRejected()));
     QObject::connect(pRelDialogWindow,
