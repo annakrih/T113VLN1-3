@@ -44,6 +44,11 @@ public:
     void fillComputerTypeSearchBox(QMap<QString, int> compTypeList);
 
 private slots:
+
+    void on_button_addPerson_clicked();
+
+    void on_button_addcomp_clicked();
+
     void addPersonDialog();
 
     //add person icon, when pressed the add person window appears
@@ -74,15 +79,14 @@ private slots:
 
     void on_searchInput_Comp_textEdited();
 
-    void on_table_Person_clicked(const QModelIndex &index);
+    void on_button_advSearchComp_released();
 
-    void onPersonSelectionChange(const QModelIndex &c, const QModelIndex &p);
+    void on_input_searchDesignYearFrom_editingFinished();
 
-    void on_table_Comp_clicked(const QModelIndex &index);
+    void on_input_searchDesignYearTo_editingFinished();
 
-    void onCompSelectionChange(const QModelIndex &c, const QModelIndex &p);
+    void on_input_searchBuildYearFrom_editingFinished();
 
-    void on_actionAdd_new_person_triggered();
 
     void onDialogRejected();
 
@@ -93,6 +97,8 @@ private slots:
     void onEditPersonAccepted(const int &id, const QString &n, const int &g, const int &nat, const int &b, const int &d, const QString &imagePlace);
 
     void onEditComputerAccepted(const int &id, const QString &n, const int &t, const int &d, const int &b);
+
+    void on_actionAdd_new_person_triggered();
 
     void on_actionEdit_person_triggered();
 
@@ -126,20 +132,6 @@ private slots:
 
     void loadComputerInfo();
 
-    void on_button_addPerson_clicked();
-
-    void on_button_addcomp_clicked();
-
-    void on_button_advSearchComp_released();
-
-    void on_input_searchDesignYearFrom_editingFinished();
-
-    void on_input_searchDesignYearTo_editingFinished();
-
-    void on_input_searchBuildYearFrom_editingFinished();
-
-    void on_input_searchBuildYearTo_editingFinished();
-
     void on_actionPersons_2_triggered();
 
     void on_actionComputers_2_triggered();
@@ -165,6 +157,14 @@ private slots:
     void clearAllSelection();
 
     void on_pushButton_Revert_released();
+
+    void on_table_Person_clicked(const QModelIndex &index);
+
+    void onPersonSelectionChange(const QModelIndex &c, const QModelIndex &p);
+
+    void on_table_Comp_clicked(const QModelIndex &index);
+
+    void onCompSelectionChange(const QModelIndex &c, const QModelIndex &p);
 
     void closeEvent();
 
