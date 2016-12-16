@@ -324,7 +324,6 @@ void MainWindow::on_input_searchBuildYearFrom_editingFinished()
 
 void MainWindow::on_input_searchBuildYearTo_editingFinished()
 {
-    cout << "wat";
     searchCompModel();
 }
 
@@ -666,8 +665,6 @@ void MainWindow::onAddPersonAccepted(const QString &n, const int &g, const int &
     file->open(QIODevice::ReadOnly);
     QByteArray image = file->readAll();
     QString imageBlob = QString(image.toBase64());
-
-    cout << nat << " ";
 
     QSqlRecord record = personModel->record();
     record.setValue(0,nextPersonId);
@@ -1185,7 +1182,6 @@ void MainWindow::deleteSelectedRelations()
         {
             idToRemove.push_back(ui->tablePI->model()->index(selList[i].row(),0).data().toInt());
             ui->tablePI->hideRow(selList[i].row());
-            cout << ui->tablePI->model()->index(selList[i].row(),0).data().toInt() << " ";
         }
 
         foreach(int id, idToRemove){
@@ -1205,7 +1201,6 @@ void MainWindow::deleteSelectedRelations()
         {
             idToRemove.push_back(ui->tableCI->model()->index(selList[i].row(),0).data().toInt());
             ui->tableCI->hideRow(selList[i].row());
-            cout << ui->tableCI->model()->index(selList[i].row(),0).data().toInt() << " ";
         }
 
         foreach(int id, idToRemove){
