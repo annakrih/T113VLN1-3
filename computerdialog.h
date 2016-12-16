@@ -42,6 +42,8 @@ private slots:
     void on_cBY_editingFinished();
     void on_cDY_editingFinished();
 
+    void on_cBY_valueChanged(int arg1);
+
 signals:
     //function that adds new computer
     void addComputerAccepted(const QString &n, const int &t, const int &d, const int &b);
@@ -64,5 +66,6 @@ private:
 };
 
 #endif // COMPUTERDIALOG_H
+
 
 
