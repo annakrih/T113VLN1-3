@@ -705,18 +705,21 @@ void MainWindow::onEditPersonAccepted(const int &id, const QString &n, const int
 {
     this->setEnabled(true);
 
-    QFile* file = new QFile(imagePlace);
-    file->open(QIODevice::ReadOnly);
-    QByteArray image = file->readAll();
-    QString imageBlob = QString(image.toBase64());
-
     personModel->setData(personModel->index(lastPersonSelection,0),id);
     personModel->setData(personModel->index(lastPersonSelection,1),n);
     personModel->setData(personModel->index(lastPersonSelection,2),g);
     personModel->setData(personModel->index(lastPersonSelection,3),nat);
     personModel->setData(personModel->index(lastPersonSelection,4),b);
     personModel->setData(personModel->index(lastPersonSelection,5),d);
-    personModel->setData(personModel->index(lastPersonSelection,6),imageBlob);
+
+    if(imagePlace.size()){
+        QFile* file = new QFile(imagePlace);
+        file->open(QIODevice::ReadOnly);
+        QByteArray image = file->readAll();
+        QString imageBlob = QString(image.toBase64());
+        personModel->setData(personModel->index(lastPersonSelection,6),imageBlob);
+    }
+
     buttonEnabledFunct();
 
     loadPersonInfo();
