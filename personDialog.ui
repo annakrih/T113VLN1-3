@@ -382,6 +382,12 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>personName</tabstop>
+  <tabstop>personNat</tabstop>
+  <tabstop>personGender</tabstop>
+  <tabstop>personBY</tabstop>
+  <tabstop>personDY</tabstop>
+  <tabstop>check_isAlive</tabstop>
   <tabstop>inputPhoto</tabstop>
   <tabstop>hiddenId</tabstop>
  </tabstops>
