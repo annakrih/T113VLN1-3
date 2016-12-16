@@ -904,7 +904,7 @@
              </widget>
             </item>
             <item alignment="Qt::AlignBottom">
-             <widget class="QFrame" name="">
+             <widget class="QFrame" name="frame">
               <layout class="QGridLayout" name="persInfNatBYDY">
                <item row="2" column="1">
                 <widget class="QLabel" name="label_nation_pi">
@@ -973,6 +973,13 @@
                 </widget>
                </item>
               </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
              </widget>
             </item>
             <item>
@@ -1096,50 +1103,59 @@
              </widget>
             </item>
             <item>
-             <layout class="QGridLayout" name="computerInfoBoard">
-              <item row="2" column="1">
-               <widget class="QLabel" name="label_by_ci">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="label_dy_ci">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="label_type_ci">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="DesignYearComputerInfo">
-                <property name="text">
-                 <string>Design year: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="BuildYearComputerInfo">
-                <property name="text">
-                 <string>Build year: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="TypeComputerInfo">
-                <property name="text">
-                 <string>Type: </string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QFrame" name="">
+              <layout class="QGridLayout" name="computerInfoBoard">
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_by_ci">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_dy_ci">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="label_type_ci">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="DesignYearComputerInfo">
+                 <property name="text">
+                  <string>Design year: </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="BuildYearComputerInfo">
+                 <property name="text">
+                  <string>Build year: </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="TypeComputerInfo">
+                 <property name="text">
+                  <string>Type: </string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_7">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
