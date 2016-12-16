@@ -162,7 +162,11 @@ void MainWindow::searchPersonModel()
     QString gender = "";
     QString nationality = "";
     QString BYfrom = "";
+    QString BYto = "";
+    QString searchBY = "";
     QString DYfrom = "";
+    QString DYto = "";
+    QString searchDY = "";
 
     if(showAdvSearchPersons)
     {
@@ -179,10 +183,24 @@ void MainWindow::searchPersonModel()
         nationality = ui->input_searchNat->currentText();
         lst.append(4);
         BYfrom = ui->input_searchBornFrom->text();
-        QString BYto = ui->input_searchBornTo->text();
+        BYto = ui->input_searchBornTo->text();
+        if(BYfrom != "" || BYto != ""){
+            searchBY = "|Number|:";
+            BYfrom != ""? searchBY.append(BYfrom): searchBY.append("0");
+            if(BYto != ""){
+                searchBY.append(" ").append(BYto);
+            }
+        }
         lst.append(5);
         DYfrom = ui->input_searchDiedFrom->text();
-        QString DYto = ui->input_searchDiedTo->text();
+        DYto = ui->input_searchDiedTo->text();
+        if(DYfrom != "" || DYto != ""){
+            searchBY = "|Number|:";
+            DYfrom != ""? searchBY.append(DYfrom): searchBY.append("0");
+            if(DYto != ""){
+                searchBY.append(" ").append(DYto);
+            }
+        }
     }
 
     proxyPersonModel->setFilterKeyColumns(lst);
@@ -190,8 +208,8 @@ void MainWindow::searchPersonModel()
     if(showAdvSearchPersons){
         proxyPersonModel->addFilterFixedString(2, gender);
         proxyPersonModel->addFilterFixedString(3, nationality);
-        proxyPersonModel->addFilterFixedString(4, BYfrom);
-        proxyPersonModel->addFilterFixedString(5, DYfrom);
+        proxyPersonModel->addFilterFixedString(4, searchBY);
+        proxyPersonModel->addFilterFixedString(5, searchDY);
     }
     proxyPersonModel->invalidate();
 

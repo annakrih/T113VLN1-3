@@ -40,13 +40,28 @@ CustomProxyModel::CustomProxyModel(QObject *parent) : QSortFilterProxyModel(pare
                 QModelIndex index = sourceModel()->index(sourceRow, i.key(), sourceParent);
                 ret = (index.data().toString().toLower().contains(i.value().toLower()));
 
+                if(i.value().startsWith("|Number|:")){
+                    QString numbers = i.value();
+                    numbers = numbers.replace(0,9,"");
+                    QStringList number = numbers.split(" ");
+                    ret = index.data().toInt() >= number.at(0).toInt();
+                    if(number.size() > 1){
+                        std::cout << ret;
+                        ret = index.data().toInt() >= number.at(0).toInt() && index.data().toInt() <= number.at(1).toInt();
+                    }
+                }
+
                 if(!ret)
                 {
                     return ret;
-                }else{
-                    for(int i = 0; i < relationColumn.size(); i++){
+                }
+                else
+                {
+                    for(int i = 0; i < relationColumn.size(); i++)
+                    {
                         QString data = sourceModel()->index(sourceRow, relationColumn[i], sourceParent).data().toString();
-                        if(data == ""){
+                        if(data == "")
+                        {
                             ret = false;
                         }
                     }
