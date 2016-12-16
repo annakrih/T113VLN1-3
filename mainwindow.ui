@@ -1269,18 +1269,18 @@
     <property name="title">
      <string>Edit</string>
     </property>
-    <widget class="QMenu" name="menuDelete_all_2">
+    <widget class="QMenu" name="menu_DeleteAll">
      <property name="title">
       <string>Delete all</string>
      </property>
-     <addaction name="actionPersons_2"/>
-     <addaction name="actionComputers_2"/>
-     <addaction name="actionRelations"/>
+     <addaction name="actionDeleteAllPersons"/>
+     <addaction name="actionDeleteAllComputers"/>
+     <addaction name="actionDeleteAllRelations"/>
     </widget>
     <addaction name="actionEdit_person"/>
     <addaction name="actionEdit_Computer"/>
     <addaction name="actionDelete"/>
-    <addaction name="menuDelete_all_2"/>
+    <addaction name="menu_DeleteAll"/>
    </widget>
    <addaction name="menuComputer_History"/>
    <addaction name="menuEdit"/>
@@ -1316,17 +1316,17 @@
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionPersons_2">
+  <action name="actionDeleteAllPersons">
    <property name="text">
     <string>Persons</string>
    </property>
   </action>
-  <action name="actionComputers_2">
+  <action name="actionDeleteAllComputers">
    <property name="text">
     <string>Computers</string>
    </property>
   </action>
-  <action name="actionRelations">
+  <action name="actionDeleteAllRelations">
    <property name="text">
     <string>Relations</string>
    </property>
