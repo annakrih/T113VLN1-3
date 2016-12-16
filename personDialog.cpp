@@ -11,6 +11,7 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QMap<QString
     fillGenderMenu(gMap);
     fillNationalityMenu(natMap);
 
+    ui->check_isAlive->setChecked(false);
     ui->errorMessage->setStyleSheet("QLabel {color:red;}");
 
     if(id)
