@@ -40,8 +40,8 @@ public:
     //default constructor
     Data();
 
+    //functions to import default database if team8.db is deleted
     void importSchema();
-
     void importCSV(QString tableName, QFile &csvFile);
 
     //import from css file
@@ -53,6 +53,7 @@ public:
     //get tableModel of Computer sql table, searchable with filter; (filter strings created in domain layer)
     QSqlRelationalTableModel* readComputerFromDatabase(QString filter = "");
 
+    //get tableModel of relation table between computerrs and persons
     QSqlRelationalTableModel* readPCRelationFromDatabase();
 
     //Functioning to delete all instances of Persons, Computers and Relations:

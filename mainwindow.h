@@ -167,6 +167,8 @@ private slots:
 
     void onCompSelectionChange(const QModelIndex &c, const QModelIndex &p);
 
+    void onPISelectionChange(const QModelIndex &c,const QModelIndex &p);
+
     void closeEvent(QCloseEvent *event);
 
     void on_deletePersonRelation_released();
@@ -174,6 +176,8 @@ private slots:
     void deleteSelectedRelations();
 
     void buttonEnabledFunct();
+
+    void on_tablePI_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
@@ -204,9 +208,14 @@ private:
 
     int lastPersonSelection = 0;
     int lastCompSelection = 0;
+    int lastPISelection = 0;
+    int lastCISelection = 0;
 
     bool overrideOnPersonSelectionChange = 0;
     bool overrideOnCompSelectionChange = 0;
+    bool overrideOnCISelectionChange = 0;
+    bool overrideOnPISelectionChange = 0;
+
     bool overrideTableClick = 0;
 
     bool changesMade = 0;

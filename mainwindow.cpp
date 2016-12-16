@@ -58,6 +58,12 @@ MainWindow::MainWindow(QWidget *parent) :
       SLOT(onCompSelectionChange(const QModelIndex&,const QModelIndex&))
      );
 
+    connect(
+      ui->tablePI->selectionModel(),
+      SIGNAL(currentRowChanged(const QModelIndex&, const QModelIndex&)),
+      SLOT(onPISelectionChange(const QModelIndex&, const QModelIndex&))
+     );
+
     connect(ui->table_Person,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(personRightClick()));
     connect(ui->table_Comp,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(computerRightClick()));
 }
@@ -456,9 +462,45 @@ void MainWindow::onCompSelectionChange(const QModelIndex &c,const QModelIndex &p
         buttonEnabledFunct();
     }
 
+
     //checkStatus();
 }
 
+void MainWindow::on_tablePI_clicked(const QModelIndex &index)
+{
+    buttonEnabledFunct();
+
+    if(lastPISelection == index.row() && !overrideTableClick)
+    {
+        overrideOnPISelectionChange = true;
+        ui->tablePI->selectionModel()->clearSelection();
+        lastPISelection = -1;
+        overrideOnPISelectionChange = false;
+
+        buttonEnabledFunct();
+    }
+    else if(!overrideTableClick)
+    {
+        int index = ui->tablePI->currentIndex().row();
+        lastPISelection = index;
+    }
+    overrideTableClick = false;
+}
+
+void MainWindow::onPISelectionChange(const QModelIndex &c,const QModelIndex &p)
+{
+    if(!overrideOnPISelectionChange)
+    {
+        overrideTableClick = true;
+        int index = c.row();
+        lastPISelection = index;
+
+        buttonEnabledFunct();
+    }
+
+
+    //checkStatus();
+}
 
 void MainWindow::on_actionAdd_new_person_triggered()
 {
@@ -1104,6 +1146,7 @@ void MainWindow::buttonEnabledFunct()
 
     if(index == 0)
     {
+        QModelIndexList pRelSelList = ui->tablePI->selectionModel()->selectedRows();
         if(pSelList.size() > 1)
         {
             ui->pushButton_editSelectedEntry->setEnabled(false);
@@ -1111,6 +1154,17 @@ void MainWindow::buttonEnabledFunct()
 
             ui->pushButton_Delete->setEnabled(true);
             ui->actionDelete->setEnabled(true);
+
+            if(pRelSelList.size() > 0)
+            {
+                cout << "on";
+                ui->deletePersonRelation->setEnabled(true);
+            }
+            else
+            {
+                cout << "off";
+                ui->deletePersonRelation->setEnabled(false);
+            }
         }
         else if(pSelList.size() == 1)
         {
@@ -1119,6 +1173,15 @@ void MainWindow::buttonEnabledFunct()
 
             ui->pushButton_Delete->setEnabled(true);
             ui->actionDelete->setEnabled(true);
+
+            if(pRelSelList.size() > 0)
+            {
+                ui->deleteComputerRelation->setEnabled(true);
+            }
+            else
+            {
+                ui->deleteComputerRelation->setEnabled(false);
+            }
         }
         else
         {
@@ -1132,6 +1195,7 @@ void MainWindow::buttonEnabledFunct()
 
     if(index == 1)
     {
+        QModelIndexList cRelSelList = ui->tableCI->selectionModel()->selectedRows();
         if(cSelList.size() > 1)
         {
             ui->pushButton_editSelectedEntry->setEnabled(false);
@@ -1139,6 +1203,15 @@ void MainWindow::buttonEnabledFunct()
 
             ui->pushButton_Delete->setEnabled(true);
             ui->actionDelete->setEnabled(true);
+
+            if(cRelSelList.size() > 0)
+            {
+                ui->deletePersonRelation->setEnabled(true);
+            }
+            else
+            {
+                ui->deletePersonRelation->setEnabled(false);
+            }
         }
         else if(cSelList.size() == 1)
         {
@@ -1147,6 +1220,15 @@ void MainWindow::buttonEnabledFunct()
 
             ui->pushButton_Delete->setEnabled(true);
             ui->actionDelete->setEnabled(true);
+
+            if(cRelSelList.size() > 0)
+            {
+                ui->deletePersonRelation->setEnabled(true);
+            }
+            else
+            {
+                ui->deletePersonRelation->setEnabled(false);
+            }
         }
         else
         {
@@ -1167,3 +1249,5 @@ void MainWindow::buttonEnabledFunct()
         ui->pushButton_Revert->setEnabled(false);
     }
 }
+
+
