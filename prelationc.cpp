@@ -94,7 +94,8 @@ void PRelationC::searchPersonModel()
     }
     proxyPersonModel->setFilterKeyColumns(lst);
     proxyPersonModel->addFilterFixedString(1, name);
-    if(showAdvSearchPersons){
+    if(showAdvSearchPersons)
+    {
         proxyPersonModel->addFilterFixedString(2, gender);
         proxyPersonModel->addFilterFixedString(3, nationality);
         proxyPersonModel->addFilterFixedString(4, searchBY);
@@ -181,6 +182,10 @@ void PRelationC::on_table_Person_clicked(const QModelIndex &index)
         ui->table_Person->selectionModel()->clearSelection();
         lastSelection = -1;
         overrideOnSelectionChange = false;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     }
     else if(!overrideTableClick)
     {
@@ -200,8 +205,13 @@ void PRelationC::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
     }
 }
 
+<<<<<<< HEAD
 void PRelationC::hideRows(QTableView* table, QList<int> rowsToHide)
 {
+=======
+void PRelationC::hideRows(QTableView* table, QList<int> rowsToHide){
+
+>>>>>>> origin/master
     for(int i = 0; i < table->model()->rowCount(); i++ )
     {
         int id = table->model()->index(i,0).data().toInt();
