@@ -61,6 +61,7 @@ public:
     QSqlRelationalTableModel* deleteAllComputers();
     QSqlRelationalTableModel* deleteAllRelations();
 
+    //get the next id that AUTOINCREMENT would give to a new addition.
     int getNextAutoId(QString table);
 
     //submit any changes to table, QSqlRelationalTableModel deals with all inserts/deletes/updates needed. (awesome)
@@ -81,9 +82,6 @@ public:
     //function that import cvs files and their data to the database.
     void initializeDataTypes();
     void initializeData();
-    void initializePersons();
-    void initializeComputers();
-    void initializeRelations();
 };
 
 #endif // DATA_H

@@ -14,7 +14,7 @@
 
 namespace Ui
 {
-    //class for computer dialog window
+    //class for add/edit computer dialog window
     class ComputerDialog;
 }
 

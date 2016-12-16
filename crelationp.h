@@ -8,6 +8,7 @@
 
 namespace Ui
 {
+    //class for "add Person Relation" window dialog
     class CRelationP;
 }
 

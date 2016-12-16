@@ -24,7 +24,9 @@ protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
+    //columnPattern holds a map of columns, and search pattern
     QMap<int, QString> columnPatterns;
+    //relationColumn holds QList columns that are foreign keys/relation columns
     QList<int> relationColumn;
 };
 
