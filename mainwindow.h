@@ -167,7 +167,7 @@ private slots:
 
     void onCompSelectionChange(const QModelIndex &c, const QModelIndex &p);
 
-    void closeEvent();
+    void closeEvent(QCloseEvent *event);
 
     void on_deletePersonRelation_released();
 

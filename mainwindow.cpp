@@ -689,6 +689,7 @@ void MainWindow::saveModel(QSqlRelationalTableModel * model)
 
 void MainWindow::personRightClick()
 {
+    buttonEnabledFunct();
     QMenu *pContextMenu = new QMenu(this);
     pContextMenu->addAction(ui->menuEdit->actions().at(0));
     pContextMenu->addAction(ui->menuEdit->actions().at(2));
@@ -697,6 +698,7 @@ void MainWindow::personRightClick()
 
 void MainWindow::computerRightClick()
 {
+    buttonEnabledFunct();
     QMenu *cContextMenu = new QMenu( this);
     cContextMenu->addAction(ui->menuEdit->actions().at(1));
     cContextMenu->addAction(ui->menuEdit->actions().at(2));
@@ -889,7 +891,7 @@ void MainWindow::on_pushButton_editSelectedEntry_pressed()
     }
 }
 
-void MainWindow::closeEvent()
+void MainWindow::closeEvent(QCloseEvent *event)
 {
     if(computerModel->isDirty() || personModel->isDirty() || relationModel->isDirty())
     {
@@ -1046,31 +1048,65 @@ void MainWindow::deleteSelectedRelations()
 
 void MainWindow::buttonEnabledFunct()
 {
+    int index = ui->tabsWidget_personComputer->currentIndex();
+
     QModelIndexList pSelList = ui->table_Person->selectionModel()->selectedRows();
     QModelIndexList cSelList = ui->table_Comp->selectionModel()->selectedRows();
-    if(pSelList.size() > 1 || cSelList.size() > 1)
-    {
-        ui->pushButton_editSelectedEntry->setEnabled(false);
-        ui->actionEdit_person->setEnabled(false);
 
-        ui->pushButton_Delete->setEnabled(true);
-        ui->actionDelete->setEnabled(true);
+    if(index == 0)
+    {
+        if(pSelList.size() > 1)
+        {
+            ui->pushButton_editSelectedEntry->setEnabled(false);
+            ui->actionEdit_person->setEnabled(false);
+
+            ui->pushButton_Delete->setEnabled(true);
+            ui->actionDelete->setEnabled(true);
+        }
+        else if(pSelList.size() == 1)
+        {
+            ui->pushButton_editSelectedEntry->setEnabled(true);
+            ui->actionEdit_person->setEnabled(true);
+
+            ui->pushButton_Delete->setEnabled(true);
+            ui->actionDelete->setEnabled(true);
+        }
+        else
+        {
+            ui->pushButton_editSelectedEntry->setEnabled(false);
+            ui->actionEdit_person->setEnabled(false);
+
+            ui->pushButton_Delete->setEnabled(false);
+            ui->actionDelete->setEnabled(false);
+        }
     }
-    else if(pSelList.size() == 1 || pSelList.size() == 1)
-    {
-        ui->pushButton_editSelectedEntry->setEnabled(true);
-        ui->actionEdit_person->setEnabled(true);
 
-        ui->pushButton_Delete->setEnabled(true);
-        ui->actionDelete->setEnabled(true);
-    }
-    else
+    if(index == 1)
     {
-        ui->pushButton_editSelectedEntry->setEnabled(false);
-        ui->actionEdit_person->setEnabled(false);
+        if(cSelList.size() > 1)
+        {
+            ui->pushButton_editSelectedEntry->setEnabled(false);
+            ui->actionAdd_new_computer->setEnabled(false);
 
-        ui->pushButton_Delete->setEnabled(false);
-        ui->actionDelete->setEnabled(false);
+            ui->pushButton_Delete->setEnabled(true);
+            ui->actionDelete->setEnabled(true);
+        }
+        else if(cSelList.size() == 1)
+        {
+            ui->pushButton_editSelectedEntry->setEnabled(true);
+            ui->actionEdit_Computer->setEnabled(true);
+
+            ui->pushButton_Delete->setEnabled(true);
+            ui->actionDelete->setEnabled(true);
+        }
+        else
+        {
+            ui->pushButton_editSelectedEntry->setEnabled(false);
+            ui->actionEdit_person->setEnabled(false);
+
+            ui->pushButton_Delete->setEnabled(false);
+            ui->actionDelete->setEnabled(false);
+        }
     }
 
     if(relationModel->isDirty() || computerModel->isDirty() || personModel->isDirty() == true)
