@@ -87,6 +87,7 @@ private slots:
 
     void on_input_searchBuildYearFrom_editingFinished();
 
+    void on_input_searchBuildYearTo_editingFinished();
 
     void onDialogRejected();
 
