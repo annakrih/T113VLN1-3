@@ -896,7 +896,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if(computerModel->isDirty() || personModel->isDirty() || relationModel->isDirty())
     {
         QString promptTitle = "Unsaved changes";
-        QString promptQuestion = "Detected unsaved changes to database, do you want to save them";
+        QString promptQuestion = "Detected unsaved changes to database, do you want to save them?";
         QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
                                                                    QMessageBox::Yes|QMessageBox::No);
         if(prompt == QMessageBox::Yes)
@@ -1011,8 +1011,21 @@ void MainWindow::clearAllSelection()
 
 void MainWindow::on_pushButton_Revert_released()
 {
+    QString promptTitle = "Revert all changes";
+    QString promptQuestion = "Do you want to revert all changes and save them to database?";
+    QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
+                                                               QMessageBox::Yes|QMessageBox::No);
     revertChanges();
     buttonEnabledFunct();
+    if(prompt == QMessageBox::Yes)
+    {
+        revertChanges();
+        buttonEnabledFunct();
+    }
+    else
+    {
+        //do nothing
+    }
 }
 
 void MainWindow::on_deletePersonRelation_released()
