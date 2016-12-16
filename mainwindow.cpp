@@ -1194,15 +1194,13 @@ void MainWindow::buttonEnabledFunct()
 
 void MainWindow::on_actionReset_to_default_database_triggered()
 {
-<<<<<<< HEAD
     personModel = domain.deletePersonTable();
     computerModel = domain.deleteComputerTable();
 
-=======
     domain.deletePersonTable();
     domain.deleteComputerTable();
     domain.deleteRelationTable();
->>>>>>> origin/master
+
     domain.initializeData();
     personModel = domain.getPersonModel();
     computerModel = domain.getComputerModel();
