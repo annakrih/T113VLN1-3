@@ -7,6 +7,7 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString,
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    ui->label_image->setScaledContents(true);
 
     fillGenderMenu(gMap);
     fillNationalityMenu(natMap);
