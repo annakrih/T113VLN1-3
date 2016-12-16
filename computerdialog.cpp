@@ -65,10 +65,11 @@ void ComputerDialog::on_buttonBox_accepted()
 
 void ComputerDialog::on_wasItBuilt_toggled(bool checked)
 {
-    if(checked)
+    if(checked)//disabling build year entry if computer wasn't built
     {
         ui->cBY->setDisabled(false);
-    }else
+    }
+    else
     {
         ui->cBY->setDisabled(true);
     }
@@ -80,32 +81,32 @@ void ComputerDialog::checkForm()
     const int needed = 4;
     int count = 0;
 
-    if(ui->cName->text() != "")
+    if(ui->cName->text() != "")//name
     {
         count++;
     }
-    if(ui->cType->itemData(ui->cType->currentIndex()).toInt() != 0)
+    if(ui->cType->itemData(ui->cType->currentIndex()).toInt() != 0)//type
     {
         count++;
     }
-    if(ui->cDY->value() != 0)
+    if(ui->cDY->value() != 0)//design year
     {
         count++;
     }
-    if(ui->wasItBuilt->checkState() && ui->cBY->value() != 0)
+    if(ui->wasItBuilt->checkState() && ui->cBY->value() != 0)//built year
     {
         count++;
     }
-    else if(!ui->wasItBuilt->checkState())
+    else if(!ui->wasItBuilt->checkState())//was it built check
     {
         count++;
     }
 
-    if(count >= needed)
+    if(count >= needed)//enough entries filled - accepts current inputs
     {
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
     }
-    else
+    else//not enough entries fillled
     {
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     }
@@ -117,6 +118,7 @@ void ComputerDialog::fillTypeMenu(QMap<QString, int> tList)
     ui->cType->addItem(0,"");
     QMapIterator<QString, int> i(tList);
     i.toBack();
+    //fetching type names from computer types table in database
     while (i.hasPrevious())
     {
         i.previous();
@@ -162,7 +164,7 @@ void ComputerDialog::on_cDY_editingFinished()
 {
     int cDY = ui->cDY->value();
     int cBY = ui->cBY->value();
-    if(cDY > cBY)
+    if(cDY > cBY)//sets build year equal to design year if input of design year is put above build year
     {
         ui->cBY->setValue(cDY);
     }
@@ -173,7 +175,7 @@ void ComputerDialog::on_cBY_editingFinished()
 {
     int cDY = ui->cDY->value();
     int cBY = ui->cBY->value();
-    if(cDY > cBY)
+    if(cDY > cBY)//same as above sets built year to design year if build year is put below design year
     {
         ui->cBY->setValue(cDY);
     }
