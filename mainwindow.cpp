@@ -1289,6 +1289,7 @@ void MainWindow::on_actionReset_to_default_database_triggered()
 
     if(prompt == QMessageBox::Yes)
     {
+        saveChanges();
         personModel = domain.deletePersonTable();
         computerModel = domain.deleteComputerTable();
 
