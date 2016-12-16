@@ -91,8 +91,7 @@ void MainWindow::loadPersonTable()
     proxyPersonModel->setRelationColumn(list);
     proxyPersonModel->setSourceModel(personModel);
     ui->table_Person->setModel(proxyPersonModel);
-    ui->table_Person->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
-    ui->table_Person->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
+    ui->table_Person->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
     ui->table_Person->setColumnHidden(6,true);
@@ -109,8 +108,7 @@ void MainWindow::loadCompTable()
     proxyPersonModel->setRelationColumn(list);
     proxyCompModel->setSourceModel(computerModel);
     ui->table_Comp-> setModel(proxyCompModel);
-    ui->table_Comp->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
-    ui->table_Comp->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
+    ui->table_Comp->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->table_Comp->verticalHeader()->hide();
     ui->table_Comp->setColumnHidden(0,true);
     proxyCompModel->setSortCaseSensitivity(Qt::CaseInsensitive);
@@ -125,6 +123,7 @@ void MainWindow::loadPITable()
     ui->tablePI->setModel(proxyPIModel);
     ui->tablePI->verticalHeader()->hide();
     ui->tablePI->setColumnHidden(0,true);
+    ui->tablePI->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     proxyPIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tablePI->setSelectionBehavior(QAbstractItemView::SelectRows);
     proxyPIModel->setDynamicSortFilter(true);
@@ -137,6 +136,7 @@ void MainWindow::loadCITable()
     ui->tableCI->verticalHeader()->hide();
     ui->tableCI->setColumnHidden(0,true);
     ui->tableCI->setColumnHidden(6,true);
+    ui->tableCI->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     proxyCIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tableCI->setSelectionBehavior(QAbstractItemView::SelectRows);
     proxyCIModel->setDynamicSortFilter(true);
@@ -930,7 +930,6 @@ void MainWindow::loadPersonInfo ()
     QImage img;
     if (img.loadFromData(imageData)) {
         // show this label somewhere.
-        QLabel image_personInfo;
         ui->image_personInfo->setPixmap(QPixmap::fromImage(img));
         ui->image_personInfo->setScaledContents(true);
     }else
@@ -941,7 +940,6 @@ void MainWindow::loadPersonInfo ()
     QList<int> relList = getPersonRelationId(ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
     loadPITable();
     hideAllRowsExcept(ui->tablePI, relList);
-
 
     ui->personInfoWidget->show();
 }
@@ -1041,10 +1039,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         if(prompt == QMessageBox::Yes)
         {
             saveChanges();
-        }
-        else if(prompt == QMessageBox::No)
-        {
-
         }
     }
 }
