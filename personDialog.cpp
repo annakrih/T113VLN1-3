@@ -198,7 +198,8 @@ void PersonDialog::on_personBY_valueChanged(int arg1)
 
 void PersonDialog::on_personDY_valueChanged(int arg1)
 {
-    checkForm();
+    ui->errorMessage->setText("");
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
 
 void PersonDialog::on_inputPhoto_clicked()
