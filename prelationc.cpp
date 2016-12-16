@@ -18,6 +18,7 @@ PRelationC::PRelationC(CustomProxyModel *model, QList<int> relList, int id, QMap
     fillNationalitySearchBox(natList);
 
     proxyPersonModel = model;
+    proxyPersonModel->setDontShow(relList);
 
     ui->buttonBox->buttons().first()->setText("Add");
     ui->table_Person->setModel(proxyPersonModel);
@@ -26,8 +27,6 @@ PRelationC::PRelationC(CustomProxyModel *model, QList<int> relList, int id, QMap
     ui->table_Person->verticalHeader()->hide();
     ui->table_Person->setColumnHidden(0,true);
     ui->table_Person->setColumnHidden(6,true);
-
-    hideRows(ui->table_Person,relList);
 
     computerId = id;
 
@@ -108,6 +107,7 @@ void PRelationC::searchPersonModel()
 
     ui->table_Person->hideColumn(0);
     ui->table_Person->hideColumn(6);
+
 }
 
 void PRelationC::on_input_searchPerson_textEdited()
@@ -201,24 +201,6 @@ void PRelationC::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
         int index = c.row();
         lastSelection = index;
         overrideTableClick = true;
-    }
-}
-
-
-void PRelationC::hideRows(QTableView* table, QList<int> rowsToHide)
-{
-    for(int i = 0; i < table->model()->rowCount(); i++ )
-    {
-        int id = table->model()->index(i,0).data().toInt();
-
-        if(rowsToHide.contains(id))
-        {
-            table->hideRow(i);
-        }
-        else
-        {
-            table->showRow(i);
-        }
     }
 }
 

@@ -17,7 +17,8 @@ CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QMap
     ui->table_Comp->setColumnHidden(0,true);
 
     proxyCompModel = model;
-    hideRows(ui->table_Comp,relList);
+    proxyCompModel->setDontShow(relList);
+
 
     //Makes sure the user can only input numbers in the entries for searching by years:
     ui->input_searchBuildYearFrom->setValidator(new QIntValidator);
@@ -95,24 +96,6 @@ void CRelationP::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
     }
 }
 
-void CRelationP::hideRows(QTableView* table, QList<int> rowsToHide)
-{
-
-    for(int i = 0; i < table->model()->rowCount(); i++ )
-    {
-        int id = table->model()->index(i,0).data().toInt();
-
-        if(rowsToHide.contains(id))
-        {
-            table->hideRow(i);
-        }
-        else
-        {
-            table->showRow(i);
-        }
-    }
-}
-
 void CRelationP::fillComputerTypeSearchBox(QMap<QString,int> compTypeList)
 {
     ui->input_searchCompType->addItem("",0);
@@ -136,7 +119,6 @@ void CRelationP::on_button_advSearchComp_released()
     }
     showAdvSearchComps = !showAdvSearchComps;
     ui->frame_advSearchComp->setVisible(showAdvSearchComps);
-    searchCompModel();
 }
 
 void CRelationP::searchCompModel()

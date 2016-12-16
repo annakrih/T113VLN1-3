@@ -18,6 +18,8 @@ public:
     //setRelationColumn takes in a list of columns that are used in relations
     //these columns will perform exact searches, and so that filterAcceptsRow doesn't unhide already deleted rows
     void setRelationColumn(QList<int> list);
+    //special case! id's (column 0 data) to keep hidden
+    void setDontShow(QList<int> list);
 
 protected:
     //filterAcceptsrow loops through the columns with filters and shows the rows that pass, and hide the rows that fail.
@@ -28,6 +30,8 @@ private:
     QMap<int, QString> columnPatterns;
     //relationColumn holds QList columns that are foreign keys/relation columns
     QList<int> relationColumn;
+
+    QList<int> dontShow;
 };
 
 #endif // CUSTOMPROXYMODEL_H

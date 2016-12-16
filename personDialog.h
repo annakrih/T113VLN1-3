@@ -11,6 +11,7 @@
 
 namespace Ui
 {
+    //class for add/edit person window dialog
     class PersonDialog;
 }
 

@@ -21,7 +21,12 @@ public:
     ~CRelationP();
 
 signals:
+    //signals used to communicate with the main window.
+
+    //relationRejected means, no relations added, (cancel or x in the corner)
     void relationRejected();
+
+    //addPRelAccepted sends back parameters to the main window, a list of relation id's to add, and the id to add it to.
     void addPRelAccepted(const QList<int> &, const int &);
 
 private slots:
@@ -37,9 +42,6 @@ private slots:
 
     //an event that is triggered when the selection is changed
     void onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p);
-
-    //hides rows in the table that should not be shown
-    void hideRows(QTableView* table, QList<int> rowsToHide);
 
     //TODO
     void searchCompModel();

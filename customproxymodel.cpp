@@ -31,6 +31,10 @@ void CustomProxyModel::setRelationColumn(QList<int> list)
 {
     relationColumn = list;
 }
+//special case! id's (column 0 data) to keep hidden
+void CustomProxyModel::setDontShow(QList<int> list){
+    dontShow = list;
+}
 
 bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
@@ -47,6 +51,7 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
     {
         i.next();
         QModelIndex index = sourceModel()->index(sourceRow, i.key(), sourceParent);
+        QModelIndex id = sourceModel()->index(sourceRow, 0, sourceParent);
         if(relationColumn.contains(i.key()))
         {
             ret = (index.data().toString().toLower() == (i.value().toLower())) || i.value() == "";
@@ -65,6 +70,10 @@ bool CustomProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
             {
                 ret = index.data().toInt() >= number.at(0).toInt() && index.data().toInt() <= number.at(1).toInt();
             }
+        }
+
+        if(dontShow.contains(id.data().toInt())){
+           ret = false;
         }
 
         if(!ret)

@@ -9,6 +9,7 @@
 
 namespace Ui
 {
+    //class for "add Computer Relation" window dialog
     class PRelationC;
 }
 
@@ -47,9 +48,6 @@ private slots:
 
     //an event that is triggered when the selection is changed
     void onPersonSelectionChange(const QModelIndex &c,const QModelIndex &p);
-
-    //hides rows in the table that should not be visible
-    void hideRows(QTableView* table, QList<int> rowsToHide);
 
 signals:
     //signals used to communicate with the main window.

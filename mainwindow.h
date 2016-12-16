@@ -32,10 +32,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void searchComp();
-
-    void on_comboBox_currentIndexChanged(int index);
-    void on_searchComboBox_currentIndexChanged(int index);
     void loadPersonTable();
     void loadCompTable();
     void loadPITable();
