@@ -1146,10 +1146,9 @@ void MainWindow::clearAllSelection()
 void MainWindow::on_pushButton_Revert_released()
 {
     QString promptTitle = "Revert all changes";
-    QString promptQuestion = "Do you want to revert all changes and save them to database?";
+    QString promptQuestion = "Do you want to revert all changes?";
     QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
                                                                QMessageBox::Yes|QMessageBox::No);
-    revertChanges();
     buttonEnabledFunct();
     if(prompt == QMessageBox::Yes)
     {

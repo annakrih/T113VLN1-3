@@ -340,6 +340,9 @@
      </property>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="leftMargin">
+        <number>17</number>
+       </property>
        <property name="topMargin">
         <number>0</number>
        </property>
