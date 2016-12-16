@@ -429,7 +429,7 @@
                      <string/>
                     </property>
                     <property name="maxLength">
-                     <number>32767</number>
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -451,7 +451,7 @@
                      <string/>
                     </property>
                     <property name="maxLength">
-                     <number>32767</number>
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> From</string>
@@ -473,7 +473,7 @@
                      <string/>
                     </property>
                     <property name="maxLength">
-                     <number>32767</number>
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -514,7 +514,7 @@
                      <string/>
                     </property>
                     <property name="maxLength">
-                     <number>32767</number>
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> From</string>
@@ -673,7 +673,7 @@
                      <string/>
                     </property>
                     <property name="maxLength">
-                     <number>32767</number>
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -689,7 +689,7 @@
                      <string/>
                     </property>
                     <property name="maxLength">
-                     <number>32767</number>
+                     <number>4</number>
                     </property>
                     <property name="placeholderText">
                      <string> To</string>
@@ -705,7 +705,7 @@
                      <string/>
                     </property>
                     <property name="maxLength">
-                     <number>32767</number>
+                     <number>4</number>
                     </property>
                     <property name="cursorPosition">
                      <number>0</number>
@@ -724,7 +724,7 @@
                      <string/>
                     </property>
                     <property name="maxLength">
-                     <number>32767</number>
+                     <number>4</number>
                     </property>
                     <property name="frame">
                      <bool>true</bool>
