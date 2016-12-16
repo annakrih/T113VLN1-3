@@ -37,7 +37,6 @@ private slots:
     //calls a function that checks if all inputs have been filled
     void on_cName_textChanged(const QString &arg1);
     void on_cType_currentIndexChanged(const QString &arg1);
-    void on_wasItBuilt_toggled(bool checked);
 
     void on_cBY_editingFinished();
     void on_cDY_editingFinished();

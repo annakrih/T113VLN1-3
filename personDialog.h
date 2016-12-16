@@ -44,8 +44,8 @@ private slots:
     //calls a function that checks if all inputs have been filled
     void on_personName_textChanged(const QString &arg1);
     void on_personGender_currentIndexChanged(int index);
+    void on_check_isAlive_clicked(bool isAlive);
     void on_personNat_currentIndexChanged(const int &arg1);
-    void on_personCheckDY_toggled(bool checked);
     void on_personBY_valueChanged(int arg1);
     void on_personDY_valueChanged(int arg1);
 
@@ -56,6 +56,7 @@ private slots:
 
     //button to add photo
     void on_inputPhoto_clicked();
+
 
 signals:
     //a function that adds new person

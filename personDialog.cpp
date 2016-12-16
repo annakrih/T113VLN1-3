@@ -11,6 +11,8 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QMap<QString
     fillGenderMenu(gMap);
     fillNationalityMenu(natMap);
 
+    ui->errorMessage->setStyleSheet("QLabel {color:red;}");
+
     if(id)
     {
         ui->inputPhoto->setText("Edit Photo");
@@ -22,7 +24,7 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QMap<QString
         ui->personBY->setValue(b);
         if(!d)
         {
-            ui->personCheckDY->setChecked(false);
+            ui->check_isAlive->setChecked(true);
         }
         else
         {
@@ -54,11 +56,11 @@ void PersonDialog::on_buttonBox_accepted()
     int nationality = ui->personNat->itemData(ui->personNat->currentIndex()).toInt();;
     int bY = ui->personBY->value();
     int dY;
-    if(ui->personCheckDY->checkState() && ui->personBY->value() != 0)//
+    if(!ui->check_isAlive->checkState() && ui->personBY->value() != 0)
     {
         dY = ui->personDY->value();
     }
-    else if(!ui->personCheckDY->checkState())
+    else if(ui->check_isAlive->checkState())
     {
         dY = 0;
     }
@@ -106,43 +108,41 @@ void PersonDialog::fillNationalityMenu(QMap<QString,int> natList)
 
 void PersonDialog::checkForm()
 {
-    const int needed = 5;
-    int count = 0;
+    bool validInput = 1;
 
-    if(ui->personName->text() != "")//name
+    int birthYear = ui->personBY->value();
+    int deathYear = ui->personDY->value();
+
+    if(ui->personName->text() == "")//name
     {
-        count++;
+        validInput = 0;
     }
-    if(ui->personGender->itemData(ui->personGender->currentIndex()).toInt() != 0)//gender
+    if(ui->personGender->itemData(ui->personGender->currentIndex()).toInt() == 0) //gender
     {
-        count++;
+        validInput = 0;
     }
-    if(ui->personNat->currentText() != "")//nationality
+    if(ui->personNat->currentText() == "")//nationality
     {
-        count++;
+        validInput = 0;
     }
-    if(ui->personBY->value() != 0)//birth year
+    if(birthYear == 0)//birth year
     {
-        count++;
-    }
-    if(ui->personCheckDY->checkState() && ui->personBY->value() != 0)//is person dead
-    {
-        count++;
-    }
-    else if(!ui->personCheckDY->checkState())//death year
-    {
-        count++;
+        validInput = 0;
     }
 
-    if(count >= needed)//enough entires to enable user to press ok
+    ui->errorMessage->setText("");
+    if(!(ui->check_isAlive->checkState()))
     {
-        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+        if(deathYear<birthYear)
+        {
+            validInput = 0;
+            if(!deathYear==0)
+            {
+                ui->errorMessage->setText("Death year cannot be before birth year.");
+            }
+        }
     }
-    else//user has not entered enough inputs and cannot press ok
-    {
-        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    }
-
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(validInput);
 }
 
 void PersonDialog::on_personName_textChanged(const QString &arg1)
@@ -163,38 +163,14 @@ void PersonDialog::on_personNat_currentIndexChanged(const int &arg1)
 
 void PersonDialog::on_personBY_editingFinished()
 {
-    int bY = ui->personBY->value();
-    int dY = ui->personDY->value();
-    if(bY > dY)//sets death year equal to birth year if user enters a higher birth year then death year
-    {
-        ui->personDY->setValue(bY);
-    }
     checkForm();
 }
 
 void PersonDialog::on_personDY_editingFinished()
 {
-    int bY = ui->personBY->value();
-    int dY = ui->personDY->value();
-    if(bY > dY)//sets death year equal to birth year if user sets death year lower then birth year
-    {
-        ui->personDY->setValue(bY);
-    }
     checkForm();
 }
 
-void PersonDialog::on_personCheckDY_toggled(bool checked)
-{
-    if(checked)
-    {
-        ui->personDY->setDisabled(false);
-    }
-    else
-    {
-        ui->personDY->setDisabled(true);
-    }
-    checkForm();
-}
 
 void PersonDialog::on_personGender_currentIndexChanged(int index)
 {
@@ -215,7 +191,8 @@ void PersonDialog::on_PersonDialog_finished(int arg1)
 
 void PersonDialog::on_personBY_valueChanged(int arg1)
 {
-    checkForm();
+    ui->errorMessage->setText("");
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
 
 void PersonDialog::on_personDY_valueChanged(int arg1)
@@ -233,8 +210,10 @@ void PersonDialog::on_inputPhoto_clicked()
         ui->label_image->setPixmap(pixmap);
         ui->label_image->setScaledContents(true);
     }
-    else
-    {
-        //No file selected
-    }
+}
+
+void PersonDialog::on_check_isAlive_clicked(bool isAlive)
+{
+    ui->personDY->setEnabled(!isAlive);
+    checkForm();
 }
