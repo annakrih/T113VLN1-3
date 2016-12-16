@@ -722,7 +722,7 @@ void MainWindow::saveChanges()
         saveModel(relationModel);
 
     }
-    ui->pushButton_Revert->setEnabled(true);
+    ui->pushButton_Revert->setEnabled(false);
 }
 
 void MainWindow::revertChanges()
