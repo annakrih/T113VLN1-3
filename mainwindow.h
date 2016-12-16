@@ -208,7 +208,7 @@ private:
 
 
     void searchPersonModel();
-    void searchComp(const QString& searchInput);
+    void searchCompModel();
 };
 
 #endif // MAINWINDOW_H
