@@ -25,7 +25,6 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/data.cpp \
     $$PWD/utils.cpp \
     $$PWD/personDialog.cpp \
-    $$PWD/gui.cpp \
     $$PWD/computerDialog.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/prelationc.cpp \
@@ -37,7 +36,6 @@ HEADERS += \
     $$PWD/data.h \
     $$PWD/utils.h \
     $$PWD/personDialog.h \
-    $$PWD/gui.h \
     $$PWD/computerDialog.h \
     $$PWD/mainwindow.h \
     $$PWD/prelationc.h \
@@ -46,7 +44,6 @@ HEADERS += \
 
 FORMS += \
     $$PWD/personDialog.ui \
-    $$PWD/gui.ui \
     $$PWD/computerDialog.ui \
     $$PWD/mainwindow.ui \
     $$PWD/prelationc.ui \
