@@ -78,7 +78,8 @@ void CRelationP::on_table_Comp_clicked(const QModelIndex &index)
         lastSelection = -1;
         overrideOnSelectionChange = false;
 
-    }else if(!overrideTableClick)
+    }
+    else if(!overrideTableClick)
     {
         int index = ui->table_Comp->currentIndex().row();
         lastSelection = index;
@@ -106,7 +107,8 @@ void CRelationP::hideRows(QTableView* table, QList<int> rowsToHide)
         if(rowsToHide.contains(id))
         {
             table->hideRow(i);
-        }else
+        }
+        else
         {
             table->showRow(i);
         }

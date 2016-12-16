@@ -23,7 +23,8 @@ CustomProxyModel::CustomProxyModel(QObject *parent) : QSortFilterProxyModel(pare
             columnPatterns[column] = pattern;
         }
 
-        void CustomProxyModel::setRelationColumn(QList<int> list){
+        void CustomProxyModel::setRelationColumn(QList<int> list)
+        {
             relationColumn = list;
         }
 
@@ -35,17 +36,20 @@ CustomProxyModel::CustomProxyModel(QObject *parent) : QSortFilterProxyModel(pare
             bool ret = false;
 
             QMapIterator<int, QString> i(columnPatterns);
-            while (i.hasNext()) {
+            while (i.hasNext())
+            {
                 i.next();
                 QModelIndex index = sourceModel()->index(sourceRow, i.key(), sourceParent);
                 ret = (index.data().toString().toLower().contains(i.value().toLower()));
 
-                if(i.value().startsWith("|Number|:")){
+                if(i.value().startsWith("|Number|:"))
+                {
                     QString numbers = i.value();
                     numbers = numbers.replace(0,9,"");
                     QStringList number = numbers.split(" ");
                     ret = index.data().toInt() >= number.at(0).toInt();
-                    if(number.size() > 1){
+                    if(number.size() > 1)
+                    {
                         std::cout << ret;
                         ret = index.data().toInt() >= number.at(0).toInt() && index.data().toInt() <= number.at(1).toInt();
                     }

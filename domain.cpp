@@ -44,7 +44,8 @@ QSqlRelationalTableModel *Domain::deleteRelationTable()
     return data.deleteAllRelations();
 }
 
-int Domain::getNextAutoId(QString table){
+int Domain::getNextAutoId(QString table)
+{
     return data.getNextAutoId(table);
 }
 

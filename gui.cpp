@@ -41,7 +41,8 @@ void Gui::checkStatus()
         ui->deleteButton->setEnabled(true);
         ui->addEditButton->setText("Edit");
         selected > 1 ? ui->addEditButton->setEnabled(false) : ui->addEditButton->setEnabled(true);
-    }else
+    }
+    else
     {
         ui->deleteButton->setEnabled(false);
         ui->addEditButton->setText("Add");
@@ -79,7 +80,8 @@ void Gui::loadTopTable(QSqlRelationalTableModel * model)
     ui->tableView->setColumnHidden(0,true);
 }
 
-void Gui::loadBottomTable(QSqlQueryModel * model){
+void Gui::loadBottomTable(QSqlQueryModel * model)
+{
     ui->tableView_2-> setModel(model);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
@@ -87,7 +89,8 @@ void Gui::loadBottomTable(QSqlQueryModel * model){
     ui->tableView_2->setColumnHidden(0,true);
 }
 
-void Gui::loadBottomTableEditMode(QSqlRelationalTableModel * model){
+void Gui::loadBottomTableEditMode(QSqlRelationalTableModel * model)
+{
     ui->tableView_2-> setModel(model);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
@@ -107,17 +110,20 @@ void Gui::on_addEditButton_clicked()
         if(selectedList.size()) //if user has selection
         {
             onEditPersonButton();
-        }else
+        }
+        else
         {
             onAddPersonButton();
         }
 
-    }else if(currentMode == Computer)
+    }
+    else if(currentMode == Computer)
     {
 
         if(selectedList.size()){ //if user has selection
             onEditComputerButton();
-        }else
+        }
+        else
         {
             onAddComputerButton();
         }
@@ -306,7 +312,8 @@ void Gui::on_tableView_clicked(const QModelIndex &index)
 
         overrideOnSelectionChange = false;
 
-    }else
+    }
+    else
     {
         lastSelection = index.row();
 
@@ -328,9 +335,11 @@ void Gui::onSelectionChange(const QItemSelection &a, const QItemSelection &b)
     checkStatus();
 }
 
-void Gui::loadRelation(){
+void Gui::loadRelation()
+{
 
-    if(!editMode){
+    if(!editMode)
+    {
         QString id = ui->tableView->model()->index(lastSelection,0).data().toString();
 
         if(currentMode == Person)
@@ -376,14 +385,16 @@ void Gui::on_deleteButton_released()
 
     if(currentMode == Person)
     {
-        for(int i = 0; i < selList.size(); i++){
+        for(int i = 0; i < selList.size(); i++)
+        {
             ui->tableView->hideRow(selList[i].row());
             personModel->removeRow(selList[i].row());
         }
     }
     else if(currentMode == Computer)
     {
-        for(int i = 0; i < selList.size(); i++){
+        for(int i = 0; i < selList.size(); i++)
+        {
             ui->tableView->hideRow(selList[i].row());
             computerModel->removeRow(selList[i].row());
         }
@@ -427,7 +438,8 @@ void Gui::on_comboBox_currentIndexChanged(int index)
 
         switchToPerson();
 
-    }else if(index == 1)  //computer
+    }
+    else if(index == 1)  //computer
     {
 
         switchToComputer();
@@ -582,13 +594,18 @@ void Gui::on_editRelation_toggled(bool checked)
     {
         ui->addRelButton->setEnabled(true);
 
-        if(currentMode == Computer){
+        if(currentMode == Computer)
+        {
             loadBottomTableEditMode(personModel);
-        }else if(currentMode == Person){
+        }
+        else if(currentMode == Person)
+        {
             loadBottomTableEditMode(computerModel);
         }
 
-    }else{
+    }
+    else
+    {
         ui->addRelButton->setEnabled(false);
         loadRelation();
     }
