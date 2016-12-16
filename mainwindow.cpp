@@ -100,7 +100,6 @@ void MainWindow::loadPersonTable()
     ui->table_Person->setSelectionBehavior(QAbstractItemView::SelectRows);
     proxyPersonModel->setDynamicSortFilter(true);
     proxyPersonModel->sort(1, Qt::AscendingOrder);
-
 }
 
 void MainWindow::loadCompTable()
@@ -129,8 +128,6 @@ void MainWindow::loadPITable()
     proxyPIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tablePI->setSelectionBehavior(QAbstractItemView::SelectRows);
     proxyPIModel->setDynamicSortFilter(true);
-
-
 }
 
 void MainWindow::loadCITable()
@@ -143,7 +140,6 @@ void MainWindow::loadCITable()
     proxyCIModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     ui->tableCI->setSelectionBehavior(QAbstractItemView::SelectRows);
     proxyCIModel->setDynamicSortFilter(true);
-
 }
 
 void MainWindow::fillNationalitySearchBox(QMap<QString,int> natList)
@@ -1359,6 +1355,7 @@ void MainWindow::on_actionReset_to_default_database_triggered()
 
     if(prompt == QMessageBox::Yes)
     {
+        saveChanges();
         personModel = domain.deletePersonTable();
         computerModel = domain.deleteComputerTable();
 

@@ -158,7 +158,7 @@ QSqlRelationalTableModel* Data::deleteAllPersons()
 
     QSqlQuery query;
     query.exec("DELETE FROM Person");
-    query.exec("DELETE FROM sqlite_sequence WHERE name=Person");
+    query.exec("DELETE FROM sqlite_sequence WHERE name='Person'");
 
     deleteAllRelations();
 
@@ -169,7 +169,7 @@ QSqlRelationalTableModel* Data::deleteAllComputers()
 {
     QSqlQuery query;
     query.exec("DELETE FROM Computer");
-    query.exec("DELETE FROM sqlite_sequence WHERE name=Computer");
+    query.exec("DELETE FROM sqlite_sequence WHERE name='Computer'");
 
     deleteAllRelations();
 
@@ -180,7 +180,7 @@ QSqlRelationalTableModel *Data::deleteAllRelations()
 {
     QSqlQuery query;
     query.exec("DELETE FROM Person_Computer");
-    query.exec("DELETE FROM sqlite_sequence WHERE name=Person_Computer");
+    query.exec("DELETE FROM sqlite_sequence WHERE name='Person_Computer'");
 
     return readPCRelationFromDatabase();
 }
@@ -204,7 +204,8 @@ void Data::initializeData()
     importCSV("person_computer", personComputer);
 }
 
-void Data::initializeDataTypes(){
+void Data::initializeDataTypes()
+{
     QFile gender(initialGender);
     QFile nationality(initialNationality);
     QFile computeryType(initialComputerType);
@@ -215,7 +216,6 @@ void Data::initializeDataTypes(){
 
 void Data::createPCRelation(int p, int c)
 {
-
     QSqlQuery query;
     query.prepare("INSERT INTO Person_Computer (personId, computerId)"
                       "VALUES (:personId, :computerId)");
