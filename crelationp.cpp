@@ -49,7 +49,8 @@ void CRelationP::on_buttonBox_accepted()
     QModelIndexList selList = ui->table_Comp->selectionModel()->selectedRows();
     QList<int> idList;
 
-    for(int i = 0; i < selList.size(); i++){
+    for(int i = 0; i < selList.size(); i++)
+    {
         int row = selList[i].row();
         idList.push_back(ui->table_Comp->model()->index(row,0).data().toInt());
     }
@@ -77,7 +78,8 @@ void CRelationP::on_table_Comp_clicked(const QModelIndex &index)
         lastSelection = -1;
         overrideOnSelectionChange = false;
 
-    }else if(!overrideTableClick){
+    }else if(!overrideTableClick)
+    {
         int index = ui->table_Comp->currentIndex().row();
         lastSelection = index;
     }
@@ -95,14 +97,17 @@ void CRelationP::onPersonSelectionChange(const QModelIndex &c,const QModelIndex 
     }
 }
 
-void CRelationP::hideRows(QTableView* table, QList<int> rowsToHide){
+void CRelationP::hideRows(QTableView* table, QList<int> rowsToHide)
+{
 
     for(int i = 0; i < table->model()->rowCount(); i++ ){
         int id = table->model()->index(i,0).data().toInt();
 
-        if(rowsToHide.contains(id)){
+        if(rowsToHide.contains(id))
+        {
             table->hideRow(i);
-        }else{
+        }else
+        {
             table->showRow(i);
         }
     }
@@ -160,7 +165,8 @@ void CRelationP::searchCompModel()
 
     CompProxyModel->setFilterKeyColumns(lst);
     CompProxyModel->addFilterFixedString(1, name);
-    if(showAdvSearchComps){
+    if(showAdvSearchComps)
+    {
         CompProxyModel->addFilterFixedString(2, compType);
         CompProxyModel->addFilterFixedString(3, DYfrom);
         CompProxyModel->addFilterFixedString(4, BYfrom);
