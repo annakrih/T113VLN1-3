@@ -1,13 +1,12 @@
 #include "personDialog.h"
 #include "ui_personDialog.h"
 
-PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString, int> natMap, QString n, QString g, QString nat, int b, int d, int id) :
+PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap, QMap<QString, int> natMap, QString n, QString g, QString nat, int b, int d, QString pic, int id) :
     QDialog(parent),
     ui(new Ui::PersonDialog)
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    ui->label_image->setScaledContents(true);
 
     fillGenderMenu(gMap);
     fillNationalityMenu(natMap);
@@ -29,6 +28,14 @@ PersonDialog::PersonDialog(QWidget *parent, QMap<QString,int> gMap,QMap<QString,
         {
             ui->personDY->setValue(d);
         }
+
+        QByteArray imageData = QByteArray::fromBase64(pic.toLocal8Bit());
+        QImage img;
+        if (img.loadFromData(imageData)) {
+            // show this label somewhere.
+            ui->label_image->setPixmap(QPixmap::fromImage(img));
+        }
+
     }
     ui->hiddenId->setDisabled(true);
     checkForm();

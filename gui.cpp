@@ -163,6 +163,7 @@ void Gui::onEditPersonButton()
                           ,ui->tableView->model()->index(lastSelection,3).data().toString()
                           ,ui->tableView->model()->index(lastSelection,4).data().toInt()
                           ,ui->tableView->model()->index(lastSelection,5).data().toInt()
+                          ,ui->tableView->model()->index(lastSelection,6).data().toString()
                           ,ui->tableView->model()->index(lastSelection,0).data().toInt());
 
     QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onPersonRejected()));

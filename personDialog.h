@@ -20,7 +20,7 @@ class PersonDialog : public QDialog
 
 public:
     //default constructor
-    explicit PersonDialog(QWidget *parent, QMap<QString, int> gMap, QMap<QString, int> natMap, QString n = "", QString g = "", QString nat = "", int b = 0, int d = 0, int id = 0);
+    explicit PersonDialog(QWidget *parent, QMap<QString, int> gMap, QMap<QString, int> natMap, QString n = "", QString g = "", QString nat = "", int b = 0, int d = 0, QString pic = "", int id = 0);
 
     //deconstructor
     ~PersonDialog();

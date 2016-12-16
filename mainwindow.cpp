@@ -613,6 +613,7 @@ void MainWindow::editPersonDialog()
                           ,ui->table_Person->model()->index(lastPersonSelection,3).data().toString()
                           ,ui->table_Person->model()->index(lastPersonSelection,4).data().toInt()
                           ,ui->table_Person->model()->index(lastPersonSelection,5).data().toInt()
+                          ,ui->table_Person->model()->index(lastPersonSelection,6).data().toString()
                           ,ui->table_Person->model()->index(lastPersonSelection,0).data().toInt());
 
     QObject::connect(personDialogWindow, SIGNAL(personRejected()), this, SLOT(onDialogRejected()));
