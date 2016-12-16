@@ -158,7 +158,7 @@ QSqlRelationalTableModel* Data::deleteAllPersons()
 
     QSqlQuery query;
     query.exec("DELETE FROM Person");
-    query.exec("DELETE FROM sqlite_sequence WHERE name=Person");
+    query.exec("DELETE FROM sqlite_sequence WHERE name='Person'");
 
     deleteAllRelations();
 
@@ -169,7 +169,7 @@ QSqlRelationalTableModel* Data::deleteAllComputers()
 {
     QSqlQuery query;
     query.exec("DELETE FROM Computer");
-    query.exec("DELETE FROM sqlite_sequence WHERE name=Computer");
+    query.exec("DELETE FROM sqlite_sequence WHERE name='Computer'");
 
     deleteAllRelations();
 
@@ -180,7 +180,7 @@ QSqlRelationalTableModel *Data::deleteAllRelations()
 {
     QSqlQuery query;
     query.exec("DELETE FROM Person_Computer");
-    query.exec("DELETE FROM sqlite_sequence WHERE name=Person_Computer");
+    query.exec("DELETE FROM sqlite_sequence WHERE name='Person_Computer'");
 
     return readPCRelationFromDatabase();
 }
