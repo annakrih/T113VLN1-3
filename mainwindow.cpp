@@ -1194,17 +1194,27 @@ void MainWindow::buttonEnabledFunct()
 
 void MainWindow::on_actionReset_to_default_database_triggered()
 {
-    personModel = domain.deletePersonTable();
-    computerModel = domain.deleteComputerTable();
+    QString promptTitle = "Reset to default database";
+    QString promptQuestion = "Are you sure you want to reset the database to the default databse? \n"
+                             "This will delete all entries in the current database and cannot be undone.";
+    QMessageBox::StandardButton prompt = QMessageBox::question(this,promptTitle, promptQuestion ,
+                                                               QMessageBox::Yes|QMessageBox::No);
 
-    domain.deletePersonTable();
-    domain.deleteComputerTable();
-    domain.deleteRelationTable();
+    if(prompt == QMessageBox::Yes)
+    {
+        personModel = domain.deletePersonTable();
+        computerModel = domain.deleteComputerTable();
 
-    domain.initializeData();
-    personModel = domain.getPersonModel();
-    computerModel = domain.getComputerModel();
-    relationModel = domain.getPCRelationModel();
-    loadPersonTable();
-    loadCompTable();
+        domain.deletePersonTable();
+        domain.deleteComputerTable();
+        domain.deleteRelationTable();
+
+        domain.initializeData();
+
+        personModel = domain.getPersonModel();
+        computerModel = domain.getComputerModel();
+        relationModel = domain.getPCRelationModel();
+        loadPersonTable();
+        loadCompTable();
+    }
 }
