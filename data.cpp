@@ -259,7 +259,6 @@ void Data::importCSV(QString tableName, QFile & csvFile)
 
     foreach (QString row, fileRow)
     {
-
         QStringList columns = QTextStream(&row).readAll().split(QRegularExpression(","));
         for(int i = 0; i < columns.size(); i++)
         {
@@ -278,7 +277,7 @@ void Data::importCSV(QString tableName, QFile & csvFile)
 //read css file
 QString Data::importCss()
 {
-    //fall sem sækir css skrá
+    //function to get css file
     QFile file(utils.workingDir+"stylefile.css");
     file.open(QFile::ReadOnly);
     QString StyleFile = QTextStream(&file).readAll();

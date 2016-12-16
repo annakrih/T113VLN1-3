@@ -23,11 +23,14 @@ public:
 
     //returns QMap of <"GenderName", id>
     QMap<QString, int> getAcceptedGenderName();
+
     //returns QMap of <"GenderChar", id>
     QMap<QString, int> getAcceptedGenderChar();
+
     //returns QMap of <"Typename", id>
     QMap<QString, int> getAcceptedComputerTypeName();
 
+    //gets nationality list from database
     QMap<QString, int> getAcceptedNationality();
 
     //fetches person tableModel from data layer
@@ -36,6 +39,7 @@ public:
     //fetches computer tableModel from data layer
     QSqlRelationalTableModel * getComputerModel(QString filter = "");
 
+    //fetches relation tableModel from data layer
     QSqlRelationalTableModel * getPCRelationModel();
 
     //passes a message down to data layer for deleting all instances in person table
@@ -44,8 +48,10 @@ public:
     //passes a message down to data layer for deleting all instances in computer table
     QSqlRelationalTableModel * deleteComputerTable();
 
+    //passes a message down to data layer for deleting all instances in relation table
     QSqlRelationalTableModel * deleteRelationTable();
 
+    //get next ID for added person/computer to make relation
     int getNextAutoId(QString table);
 
     //takes in a  model and passes it down to the Data layer, where its changes get submitted.

@@ -7,6 +7,7 @@ Domain::Domain()
 {
 
 }
+
 QSqlRelationalTableModel* Domain::submitDatabaseChanges(QSqlRelationalTableModel* model)
 {
     return data.submitDatabaseChanges(model);
@@ -51,7 +52,6 @@ int Domain::getNextAutoId(QString table)
 
 QMap<QString,int> Domain::getAcceptedGenderName()
 {
-
     QMap<int,QMap<QString,QString>> genderList = data.getAcceptedGender();
     QMap<QString,int> gList;
     QMapIterator<int,QMap<QString,QString>> i(genderList);
@@ -239,7 +239,6 @@ QSqlRelationalTableModel * Domain::searchComputer(QString searchNameInput, QStri
         }
         firstFilter = false;
     }
-
 
     //ComputerType filter
     if( !(type=="0" || type==""))
