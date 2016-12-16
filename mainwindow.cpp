@@ -34,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionDelete->setEnabled(false);
     ui->pushButton_Revert->setEnabled(false);
 
-
     loadPersonTable();
     loadCompTable();
 
@@ -1023,4 +1022,9 @@ void MainWindow::on_pushButton_Revert_released()
 {
     revertChanges();
     ui->pushButton_Revert->setEnabled(false);
+}
+
+void MainWindow::on_tabsWidget_personComputer_destroyed()
+{
+
 }

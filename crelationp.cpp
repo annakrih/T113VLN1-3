@@ -1,5 +1,6 @@
 #include "crelationp.h"
 #include "ui_crelationp.h"
+#include <QIntValidator>
 
 #include <iostream>
 
@@ -17,10 +18,15 @@ CRelationP::CRelationP(CustomProxyModel *model, QList<int> relList, int id, QWid
 
     hideRows(ui->table_Comp,relList);
 
+    ui->input_searchBuildYearFrom->setValidator(new QIntValidator);
+    ui->input_searchBuildYearTo->setValidator(new QIntValidator);
+    ui->input_searchDesignYearFrom->setValidator(new QIntValidator);
+    ui->input_searchDesignYearTo->setValidator(new QIntValidator);
+
+ //   fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
+
     showAdvSearchComps = 0;
     ui->frame_advSearchComp->setVisible(showAdvSearchComps);
-
-//    fillComputerTypeSearchBox(domain.getAcceptedComputerTypeName());
 
     personId = id;
 
@@ -100,6 +106,16 @@ void CRelationP::hideRows(QTableView* table, QList<int> rowsToHide){
     }
 }
 
+void CRelationP::fillComputerTypeSearchBox(QMap<QString,int> compTypeList)
+{
+    ui->input_searchCompType->addItem("",0);
+    QMapIterator<QString,int> i(compTypeList);
+    while(i.hasNext())
+    {
+        i.next();
+        ui->input_searchCompType->addItem(i.key(), i.value());
+    }
+}
 
 void CRelationP::on_button_advSearchComp_released()
 {
@@ -174,46 +190,6 @@ void CRelationP::on_input_searchBuildYearTo_editingFinished()
     searchComp();
 }
 
-QString aFunctionForSearchingComp(QString arg1)
-{
-    QString searchString;
-    for(int i = 0; i < arg1.size(); i++)
-    {
-        if(arg1[i] == '1' || arg1[i] == '2' || arg1[i] == '3' || arg1[i] == '4' || arg1[i] == '5' || arg1[i] == '6' || arg1[i] == '7' || arg1[i] == '8' || arg1[i] == '9' || arg1[i] == '0')
-        {
-            searchString += arg1[i];
-        }
-    }
-    return searchString;
-}
-
-void CRelationP::on_input_searchDesignYearFrom_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearchingComp(arg1);
-    ui->input_searchDesignYearFrom->setText(newString);
-}
-
-void CRelationP::on_input_searchDesignYearTo_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearchingComp(arg1);
-    ui->input_searchDesignYearTo->setText(newString);
-}
-
-void CRelationP::on_input_searchBuildYearFrom_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearchingComp(arg1);
-    ui->input_searchBuildYearFrom->setText(newString);
-}
-
-void CRelationP::on_input_searchBuildYearTo_textEdited(const QString &arg1)
-{
-    QString newString;
-    newString = aFunctionForSearchingComp(arg1);
-    ui->input_searchBuildYearTo->setText(newString);
-}
 
 
 

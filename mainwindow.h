@@ -169,7 +169,8 @@ private slots:
 
     void closeEvent();
 
-    void on_input_searchBuildYearTo_editingFinished();
+
+    void on_tabsWidget_personComputer_destroyed();
 
 private:
     Ui::MainWindow *ui;

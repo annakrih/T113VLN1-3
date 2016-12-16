@@ -50,13 +50,6 @@ private slots:
 
     void on_input_searchBuildYearTo_editingFinished();
 
-    void on_input_searchDesignYearFrom_textEdited(const QString &arg1);
-
-    void on_input_searchDesignYearTo_textEdited(const QString &arg1);
-
-    void on_input_searchBuildYearFrom_textEdited(const QString &arg1);
-
-    void on_input_searchBuildYearTo_textEdited(const QString &arg1);
 
 private:
     Ui::CRelationP *ui;
@@ -67,6 +60,9 @@ private:
     bool showAdvSearchComps;
     bool overrideTableClick = 0;
     bool overrideOnSelectionChange = 0;
+
+    void fillComputerTypeSearchBox(QMap<QString,int> compTypeList);
+
 };
 
 #endif // CRELATIONP_H
