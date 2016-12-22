@@ -25,10 +25,11 @@ ComputerDialog::ComputerDialog(QWidget *parent, QMap<QString, int> tList,
         ui->cDY->setValue(d);
         if(!b)
         {
-            ui->wasItBuilt->setChecked(false);
+            ui->wasItBuilt->setChecked(true);
         }
         else
         {
+            ui->wasItBuilt->setChecked(false);
             ui->cBY->setValue(b);
         }
     }
